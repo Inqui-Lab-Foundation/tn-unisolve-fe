@@ -12,7 +12,7 @@ phases:
       - npm install --force
   build:
      commands:
-      - npm run build:tnstaging
+      - npm run build:mvstaging
       - cp .htaccess build
   post_build:
     commands:
