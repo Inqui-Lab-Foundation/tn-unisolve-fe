@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
     - source: /
-      destination: /var/www/html/tn-unisolve-fe
+      destination: /var/www/html/mv-unisolve-fe
 file_exists_behavior: OVERWRITE
 Hooks:
     - BeforeInstall:
