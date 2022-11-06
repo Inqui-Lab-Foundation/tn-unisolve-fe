@@ -84,7 +84,7 @@
     "start:development": "env-cmd -f ./environments/.env.development npm run start:naked",
     "start:staging": "env-cmd -f ./environments/.env.staging npm run start:naked",
     "start:mvstaging": "env-cmd -f ./environments/.env.mvstaging npm run start:naked",
-    "start:production": "env-cmd -f ./environments/.env.production npm run start:naked",
+    "start:prod": "env-cmd -f ./environments/.env.production npm run start:naked",
     "start:testing": "env-cmd -f ./environments/.env.testing npm run start:naked",
     "start:local": "env-cmd -f ./environments/.env.local npm run start:naked",
     "start-js": "react-scripts start",
