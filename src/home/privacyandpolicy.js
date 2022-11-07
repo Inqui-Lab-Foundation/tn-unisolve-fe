@@ -389,7 +389,7 @@ const Home = () => {
                     <Row>
                         <Col md={6}>
                             <h2>
-                            School Innovation Development Project (SIDP)
+                            UNISOLVE
                             </h2>
                             <p>
                             To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, EDII-TN launches SIDP with support of School Education Department.
