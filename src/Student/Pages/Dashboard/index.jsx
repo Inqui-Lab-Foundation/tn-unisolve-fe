@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import Layout from '../../Layout.jsx';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -39,10 +39,9 @@ const Dashboard = () => {
         dashboardStatus,
         dashboardChallengesStatus,
         dashboardTeamProgressStatus,
-        dashboardTutorials,
+        // dashboardTutorials,
         teamMember
     } = useSelector((state) => state?.studentRegistration);
-    const [videoId, setVideoId] = useState(null);
     const history = useHistory();
     useEffect(() => {
         dispatch(
@@ -97,10 +96,9 @@ const Dashboard = () => {
     const cardData = {
         idea: {
             heading: 'Idea Registration',
-            deadline: `${
-                dashboardChallengesStatus
-                    ? dashboardChallengesStatus?.end_date
-                    : '-'
+            deadline: `${dashboardChallengesStatus
+                ? dashboardChallengesStatus?.end_date
+                : '-'
             }`,
             subHeading: 'Idea  Submission',
             footerText: 'With Team Members',
@@ -164,10 +162,10 @@ const Dashboard = () => {
                 >
                     {Math.round(
                         100 -
-                            percentageBWNumbers(
-                                record.all_topics_count,
-                                record.topics_completed_count
-                            )
+                        percentageBWNumbers(
+                            record.all_topics_count,
+                            record.topics_completed_count
+                        )
                     )}{' '}
                     %
                 </Progress>
@@ -228,7 +226,7 @@ const Dashboard = () => {
                         title={'Completed Videos'}
                         count={
                             dashboardStatus &&
-                            dashboardStatus?.videos_completed_count
+                                dashboardStatus?.videos_completed_count
                                 ? dashboardStatus?.videos_completed_count
                                 : 0
                         }
@@ -238,18 +236,18 @@ const Dashboard = () => {
                         title={'Completed Quiz'}
                         count={
                             dashboardStatus &&
-                            dashboardStatus?.quiz_completed_count
+                                dashboardStatus?.quiz_completed_count
                                 ? dashboardStatus?.quiz_completed_count
                                 : 0
                         }
                         image={vector1}
                     />
-                   
+
                     <DashboardOverviewCard
                         title={'Completed Worksheets'}
                         count={
                             dashboardStatus &&
-                            dashboardStatus?.worksheet_completed_count
+                                dashboardStatus?.worksheet_completed_count
                                 ? dashboardStatus?.worksheet_completed_count
                                 : 0
                         }
@@ -260,10 +258,10 @@ const Dashboard = () => {
                         count={
                             Math.round(
                                 100 -
-                                    percentageBWNumbers(
-                                        dashboardStatus?.all_topics_count,
-                                        dashboardStatus?.topics_completed_count
-                                    )
+                                percentageBWNumbers(
+                                    dashboardStatus?.all_topics_count,
+                                    dashboardStatus?.topics_completed_count
+                                )
                             ) + ' %'
                         }
                         image={vector}
@@ -293,8 +291,26 @@ const Dashboard = () => {
                         </div>
                     </Col>
                     <Col md={12} className="flex-2">
-                        <h2>Support</h2>
+                        <h2>Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN</h2>
                         <div className="bg-white learning-statistics rounded p-3">
+                            <div className="flex-2 px-3">
+                                <div
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        position: 'relative'
+                                    }}
+                                >
+                                    {<Vimeo
+                                        video={770500069}
+                                        volume={true}
+                                        showTitle
+                                    />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3">
                                 <div
                                     style={{
@@ -337,7 +353,7 @@ const Dashboard = () => {
                                         ))}
                                 </ol>
                             </div>
-                        </div>
+                        </div> */}
                     </Col>
                 </Row>
             </Container>
