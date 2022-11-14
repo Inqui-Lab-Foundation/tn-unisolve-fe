@@ -1316,11 +1316,11 @@ const PlayVideoCourses = (props) => {
                                             <Modal.Title className="w-100 d-block mb-2">
                                                 Ready for a quick test?
                                             </Modal.Title>
-                                            <p className="w-100 d-block">
+                                            {/* <p className="w-100 d-block">
                                                 Test your course skills in a
                                                 short test challenge!
-                                            </p>
-                                            <div className="row justify-content-center text-center">
+                                            </p> */}
+                                            {/* <div className="row justify-content-center text-center">
                                                 <div className="col col-lg-3">
                                                     <p>
                                                         <VscCircleFilled
@@ -1341,7 +1341,7 @@ const PlayVideoCourses = (props) => {
                                                         Minutes
                                                     </p>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </Modal.Header>
 
                                         <Modal.Body>
