@@ -398,5 +398,13 @@
     "badges":{
         "congratulations":"வாழ்த்துகள்",
         "earn":"நீங்கள் ஒரு புதிய பேட்ஜைப் பெற்றுள்ளீர்கள்"
+    },
+    "student_course":{
+        "modules":"தொகுதிகள்",
+        "videos":"வீடியோக்கள்",
+        "start course":"படிப்பைத் தொடங்க",
+        "full screen":"முழு திரை",
+        "lessons":"பாடங்கள்",
+        "continue course":"படிப்பைத் தொடர"
     }
 }

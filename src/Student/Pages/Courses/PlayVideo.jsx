@@ -1048,12 +1048,12 @@ const PlayVideoCourses = (props) => {
                             <span className="card-type">
                                 {adminCourse &&
                                     adminCourse.course_modules_count}{' '}
-                                Modules
+                                {t('student_course.modules')}
                             </span>
                             <RiAwardFill className="lessonsvg" />
                             <span className="card-type points">
                                 {adminCourse && adminCourse.course_videos_count}{' '}
-                                Videos
+                                {t('student_course.videos')}
                             </span>
                         </div>
                     </Col>
@@ -1082,7 +1082,7 @@ const PlayVideoCourses = (props) => {
                             }}
                         >
                             <div className="assement-info">
-                                <p className="content-title">Lessons</p>
+                                <p className="content-title">{t('student_course.lessons')}</p>
                                 <div className="view-head"></div>
                                 <div className="assement-item " id="scrollbar">
                                     <Accordion open={open} toggle={toggle}>
@@ -1596,7 +1596,7 @@ const PlayVideoCourses = (props) => {
                                             ></div>
                                                 <div>
                                                     <Button
-                                                        label="CONTINUE COURSE"
+                                                        label={t('student_course.continue course')}
                                                         btnClass="primary mt-4"
                                                         size="small"
                                                         onClick={(e) =>
@@ -1689,7 +1689,7 @@ const PlayVideoCourses = (props) => {
                                                     'INCOMPLETE' ? (
                                                     <div>
                                                         <Button
-                                                            label="START COURSE"
+                                                            label={t('student_course.start course')}
                                                             btnClass="primary mt-4"
                                                             size="small"
                                                             onClick={(e) =>
@@ -1702,7 +1702,7 @@ const PlayVideoCourses = (props) => {
                                                 ) : (
                                                     <div>
                                                         <Button
-                                                            label="CONTINUE COURSE"
+                                                            label={t('student_course.continue course')}
                                                             btnClass="primary mt-4"
                                                             size="small"
                                                             onClick={(e) =>
