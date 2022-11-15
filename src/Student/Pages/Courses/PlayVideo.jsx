@@ -1347,7 +1347,6 @@ const PlayVideoCourses = (props) => {
                                                     </div>
                                                 </div>
                                             </Modal.Header>
-
                                             <Modal.Body>
                                                 <figure>
                                                     <img
