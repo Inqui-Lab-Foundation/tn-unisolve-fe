@@ -67,6 +67,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
+import BhutanMap from '../components/MapCard/BhutanMap';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -856,6 +857,7 @@ const Home = () => {
                     </h2>
                 </div>
                 <TamilNaduMap />
+                <BhutanMap/>
             </section>
 
             <section className="blog">
