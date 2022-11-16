@@ -42,7 +42,7 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import Loden_Logo_white_circle from '../assets/media/tn-brands/4_Loden Logo white circle.png';
+import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
 import MoE from '../assets/media/tn-brands/3_MoE.png';
 import IIF from '../assets/media/tn-brands/2_IIF.png';
 import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
@@ -177,9 +177,9 @@ const Home = () => {
         },
         {
             id: 4,
-            key: 'Loden_Logo_white_circle',
+            key: 'Loden',
             // imageUrl: Unicef
-            imageUrl: Loden_Logo_white_circle
+            imageUrl: Loden
         },
         {
             id: 5,
