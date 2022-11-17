@@ -12,19 +12,15 @@ const BhutanMap = () => {
     const [addClassName, setAddClassName] = useState(initialClassName);
     const data = useSelector((state) => state.home.districtData);
     const { overAllData } = useSelector((state) => state.home);
-    console.log(overAllData);
 
     const [initial, setInitial] = useState(true);
-    console.log(initial);
     const [districtName, setDistrictName] = useState('');
     const [values, setValues] = useState({});
     const resetData = () => {
         setAddClassName(initialClassName);
-        // setValues(overAllData);
+        setValues(overAllData);
         setInitial(false);
     };
-    console.log(resetData);
-    console.log(addClassName);
 
     const getDistData = (event) => {
         const filteredData = data.filter(
@@ -39,10 +35,6 @@ const BhutanMap = () => {
         });
     };
 
-    const getDistDataa = (event) => {
-        console.log(event.target.id);
-    };
-    console.log(getDistData);
     return (
         <Container className="state">
             <Row className="w-100">
@@ -63,8 +55,18 @@ const BhutanMap = () => {
                     >
                         <switch>
                             <g iExtraneous="self">
-                                <g title="" className="fil0" onMouseEnter={getDistDataa}>
-                                    <g >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Gasa'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
+                                    <g>
                                         <path
                                             id="Gasa"
                                             d="M611.488,269.655c-0.112-0.629-0.307-1.256-0.325-1.888c-0.33-11.662-1.497-10.415,9.934-13.151
@@ -236,7 +238,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Punakha'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Punakha"
@@ -356,7 +368,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Thimphu'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Thimphu"
@@ -501,7 +523,14 @@ const BhutanMap = () => {
 
                                 <g
                                     title=""
-                                    className="fil0" onMouseEnter={getDistDataa}
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Wangdue Phodrang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
                                 >
                                     <g>
                                         <path
@@ -766,7 +795,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Paro'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Paro"
@@ -873,7 +912,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Haa'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Haa"
@@ -984,7 +1033,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Samtse'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Samtse"
@@ -1135,7 +1194,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Chukha'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Chukha"
@@ -1266,7 +1335,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Dagana'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Dagana"
@@ -1406,7 +1485,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Tsirang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Tsirang"
@@ -1521,7 +1610,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Sarpang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Sarpang"
@@ -1687,7 +1786,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Trongsa'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Trongsa"
@@ -1834,7 +1943,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Bumthang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Bumthang"
@@ -2002,11 +2121,18 @@ const BhutanMap = () => {
 
                                 <g
                                     title=""
-                                    className="fil0" onMouseEnter={getDistDataa}
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Trashiyangtse'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
                                 >
                                     <g>
                                         <path
-                                            id="Trashi Yangtse"
+                                            id="Trashiyangtse"
                                             d="M2571.802,787.752c-0.747,4.138-2.996,6.885-7.11,8.187c-3.372,1.067-6.696,2.071-10.304,1.83
                                                                                                       c-2.229-0.149-4.479,0.03-6.715-0.05c-6.953-0.249-13.201,1.808-18.99,5.554c-2.142,1.386-4.401,2.589-6.613,3.866
                                                                                                       c-5.084,2.938-10.43,4.778-16.435,4.156c-2.302-0.238-4.472,0.298-6.151,2.055c-2.023,2.119-4.538,3.476-7.084,4.844
@@ -2200,10 +2326,20 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Lhuentse'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
-                                            id="Lhuntse"
+                                            id="Lhuentse"
                                             d="M1761.85,223.305c2.549-3.119,3.599-6.687,3.358-10.702c-0.134-2.231-0.134-4.475-0.077-6.71
                                                                                                       c0.063-2.501,2.096-4.309,4.383-3.918c2.519,0.43,5.048,0.856,7.52,1.49c2.922,0.75,5.297,2.348,6.225,5.398
                                                                                                       c1.149,3.78,3.394,6.802,6.06,9.63c1.96,2.081,3.702,4.367,5.743,6.802c4.673,0.165,9.449,0.353,14.226,0.496
@@ -2353,7 +2489,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa}>
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Zhemgang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Zhemgang"
@@ -2515,7 +2661,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Mongar'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Mongar"
@@ -2648,7 +2804,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Trashigang'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Trashigang"
@@ -2831,7 +2997,14 @@ const BhutanMap = () => {
 
                                 <g
                                     title=""
-                                    className="fil0" onMouseEnter={getDistDataa}
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Samdrup Jongkhar'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
                                 >
                                     <g>
                                         <path
@@ -3039,7 +3212,17 @@ const BhutanMap = () => {
                                     </g>
                                 </g>
 
-                                <g title="" className="fil0" onMouseEnter={getDistDataa} >
+                                <g
+                                    title=""
+                                    className={`fil0  ${
+                                        addClassName.id &&
+                                        addClassName.id === 'Pema Gatshel'
+                                            ? addClassName.districtColor
+                                            : ''
+                                    }`}
+                                    onMouseEnter={getDistData}
+                                    onMouseLeave={resetData}
+                                >
                                     <g>
                                         <path
                                             id="Pema Gatshel"
@@ -3218,8 +3401,7 @@ const BhutanMap = () => {
                 <Col md={6} className="my-auto common-flex">
                     <MapdataCard
                         values={values}
-                        all={{ district_name: 'all' }}
-                        // all={initial ? overAllData : {}}
+                        all={initial ? overAllData : {}}
                         districtName={districtName}
                     />
                 </Col>
