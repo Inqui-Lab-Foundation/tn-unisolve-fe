@@ -167,10 +167,10 @@ const PreSurvey = () => {
 
     return (
         <Layout>
-            <GreetingModal
+            {/* <GreetingModal
                 handleClose={handleClose}
                 show={greetChildrensDay}
-            ></GreetingModal>
+            ></GreetingModal> */}
 
             <Container className="presuervey mb-50 mt-5 ">
                 <Row className="justify-content-center aside p-0 p-md-4 bg-transparent">
