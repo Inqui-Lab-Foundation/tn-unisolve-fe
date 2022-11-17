@@ -305,6 +305,21 @@ const Home = () => {
             id: 6,
             title: `${t('home_tl.faq_qn_6')}`,
             desc: `${t('home_tl.faq_ans_6')}`
+        },
+        {
+            id: 7,
+            title: `${t('home_tl.faq_qn_7')}`,
+            desc: `${t('home_tl.faq_ans_7')}`
+        },
+        {
+            id: 8,
+            title: `${t('home_tl.faq_qn_8')}`,
+            desc: `${t('home_tl.faq_ans_8')}`
+        },
+        {
+            id: 9,
+            title: `${t('home_tl.faq_qn_9')}`,
+            desc: `${t('home_tl.faq_ans_9')}`
         }
     ];
 
@@ -1099,7 +1114,7 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered UDISE Code &
+                                                        Entered Teacher Unique Code &
                                                         School details are not
                                                         registered with us.
                                                     </span>

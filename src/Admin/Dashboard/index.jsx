@@ -45,7 +45,7 @@ const Dashboard = () => {
             })
             .catch(function (error) {
                 if (error?.response?.data?.status === 404) {
-                    setError('Entered Invalid UDISE Code');
+                    setError('Entered Invalid Teacher Unique Code');
                 }
                 setOrgData({});
             });
@@ -87,7 +87,7 @@ const Dashboard = () => {
                                                 }
                                                 value={diesCode}
                                                 name="organization_code"
-                                                placeholder="Enter UDISE Code"
+                                                placeholder="Enter Teacher Unique Code"
                                                 className="w-100 mb-3 mb-md-0"
                                                 style={{
                                                     borderRadius: '60px',
@@ -146,7 +146,7 @@ const Dashboard = () => {
                             {!diesCode && (
                                 // <Card className="mt-3 p-4">
                                 <div className='d-flex  mt-3 p-4 justify-content-center align-items-center'>
-                                    <span className='text-primary fs-highlight'>Enter UDISE Code</span>
+                                    <span className='text-primary fs-highlight'>Enter Teacher Unique Code</span>
                                 </div>
                                 // </Card>
                             )}
