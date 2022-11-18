@@ -943,7 +943,7 @@ const Home = () => {
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
