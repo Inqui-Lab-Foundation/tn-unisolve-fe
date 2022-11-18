@@ -29,9 +29,10 @@ import { slide as Menu } from 'react-burger-menu';
 import Slider from 'react-slick';
 import LearnMentor from '../assets/media/home/learn.svg';
 import upshift from '../assets/media/UPSHIFT-diagram.jpg';
-import testi1 from '../assets/media/home/testi/Herve_Morin_Global_head.jpg';
-import testi2 from '../assets/media/home/testi/Swathi.JPG';
-import IdeaBulb from '../assets/media/home/idea-bulb.png';
+import testi1 from '../assets/media/home/testi/PHUB_LHAM_img.png';
+import testi2 from '../assets/media/home/testi/MANI_DEM_img.png';
+import testi3 from '../assets/media/home/testi/NIM_DORJI_img.png';
+//import IdeaBulb from '../assets/media/home/idea-bulb.png';
 
 import map_icon_awa from '../assets/media/home/icon_aweraness.png';
 import map_icon_reg from '../assets/media/home/icon_registration.png';
@@ -41,12 +42,11 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import Loden_Logo_white_circle from '../assets/media/tn-brands/4_Loden Logo white circle.png';
-import MoE from '../assets/media/tn-brands/3_MoE.jpg';
-import videocover_logo from '../assets/media/tn-brands/3_videocover-logo.jpeg';
+import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
+import MoE from '../assets/media/tn-brands/3_MoE.png';
 import IIF from '../assets/media/tn-brands/2_IIF.png';
 import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
-import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
+import Unicef from '../assets/media/tn-brands/6_unicef.png';
 import YDF from '../assets/media/tn-brands/5_YDF.png';
 import LogoTn from '../assets/media/tn-brands/logo.png';
 
@@ -177,24 +177,18 @@ const Home = () => {
         },
         {
             id: 4,
-            key: 'videocover_logo',
-            // imageUrl: Inquilab
-            imageUrl: videocover_logo
+            key: 'Loden',
+            // imageUrl: Unicef
+            imageUrl: Loden
         },
         {
             id: 5,
-            key: 'Loden_Logo_white_circle',
-            // imageUrl: Unicef
-            imageUrl: Loden_Logo_white_circle
-        },
-        {
-            id: 6,
             key: 'YDF',
             // imageUrl: Congnizant
             imageUrl: YDF
         },
         {
-            id: 7,
+            id: 6,
             key: 'Unicef',
             // imageUrl: Congnizant
             imageUrl: Unicef
@@ -205,21 +199,21 @@ const Home = () => {
     const testimonials = [
         {
             id: 1,
-            imageUrl: testi2,
+            imageUrl: testi1,
             desc: `${t('home_tl.testimonials_desc_1')}`,
             name: `${t('home_tl.testimonials_name_1')}`,
             title: `${t('home_tl.testimonials_title_1')}`
         },
         {
             id: 2,
-            imageUrl: testi1,
+            imageUrl: testi2,
             desc: `${t('home_tl.testimonials_desc_2')}`,
             name: `${t('home_tl.testimonials_name_2')}`,
             title: `${t('home_tl.testimonials_title_2')}`
         },
         {
             id: 3,
-            imageUrl: testi1,
+            imageUrl: testi3,
             desc: `${t('home_tl.testimonials_desc_3')}`,
             name: `${t('home_tl.testimonials_name_3')}`,
             title: `${t('home_tl.testimonials_title_3')}`
@@ -311,6 +305,21 @@ const Home = () => {
             id: 6,
             title: `${t('home_tl.faq_qn_6')}`,
             desc: `${t('home_tl.faq_ans_6')}`
+        },
+        {
+            id: 7,
+            title: `${t('home_tl.faq_qn_7')}`,
+            desc: `${t('home_tl.faq_ans_7')}`
+        },
+        {
+            id: 8,
+            title: `${t('home_tl.faq_qn_8')}`,
+            desc: `${t('home_tl.faq_ans_8')}`
+        },
+        {
+            id: 9,
+            title: `${t('home_tl.faq_qn_9')}`,
+            desc: `${t('home_tl.faq_ans_9')}`
         }
     ];
 
@@ -934,7 +943,7 @@ const Home = () => {
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -1105,7 +1114,7 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered UDISE Code &
+                                                        Entered Teacher Unique Code &
                                                         School details are not
                                                         registered with us.
                                                     </span>
