@@ -43,10 +43,10 @@ import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
 import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
-import MoE from '../assets/media/tn-brands/3_MoE.png';
+import MoE from '../assets/media/tn-brands/3_MoE.jpg';
 import IIF from '../assets/media/tn-brands/2_IIF.png';
 import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
-import Unicef from '../assets/media/tn-brands/6_unicef.png';
+import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
 import YDF from '../assets/media/tn-brands/5_YDF.png';
 import LogoTn from '../assets/media/tn-brands/logo.png';
 
@@ -963,8 +963,10 @@ const Home = () => {
                                             </figure>
                                             <CardBody>
                                                 <blockquote className="blockquote text-center">
-                                                    <p className="mb-0">
-                                                        {testimonial.desc}
+                                                    <p className="mb-0"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: testimonial.desc
+                                                    }}>
                                                     </p>
                                                     <footer className="blockquote-footer pt-5">
                                                         {' '}
