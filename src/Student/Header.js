@@ -13,12 +13,17 @@ import AvatarImg from '../assets/media/img/Avatar.png';
 // import { Badge } from 'antd';
 // import {getCurrentUser, logout} from "../helpers/Utils"; 
 import {getCurrentUser} from "../helpers/Utils"; 
+import { useSelector } from 'react-redux';
 // import { useTranslation } from 'react-i18next';
 
 const Header = (props) => {
     // const { t } = useTranslation();
     // const history = useHistory();
     const currentUser = getCurrentUser("current_user");
+    const {presuveyStatusGl} = useSelector(
+        (state) =>
+            state?.studentRegistration
+    );
     // const profileOpt = {
     //     options: [
            
@@ -120,7 +125,7 @@ const Header = (props) => {
                                             {currentUser.data[0].full_name}
                                         </span> 
                                         {/* <CommonDropDownComp {...profileOpt} /> */}
-                                        {window.location.pathname === '/student/pre-survey' && <span className="common-language-selc">
+                                        {window.location.pathname === '/student/pre-survey' && presuveyStatusGl && presuveyStatusGl !=="COMPLETED" && <span className="common-language-selc">
                                             <LanguageSelectorComp module="student" />
                                         </span>}
                                     </div>

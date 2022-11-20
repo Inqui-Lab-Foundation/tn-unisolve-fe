@@ -42,6 +42,7 @@ import AddNewMember from './Student/Pages/TeamsMentors/AddNewMember';
 import EditMember from './Student/Pages/TeamsMentors/EditMember';
 // import IdeasPage from './Student/Pages/Ideas/IdeasPage';
 import IdeasPageNew from './Student/Pages/Ideas/IdeasPageCopy';
+import SDG from './Student/Pages/Ideas/SDG';
 import SubmittedIdeas from './Student/Pages/Ideas/SubmittedIdeas';
 import TicketViewDetails from './Student/Pages/HelpPages/TicketViewDetails';
 // ADMIN ROUTES
@@ -201,6 +202,11 @@ const Routers = () => {
                         path="/challenges"
                         component={IdeasPageNew}
                         //component={IdeasubmissionunderCOn}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/challenge-initiation"
+                        component={SDG}
                     />
                     <ProtectedRoute path="/ideasPage" component={Ideas} />
                     <ProtectedRoute

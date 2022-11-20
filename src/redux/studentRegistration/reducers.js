@@ -12,7 +12,8 @@ import {
     GET_STUDENT_DASHBOARD_STATUS,
     GET_STUDENT_DASHBOARD_CHALLENGES_STATUS,
     GET_STUDENT_DASHBOARD_TEAMPROGRESS,
-    GET_STUDENT_DASHBOARD_TUTORIALS
+    GET_STUDENT_DASHBOARD_TUTORIALS,
+    SET_PRESURVEY_STATUS
 } from '../actions';
 
 const localLang = JSON.parse(localStorage.getItem("s_language"));
@@ -30,7 +31,8 @@ const INIT_STATE = {
     dashboardStatus:null,
     dashboardChallengesStatus:null,
     dashboardTeamProgressStatus:null,
-    dashboardTutorials:null
+    dashboardTutorials:null,
+    presuveyStatusGl :null
 };
 
 export default (state = INIT_STATE, action) => {
@@ -98,6 +100,11 @@ export default (state = INIT_STATE, action) => {
         return {
             ...state,
             dashboardTutorials:action.payload
+        };
+    case SET_PRESURVEY_STATUS:
+        return {
+            ...state,
+            presuveyStatusGl:action.payload
         };
     default:
         return newState;

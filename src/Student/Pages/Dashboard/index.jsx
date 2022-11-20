@@ -156,13 +156,14 @@ const Dashboard = () => {
                 record?.pre_survey_status ? (
                     <FaCheckCircle size={20} color="green" />
                 ) : (
-                    <FaTimesCircle size={20} color="grey" />
+                    <FaTimesCircle size={20} color="red" />
                 )
         },
         {
-            title: 'Progress',
+            title: 'Lesson Progress',
             dataIndex: 'address',
             width: '30%',
+            align:"center",
             render: (_, record) => {
                 let percent =
                     100 -
@@ -202,7 +203,7 @@ const Dashboard = () => {
             align:"center",
             width: '20%',
             render: (_, record) =>
-                record?.idea_submission ? <FaCheckCircle size={20} color="green"/> : <FaTimesCircle size={20} color="grey" />
+                record?.idea_submission ? <FaCheckCircle size={20} color="green"/> : <FaTimesCircle size={20} color="red" />
         },
         {
             title: 'Post Survey',
@@ -213,7 +214,7 @@ const Dashboard = () => {
                 record?.post_survey_status ? (
                     <FaCheckCircle size={20} color="green"/>
                 ) : (
-                    <FaTimesCircle size={20} color="grey" />
+                    <FaTimesCircle size={20} color="red" />
                 )
         },
         {
@@ -225,7 +226,7 @@ const Dashboard = () => {
                 record?.certificate_status ? (
                     <FaCheckCircle size={20} color="green"/>
                 ) : (
-                    <FaTimesCircle size={20} color="grey" />
+                    <FaTimesCircle size={20} color="red" />
                 )
         }
     ];

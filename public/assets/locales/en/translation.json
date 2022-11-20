@@ -193,7 +193,8 @@
         "get_new_Started": "Register",
         "badges":"Badges",
         "idea_submission":"Idea Submission",
-        "my_profile":"My Profile"
+        "my_profile":"My Profile",
+        "change_pass":"Change Password"
 
     },
     
@@ -387,7 +388,10 @@
         "attempt_logout": "You are attempting to logout of Unisolve.",
         "are_you_sure": "Are you sure?",
         "btn_logout": "Logout",
-        "btn_cancel": "Cancel"
+        "btn_cancel": "Cancel",
+        "btn_ok":"ok",
+        "cancelled":"Cancelled",
+        "logged_in":"You are Logged in"
     },
     "teacehr_red": {
         "heading": "REGISTER",
@@ -436,5 +440,9 @@
         "continue course":"Continue Course",
         "exitfullscreen":"Exit Full Screen",
         "quiz_completed":"Successfully Completed!"
+    },
+    "translation":{
+        "tamil":"Tamil Content :-",
+        "tamil_to":"tn"
     }
 }

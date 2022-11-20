@@ -173,7 +173,7 @@ const IdeasPageNew = () => {
 
     return (
         <Layout>
-            {!showPage ? (
+            {showPage ? (
                 <CommonPage text={comingSoonText} />
             ) : (
                 <Container className="presuervey mb-50 mt-5 ">

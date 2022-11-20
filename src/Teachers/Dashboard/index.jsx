@@ -149,21 +149,21 @@ const Dashboard = () => {
                 </Row>
                 <Row className="teacher-statistics bg-white p-5">
                     <Row className="">
-                        <Col style={{ flex: 3 }}>
+                        <Col >
                             <div className="d-flex flex-wrap">
                                 <DoughnutChart user={currentUser?.data} />
                                 {/* <BarChart /> */}
                             </div>
                         </Col>
-                        <Col>
-                            {/* <div className="teacher-progress">
+                        {/* <Col> */}
+                        {/* <div className="teacher-progress">
                                 teacher progress{' '}
                             </div> */}
-                            {/* <div className="stepper">
+                        {/* <div className="stepper">
                                 <h2 className='mb-5'>Teacher Roadmap</h2>
                                 <VerticalLinearStepper />
                             </div> */}
-                        </Col>
+                        {/* </Col> */}
                     </Row>
                 </Row>
             </Container>
