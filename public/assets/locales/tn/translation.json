@@ -104,8 +104,8 @@
         "Create_new_password_here": "Create new password here",
         "8-charac_minimum_case_sensitive": "8-character minimum; case sensitive",
         "Verify_New_password": "Verify New password",
-        "Cancel": "Cancel",
-        "Change_password": "Change password"
+        "Cancel": "ರದ್ದುಮಾಡು",
+        "Change_password": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ"
     },
     "home": {
         "banner_heading": "Transforming schools into places of",
@@ -168,21 +168,22 @@
         "footer_blog": "வலைப்பதிவு",
         "get_Started": "Get Started",
         "watch_video": "Watch Video",
-        "pre_survey": "Pre Survey",
-        "dashboard": "Dashboard",
-        "courses": "Courses",
+        "pre_survey": "ಪೂರ್ವ ಸಮೀಕ್ಷೆ",
+        "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        "courses": "ಕೋರ್ಸ್‌ಗಳು",
         "teams": "Teams",
-        "challenges": "Challenges",
+        "challenges": "ಸವಾಲುಗಳು",
         "faq": "ಪ್ರಶ್ನೆಗಳು",
-        "post_survey": "Post Survey",
+        "post_survey": "ಪೋಸ್ಟ್ ಸಮೀಕ್ಷೆ",
         "banner_new_heading": "Creating Tomorrow’s",
         "banner_new_creativity": "Changemakers",
         "join_us": "ನಮ್ಮ ಜೊತೆಗೂಡಿ",
         "banner_new_description": "Nurture a culture of social innovation and build skills while inspiring young people to become transformative leaders.",
         "get_new_Started": "Register",
-        "badges":"Badges",
-        "idea_submission":"Idea Submission",
-        "my_profile":"My Profile"
+        "badges":"ಬ್ಯಾಡ್ಜ್‌ಗಳು",
+        "idea_submission":"ಐಡಿಯಾ ಸಲ್ಲಿಕೆ",
+        "my_profile":"ಸ್ವ ಭೂಮಿಕೆ",
+        "change_pass":"ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ"
     },
     "home_tl": {
         "Hero_section-header": "<span className='green'>21 ನೇ ಶತಮಾನದ ಕೌಶಲ್ಯಗಳೊಂದಿಗೆ</span> ನಾಳಿನ ಬದಲಾವಣೆ ತರುವ ತಯಾರಕರನ್ನು ಹುಟ್ಟುಹಾಕುವುದು.",
@@ -255,10 +256,10 @@
         "faq": "FAQ",
         "support": "Support",
         "post_survey": "Post Survey",
-        "certificate": "My Certificate",
+        "certificate": "ನನ್ನ ಪ್ರಮಾಣಪತ್ರ",
         "profile": "My Profile",
         "password": "Change Password",
-        "logout": "Logout",
+        "logout": "ಲಾಗ್ ಔಟ್",
         "question": "Question",
         "submit": "Submit",
         "continue": "Continue",
@@ -268,32 +269,32 @@
         "heading": "Welcome SIP School Head/Guide Teacher!",
         "desc": "<p>We are glad that you have signed-up to SIP 2022-23 and joined us in this exciting journey of nurturing an experience of learning, skilling and innovation for the school children. As you are aware you will be playing a role of guide and mentor for the participants in their learning journey.</p><p>This portal gives you an experience of learning modules and important resources for supporting the participants. You can also create and track progress of your student teams using the dashboard.</p><p>Your journey as a SIP School Head/Guide Teacher will involve the following key milestones: </p><ul><li><p class='my-0'>Step-1: Take Pre-Survey.</p></li><li><p class='my-0'>Step-2: Complete the course and reading material.</p></li><li><p class='my-0'>Step-3: Creating Teams and Register the students.</p></li><li><p class='my-0'>Step-4: Support the participants in completing the learning journey.</p></li><li><p class='my-0'>Step-5: Support the participants in challenge/idea submission.</p></li><li><p class='my-0'>Step-6: Complete the post survey.</p></li><li><p class='my-0'>Step-7: Get awarded with the completion certificate.</p></li></ul><p>We hope you and your teams will have a great learning experience and wish you all the best for this project.</p>",
         "btn": "START JOURNEY",
-        "pre": "Pre survey has been submitted"
+        "pre": "ಪೂರ್ವ ಸಮೀಕ್ಷೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ"
     },
     "student_get_started": {
         "heading": "ಸ್ವಾಗತ ವಿದ್ಯಾರ್ಥಿಗಳೇ !",
         "desc": "<p>ನೀವು ಈ ಕಾರ್ಯಕ್ರಮದ ಭಾಗವಾಗಿದ್ದೀರಿ ಮತ್ತು ಕಲಿಕೆ, ಕೌಶಲ್ಯ ಮತ್ತು ನಾವೀನ್ಯತೆಯ ಈ ರೋಮಾಂಚಕಾರಿ ಪ್ರಯಾಣದಲ್ಲಿ ನಮ್ಮೊಂದಿಗೆ ಸೇರಿಕೊಂಡಿದ್ದೀರಿ ಎಂದು ನಮಗೆ ಸಂತೋಷವಾಗಿದೆ. ಈ ಪ್ರಯಾಣದಲ್ಲಿ ನಿಮಗೆ ಅನೇಕ ರೋಚಕ ಸಂಗತಿಗಳು ಕಾಯುತ್ತಿವೆ.<p><p>ಈ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಮೂಲಕ ನೀವು ಕಲಿಯುವಿರಿ, ನಿಮ್ಮ ತಂಡದೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುತ್ತೀರಿ ಮತ್ತು ನಿಮ್ಮ ಶಿಕ್ಷಕರಿಂದಲೂ ಬೆಂಬಲಿಸಲ್ಪಡುತ್ತೀರಿ.</p><p>ನಿಮ್ಮ ಪ್ರಯಾಣವು “ಭಾಗವಹಿಸುವವರಾಗಿ“ ಈ ಕೆಳಗಿನ ಪ್ರಮುಖ ಹಂತಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ: </p><ul><li><p>ಹಂತ 1: ಪೂರ್ವ ಸಮೀಕ್ಷೆ(Pre-Survey)ಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ</p></li><li><p>ಹಂತ 2: ವೀಡಿಯೊವನ್ನು ನೋಡುವ ಮೂಲಕ ಕೋರ್ಸ್ ಪ್ರಾರಂಭಿಸಿ. </p></li><li><p>ಹಂತ 3: ಪ್ರತಿ ಮಾಡ್ಯೂಲ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ ಮತ್ತು ರಸಪ್ರಶ್ನೆ ಪ್ರಯತ್ನಿಸಿ. </p></li><li><p>ಹಂತ 4: ನಿಮ್ಮ ಸ್ವಂತ ಸಮಸ್ಯೆ ಪರಿಹಾರ ಪ್ರಯಾಣವನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಪ್ರತಿ ಮಾಡ್ಯೂಲ್‌ನ ವರ್ಕ್‌ಶೀಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮ ತಂಡದೊಂದಿಗೆ ಕೆಲಸ ಮಾಡಿ.</p></li><li><p>ಹಂತ 5: ನಿಮ್ಮ ತಂಡದ ಅಂತಿಮ ಕಲ್ಪನೆಯನ್ನು ಸಲ್ಲಿಸಿ.</p></li><li><p>ಹಂತ 6: ಸಮೀಕ್ಷೆ ನಂತರ(post survey) ಪೂರ್ಣಗೊಳಿಸಿ.</p></li></ul><p>ನೀವು ಮತ್ತು ನಿಮ್ಮ ತಂಡಗಳು ಉತ್ತಮ ಕಲಿಕೆಯ ಅನುಭವವನ್ನು ಹೊಂದಿರುತ್ತೀರಿ ಎಂದು ನಾವು ಭಾವಿಸುತ್ತೇವೆ ಮತ್ತು ಈ ಕಾರ್ಯಕ್ರಮಕ್ಕಾಗಿ ನಿಮಗೆ ಶುಭ ಹಾರೈಸುತ್ತೇವೆ!</p>",
-        "btn": "START JOURNEY",
-        "pre": "Pre survey has been submitted"
+        "btn": "ಪ್ರಯಾಣ ಪ್ರಾರಂಭಿಸಿ",
+        "pre": "ಪೂರ್ವ ಸಮೀಕ್ಷೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ"
     },
     "student_presurvey": {
-        "submit" : "Submit"
+        "submit" : "ಸಲ್ಲಿಸು"
     },
     "student" : {
-        "profile": "My Profile",
+        "profile": "My profile",
         "worksheet":"<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIP guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
-        "download_worksheet":"Download Worksheet",
-        "continue":"Continue",
-        "w_sheet":"Worksheet",
-        "quiz_heading":"Ready for a quick test?",
-        "take_challenge":"Test your course skills in a short test challenge!",
-        "questions":"Questions",
-        "minutes":"Minutes",
-        "lets_start":"Let's Start",
-        "videos":"Videos",
-        "backto_quiz":"Back to Quiz",
-        "quiz_completed":"Quiz Successfully Completed",
-        "ref_quiz_heading":"Let's think about a few things you learnt in the video"
+        "download_worksheet":"ವರ್ಕ್‌ಶೀಟ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+        "continue":"ಮುಂದುವರಿಸಿ",
+        "w_sheet":"ವರ್ಕ್‌ಶೀಟ್",
+        "quiz_heading":"ತ್ವರಿತ ಪರೀಕ್ಷೆಗೆ ಸಿದ್ಧರಿದ್ದೀರಾ?",
+        "take_challenge":"ಸಣ್ಣ ಪರೀಕ್ಷಾ ಸವಾಲಿನಲ್ಲಿ ನಿಮ್ಮ ಕೋರ್ಸ್ ಕೌಶಲ್ಯಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ!",
+        "questions":"ಪ್ರಶ್ನೆಗಳು",
+        "minutes":"ನಿಮಿಷಗಳು",
+        "lets_start":"ಪ್ರಾರಂಭಿಸೋಣ",
+        "videos":"ವೀಡಿಯೊಗಳು",
+        "backto_quiz":"ರಸಪ್ರಶ್ನೆ ಗೆ ಹಿಂತಿರುಗಿ",
+        "quiz_completed":"ರಸಪ್ರಶ್ನೆ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ",
+        "ref_quiz_heading":"ವೀಡಿಯೊದಲ್ಲಿ ನೀವು ಕಲಿತ ಕೆಲವು ವಿಷಯಗಳ ಬಗ್ಗೆ ಯೋಚಿಸೋಣ"
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"
@@ -369,10 +370,12 @@
         "rights": "All Rights Reserved."
     },
     "general_req": {
-        "attempt_logout": "You are attempting to logout of Unisolve.",
-        "are_you_sure": "Are you sure?",
-        "btn_logout": "Logout",
-        "btn_cancel": "Cancel"
+        "attempt_logout": "ನೀವು Unisolve ನಿಂದ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರುವಿರಿ.",
+        "are_you_sure": "ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?",
+        "btn_logout": "ಲಾಗ್ ಔಟ್",
+        "btn_cancel": "ರದ್ದುಮಾಡು",
+        "cancelled":"ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ",
+        "logged_in":"ನೀವು ಲಾಗ್ ಇನ್ ಆಗಿರುವಿರಿ"
     },
     "teacehr_red": {
         "heading": "REGISTER",
@@ -408,18 +411,22 @@
 
     },
     "badges":{
-        "congratulations":"Congratulations",
-        "earn":"you've just earned a new badge",
-        "ok":"OK"
+        "congratulations":"ಅಭಿನಂದನೆಗಳು",
+        "earn":"ನೀವು ಇದೀಗ ಹೊಸ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ಗಳಿಸಿದ್ದೀರಿ",
+        "ok":"ಸರಿ"
     },
     "student_course":{
-        "modules":"Modules",
-        "videos":"Videos",
-        "start course":"Start Course",
-        "full screen":"Full Screen",
-        "lessons":"Lessons",
-        "continue course":"Continue Course",
-        "exitfullscreen":"Exit Full Screen",
-        "quiz_completed":"Successfully Completed!"
+        "modules":"ಮಾಡ್ಯೂಲ್‌ಗಳು",
+        "videos":"ವೀಡಿಯೊಗಳು",
+        "start course":"ಕೋರ್ಸ್ ಪ್ರಾರಂಭಿಸಿ",
+        "full screen":"ಪೂರ್ಣ ಪರದೆ",
+        "lessons":"ಪಾಠಗಳು",
+        "continue course":"ಕೋರ್ಸ್ ಮುಂದುವರಿಸಿ",
+        "exitfullscreen":"ಪೂರ್ಣ ಪರದೆಯಿಂದ ನಿರ್ಗಮಿಸಿ",
+        "quiz_completed":"ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ!"
+    },
+    "translation":{
+        "tamil":"kannada Content :-",
+        "tamil_to":"ka"
     }
 }
