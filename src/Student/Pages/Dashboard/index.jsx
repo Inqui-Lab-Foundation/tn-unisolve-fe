@@ -357,7 +357,7 @@ const Dashboard = () => {
                     </Col>
                     <Col md={12} className="flex-1">
                         <p style={{ fontSize: '1.5rem' }}>
-                            Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
+                            Introduction to SIDP by Mr. C. Shunmugaraj, SSK
                         </p>
                         <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3 d-flex justify-content-center align-items-center">

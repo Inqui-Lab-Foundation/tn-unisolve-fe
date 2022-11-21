@@ -65,6 +65,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
 import Vimeo from '@u-wave/react-vimeo';
+import i18next from 'i18next';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -614,9 +615,12 @@ const Home = () => {
                             lg={6}
                             className="my-auto mx-auto student-heading px-5 "
                         >
-                            <h2 className="mb-5 sub-heading">
-                                UPSHIFT {t('home_tl.power_by')}{' '}
-                                <span className="green">UNISOLVE</span>{' '}
+                            <h2 className="mb-5 sub-heading"
+                            dangerouslySetInnerHTML={{
+                                __html: t('home_tl.power_by')
+                            }}>
+                                {/* UPSHIFT {' '}
+                                <span className="green">UNISOLVE</span>{' '} */}
                             </h2>
                             <div
                                 dangerouslySetInnerHTML={{
