@@ -18,7 +18,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <h2 className="text-uppercase">
                                 {values?.district_name &&
                                 values?.district_name === 'all'
-                                    ? 'Bhutan'
+                                    ? 'Karnataka'
                                     : districtName}
                             </h2>
                         </CardBody>
