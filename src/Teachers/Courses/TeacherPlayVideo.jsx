@@ -480,7 +480,8 @@ const TeacherPlayVideo = (props) => {
     const handleDownload = (path) => {
         let a = document.createElement('a');
         a.target = '_blank';
-        a.href = process.env.REACT_APP_API_IMAGE_BASE_URL + path;
+        //a.href = process.env.REACT_APP_API_IMAGE_BASE_URL + path;
+        a.href = path;
         a.click();
         handleVimeoOnEnd();
         setInstructions(true);
@@ -489,7 +490,8 @@ const TeacherPlayVideo = (props) => {
     const handleInstructionDownload = (path) => {
         let a = document.createElement('a');
         a.target = '_blank';
-        a.href = process.env.REACT_APP_API_IMAGE_BASE_URL + path;
+        //a.href = process.env.REACT_APP_API_IMAGE_BASE_URL + path;
+        a.href = path;
         a.click();
     };
     const handleCertificateDownload = () => {
@@ -797,13 +799,14 @@ const TeacherPlayVideo = (props) => {
                                                 </div>
                                             </CardBody>
                                             <div className="text-left mb-2">
-                                                <div className="d-flex ">
+                                                <div>
                                                     {worksheetResponce &&
                                                         worksheetResponce?.length >
                                                             0 &&
                                                         worksheetResponce.map(
                                                             (item, i) => (
                                                                 <Button
+                                                                style={{margin:"5px"}}
                                                                     key={i}
                                                                     label={`Download ${item
                                                                         .split(
@@ -966,24 +969,24 @@ const TeacherPlayVideo = (props) => {
                                                     className=" text-left pt-4 pb-4"
                                                     tag="h2"
                                                 >
-                                                    Unisolve Instructions
+                                                    Unisolve Worksheets
                                                 </CardTitle>
                                                 <CardBody>
-                                                    <p className="text-primary">
+                                                    {/* <p className="text-primary">
                                                         <b>
                                                             Additional Resources
                                                         </b>
-                                                    </p>
+                                                    </p> */}
                                                     <p>Dear Guide Teachers,</p>
                                                     <p>
                                                         In addition to the
                                                         teacher handbook there
-                                                        are two other resources
+                                                        are worksheets
                                                         for your student teams
                                                         which will aid in this
                                                         SIDP learning journey:
                                                     </p>
-                                                    <p className="mb-0">
+                                                    {/* <p className="mb-0">
                                                         A. Worksheets
                                                     </p>
                                                     <p className="mb-3">
@@ -992,7 +995,7 @@ const TeacherPlayVideo = (props) => {
 
                                                     <p className="text-decoration-underline">
                                                         <b>A.Worksheets </b>
-                                                    </p>
+                                                    </p> */}
                                                     <p className="mb-0">
                                                         1. This document has one
                                                         worksheet per lesson.
@@ -1033,6 +1036,7 @@ const TeacherPlayVideo = (props) => {
                                                             (item, i) =>
                                                                 i > 1 && (
                                                                     <Button
+                                                                    style={{margin:"5px"}}
                                                                         key={i}
                                                                         label={`Download ${item
                                                                             .split(
@@ -1063,7 +1067,7 @@ const TeacherPlayVideo = (props) => {
                                                         )}
                                                 </div>
 
-                                                <p className="text-decoration-underline">
+                                                {/* <p className="text-decoration-underline">
                                                     <b>
                                                         B. Additional Readings{' '}
                                                     </b>
@@ -1082,7 +1086,7 @@ const TeacherPlayVideo = (props) => {
                                                     students. We recommend to
                                                     share the soft copy or print
                                                     it for future reference.
-                                                </p>
+                                                </p> */}
                                                 <div className="text-left mb-5">
                                                     {worksheetResponce &&
                                                         worksheetResponce?.length >
@@ -1090,7 +1094,8 @@ const TeacherPlayVideo = (props) => {
                                                         worksheetResponce.map(
                                                             (item, i) =>
                                                                 i <= 1 && (
-                                                                    <Button
+                                                                    <Button 
+                                                                    style={{margin:"5px"}}
                                                                         key={i}
                                                                         label={`Download ${item
                                                                             .split(

@@ -184,7 +184,7 @@ export default function DoughnutChart({ user }) {
                                     </option>
                                 ))
                             ) : (
-                                <option value="">No Data found</option>
+                                <option value="">There are no teams</option>
                             )}
                         </select>
                     </div>
@@ -209,7 +209,7 @@ export default function DoughnutChart({ user }) {
                         className="d-flex justify-content-center align-items-center"
                         style={{ minHeight: '25rem' }}
                     >
-                        <p className="text-primary">{null}</p>
+                        <p className="text-primary">There are no students in selected Team</p>
                         {/* <p className="text-primary">{"No Data Found"}*</p> */}
                     </div>
                 ) : (

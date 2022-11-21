@@ -1022,12 +1022,13 @@ const PlayVideoCourses = (props) => {
                                                             {worksheetResponce.response ===
                                                             null ? (
                                                                 <a
-                                                                    href={
-                                                                        process
-                                                                            .env
-                                                                            .REACT_APP_API_IMAGE_BASE_URL +
-                                                                        worksheetResponce?.attachments
-                                                                    }
+                                                                    // href={
+                                                                    //     process
+                                                                    //         .env
+                                                                    //         .REACT_APP_API_IMAGE_BASE_URL +
+                                                                    //     worksheetResponce?.attachments
+                                                                    // }
+                                                                    href = {worksheetResponce?.attachments}
                                                                     target="_blank"
                                                                     rel="noreferrer"
                                                                     className="primary"
@@ -1047,12 +1048,13 @@ const PlayVideoCourses = (props) => {
                                                                 </a>
                                                             ) : (
                                                                 <a
-                                                                    href={
-                                                                        process
-                                                                            .env
-                                                                            .REACT_APP_API_IMAGE_BASE_URL +
-                                                                        worksheet
-                                                                    }
+                                                                    // href={
+                                                                    //     process
+                                                                    //         .env
+                                                                    //         .REACT_APP_API_IMAGE_BASE_URL +
+                                                                    //     worksheet
+                                                                    // }
+                                                                    href={worksheet}
                                                                     target="_blank"
                                                                     rel="noreferrer"
                                                                     className="primary"
