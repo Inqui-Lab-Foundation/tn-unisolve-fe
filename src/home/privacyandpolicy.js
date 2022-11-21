@@ -262,7 +262,7 @@ const Home = () => {
             id: 1,
             title: `What is the School Innovation Program?`,
             desc: `
-            <p>To promote a culture of innovation and creative problem solving among  the state government in partnership with key stakeholders launched the School Innovation Development Project to inculcate the spirit of innovation amongst the school children.</p>
+            <p>To promote a culture of innovation and creative problem solving among  the state government in partnership with key stakeholders launched the School Innovation Program to inculcate the spirit of innovation amongst the school children.</p>
             <p>Objective of the program is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain 21st century skills and leadership skills.</p>
             `
         },
@@ -389,10 +389,10 @@ const Home = () => {
                     <Row>
                         <Col md={6}>
                             <h2>
-                            School Innovation Development Project (SIDP)
+                            School Innovation Program (SIDP)
                             </h2>
                             <p>
-                            To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, EDII-TN launches SIDP with support of School Education Department.
+                            To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, SSK launches SIDP with support of School Education Department.
                             </p>
                             <p>
                             The objective of SIDP is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership skills. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.
