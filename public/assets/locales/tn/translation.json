@@ -261,9 +261,9 @@
         "password": "Change Password",
         "logout": "ಲಾಗ್ ಔಟ್",
         "question": "Question",
-        "submit": "Submit",
-        "continue": "Continue",
-        "refer_video":"Refer Video"
+        "submit": "ಸಲ್ಲಿಸು",
+        "continue": "ಮುಂದುವರಿಸಿ",
+        "refer_video":"ವೀಡಿಯೊವನ್ನು ಉಲ್ಲೇಖಿಸಿ"
     },
     "teacher_get_started": {
         "heading": "Welcome SIP School Head/Guide Teacher!",

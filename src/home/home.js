@@ -201,13 +201,13 @@ const Home = () => {
             imageUrl: IIF_Tamilnadu
         },
         {
-            id: 6,
+            id: 7,
             key: 'SS',
             // imageUrl: Congnizant
             imageUrl: SS_Tamilnadu
         },
         {
-            id: 6,
+            id: 8,
             key: 'Unicef',
             // imageUrl: Congnizant
             imageUrl: Unicef_OOI_Tamilnadu
