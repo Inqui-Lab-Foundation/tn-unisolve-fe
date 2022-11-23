@@ -233,16 +233,18 @@ const Dashboard = () => {
 
     return (
         <Layout>
-            <Container className="dashboard-wrapper">
-                <div className='d-flex justify-content-between align-items-center'>
-                    <h2>Dashboard</h2>
-                    <div className='bg-white rounded p-3 d-flex align-items-center' style={{width:"max-content"}}>
-                        <p>Preferred Language : </p>
-                        <LanguageSelectorComp module="student" />
-                    </div>
-                </div>
-                <hr />
-                <Row className="d-flex flex-start mb-5" style={{ gap: '1rem' }}>
+            <Container className='dashboard-wrapper mt-5 mb-50'>
+                <Row className="mb-3">
+                    <Col className='d-flex justify-content-between align-items-center'>
+                        <h2>Dashboard</h2>
+                        <div className='bg-white rounded p-3 mb-2 d-flex align-items-center'>
+                            <p className='mb-0'>Preferred Language : </p>
+                            <LanguageSelectorComp module="student" />
+                        </div>
+                    </Col>
+                    <hr />
+                </Row>
+                <Row className="mb-4">
                     <TopSectionCard
                         heading={cardData.idea.heading}
                         deadline={cardData.idea.deadline}
@@ -286,7 +288,10 @@ const Dashboard = () => {
                         }
                     />
                 </Row>
-                <Row className="flex-start mb-5" style={{ gap: '1rem' }}>
+                <Row className="mb-4">
+                    <h2 className='p-2 pb-1 text-muted'>
+                        Course Status
+                    </h2>
                     <DashboardOverviewCard
                         title={'Completed Videos'}
                         count={
@@ -332,19 +337,17 @@ const Dashboard = () => {
                         image={vector}
                     />
                 </Row>
-                <Row
-                    className="course-team flex-start mb-5"
-                    style={{ gap: '1rem' }}
-                >
-                    <Col md={12} className="flex-2 team-progress">
-                        <h2>Team Progress</h2>
-                        <div className="bg-white team-progress rounded  p-3">
+                
+                <Row className="mb-4">
+                    <Col className="team-progress ">
+                        <h2 className='text-blue'>Team Progress</h2>
+                        <div className="bg-white team-progress rounded bg-yellow-transparent p-3 overflow-scroll">
                             <div className="row flex-column p-2">
                                 <label
                                     htmlFor="teams"
                                     className="mb-3 text-capitalize"
                                 >
-                                    <span>{currentUser.data[0].team_name}</span>
+                                    <span className="text-green">{currentUser.data[0].team_name}</span>
                                 </label>
                             </div>
                             <Table
@@ -355,24 +358,34 @@ const Dashboard = () => {
                             />
                         </div>
                     </Col>
-                    <Col md={12} className="flex-1">
-                        <p style={{ fontSize: '1.5rem' }}>
-                            Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
-                        </p>
-                        <div className="bg-white learning-statistics rounded p-3">
-                            <div className="flex-2 px-3 d-flex justify-content-center align-items-center">
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    {<Vimeo video={770500069} volume={true} />}
+                </Row>
+
+                <Row className='mb-4'>
+                    <h2 className="p-3 pb-1 text-muted">
+                        Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
+                    </h2>
+                    <Col sm={12}>
+                        <Row className='learning-statistics rounded p-2 py-4 d-flex justify-content-center bg-white'>
+                            <Col md={6} className="course-team ">
+                                <div className="bg-white learning-statistics p-3 shadow video_box">
+                                    <div className="flex-2 px-3 d-flex justify-content-center align-items-center">
+                                        <div className=''
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                position: 'relative'
+                                            }}
+                                        >
+                                            {<Vimeo video={770500069} volume={true} />}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        {/* <div className="bg-white learning-statistics rounded p-3">
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+
+                {/* <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3">
                                 <div
                                     style={{
@@ -412,8 +425,6 @@ const Dashboard = () => {
                                 </ol>
                             </div>
                         </div> */}
-                    </Col>
-                </Row>
             </Container>
         </Layout>
     );

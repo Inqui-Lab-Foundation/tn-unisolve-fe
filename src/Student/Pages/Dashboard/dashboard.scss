@@ -78,6 +78,66 @@
     .seperator-left{
         border-left: 0.2rem solid aliceblue;
     }
+    .bg-yellow{
+        background-color: var(--color-yellow);
+    }
+    .bg-green{
+        background-color: var(--color-green);
+    }
+    .bg-blue{
+        background-color: var(--color-blue);
+    }
+    .bg-red{
+        background-color: var(--color-red);
+    }
+
+    .border-yellow{
+        border-bottom: 0.5rem solid var(--color-yellow);
+        border-left: 0.5rem solid var(--color-yellow);
+        border-radius: 2rem;
+    }
+    .border-green{
+        border-bottom: 0.5rem solid var(--color-green);
+        border-left: 0.5rem solid var(--color-green);
+        border-radius: 2rem;
+    }
+    .border-blue{
+        border-bottom: 0.5rem solid var(--color-blue);
+        border-left: 0.5rem solid var(--color-blue);
+        border-radius: 2rem;
+    }
+    .border-red{
+        border-bottom: 0.5rem solid var(--color-red);
+        border-left: 0.5rem solid var(--color-red);
+        border-radius: 2rem;
+    }
+    
+    
+    .bg-yellow-transparent{
+        background-color: var(--color-yellow-transparent);
+    }
+    .text-yellow{
+        color: var(--color-yellow);
+    }
+    .text-green{
+        color: var(--color-green);
+    }
+    .text-blue{
+        color: var(--color-blue);
+    }
+    .text-red{
+        color: var(--color-red);
+    }
+    .progress-height{
+        height: 2rem;
+        border-radius: 1rem;
+    }
+    .video_box{
+        border-bottom: 0.6rem solid var(--color-yellow);
+        border-left: 0.6rem solid var(--color-yellow);
+        border-radius: 3rem;
+    }
+   
 }
 .pointer{
     cursor: pointer;
