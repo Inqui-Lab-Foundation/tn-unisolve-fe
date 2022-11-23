@@ -338,7 +338,7 @@ const TicketsPage = (props) => {
     };
     return (
         <Layout>
-            <Container className='ticket-page mb-50 userlist'>
+            <Container className='ticket-page mt-5 mb-50 userlist'>
                 <Row className='mt-0 pt-3'>
                     <h2 onClick={handleDelete}>User List</h2>
                     <div className='ticket-data'>

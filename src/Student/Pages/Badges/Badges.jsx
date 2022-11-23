@@ -19,7 +19,7 @@ import { getStudentBadges } from '../../../redux/studentRegistration/actions';
 import { getCurrentUser } from '../../../helpers/Utils';
 import moment from 'moment/moment';
 const BadgesComp = () => {
-    const {badges} = useSelector(state=>state.studentRegistration);
+    const { badges } = useSelector(state => state.studentRegistration);
     const language = useSelector(
         (state) => state?.studentRegistration?.studentLanguage
     );
@@ -27,13 +27,13 @@ const BadgesComp = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getStudentBadges(currentUser.data[0].user_id,language));
-    }, [dispatch,currentUser.data[0].user_id,language]);
-    
-   
+        dispatch(getStudentBadges(currentUser.data[0].user_id, language));
+    }, [dispatch, currentUser.data[0].user_id, language]);
+
+
     return (
         <Layout>
-            <div className="badges-page">
+            <div className="badges-page mt-5 mb-50">
                 <Container className=" mt-2 ">
                     {/* <h2 className="mt-5">Badges</h2> */}
                     {/* <Row className="m-0 badges-head mb-50">
@@ -81,13 +81,13 @@ const BadgesComp = () => {
                         className="myBadges equal mt-0 mb-50"
                         style={{ gap: '1.5rem' }}
                     >
-                        {badges && badges.length>0 && badges.map((badge, i) => {
+                        {badges && badges.length > 0 && badges.map((badge, i) => {
                             return (
                                 <div
                                     key={i}
                                     className="badgesCard  col-xs-12 col-sm-6  col-xl-2 mb-3"
                                 >
-                                    <Card className="badge-card py-5 h-100" style={{backgroundColor:`${badge?.student_status ? "":"lightgrey"}`}}>
+                                    <Card className="badge-card py-5 h-100" style={{ backgroundColor: `${badge?.student_status ? "" : "lightgrey"}` }}>
                                         <Figure className="w-100 text-center">
                                             <CardImg
                                                 alt={badge.icon}
@@ -102,7 +102,7 @@ const BadgesComp = () => {
                                             <CardSubtitle className="badge-date">
                                                 EARNED ON:{' '}
                                                 <span className="badge-time">
-                                                    {badge?.student_status ? moment(badge?.student_status).format("DD MMM YYYY") :"Locked"}
+                                                    {badge?.student_status ? moment(badge?.student_status).format("DD MMM YYYY") : "Locked"}
                                                 </span>
                                             </CardSubtitle>
                                         </CardBody>

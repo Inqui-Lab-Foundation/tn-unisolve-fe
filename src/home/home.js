@@ -1264,7 +1264,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-                <Row className="w-100 mt-5 footer-sub">
+                <Row className="w-100 mt-5 mx-0 footer-sub">
                     <Col md={12} className="text-center">
                         <p className="my-0 py-3 text-white">
                             © UNISOLVE, UNICEF {new Date().getFullYear()}.{' '}
