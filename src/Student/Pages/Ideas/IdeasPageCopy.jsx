@@ -196,7 +196,7 @@ const IdeasPageNew = () => {
             responses,
             status: type ? 'DRAFT' : 'SUBMITTED',
             sdg,
-            others:others? others : ""
+            others: others ? others : ''
         };
         await axios
             .post(
@@ -243,7 +243,6 @@ const IdeasPageNew = () => {
         setIsDisabled(false);
         scroll();
     };
-
     const comingSoonText = t('dummytext.student_idea_sub');
     return (
         <Layout>
@@ -260,57 +259,66 @@ const IdeasPageNew = () => {
                                             className="form-row row mb-5 mt-3 py-5"
                                             isSubmitting
                                         >
-                                            <div className="question quiz mb-0">
-                                                <b
-                                                    style={{
-                                                        fontSize: '1.6rem'
-                                                    }}
-                                                >
-                                                    {1}. Which Sustainable
-                                                    development Goal (SDG) are
-                                                    you targeting with your
-                                                    solution ?
-                                                </b>
-                                            </div>
-                                            <div>
-                                                <p
-                                                    className="text-muted ms-5"
-                                                    style={{
-                                                        fontSize: '1.4rem'
-                                                    }}
-                                                >
-                                                    (You can refer to the SDGs
-                                                    sheet from FIND Module and
-                                                    pick the right option )
-                                                </p>
-                                            </div>
-                                            <div className=" answers row flex-column p-4">
-                                                <select
-                                                    disabled={isDisabled}
-                                                    onChange={(e) =>
-                                                        setSdg(e.target.value)
-                                                    }
-                                                    name="teams"
-                                                    id="teams"
-                                                >
-                                                    {cardData.map((item, i) => (
-                                                        <option
-                                                            key={i}
-                                                            value={
-                                                                item.goal_title
-                                                            }
-                                                            selected={
-                                                                item.goal_title ===
-                                                                sdg
-                                                            }
-                                                        >
-                                                            {item.goal_title}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </div>
+                                            <Row className="card mb-4 my-3 comment-card px-0 px-5 py-3 card">
+                                                <div className="question quiz mb-0">
+                                                    <b
+                                                        style={{
+                                                            fontSize: '1.6rem'
+                                                        }}
+                                                    >
+                                                        {1}. Which Sustainable
+                                                        development Goal (SDG)
+                                                        are you targeting with
+                                                        your solution ?
+                                                    </b>
+                                                </div>
+                                                <div>
+                                                    <p
+                                                        className="text-muted ms-5"
+                                                        style={{
+                                                            fontSize: '1.4rem'
+                                                        }}
+                                                    >
+                                                        (You can refer to the
+                                                        SDGs sheet from FIND
+                                                        Module and pick the
+                                                        right option )
+                                                    </p>
+                                                </div>
+                                                <div className=" answers row flex-column p-4">
+                                                    <select
+                                                        disabled={isDisabled}
+                                                        onChange={(e) =>
+                                                            setSdg(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        name="teams"
+                                                        id="teams"
+                                                    >
+                                                        {cardData.map(
+                                                            (item, i) => (
+                                                                <option
+                                                                    key={i}
+                                                                    value={
+                                                                        item.goal_title
+                                                                    }
+                                                                    selected={
+                                                                        item.goal_title ===
+                                                                        sdg
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        item.goal_title
+                                                                    }
+                                                                </option>
+                                                            )
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            </Row>
                                             {sdg === 'OTHERS' && (
-                                                <>
+                                                <Row className="card mb-4 my-3 comment-card px-0 px-5 py-3 card">
                                                     <div className="question quiz mb-0">
                                                         <b
                                                             style={{
@@ -351,12 +359,12 @@ const IdeasPageNew = () => {
                                                             />
                                                         </Label>
                                                     </FormGroup>
-                                                </>
+                                                </Row>
                                             )}
                                             {challengeQuestions.map(
                                                 (eachQuestion, i) => (
                                                     <>
-                                                        <Row key={i}>
+                                                        <Row key={i} className="card mb-4 my-3 comment-card px-0 px-5 py-3 card">
                                                             <div className="question quiz mb-0">
                                                                 <b
                                                                     style={{
@@ -765,8 +773,6 @@ const IdeasPageNew = () => {
                                                                                 </FormGroup>
                                                                             </>
                                                                         )}
-
-                                                                        <hr />
                                                                     </>
                                                                 </FormGroup>
                                                             </div>
@@ -787,11 +793,6 @@ const IdeasPageNew = () => {
                                                                 <Button
                                                                     type="button"
                                                                     btnClass="secondary me-3"
-                                                                    disabled={
-                                                                        answerResponses &&
-                                                                        answerResponses.length ===
-                                                                            0
-                                                                    }
                                                                     onClick={
                                                                         handleEdit
                                                                     }
