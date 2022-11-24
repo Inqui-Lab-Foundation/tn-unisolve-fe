@@ -86,8 +86,7 @@ const ChangePSWModal = (props) => {
                         }, 1000);
                     })
                     .catch(function (error) {
-                        // setErrorText("User's current password doesn't match");
-                        console.log(error);
+                        SetError(error.response.data.message);
                     });
             }
         }
@@ -214,8 +213,10 @@ const ChangePSWModal = (props) => {
                                     ) : null}
                                 </Col>
                             </div>
+                            <b style={{color: 'red'}}>
+                            {error}
+                            </b>
                             <b style={{color: '#3BB143'}}>
-                                {error}
                                 {responce}
                             </b>
                             <div
