@@ -618,9 +618,9 @@ const Home = () => {
                             ></div>
                         </Col>
                     </Row>
- 
-
-                    <Row className="student">
+                    </div>
+                    <Container className="py-md-4 py-2">
+                    <Row className="student py-md-4 py-2">
                         <Col
                             md={12}
                             lg={6}
