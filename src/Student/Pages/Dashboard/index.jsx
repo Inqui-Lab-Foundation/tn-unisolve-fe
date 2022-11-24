@@ -19,7 +19,7 @@ import TopSectionCard from './sections/TopSectionCard.jsx';
 import DashboardOverviewCard from './DashboardOverviewCard.jsx';
 import { Table } from 'antd';
 import { Progress } from 'reactstrap';
-import Vimeo from '@u-wave/react-vimeo';
+// import Vimeo from '@u-wave/react-vimeo';
 import { useDispatch } from 'react-redux';
 import { FaCheckCircle,FaTimesCircle } from 'react-icons/fa';
 import {
@@ -162,71 +162,29 @@ const Dashboard = () => {
         {
             title: 'Progress',
             dataIndex: 'address',
-            width: '30%',
-            render: (_, record) => {
-                let percent =
-                    100 -
-                    percentageBWNumbers(
-                        record.all_topics_count,
-                        record.topics_completed_count
-                    );
-                return (
-                    <div className='d-flex'>
-                        <div style={{width:"80%"}}>
-                            <Progress
-                                key={'25'}
-                                className="progress-height"
-                                animated
-                                color={
-                                    percent
-                                        ? percent <= 25
-                                            ? 'danger'
-                                            : percent > 25 && percent <= 50
-                                                ? 'info'
-                                                : percent > 50 && percent <= 75
-                                                    ? 'warning'
-                                                    : 'sucess'
-                                        : 'danger'
-                                }
-                                value={percent}
-                            />
-                        </div>
-                        <span className='ms-2'>{Math.round(percent) ? Math.round(percent) : '0'}%</span>
-                    </div>
-                );
-            }
-        },
-        {
-            title: 'Idea Submission',
-            dataIndex: 'idea_submission',
-            align:"center",
-            width: '20%',
-            render: (_, record) =>
-                record?.idea_submission ? <FaCheckCircle size={20} color="green"/> : <FaTimesCircle size={20} color="grey" />
-        },
-        {
-            title: 'Post Survey',
-            dataIndex: 'post_survey_status',
-            align:"center",
-            width: '10%',
-            render: (_, record) =>
-                record?.post_survey_status ? (
-                    <FaCheckCircle size={20} color="green"/>
-                ) : (
-                    <FaTimesCircle size={20} color="grey" />
-                )
-        },
-        {
-            title: 'Certificate',
-            dataIndex: 'certificate_status',
-            align:"center",
-            width: '10%',
-            render: (_, record) =>
-                record?.certificate_status ? (
-                    <FaCheckCircle size={20} color="green"/>
-                ) : (
-                    <FaTimesCircle size={20} color="grey" />
-                )
+            render: (_, record) => (
+                <Progress
+                    key={'25'}
+                    className="progress-height"
+                    animated
+                    value={
+                        100 -
+                        percentageBWNumbers(
+                            record.all_topics_count,
+                            record.topics_completed_count
+                        )
+                    }
+                >
+                    {Math.round(
+                        100 -
+                            percentageBWNumbers(
+                                record.all_topics_count,
+                                record.topics_completed_count
+                            )
+                    )}{' '}
+                    %
+                </Progress>
+            )
         }
     ];
 
@@ -354,21 +312,14 @@ const Dashboard = () => {
                             />
                         </div>
                     </Col>
-                    <Col md={12} className="flex-1">
-                        <p style={{ fontSize: '1.5rem' }}>
-                            Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
-                        </p>
+
+                    <Col md={12} className="flex-2">
+                        <h2>Support</h2>
                         <div className="bg-white learning-statistics rounded p-3">
-                            <div className="flex-2 px-3 d-flex justify-content-center align-items-center">
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    {<Vimeo video={770500069} volume={true} />}
-                                </div>
+                            <div
+                                className="d-flex justify-content-center align-items-center m-auto"
+                            >
+                                <p className='text-center'>Reference Video will come here <sup>*</sup></p>
                             </div>
                         </div>
                         {/* <div className="bg-white learning-statistics rounded p-3">

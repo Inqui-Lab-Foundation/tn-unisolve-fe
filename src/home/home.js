@@ -29,9 +29,10 @@ import { slide as Menu } from 'react-burger-menu';
 import Slider from 'react-slick';
 import LearnMentor from '../assets/media/home/learn.svg';
 import upshift from '../assets/media/UPSHIFT-diagram.jpg';
-import testi1 from '../assets/media/home/testi/Herve_Morin_Global_head.jpg';
-import testi2 from '../assets/media/home/testi/Swathi.JPG';
-import IdeaBulb from '../assets/media/home/idea-bulb.png';
+import testi1 from '../assets/media/home/testi/PHUB_LHAM_img.png';
+import testi2 from '../assets/media/home/testi/MANI_DEM_img.png';
+import testi3 from '../assets/media/home/testi/NIM_DORJI_img.png';
+//import IdeaBulb from '../assets/media/home/idea-bulb.png';
 
 import map_icon_awa from '../assets/media/home/icon_aweraness.png';
 import map_icon_reg from '../assets/media/home/icon_registration.png';
@@ -40,29 +41,19 @@ import map_icon_test from '../assets/media/home/icon_solution_testing.png';
 import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
-// ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_SSA_Tamilnadu.jpg';
-import SIDP_tamilnadu from '../assets/media/tn-brands/2_SIDP_tamilnadu.jpg';
-import EDII_tamilnadu from '../assets/media/tn-brands/3_EDII_tamilnadu.jpg';
-import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_Tamilnadu.png';
-import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_Tamilnadu.jpg';
-import IIF_Tamilnadu from '../assets/media/tn-brands/7_IIF_Tamilnadu.png';
-import SS_Tamilnadu from '../assets/media/tn-brands/8_SS_Tamilnadu.jpg';
-import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/9_Unicef OOI_Tamilnadu.jpg';
-import LogoTn from '../assets/media/tn-brands/UPSHIFT_BLACK.png';
-import LogoTs1 from '../assets/media/1_SSA_Telangana.png';
-import LogoTs2 from '../assets/media/2_TSIC_Telangana.png';
-
-import LogoTsF1 from '../assets/media/ts_footer/2_TSIC_Telangana1.png';
-import LogoTsF2 from '../assets/media/ts_footer/1_SSA_Telangana1.png';
-import LogoTsF3 from '../assets/media/ts_footer/5_nif_karnataka2.png';
-import LogoTsF4 from '../assets/media/ts_footer/5_Yuwaah_Tamilnadu.png';
+import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
+import MoE from '../assets/media/tn-brands/3_MoE.jpg';
+import IIF from '../assets/media/tn-brands/2_IIF.png';
+import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
+import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
+import YDF from '../assets/media/tn-brands/5_YDF.png';
+import LogoTn from '../assets/media/tn-brands/logo.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
 import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
 import RegisterPopup from './registration/RegisterPopup';
-import TamilNaduMap from '../components/MapCard/TamilNaduMap';
+import BhutanMap from '../components/MapCard/BhutanMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import FancyVideo from 'react-videojs-fancybox';
@@ -174,68 +165,64 @@ const Home = () => {
     const partners = [
         {
             id: 1,
-            key: 'SSA',
-            // imageUrl: Unicef
-            imageUrl: SIDP_tamilnadu
+            key: 'Unicef_OOI',
+            // imageUrl: Congnizant
+            imageUrl: Unicef_OOI
         },
         {
             id: 2,
-            key: 'SIDP',
-            // imageUrl: Telangana
-            imageUrl: SIDP_tamilnadu
+            key: 'IIF',
+            // imageUrl: Congnizant
+            imageUrl: IIF
         },
         {
             id: 3,
-            key: 'EDII',
-            // imageUrl: Inquilab
-            imageUrl: EDII_tamilnadu
+            key: 'MoE',
+            // imageUrl: Telangana
+            imageUrl: MoE
         },
         {
             id: 4,
-            key: 'UpShift',
-            // imageUrl: Yuwaah
-            imageUrl: UpShift_Tamilnadu
+            key: 'Loden',
+            // imageUrl: Unicef
+            imageUrl: Loden
         },
         {
             id: 5,
-            key: 'Yuwaah',
-            // imageUrl: YoungWarrior
-            imageUrl: Yuwaah_Tamilnadu
-        },
-        {
-            id: 6,
-            key: 'IIF',
+            key: 'YDF',
             // imageUrl: Congnizant
-            imageUrl: IIF_Tamilnadu
-        },
-        {
-            id: 6,
-            key: 'SS',
-            // imageUrl: Congnizant
-            imageUrl: SS_Tamilnadu
+            imageUrl: YDF
         },
         {
             id: 6,
             key: 'Unicef',
             // imageUrl: Congnizant
-            imageUrl: Unicef_OOI_Tamilnadu
-        }
+            imageUrl: Unicef
+        },
+        
     ];
 
     const testimonials = [
         {
             id: 1,
-            imageUrl: testi2,
+            imageUrl: testi1,
             desc: `${t('home_tl.testimonials_desc_1')}`,
             name: `${t('home_tl.testimonials_name_1')}`,
             title: `${t('home_tl.testimonials_title_1')}`
         },
         {
             id: 2,
-            imageUrl: testi1,
+            imageUrl: testi2,
             desc: `${t('home_tl.testimonials_desc_2')}`,
             name: `${t('home_tl.testimonials_name_2')}`,
             title: `${t('home_tl.testimonials_title_2')}`
+        },
+        {
+            id: 3,
+            imageUrl: testi3,
+            desc: `${t('home_tl.testimonials_desc_3')}`,
+            name: `${t('home_tl.testimonials_name_3')}`,
+            title: `${t('home_tl.testimonials_title_3')}`
         }
     ];
 
@@ -319,6 +306,26 @@ const Home = () => {
             id: 5,
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
+        },
+        {
+            id: 6,
+            title: `${t('home_tl.faq_qn_6')}`,
+            desc: `${t('home_tl.faq_ans_6')}`
+        },
+        {
+            id: 7,
+            title: `${t('home_tl.faq_qn_7')}`,
+            desc: `${t('home_tl.faq_ans_7')}`
+        },
+        {
+            id: 8,
+            title: `${t('home_tl.faq_qn_8')}`,
+            desc: `${t('home_tl.faq_ans_8')}`
+        },
+        {
+            id: 9,
+            title: `${t('home_tl.faq_qn_9')}`,
+            desc: `${t('home_tl.faq_ans_9')}`
         }
     ];
 
@@ -491,7 +498,7 @@ const Home = () => {
                                             </AnchorLink>
                                         </NavItem>
                                     </Nav>
-                                    <LanguageSelectorComp module="general" />
+                                    {/* <LanguageSelectorComp module="general" /> */}
                                 </div>
                             </Col>
                         </Row>
@@ -879,9 +886,9 @@ const Home = () => {
                         {t('home_tl.engagement')}
                     </h2>
                 </div>
-                <TamilNaduMap />
+                <BhutanMap />
             </section>
-            <section className="blog">
+            {/* <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
                         <div className="heading">
@@ -951,11 +958,12 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+                </section> */}
+
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -975,8 +983,10 @@ const Home = () => {
                                             </figure>
                                             <CardBody>
                                                 <blockquote className="blockquote text-center">
-                                                    <p className="mb-0">
-                                                        {testimonial.desc}
+                                                    <p className="mb-0"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: testimonial.desc
+                                                    }}>
                                                     </p>
                                                     <footer className="blockquote-footer pt-5">
                                                         {' '}
@@ -1125,7 +1135,7 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered UDISE Code &
+                                                        Entered Teacher Unique Code &
                                                         School details are not
                                                         registered with us.
                                                     </span>
