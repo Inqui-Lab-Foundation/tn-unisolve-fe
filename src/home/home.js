@@ -409,6 +409,24 @@ const Home = () => {
                                             />
                                         </figure>
                                     </Link>
+                                    {/* <Link className="" exact="true" to="/">
+                                        <figure>
+                                            <img
+                                                src={LogoTs1}
+                                                alt="logo"
+                                                className="img-fluid w-5 logoImg"
+                                            />
+                                        </figure>
+                                    </Link>
+                                    <Link className="" exact="true" to="/">
+                                        <figure>
+                                            <img
+                                                src={LogoTs2}
+                                                alt="logo"
+                                                className="img-fluid w-5 logoImg"
+                                            />
+                                        </figure>
+                                    </Link> */}
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </h2>
                             </Col>
