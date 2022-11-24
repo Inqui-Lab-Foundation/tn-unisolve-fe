@@ -212,12 +212,12 @@ const TicketsPage = (props) => {
                 width: '15%'
             },
             {
-                name: 'Principle Name',
+                name: 'Principal Name',
                 selector: 'principal_name',
                 width: '15%'
             },
             {
-                name: 'Principle Mobile',
+                name: 'Principal Mobile',
                 selector: 'principal_mobile',
                 width: '15%'
             },

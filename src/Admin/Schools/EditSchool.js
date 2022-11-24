@@ -34,11 +34,7 @@ import {
 const EditSchool = (props) => {
     const listID = JSON.parse(localStorage.getItem('listId'));
     const listId =
-        (history &&
-            history.location &&
-            history.location.item &&
-            history.location.item) ||
-        listID;
+        (history && history.location && history.location.item) || listID;
 
     const inputDICE = {
         type: 'text',
@@ -319,8 +315,7 @@ const EditSchool = (props) => {
                                 <Row>
                                     <Col className="col-xs-12 col-sm-6">
                                         <Button
-                                            label="Discard"
-                                            btnClass="secondary"
+                                             btnClass="secondary"
                                             size="small"
                                             onClick={() =>
                                                 props.history.push(
