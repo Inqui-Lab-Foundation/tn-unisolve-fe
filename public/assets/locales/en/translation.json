@@ -256,11 +256,12 @@
         "roadmpa_six_desc": "<p>Solutions selected in the final event are provided support to actualize their solutions and implement their ideas</p>",
         "power_by": "powered by",
         "engagement": "Engagement & Impact",
-        "students": "STUDENTS",
-        "student_teams": "STUDENT TEAMS",
+        "students": "UPSHIFTers",
+        "student_teams": "UPSHIFT TEAMS",
         "institutions": "INSTITUTIONS",
         "ideas": "IDEAS",
         "search_school": "Search your school here...",
+        "youth_center": "YOUTH CENTER",
         "search_btn": "Search",
         "step": "Step"
     },
@@ -420,7 +421,8 @@
         "success": "Successfully Registered",
         "dice_place": "Please enter your Teacher Unique Code to continue",
         "hand_book": "UNISOLVE Hand Book",
-        "please_download": "Please Download Handbook..."
+        "please_download": "Please Download Handbook...",
+        "org_type":"Type"
     },
     "dummytext": {
         "student_idea_sub": "Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",

@@ -38,6 +38,21 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <small className="blue">{t('home_tl.institutions')}</small>
                         </div>
                     </div>
+                    <div className="mb-5 d-flex align-items-center">
+                        <img
+                            src={institutions}
+                            alt="institutions"
+                            className=" mx-4"
+                        />
+                        <div>
+                            <h4>
+                                {!values?.youth_center
+                                    ? '0'
+                                    : values?.youth_center}
+                            </h4>
+                            <small className="blue">{t('home_tl.youth_center')}</small>
+                        </div>
+                    </div>
                     <div className="mb-5 d-flex align-items-center ">
                         <img src={people} alt="teams" className="mx-4" />
                         <div>
@@ -80,6 +95,21 @@ const MapdataCard = ({ values, all,districtName }) => {
                                     : `${all?.reg_schools} of ${all?.overall_schools}`}
                             </h4>
                             <small className="blue">{t('home_tl.institutions')}</small>
+                        </div>
+                    </div>
+                    <div className="mb-5 d-flex align-items-center">
+                        <img
+                            src={institutions}
+                            alt="institutions"
+                            className=" mx-4"
+                        />
+                        <div>
+                            <h4>
+                                {!all?.youth_center
+                                    ? '0'
+                                    : all?.youth_center}
+                            </h4>
+                            <small className="blue">{t('home_tl.youth_center')}</small>
                         </div>
                     </div>
                     <div className="mb-5 d-flex align-items-center ">

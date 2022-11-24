@@ -430,7 +430,7 @@ const Home = () => {
                                             />
                                         </figure>
                                     </Link>
-                                    <Link className="" exact="true" to="/">
+                                    {/* <Link className="" exact="true" to="/">
                                         <figure>
                                             <img
                                                 src={LogoTs1}
@@ -447,7 +447,8 @@ const Home = () => {
                                                 className="img-fluid w-5 logoImg"
                                             />
                                         </figure>
-                                    </Link>
+                                    </Link> */}
+
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </h2>
                             </Col>
