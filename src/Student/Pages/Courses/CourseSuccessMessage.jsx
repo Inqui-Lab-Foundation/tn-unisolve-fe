@@ -11,7 +11,6 @@ const CourseSuccessMessage = () => {
             <Confetti className="w-100" />
             <div className="row justify-content-md-center ">
                 <div className="col col-lg-9">
-                    {/* <Confetti className='w-100' /> */}
                     <div className="results-heading">
                         <img src={ResultStar} alt="star" />
                     </div>

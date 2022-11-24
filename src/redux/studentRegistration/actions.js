@@ -241,7 +241,7 @@ export const getStudentBadges = (id, language) => async (dispatch) => {
     }
 };
 
-export const updateStudentBadges = (data, id, language) => async (dispatch) => {
+export const updateStudentBadges = (data, id, language,t) => async (dispatch) => {
     try {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const result = await axios
@@ -256,12 +256,12 @@ export const updateStudentBadges = (data, id, language) => async (dispatch) => {
 
                 swalWithBootstrapButtons
                     .fire({
-                        title: `Congratulations`,
-                        text:`you've just earned a new badge`,
+                        title: t('badges.congratulations'),
+                        text:t('badges.earn'),
                         // text:`You have Earned a New Badge ${data.badge_slugs[0].replace("_"," ").toUpperCase()}`,
                         imageUrl: `${logout}`,
                         showCloseButton: true,
-                        confirmButtonText: "OK",
+                        confirmButtonText: t('badges.ok'),
                         showCancelButton: false,
                         reverseButtons: false
                     });

@@ -111,7 +111,7 @@ const PreSurvey = () => {
                                 updateStudentBadges(
                                     { badge_slugs: ['survey_champ'] },
                                     currentUser.data[0].user_id,
-                                    language
+                                    language,t
                                 )
                             );
                             setTimeout(() => {

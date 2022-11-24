@@ -191,10 +191,9 @@
         "banner_new_creativity": "Changemakers",
         "banner_new_description": "Nurture a culture of social innovation and build skills while inspiring young people to become transformative leaders.",
         "get_new_Started": "Register",
-        "badges":"Badges",
-        "idea_submission":"Idea Submission",
-        "my_profile":"My Profile"
-
+        "badges": "Badges",
+        "idea_submission": "Idea Submission",
+        "my_profile": "My Profile"
     },
     "home_tl": {
         "Hero_section-header": "Creating Change Makers of Tomorrow with <span className='green'>21st Century Skills</span>",
@@ -218,24 +217,30 @@
         "testimonials_desc_1": "Compared to schools in urban areas, students in remote areas have low competency skills and comparatively low self-esteem, However, with UPSHIFT, I believe that students will learn to think out of the box and make good use of the resources available around them.",
         "testimonials_name_1": "PHUB LHAM",
         "testimonials_title_1": "Teacher",
-        "testimonials_desc_2": "When teachers from remote schools are also involved, our students can benefit in many ways. Students can now identify their problems and come up with solutions.",
+        "testimonials_desc_2": "When teachers from remote schools are also involved, our students can benefit in many ways. </br></br>Students can now identify their problems and come up with solutions.",
         "testimonials_name_2": "MANI DEM",
         "testimonials_title_2": "Teacher",
         "testimonials_desc_3": "People often talk about innovations, but never about the skills involved to innovate. It is a collection of information, perspective, and data from different stakeholders involved. Our schools have different programmes but they either focus on the process or the product.",
         "testimonials_name_3": "NIM DORJI",
         "testimonials_title_3": "Teacher",
-        "faq_qn_1": "What is UPSHIFT, powered by UNISOLVE?",
-        "faq_ans_1": "<p>UPSHIFT is a youth social innovation and social entrepreneurship programme that supports adolescents (10-19) and and youth (13-24) people to identify problems in their communities and design solutions to tackle those problems. This programme is part of the Adolescent Skills and Employability (ASE) project that the Ministry of Education and NGO partners are implementing across 20 districts in Bhutan to reach at least 10,000 adolescents with support from UNICEF.</p><p>The objective of SIDP is to:</p><ul><li><p>To expose school students to the cycle of innovation and promote the culture of entrepreneurship.</p></li><li><p>To inspire students to solve real life problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership cum entrepreneurship skills.</p></li><li><p>To build the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.</p></li></ul>",
+        "faq_qn_1": "What is the UPSHIFT powered by UNISOLVE?",
+        "faq_ans_1": "<p>To promote a culture of innovation and creative problem solving among  the state government in partnership with key stakeholders launched the UPSHIFT, UNISOLVE to inculcate the spirit of innovation amongst the school children.</p><p>Objective of the program is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain 21st century skills and leadership skills.</p>",
         "faq_qn_2": "Who can participate in this program?",
-        "faq_ans_2": "<p>Guidelines about the schools eligible for participation will be rolled out by the Ministry of Education/Department of School Education. All the eligible schools can register on the portal and participate using the unique identification code (example: UDISE etc.)</p><p>Students from all Government Higher Secondary Schools are eligible to participate in the program. This is a team based program and schools/mentors are requested to support in registration of the participants on to the portal and in this learning journey.</p>",
-        "faq_qn_3": "How many teams and teachers/mentors can participate in the program?",
-        "faq_ans_3": "<p>The platform does not have any limitation in terms of the number of teams or students. But it is suggested that teacher/mentor:teams ratio be maintained as 1:5.</p>",
-        "faq_qn_4": "How to register your institution for this program?",
-        "faq_ans_4": "<p>Open the website and click register. Register your school/Institution there by entering the UDISE code/Unique ID and then filling in all required details. Once the registration process is completed, you can log in to your account by entering a password.<p/>",
-        "faq_qn_5": "What are the next steps involved after registering my school on the website?",
-        "faq_ans_5": "<p>The following are the next steps involved after you register your school/institution:</p><ol><li><p>Identify students who can participate in the program.</p></li><li><p>Form teams with the interested or nominated participant group.</p></li><li><p>Students have to log in to the website and start doing the online course with the team.</p></li><li><p>Teams will complete the learning course and submit one idea as their challenge project. </p></li></ol>",
-        "faq_qn_6":"How many students per school can participate in SIDP project? ",
-        "faq_ans_6":"<p>For this academic year 2022-23 we recommend to have minimum 25 and maximum of 30 participants per school. For the next academic year you can register more students.</p>",
+        "faq_ans_2": "<p>Guidelines about the schools eligible for participation will be rolled out by UNICEF, Bhutan. All the eligible schools can register on the portal and participate using the Unique Teacher Code.</p><p>Students from all Government High Schools and Higher Secondary Schools are eligible to participate in the program. This is a team based program and schools/mentors are requested to support in registration of the participants on to the portal and in this learning journey.</p>",
+        "faq_qn_3":"How many teams and teachers/mentors can participate in the program?",
+        "faq_ans_3":"<p>It is suggested that each teacher should handle only up to 50 students (2-5 students in a team). Each teacher can register up to 50 students on the platform</p>",
+        "faq_qn_4":"How to register your institution for this program?",
+        "faq_ans_4":"<p>Open the website and click register. Register your school/Institution thereby entering the Unique Teacher Code and then filling in all required details. Once the registration process is completed, you can log in to your account either by entering a password</p>",
+        "faq_qn_5":"What are the next steps involved after registering my school on the website?",
+        "faq_ans_5":"<p>The following are the next steps involved after you register your school/institution:</p><ol><li><p>Identify students who can participate in the program.</p></li><li><p>Form teams of 2-5 students with the interested participant and register them on the platform. </p></li><li><p>Students have to log in to the website and start doing the online course with the team. </p></li><li><p>Teams will complete the learning course and submit one idea as their challenge project. </p></li></ol>",
+        "faq_qn_6":"How many students per school can participate in UPSHIFT program?",
+        "faq_ans_6":"<p>There is no restriction as such but it is highly recommended that each teacher should handle only up to 50 students.</p>",
+        "faq_qn_7":"How can students start doing the course? Can they directly login and start doing ?",
+        "faq_ans_7":"<p>Students have to login using their respective username as registered by the teachers. They can login by entering the password set by the teacher. They can proceed to the course after that.</p><p>Note:</p><ol><li><p>Please make sure that students are aware of their username and password</p></li><li><p>You can also check each team’s progress on the dashboard as you can clearly see the percentage in the above picture</p></li></ol>",
+        "faq_qn_8":"Can we use the portal on mobile devices?",
+        "faq_ans_8":"<p>Yes, the website has been designed keeping mobile users in mind. It works smoothly on both mobile devices and computers.</p>",
+        "faq_qn_9":"How can I change/edit team details ?",
+        "faq_ans_9":"<ol><li><p>Only teachers can edit the team details. Log in to the website and click teams</p></li><li><p>You’ll find the edit button beside each team.</p></li><li><p>Click that and change whatever details you need to change</p></li></ol>",
         "roadmpa_heading": "Road Map",
         "roadmpa_one": "AWARENESS",
         "roadmpa_one_desc": "<p>Learners become aware of Program, its goals and process through various channels like : <ol><li><p class='my-0'>Institution management</p></li><li><p class='my-0'>Digital and print media</p></li><li><p class='my-0'>Peer Groups</p></li></ol></p>",
@@ -279,11 +284,12 @@
         "logout": "Logout",
         "question": "Question",
         "submit": "Submit",
-        "continue": "Continue"
+        "continue": "Continue",
+        "refer_video": "Refer Video"
     },
     "teacher_get_started": {
-        "heading": "Welcome SIDP School Head/Guide Teacher!",
-        "desc": "<p>We are glad that you have signed-up to SIDP 2022-23 and joined us in this exciting journey of nurturing an experience of learning, skilling and innovation for the school children. As you are aware you will be playing a role of guide and mentor for the participants in their learning journey.</p><p>This portal gives you an experience of learning modules and important resources for supporting the participants. You can also create and track progress of your student teams using the dashboard.</p><p>Your journey as a SIDP School Head/Guide Teacher will involve the following key milestones: </p><ul><li><p class='my-0'>Step-1: Take Pre-Survey.</p></li><li><p class='my-0'>Step-2: Complete the course and reading material.</p></li><li><p class='my-0'>Step-3: Creating Teams and Register the students.</p></li><li><p class='my-0'>Step-4: Support the participants in completing the learning journey.</p></li><li><p class='my-0'>Step-5: Support the participants in challenge/idea submission.</p></li><li><p class='my-0'>Step-6: Complete the post survey.</p></li><li><p class='my-0'>Step-7: Get awarded with the completion certificate.</p></li></ul><p>We hope you and your teams will have a great learning experience and wish you all the best for this project.</p>",
+        "heading": "Welcome Teachers and Mentors!",
+        "desc": "<p>We are glad that you have signed-up to this program and joined us in this exciting journey of nurturing an experience of learning, skilling and innovation for the young people. As you are aware you will be playing a role of guide and mentor for the participants in their learning journey.</p><p>This portal gives you an experience of learning modules and important resources for supporting the participants. You can also register and track progress of your teams using the dashboard.</p><p>Your journey as a teacher/mentor will involve the following key milestones: </p><ul><li><p class='my-0'>Step-1: Take Pre-Survey.</p></li><li><p class='my-0'>Step-2: Complete the course and reading material.</p></li><li><p class='my-0'>Step-3: Register the teams </p></li><li><p class='my-0'>Step-4: Support the participants in completing the learning journey.</p></li><li><p class='my-0'>Step-5: Support the participants in challenge/idea submission.</p></li><li><p class='my-0'>Step-6: Complete the post survey.</p></li></ul><p>We hope you and your teams will have a great learning experience and wish you all the best for this program!</p>",
         "btn": "START JOURNEY",
         "pre": "Pre survey has been submitted"
     },
@@ -294,12 +300,23 @@
         "pre": "Pre survey has been submitted"
     },
     "student_presurvey": {
-        "submit" : "Submit"
+        "submit": "Submit"
     },
-    "student" : {
+    "student": {
         "profile": "My Profile",
-        "worksheet":"Please download worksheet..."
-        
+        "worksheet": "<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIDP guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
+        "download_worksheet": "Download Worksheet",
+        "continue": "Continue",
+        "w_sheet": "Worksheet",
+        "quiz_heading": "Ready for a quick test?",
+        "take_challenge": "Test your course skills in a short test challenge!",
+        "questions": "Questions",
+        "minutes": "Minutes",
+        "lets_start": "Let's Start",
+        "videos": "Videos",
+        "backto_quiz": "Back to Quiz",
+        "quiz_completed": "Quiz Successfully Completed",
+        "ref_quiz_heading": "Let's think about a few things you learnt in the video"
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"
@@ -382,11 +399,11 @@
     },
     "teacehr_red": {
         "heading": "REGISTER",
-        "UDISE": "UDISE Code",
+        "UDISE": "Teacher Unique Code",
         "req": "Required",
         "continue": "CONTINUE",
         "clear": "CLEAR",
-        "error_vali": "<p>Entered UDISE Code is Invalid. <u>Click here</u> to request to Add School Information.</p>",
+        "error_vali": "<p>Entered Teacher Unique Code is Invalid. <u>Click here</u> to request to Add School Information.</p>",
         "school": "School",
         "city": "City",
         "district": "District",
@@ -402,20 +419,30 @@
         "enter_pass": "Enter Password",
         "enter_c_pass": "Confirm Password",
         "success": "Successfully Registered",
-        "dice_place": "Please enter your UDISE code to continue",
+        "dice_place": "Please enter your Teacher Unique Code to continue",
         "hand_book": "UNISOLVE Hand Book",
         "please_download": "Please Download Handbook...",
         "org_type":"Type"
     },
-    "dummytext":{
-        "student_idea_sub":"Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",
-        "student_my_cer":"Dear Student, you will receive your certificate once you complete the course, submit idea and take post survey. All the best :)",
-        "student_post_survey":"Dear Students, Post-Survey will be active once your team submits the idea. Hope you and your team are learning a lot of new things. : )",        
-        "student_course":"Dear Student, your SIDP learning journey will begin soon. Please discuss with your School SIDP Head cum Guide Teacher and prepare yourself for this journey. All the best 🙂"       
-
+    "dummytext": {
+        "student_idea_sub": "Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",
+        "student_my_cer": "Dear Student, you will receive your certificate once you complete the course, submit idea and take post survey. All the best :)",
+        "student_post_survey": "Dear Students, Post-Survey will be active once your team submits the idea. Hope you and your team are learning a lot of new things. : )",
+        "student_course": "Dear Student, your SIDP learning journey will begin soon. Please discuss with your School SIDP Head cum Guide Teacher and prepare yourself for this journey. All the best 🙂"
     },
-    "badges":{
-        "congratulations":"Congratulations",
-        "earn":"you've just earned a new badge"
+    "badges": {
+        "congratulations": "Congratulations",
+        "earn": "you've just earned a new badge",
+        "ok": "OK"
+    },
+    "student_course": {
+        "modules": "Modules",
+        "videos": "Videos",
+        "start course": "Start Course",
+        "full screen": "Full Screen",
+        "lessons": "Lessons",
+        "continue course": "Continue Course",
+        "exitfullscreen": "Exit Full Screen",
+        "quiz_completed": "Successfully Completed!"
     }
 }

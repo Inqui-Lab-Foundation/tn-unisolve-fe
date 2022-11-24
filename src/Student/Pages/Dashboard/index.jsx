@@ -19,8 +19,9 @@ import TopSectionCard from './sections/TopSectionCard.jsx';
 import DashboardOverviewCard from './DashboardOverviewCard.jsx';
 import { Table } from 'antd';
 import { Progress } from 'reactstrap';
-import Vimeo from '@u-wave/react-vimeo';
+// import Vimeo from '@u-wave/react-vimeo';
 import { useDispatch } from 'react-redux';
+import { FaCheckCircle,FaTimesCircle } from 'react-icons/fa';
 import {
     getStudentByIdData,
     getStudentDashboardChallengesStatus,
@@ -28,6 +29,7 @@ import {
     getStudentDashboardTeamProgressStatus,
     getStudentDashboardTutorialVideos
 } from '../../../redux/studentRegistration/actions.js';
+import LanguageSelectorComp from '../../../components/LanguageSelectorComp/index.js';
 
 const Dashboard = () => {
     const language = useSelector(
@@ -74,16 +76,15 @@ const Dashboard = () => {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         axios
             .get(
-                `${URL.getStudentPreSurveyList}?role=STUDENT&${getLanguage(language)}`,
+                `${URL.getStudentPreSurveyList}?role=STUDENT&${getLanguage(
+                    language
+                )}`,
                 axiosConfig
             )
             .then((preSurveyRes) => {
                 if (preSurveyRes?.status == 200) {
                     console.log(preSurveyRes);
-                    if (
-                        preSurveyRes.data.data[0].progress !==
-                        'COMPLETED'
-                    )
+                    if (preSurveyRes.data.data[0].progress !== 'COMPLETED')
                         history.push('/student/pre-survey');
                 }
             })
@@ -97,9 +98,10 @@ const Dashboard = () => {
     const cardData = {
         idea: {
             heading: 'Notice Board',
-            deadline: `${dashboardChallengesStatus
-                ? dashboardChallengesStatus?.end_date
-                : '-'
+            deadline: `${
+                dashboardChallengesStatus
+                    ? dashboardChallengesStatus?.end_date
+                    : '-'
             }`,
             subHeading: 'Idea  Submission',
             footerText: 'With Team Members',
@@ -133,16 +135,28 @@ const Dashboard = () => {
     const percentageBWNumbers = (a, b) => {
         return (((a - b) / a) * 100).toFixed(2);
     };
-
     const columns = [
         {
             title: 'Name',
             dataIndex: 'full_name',
+            width: '20%',
             render: (_, record) =>
                 record.full_name === currentUser?.data[0]?.full_name ? (
                     <div className="self-decor">{record.full_name}*</div>
                 ) : (
                     record.full_name
+                )
+        },
+        {
+            title: 'Pre Survey',
+            dataIndex: 'pre_survey_status',
+            align:"center",
+            width: '10%',
+            render: (_, record) =>
+                record?.pre_survey_status ? (
+                    <FaCheckCircle size={20} color="green" />
+                ) : (
+                    <FaTimesCircle size={20} color="grey" />
                 )
         },
         {
@@ -163,20 +177,27 @@ const Dashboard = () => {
                 >
                     {Math.round(
                         100 -
-                        percentageBWNumbers(
-                            record.all_topics_count,
-                            record.topics_completed_count
-                        )
+                            percentageBWNumbers(
+                                record.all_topics_count,
+                                record.topics_completed_count
+                            )
                     )}{' '}
                     %
                 </Progress>
             )
         }
     ];
+
     return (
         <Layout>
             <Container className="dashboard-wrapper">
-                <h2>Dashboard</h2>
+                <div className='d-flex justify-content-between align-items-center'>
+                    <h2>Dashboard</h2>
+                    <div className='bg-white rounded p-3 d-flex align-items-center' style={{width:"max-content"}}>
+                        <p>Preferred Language : </p>
+                        <LanguageSelectorComp module="student" />
+                    </div>
+                </div>
                 <hr />
                 <Row className="d-flex flex-start mb-5" style={{ gap: '1rem' }}>
                     <TopSectionCard
@@ -227,7 +248,7 @@ const Dashboard = () => {
                         title={'Completed Videos'}
                         count={
                             dashboardStatus &&
-                                dashboardStatus?.videos_completed_count
+                            dashboardStatus?.videos_completed_count
                                 ? dashboardStatus?.videos_completed_count
                                 : 0
                         }
@@ -237,7 +258,7 @@ const Dashboard = () => {
                         title={'Completed Quiz'}
                         count={
                             dashboardStatus &&
-                                dashboardStatus?.quiz_completed_count
+                            dashboardStatus?.quiz_completed_count
                                 ? dashboardStatus?.quiz_completed_count
                                 : 0
                         }
@@ -248,7 +269,7 @@ const Dashboard = () => {
                         title={'Completed Worksheets'}
                         count={
                             dashboardStatus &&
-                                dashboardStatus?.worksheet_completed_count
+                            dashboardStatus?.worksheet_completed_count
                                 ? dashboardStatus?.worksheet_completed_count
                                 : 0
                         }
@@ -259,10 +280,10 @@ const Dashboard = () => {
                         count={
                             Math.round(
                                 100 -
-                                percentageBWNumbers(
-                                    dashboardStatus?.all_topics_count,
-                                    dashboardStatus?.topics_completed_count
-                                )
+                                    percentageBWNumbers(
+                                        dashboardStatus?.all_topics_count,
+                                        dashboardStatus?.topics_completed_count
+                                    )
                             ) + ' %'
                         }
                         image={vector}
@@ -272,7 +293,7 @@ const Dashboard = () => {
                     className="course-team flex-start mb-5"
                     style={{ gap: '1rem' }}
                 >
-                    <Col md={12} className="flex-1 team-progress">
+                    <Col md={12} className="flex-2 team-progress">
                         <h2>Team Progress</h2>
                         <div className="bg-white team-progress rounded  p-3">
                             <div className="row flex-column p-2">
@@ -291,27 +312,15 @@ const Dashboard = () => {
                             />
                         </div>
                     </Col>
+
                     <Col md={12} className="flex-2">
-                        <h2>Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN</h2>
+                        <h2>Support</h2>
                         <div className="bg-white learning-statistics rounded p-3">
-                            <div className="flex-2 px-3">
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    {
-                                        <Vimeo
-                                            video={770500069}
-                                            volume={true}
-                                        />
-
-                                    }
-                                </div>
+                            <div
+                                className="d-flex justify-content-center align-items-center m-auto"
+                            >
+                                <p className='text-center'>Reference Video will come here <sup>*</sup></p>
                             </div>
-
                         </div>
                         {/* <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3">

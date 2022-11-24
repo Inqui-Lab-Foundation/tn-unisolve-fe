@@ -41,12 +41,11 @@ import map_icon_test from '../assets/media/home/icon_solution_testing.png';
 import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
-// ta brans
 import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
-import MoE from '../assets/media/tn-brands/3_MoE.png';
+import MoE from '../assets/media/tn-brands/3_MoE.jpg';
 import IIF from '../assets/media/tn-brands/2_IIF.png';
 import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
-import Unicef from '../assets/media/tn-brands/6_unicef.png';
+import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
 import YDF from '../assets/media/tn-brands/5_YDF.png';
 import LogoTn from '../assets/media/tn-brands/logo.png';
 
@@ -78,9 +77,16 @@ const Home = () => {
     //     dispatch(getSchedulesForTeacherAndStudents());
     // }, []);
     useLayoutEffect(() => {
-        const moduleName = localStorage.getItem("module");
-        if (localStorage.getItem("current_user") && localStorage.getItem("module")) {
-            moduleName === "MENTOR" ? history.push("/teacher/dashboard") : moduleName === "ADMIN" ? history.push("/admin/dashboard") : history.push("/dashboard");
+        const moduleName = localStorage.getItem('module');
+        if (
+            localStorage.getItem('current_user') &&
+            localStorage.getItem('module')
+        ) {
+            moduleName === 'MENTOR'
+                ? history.push('/teacher/dashboard')
+                : moduleName === 'ADMIN'
+                ? history.push('/admin/dashboard')
+                : history.push('/dashboard');
         }
     }, []);
     const [nav1, setNav1] = useState(null);
@@ -305,6 +311,21 @@ const Home = () => {
             id: 6,
             title: `${t('home_tl.faq_qn_6')}`,
             desc: `${t('home_tl.faq_ans_6')}`
+        },
+        {
+            id: 7,
+            title: `${t('home_tl.faq_qn_7')}`,
+            desc: `${t('home_tl.faq_ans_7')}`
+        },
+        {
+            id: 8,
+            title: `${t('home_tl.faq_qn_8')}`,
+            desc: `${t('home_tl.faq_ans_8')}`
+        },
+        {
+            id: 9,
+            title: `${t('home_tl.faq_qn_9')}`,
+            desc: `${t('home_tl.faq_ans_9')}`
         }
     ];
 
@@ -427,6 +448,7 @@ const Home = () => {
                                             />
                                         </figure>
                                     </Link> */}
+
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </h2>
                             </Col>
@@ -658,7 +680,6 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-
             {/* <section className="mentor-student">
         <Container className="both">
             <Row>
@@ -729,7 +750,6 @@ const Home = () => {
             </Row>
         </Container>
     </section> */}
-
             <section className="road-map" id="roadmap">
                 <div className="heading">
                     <h2 className="sub-heading w-100 text-center">
@@ -744,7 +764,7 @@ const Home = () => {
                             <img src={map_icon_awa} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-1
+                            Step-1
                         </div>
                         <div className="timeline__event__content ">
                             <div className="timeline__event__title">
@@ -764,7 +784,7 @@ const Home = () => {
                             <img src={map_icon_reg} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-2
+                            Step-2
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -784,7 +804,7 @@ const Home = () => {
                             <img src={map_icon_prob} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-3
+                            Step-3
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -804,7 +824,7 @@ const Home = () => {
                             <img src={map_icon_test} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-4
+                            Step-4
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -824,7 +844,7 @@ const Home = () => {
                             <img src={map_icon_pitch} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-5
+                            Step-5
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -844,7 +864,7 @@ const Home = () => {
                             <img src={map_icon_incu} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-6
+                            Step-6
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -861,7 +881,6 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-
             <section className="state-map" id="impact">
                 <div className="heading">
                     <h2 className="sub-heading text-center">
@@ -870,7 +889,6 @@ const Home = () => {
                 </div>
                 <BhutanMap />
             </section>
-
             {/* <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
@@ -941,12 +959,12 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section> */}
+                </section> */}
 
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -966,8 +984,10 @@ const Home = () => {
                                             </figure>
                                             <CardBody>
                                                 <blockquote className="blockquote text-center">
-                                                    <p className="mb-0">
-                                                        {testimonial.desc}
+                                                    <p className="mb-0"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: testimonial.desc
+                                                    }}>
                                                     </p>
                                                     <footer className="blockquote-footer pt-5">
                                                         {' '}
@@ -988,7 +1008,6 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-
             <section className="uni-partners counter" id="partners">
                 <Container className="text-center">
                     <Row className="counter-card">
@@ -1117,7 +1136,7 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered UDISE Code &
+                                                        Entered Teacher Unique Code &
                                                         School details are not
                                                         registered with us.
                                                     </span>
@@ -1154,7 +1173,6 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-
             <section className="faq " id="faq">
                 <Container>
                     <Row className="text-center justify-content-md-center">
@@ -1193,7 +1211,6 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-
             <footer className="footer">
                 <Container>
                     <Row>
@@ -1274,7 +1291,6 @@ const Home = () => {
                     </Col>
                 </Row>
             </footer>
-
             {modalShow && (
                 <RegisterPopup
                     show={modalShow}
