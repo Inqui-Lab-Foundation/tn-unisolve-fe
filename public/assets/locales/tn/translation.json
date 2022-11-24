@@ -298,7 +298,6 @@
     "student" : {
         "profile": "My Profile",
         "worksheet":"Please download worksheet..."
-        
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"

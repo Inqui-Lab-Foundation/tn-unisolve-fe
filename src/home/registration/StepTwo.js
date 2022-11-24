@@ -8,9 +8,6 @@ import { URL, KEY } from '../../constants/defaultValues';
 import { Button } from '../../stories/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { registerStepData } from '../../redux/actions';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import CryptoJS from 'crypto-js';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
@@ -24,8 +21,6 @@ function StepTwo({
     setHideFive
 }) {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
-    const stepTwoData = useSelector((state) => state.authUser.stepTwoData);
     const phoneRegExp =
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -59,7 +54,7 @@ function StepTwo({
             organization_code: orgData?.organization_code,
             role: 'MENTOR',
             qualification: '-',
-            reg_status: stepTwoData?.username ? true : false,
+            reg_status: false,
             password: ''
         },
 
@@ -88,68 +83,38 @@ function StepTwo({
 
         onSubmit: async (values) => {
             const axiosConfig = getNormalHeaders(KEY.User_API_Key);
-            if (stepTwoData?.mobile) {
-                const { user_id } = stepTwoData;
-                const { mobile } = values;
-                localStorage.setItem('mobile', JSON.stringify(mobile));
-                const data = {
-                    mobile,
-                    user_id
-                };
-                await axios
-                    .put(
-                        `${URL.updateMobile}`,
-                        JSON.stringify(data, null, 2),
-                        axiosConfig
-                    )
-                    .then((mentorRegRes) => {
-                        // dispatch(registerStepData(mentorRegRes?.data?.data[0]));
-                        if (mentorRegRes?.data?.status == 202) {
-                            setUserData(mentorRegRes?.data?.data[0]);
-                            setHideTwo(false);
-                            setHideFive(true);
-                        }
-                    })
-                    .catch((err) => {
-                        formik.setErrors({
-                            check: err.response && err?.response?.data?.message
-                        });
-                        return err.response;
+
+            values.password = values.password.trim();
+            const key = CryptoJS.enc.Hex.parse(
+                '253D3FB468A0E24677C28A624BE0F939'
+            );
+            const iv = CryptoJS.enc.Hex.parse(
+                '00000000000000000000000000000000'
+            );
+            const encrypted = CryptoJS.AES.encrypt(values.password, key, {
+                iv: iv,
+                padding: CryptoJS.pad.NoPadding
+            }).toString();
+            values.password = encrypted;
+            await axios
+                .post(
+                    `${URL.mentorRegister}`,
+                    JSON.stringify(values, null, 2),
+                    axiosConfig
+                )
+                .then((mentorRegRes) => {
+                    if (mentorRegRes?.data?.status == 201) {
+                        setUserData(mentorRegRes?.data?.data[0]);
+                        setHideTwo(false);
+                        setHideFive(true);
+                    }
+                })
+                .catch((err) => {
+                    formik.setErrors({
+                        check: err.response && err?.response?.data?.message
                     });
-            } else {
-                values.password = values.password.trim();
-                const key = CryptoJS.enc.Hex.parse(
-                    '253D3FB468A0E24677C28A624BE0F939'
-                );
-                const iv = CryptoJS.enc.Hex.parse(
-                    '00000000000000000000000000000000'
-                );
-                const encrypted = CryptoJS.AES.encrypt(values.password, key, {
-                    iv: iv,
-                    padding: CryptoJS.pad.NoPadding
-                }).toString();
-                values.password = encrypted;
-                await axios
-                    .post(
-                        `${URL.mentorRegister}`,
-                        JSON.stringify(values, null, 2),
-                        axiosConfig
-                    )
-                    .then((mentorRegRes) => {
-                        dispatch(registerStepData(mentorRegRes?.data?.data[0]));
-                        if (mentorRegRes?.data?.status == 201) {
-                            setUserData(mentorRegRes?.data?.data[0]);
-                            setHideTwo(false);
-                            setHideFive(true);
-                        }
-                    })
-                    .catch((err) => {
-                        formik.setErrors({
-                            check: err.response && err?.response?.data?.message
-                        });
-                        return err.response;
-                    });
-            }
+                    return err.response;
+                });
         }
     });
 
@@ -300,16 +265,14 @@ function StepTwo({
                             label={t('teacehr_red.continue')}
                             // btnClass='primary w-100'
                             btnClass={
-                                !(formik.dirty && formik.isValid) &&
-                                !stepTwoData?.mobile
+                                !(formik.dirty && formik.isValid) 
                                     ? 'default'
                                     : 'primary'
                             }
                             size="large "
                             type="submit"
                             disabled={
-                                !(formik.dirty && formik.isValid) &&
-                                !stepTwoData?.mobile
+                                !(formik.dirty && formik.isValid)
                             }
                         />
                     </div>

@@ -109,7 +109,7 @@ const TeacherPlayVideo = (props) => {
     const getLastCourseStatus = (data = []) => {
         const length = data && data.length > 0 ? data.length - 1 : 0;
         if (length) {
-           return  data[length]?.progress === 'INCOMPLETE' ? false : true;
+            return data[length]?.progress === 'INCOMPLETE' ? false : true;
         }
         return false;
     };
@@ -203,10 +203,9 @@ const TeacherPlayVideo = (props) => {
         axios(config)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response.data.data[0]);
-                    SetWorksheetResponce(response.data.data[0]);
                     const worksheet =
-                        response.data.data[0].attachments.split(/[,]/);
+                        response.data.data[0]?.attachments.split('{{}}');
+                    SetWorksheetResponce(worksheet);
                     setWorksheetByWorkSheetId(worksheet[0]);
                 }
             })
@@ -325,7 +324,7 @@ const TeacherPlayVideo = (props) => {
     };
 
     const handleSelect = (topicId, couseId, type) => {
-        scrollRef.current.scrollIntoView(); 
+        scrollRef.current.scrollIntoView();
         setCourseTopicId(couseId);
         const topic_Index =
             setTopicArrays &&
@@ -572,7 +571,7 @@ const TeacherPlayVideo = (props) => {
                                                                         );
                                                                     } else if (
                                                                         course.title.toLowerCase() ===
-                                                                            'instructions' ||
+                                                                            'additional resources' ||
                                                                         course.title ===
                                                                             'வழிமுறைகள்'
                                                                     ) {
@@ -700,70 +699,140 @@ const TeacherPlayVideo = (props) => {
                                     <Card className="course-sec-basic p-5">
                                         <CardBody>
                                             <CardTitle
-                                                className=" text-left pt-4 pb-4"
+                                                className="text-left"
                                                 tag="h2"
                                             >
                                                 {t('teacehr_red.hand_book')}
                                             </CardTitle>
-                                            {worksheetResponce === null && (
-                                                <p>
-                                                    {t(
-                                                        'teacehr_red.please_download'
-                                                    )}
+                                            <CardBody>
+                                                <p className="text-primary">
+                                                    <b>
+                                                        Guidelines for Handbook
+                                                    </b>
                                                 </p>
-                                            )}
+                                                <p>Dear Guide Teachers,</p>
+                                                <p>
+                                                    This handbook is an
+                                                    important document which
+                                                    will help you understand the
+                                                    program objectives and
+                                                    enable you to support your
+                                                    SIDP student teams better.
+                                                </p>
+                                                <p>
+                                                    Step-1: Read and make short
+                                                    notes of the handbook from
+                                                    page 1-15 and create
+                                                    awareness with SIDP
+                                                    students.
+                                                </p>
+                                                <p>
+                                                    Step-2: Refer page 16-29 to
+                                                    ensure all your (each and
+                                                    every) students understand
+                                                    the concepts/knowledge
+                                                    delivered in lesson 1 to
+                                                    lesson 6 of the video
+                                                    course.{' '}
+                                                </p>
+                                                <p>
+                                                    Please print/xerox (page
+                                                    11-23) and give one copy per
+                                                    team for reference.
+                                                </p>
+                                                <p className="text-primary text-left">
+                                                    <b>
+                                                        Instructions on Idea
+                                                        Submission
+                                                    </b>
+                                                </p>
+                                                <p>
+                                                    Final IDEA SUBMISSION by the
+                                                    team should happen only
+                                                    after all the students in
+                                                    the team complete the
+                                                    following activities:
+                                                </p>
+                                                <div>
+                                                    <p className="mb-0">
+                                                        A. Watching the videos
+                                                        as team/individually
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        B. Complete the quiz
+                                                        individually{' '}
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        C. Complete the
+                                                        worksheet (as a team)
+                                                    </p>
+                                                </div>
+                                                <br />
+                                                <p>
+                                                    Initial Idea Submission{' '}
+                                                    <b>DOES NOT</b> require a
+                                                    Model or Prototype. Idea
+                                                    submission process includes
+                                                    submission of form with the
+                                                    following details:
+                                                </p>
+                                                <div>
+                                                    <p className="mb-0">
+                                                        1.Real life problem that
+                                                        team has identified{' '}
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        2. Solution details for
+                                                        the identified problem{' '}
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        3. Details about how was
+                                                        the solution arrived
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        4. Upload relevant photo
+                                                        or a document (If
+                                                        applicable)
+                                                    </p>
+                                                </div>
+                                            </CardBody>
                                             <div className="text-left mb-2">
-                                                <>
-                                                    <ul>
-                                                        {worksheetResponce?.attachments
-                                                            ?.split('{{}}')
-                                                            .map(
-                                                                (item, i) => (
-                                                                    <li
-                                                                        style={{
-                                                                            cursor: 'pointer',
-                                                                            color: 'black',
-                                                                            textDecoration:
-                                                                                'underline'
-                                                                        }}
-                                                                        onClick={() =>
-                                                                            handleDownload(
-                                                                                item
-                                                                            )
-                                                                        }
-                                                                        key={i}
-                                                                    >
-                                                                        {`Download ${item
-                                                                            .split(
+                                                <div className="d-flex ">
+                                                    {worksheetResponce &&
+                                                        worksheetResponce?.length >
+                                                            0 &&
+                                                        worksheetResponce.map(
+                                                            (item, i) => (
+                                                                <Button
+                                                                    key={i}
+                                                                    label={`Download ${item
+                                                                        .split(
+                                                                            '/'
+                                                                        )
+                                                                        [
+                                                                            item.split(
                                                                                 '/'
                                                                             )
-                                                                            [
-                                                                                item.split(
-                                                                                    '/'
-                                                                                )
-                                                                                    .length -
-                                                                                    1
-                                                                            ].split(
-                                                                                '.'
-                                                                            )[0]
-                                                                            .replace(
-                                                                                '_',
-                                                                                ' '
-                                                                            )}`}
-                                                                    </li>
-                                                                )
-                                                                // <Button
-                                                                //     key={i}
-                                                                //     button="submit"
-                                                                //     label={`Download ${item.split("/")[item.split("/").length-1].split('.')[0].replace("_"," ")}`}
-                                                                //     btnClass="primary mt-4"
-                                                                //     size="small"
-                                                                //     style={{ marginRight: "2rem",textTransform:"capitalize"}}
-                                                                //     onClick={()=>handleDownload(item)}
-                                                                // />
-                                                            )}
-                                                    </ul>
-                                                </>
+                                                                                .length -
+                                                                                1
+                                                                        ].split(
+                                                                            '.'
+                                                                        )[0]
+                                                                        .replace(
+                                                                            '_',
+                                                                            ' '
+                                                                        )}`}
+                                                                    btnClass="secondary mx-2"
+                                                                    size="small"
+                                                                    onClick={() =>
+                                                                        handleDownload(
+                                                                            item
+                                                                        )
+                                                                    }
+                                                                />
+                                                            )
+                                                        )}
+                                                </div>
                                             </div>
                                         </CardBody>
                                     </Card>
@@ -899,61 +968,157 @@ const TeacherPlayVideo = (props) => {
                                                 >
                                                     Unisolve Instructions
                                                 </CardTitle>
-                                                {worksheetResponce.response ===
-                                                    null && (
-                                                    <p>
-                                                        Please Download
-                                                        Instructions...
+                                                <CardBody>
+                                                    <p className="text-primary">
+                                                        <b>
+                                                            Additional Resources
+                                                        </b>
                                                     </p>
-                                                )}
-                                                <div className="text-left mb-2">
-                                                    <>
-                                                        <ul>
-                                                            {worksheetResponce?.attachments
-                                                                ?.split('{{}}')
-                                                                .map(
-                                                                    (
-                                                                        item,
-                                                                        i
-                                                                    ) => (
-                                                                        <li
-                                                                            key={
-                                                                                i
-                                                                            }
-                                                                            style={{
-                                                                                cursor: 'pointer',
-                                                                                color: 'black',
-                                                                                textDecoration:
-                                                                                    'underline'
-                                                                            }}
-                                                                            onClick={() =>
-                                                                                handleInstructionDownload(
-                                                                                    item
-                                                                                )
-                                                                            }
-                                                                        >
-                                                                            {`Download ${item
-                                                                                .split(
+                                                    <p>Dear Guide Teachers,</p>
+                                                    <p>
+                                                        In addition to the
+                                                        teacher handbook there
+                                                        are two other resources
+                                                        for your student teams
+                                                        which will aid in this
+                                                        SIDP learning journey:
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        A. Worksheets
+                                                    </p>
+                                                    <p className="mb-3">
+                                                        B. Additional Readings
+                                                    </p>
+
+                                                    <p className="text-decoration-underline">
+                                                        <b>A.Worksheets </b>
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        1. This document has one
+                                                        worksheet per lesson.
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        2. Worksheets are
+                                                        required to be
+                                                        completed/filled by the
+                                                        SIDP students (as a
+                                                        TEAM) when they are
+                                                        watching Lesson 1 to
+                                                        Lesson 6.
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        3. Download, Print/Xerox
+                                                        this worksheets and hand
+                                                        over one set per team.{' '}
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        4. Support/Mentor/Guide
+                                                        SIDP students to
+                                                        complete the worksheets
+                                                        if they need help.
+                                                    </p>
+                                                    <p className="mb-0">
+                                                        5. Collect the completed
+                                                        worksheet and hand them
+                                                        over to the SIDP
+                                                        District Head by 30th
+                                                        December, 2022.
+                                                    </p>
+                                                </CardBody>
+                                                <div className="text-left mb-5">
+                                                    {worksheetResponce &&
+                                                        worksheetResponce?.length >
+                                                            0 &&
+                                                        worksheetResponce.map(
+                                                            (item, i) =>
+                                                                i > 1 && (
+                                                                    <Button
+                                                                        key={i}
+                                                                        label={`Download ${item
+                                                                            .split(
+                                                                                '/'
+                                                                            )
+                                                                            [
+                                                                                item.split(
                                                                                     '/'
                                                                                 )
-                                                                                [
-                                                                                    item.split(
-                                                                                        '/'
-                                                                                    )
-                                                                                        .length -
-                                                                                        1
-                                                                                ].split(
-                                                                                    '.'
-                                                                                )[0]
-                                                                                .replace(
-                                                                                    '_',
-                                                                                    ' '
-                                                                                )}`}
-                                                                        </li>
-                                                                    )
-                                                                )}
-                                                        </ul>
-                                                    </>
+                                                                                    .length -
+                                                                                    1
+                                                                            ].split(
+                                                                                '.'
+                                                                            )[0]
+                                                                            .replace(
+                                                                                '_',
+                                                                                ' '
+                                                                            )}`}
+                                                                        btnClass="secondary mx-2"
+                                                                        size="small"
+                                                                        onClick={() =>
+                                                                            handleInstructionDownload(
+                                                                                item
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                )
+                                                        )}
+                                                </div>
+
+                                                <p className="text-decoration-underline">
+                                                    <b>
+                                                        B. Additional Readings{' '}
+                                                    </b>
+                                                </p>
+                                                <p>
+                                                    These are additional reading
+                                                    material for the students
+                                                    after each lesson. This
+                                                    document contains more
+                                                    information and examples on
+                                                    the topics covered in each
+                                                    lesson.
+                                                </p>
+                                                <p>
+                                                    This can be shared with SIDP
+                                                    students. We recommend to
+                                                    share the soft copy or print
+                                                    it for future reference.
+                                                </p>
+                                                <div className="text-left mb-5">
+                                                    {worksheetResponce &&
+                                                        worksheetResponce?.length >
+                                                            0 &&
+                                                        worksheetResponce.map(
+                                                            (item, i) =>
+                                                                i <= 1 && (
+                                                                    <Button
+                                                                        key={i}
+                                                                        label={`Download ${item
+                                                                            .split(
+                                                                                '/'
+                                                                            )
+                                                                            [
+                                                                                item.split(
+                                                                                    '/'
+                                                                                )
+                                                                                    .length -
+                                                                                    1
+                                                                            ].split(
+                                                                                '.'
+                                                                            )[0]
+                                                                            .replace(
+                                                                                '_',
+                                                                                ' '
+                                                                            )}`}
+                                                                        btnClass="secondary mx-2"
+                                                                        size="small"
+                                                                        onClick={() =>
+                                                                            handleInstructionDownload(
+                                                                                item
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                )
+                                                        )}
                                                 </div>
                                             </CardBody>
                                         </Card>
