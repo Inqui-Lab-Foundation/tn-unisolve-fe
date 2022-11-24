@@ -437,7 +437,6 @@ const PlayVideoCourses = (props) => {
     };
 
     const handleSelect = (topicId, couseId, type) => {
-        
         setCourseTopicId(couseId);
         const topic_Index =
             setTopicArrays &&
@@ -1035,10 +1034,8 @@ const PlayVideoCourses = (props) => {
                                                                 >
                                                                     <Button
                                                                         button="submit"
-                                                                        label={t(
-                                                                            'student.download_worksheet'
-                                                                        )}
-                                                                        btnClass="primary mt-4 mb-2"
+                                                                        label="Download Worksheet"
+                                                                        btnClass="primary mt-4 mb-2 me-2"
                                                                         size="small"
                                                                         style={{
                                                                             marginRight:
@@ -1061,18 +1058,14 @@ const PlayVideoCourses = (props) => {
                                                                 >
                                                                     <Button
                                                                         button="submit"
-                                                                        label={t(
-                                                                            'student.download_worksheet'
-                                                                        )}
-                                                                        btnClass="primary mt-4 mb-2"
+                                                                        label="Download Worksheet"
+                                                                        btnClass="primary mt-4 mb-2 me-2"
                                                                         size="small"
                                                                     />
                                                                 </a>
                                                             )}
-                                                            <Button
-                                                                label={t(
-                                                                    'student.continue'
-                                                                )}
+                                                            {/* <Button
+                                                                label="Continue"
                                                                 btnClass=" mx-4"
                                                                 size="small"
                                                                 type="submit"
@@ -1098,7 +1091,7 @@ const PlayVideoCourses = (props) => {
                                                                         )
                                                                     );
                                                                 }}
-                                                            />
+                                                            /> */}
 
                                                             {worksheetResponce.response !=
                                                                 null &&
@@ -1110,7 +1103,7 @@ const PlayVideoCourses = (props) => {
                                                                     ?.topic_type_id ? (
                                                                 <Button
                                                                     label="Go to Next Course"
-                                                                    btnClass="primary w-auto"
+                                                                    btnClass="primary w-auto ms-2"
                                                                     size="small"
                                                                     type="submit"
                                                                     onClick={
@@ -1119,6 +1112,120 @@ const PlayVideoCourses = (props) => {
                                                                 />
                                                             ) : null}
                                                         </div>
+                                                        {worksheetResponce.response ===
+                                                        null ? (
+                                                            <Row className="my-5">
+                                                                <Col md={3}>
+                                                                    {!image ? (
+                                                                        <div className="wrapper">
+                                                                            <div className="btnimg">
+                                                                                Upload
+                                                                                File
+                                                                            </div>
+                                                                            <input
+                                                                                type="file"
+                                                                                name="file"
+                                                                                multiple
+                                                                                accept=".csv,,.pdf"
+                                                                                onChange={(
+                                                                                    e
+                                                                                ) =>
+                                                                                    changeHandler(
+                                                                                        e
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                        </div>
+                                                                    ) : null}
+                                                                </Col>
+                                                                <Col md={9}>
+                                                                    <Row>
+                                                                        {/* <Col
+                                                                                md={2}
+                                                                                className="my-auto"
+                                                                            >
+                                                                                {image &&
+                                                                                url ===
+                                                                                    'csv' ? (
+                                                                                    <img
+                                                                                        src={`${Csv}`}
+                                                                                        className="img-fluid"
+                                                                                        alt="Thumb"
+                                                                                    />
+                                                                                ) : image &&
+                                                                                  url ===
+                                                                                      'pdf' ? (
+                                                                                    <img
+                                                                                        src={`${Pdf}`}
+                                                                                        className="img-fluid"
+                                                                                        alt="Thumb"
+                                                                                    />
+                                                                                ) : null}
+                                                                            </Col> */}
+                                                                        {seletedFiles &&
+                                                                            seletedFiles.length >
+                                                                                0 && (
+                                                                                <Col
+                                                                                    md={
+                                                                                        6
+                                                                                    }
+                                                                                    className="my-auto"
+                                                                                >
+                                                                                    <p>
+                                                                                        {seletedFiles &&
+                                                                                            seletedFiles.length}{' '}
+                                                                                        Files
+                                                                                    </p>
+                                                                                </Col>
+                                                                            )}
+                                                                        <Col
+                                                                            md={
+                                                                                2
+                                                                            }
+                                                                            className="my-auto"
+                                                                        >
+                                                                            {seletedFiles &&
+                                                                            seletedFiles.length >
+                                                                                0 ? (
+                                                                                <Button
+                                                                                    onClick={
+                                                                                        removeSelectedImage
+                                                                                    }
+                                                                                    btnClass="primary py-2 px-4"
+                                                                                    size="small"
+                                                                                    label="Remove"
+                                                                                >
+                                                                                    Remove
+                                                                                </Button>
+                                                                            ) : null}
+                                                                        </Col>
+                                                                        <Col
+                                                                            md={
+                                                                                2
+                                                                            }
+                                                                            className="my-auto"
+                                                                        >
+                                                                            {seletedFiles &&
+                                                                            seletedFiles.length >
+                                                                                0 ? (
+                                                                                <Button
+                                                                                    btnClass="primary py-2 px-4"
+                                                                                    size="small"
+                                                                                    label="Submit"
+                                                                                    onClick={(
+                                                                                        e
+                                                                                    ) =>
+                                                                                        handleSubmit(
+                                                                                            e
+                                                                                        )
+                                                                                    }
+                                                                                />
+                                                                            ) : null}
+                                                                        </Col>
+                                                                    </Row>
+                                                                </Col>
+                                                            </Row>
+                                                        ) : null}
                                                     </div>
                                                 )}
                                             </CardBody>
