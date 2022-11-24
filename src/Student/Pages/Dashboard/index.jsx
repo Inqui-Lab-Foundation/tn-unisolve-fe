@@ -19,7 +19,7 @@ import TopSectionCard from './sections/TopSectionCard.jsx';
 import DashboardOverviewCard from './DashboardOverviewCard.jsx';
 import { Table } from 'antd';
 import { Progress } from 'reactstrap';
-import Vimeo from '@u-wave/react-vimeo';
+//import Vimeo from '@u-wave/react-vimeo';
 import { useDispatch } from 'react-redux';
 import { FaCheckCircle,FaTimesCircle } from 'react-icons/fa';
 import {
@@ -355,7 +355,7 @@ const Dashboard = () => {
                             />
                         </div>
                     </Col>
-                    <Col md={12} className="flex-1">
+                    {/* <Col md={12} className="flex-1">
                         <p style={{ fontSize: '1.5rem' }}>
                             Introduction to SIDP by Mr. C. Shunmugaraj, SSK
                         </p>
@@ -372,7 +372,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="bg-white learning-statistics rounded p-3">
+                         <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3">
                                 <div
                                     style={{
@@ -411,8 +411,8 @@ const Dashboard = () => {
                                         ))}
                                 </ol>
                             </div>
-                        </div> */}
-                    </Col>
+                        </div> 
+                    </Col> */}
                 </Row>
             </Container>
         </Layout>
