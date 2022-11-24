@@ -624,35 +624,38 @@ const Home = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="my-5 py-5 upshift p-3">
-                        <Col md={12} lg={5} className="teacher ">
-                            <figure className="text-left">
-                                <img
-                                    src={upshift}
-                                    alt="mentor"
-                                    className="img-fluid"
-                                />
-                            </figure>
-                        </Col>
-                        <Col
-                            md={12}
-                            lg={7}
-                            className="my-auto teacher-heading "
-                        >
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: t('home_tl.about_upshift_heading')
-                                }}
-                            ></div>
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: t('home_tl.about_upshift_desc')
-                                }}
-                            ></div>
-                        </Col>
-                    </Row>
-
-                    <Row className="student">
+                </Container>    
+                    <div className='bg-white mx-0 p-md-5 p-2'>
+                        <Row className="my-5 py-5 upshift p-3">
+                            <Col md={12} lg={5} className="teacher ">
+                                <figure className="text-left">
+                                    <img
+                                        src={upshift}
+                                        alt="mentor"
+                                        className="img-fluid"
+                                    />
+                                </figure>
+                            </Col>
+                            <Col
+                                md={12}
+                                lg={7}
+                                className="my-auto teacher-heading "
+                            >
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('home_tl.about_upshift_heading')
+                                    }}
+                                ></div>
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('home_tl.about_upshift_desc')
+                                    }}
+                                ></div>
+                            </Col>
+                        </Row>
+                    </div>
+                <Container className='py-md-4 py-2'>
+                    <Row className="student py-md-4 py-2">
                         <Col
                             md={12}
                             lg={6}
@@ -692,6 +695,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
+                
             </section>
             {/* <section className="mentor-student">
         <Container className="both">
