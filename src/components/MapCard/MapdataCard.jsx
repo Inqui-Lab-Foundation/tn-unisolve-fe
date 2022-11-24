@@ -100,8 +100,8 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.students
-                                            ? values?.students
+                                        {values?.boys
+                                            ? values?.boys
                                             : '0'}
                                     </h4>
                                     <small className="blue">
@@ -115,8 +115,8 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.students
-                                            ? values?.students
+                                        {values?.girls
+                                            ? values?.girls
                                             : '0'}
                                     </h4>
                                     <small className="blue">
@@ -208,7 +208,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {all?.students ? all?.students : '0'}
+                                        {all?.boys ? all?.boys : '0'}
                                     </h4>
                                     <small className="blue">
                                     UPSHIFTers <br/>(Boys)
@@ -221,7 +221,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {all?.students ? all?.students : '0'}
+                                        {all?.girls ? all?.girls : '0'}
                                     </h4>
                                     <small className="blue">
                                     UPSHIFTers <br/>(Girls)
