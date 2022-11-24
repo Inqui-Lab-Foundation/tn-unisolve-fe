@@ -156,35 +156,78 @@ const Dashboard = () => {
                 record?.pre_survey_status ? (
                     <FaCheckCircle size={20} color="green" />
                 ) : (
-                    <FaTimesCircle size={20} color="grey" />
+                    <FaTimesCircle size={20} color="red" />
                 )
         },
         {
-            title: 'Progress',
+            title: 'Lesson Progress',
             dataIndex: 'address',
-            render: (_, record) => (
-                <Progress
-                    key={'25'}
-                    className="progress-height"
-                    animated
-                    value={
-                        100 -
-                        percentageBWNumbers(
-                            record.all_topics_count,
-                            record.topics_completed_count
-                        )
-                    }
-                >
-                    {Math.round(
-                        100 -
-                            percentageBWNumbers(
-                                record.all_topics_count,
-                                record.topics_completed_count
-                            )
-                    )}{' '}
-                    %
-                </Progress>
-            )
+            width: '30%',
+            align:"center",
+            render: (_, record) => {
+                let percent =
+                    100 -
+                    percentageBWNumbers(
+                        record.all_topics_count,
+                        record.topics_completed_count
+                    );
+                return (
+                    <div className='d-flex'>
+                        <div style={{width:"80%"}}>
+                            <Progress
+                                key={'25'}
+                                className="progress-height"
+                                animated
+                                color={
+                                    percent
+                                        ? percent <= 25
+                                            ? 'danger'
+                                            : percent > 25 && percent <= 50
+                                                ? 'info'
+                                                : percent > 50 && percent <= 75
+                                                    ? 'warning'
+                                                    : 'sucess'
+                                        : 'danger'
+                                }
+                                value={percent}
+                            />
+                        </div>
+                        <span className='ms-2'>{Math.round(percent) ? Math.round(percent) : '0'}%</span>
+                    </div>
+                );
+            }
+        },
+        {
+            title: 'Idea Submission',
+            dataIndex: 'idea_submission',
+            align:"center",
+            width: '20%',
+            render: (_, record) =>
+                record?.idea_submission ? <FaCheckCircle size={20} color="green"/> : <FaTimesCircle size={20} color="red" />
+        },
+        {
+            title: 'Post Survey',
+            dataIndex: 'post_survey_status',
+            align:"center",
+            width: '10%',
+            render: (_, record) =>
+                record?.post_survey_status ? (
+                    <FaCheckCircle size={20} color="green"/>
+                ) : (
+                    <FaTimesCircle size={20} color="red" />
+                )
+        },
+        {
+            title: 'Certificate',
+            dataIndex: 'certificate_status',
+            align:"center",
+            width: '10%',
+            render: (_, record) =>
+                record?.certificate_status ? (
+                    <FaCheckCircle size={20} color="green"/>
+                ) : (
+                    <FaTimesCircle size={20} color="red" />
+                )
         }
     ];
 

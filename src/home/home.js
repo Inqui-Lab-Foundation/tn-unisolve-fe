@@ -65,7 +65,8 @@ import ScrollToTop from 'react-scroll-to-top';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
-
+import i18next from 'i18next';
+// new push
 const Home = () => {
     const { t } = useTranslation();
     const [open, setOpen] = useState('1');
@@ -360,6 +361,7 @@ const Home = () => {
                 className="landing-menu"
                 isOpen={sidebar}
                 onOpen={() => setSidebar(!sidebar)}
+                onClose={() => setSidebar(!sidebar)}
             >
                 <Link className="menu-item" to="/login">
                     {t('home_nav_links.btn_login')}
@@ -413,16 +415,19 @@ const Home = () => {
                             {t('home_nav_links.faq')}
                         </AnchorLink>
                     </NavItem>
+                     <NavItem className="mt-3 ms-3">
+                        <LanguageSelectorComp module="general" />
+                    </NavItem>
                 </Nav>
             </Menu>
             <section className="header ">
                 <div className="home-banner">
                     <Container>
-                        <Row className="justify-content-between  pt-5">
+                        <Row className="justify-content-between fixed-top p-5 pb-lg-0 pb-3 pt-sm-2 mb-5 nav_row">
                             <Col md={5} className="my-auto mobile-menu">
-                                <h2 className="logo">
+                                <h2 className="logo mb-0">
                                     <Link className="" exact="true" to="/">
-                                        <figure>
+                                        <figure className="m-0">
                                             <img
                                                 src={LogoTn}
                                                 alt="logo"
@@ -454,7 +459,7 @@ const Home = () => {
                             </Col>
                             <Col
                                 md={7}
-                                className="text-right multi-actions main-menu"
+                                className="text-right multi-actions main-menu my-auto"
                             >
                                 <div className="nav p-4 justify-content-end">
                                     <Nav className="ml-auto ">
@@ -497,6 +502,9 @@ const Home = () => {
                                             >
                                                 {t('home_nav_links.faq')}
                                             </AnchorLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <LanguageSelectorComp module="general" />
                                         </NavItem>
                                     </Nav>
                                     {/* <LanguageSelectorComp module="general" /> */}
@@ -550,9 +558,14 @@ const Home = () => {
                                                 to="/teacher"
                                             >
                                                 <Button
-                                                    // label="Login"
                                                     label={t('home_tl.login')}
                                                     btnClass="primary "
+                                                    onClick={() => {
+                                                        history.push("/teacher");
+                                                        i18next.changeLanguage(
+                                                            'en'
+                                                        );
+                                                    }}
                                                     size="small"
                                                 />
                                             </Link>
@@ -593,8 +606,8 @@ const Home = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md={6}>
+                    <Row className="sidp_row p-3">
+                        <Col md={6} className="pe-md-4">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.about_us_desc')
@@ -602,7 +615,7 @@ const Home = () => {
                             ></div>
                         </Col>
                         <Col md={6} className="my-auto ">
-                            <div className="position-relative">
+                            <div className="position-relative sidp_video_box">
                                 <FancyVideo
                                     source={taVideo}
                                     poster={tnVideoCover}
@@ -611,7 +624,7 @@ const Home = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="my-5 py-5">
+                    <Row className="my-5 py-5 upshift p-3">
                         <Col md={12} lg={5} className="teacher ">
                             <figure className="text-left">
                                 <img
@@ -889,7 +902,7 @@ const Home = () => {
                 </div>
                 <BhutanMap />
             </section>
-            {/* <section className="blog">
+            <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
                         <div className="heading">
@@ -959,8 +972,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-                </section> */}
-
+            </section>
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
