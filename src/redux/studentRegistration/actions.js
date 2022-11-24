@@ -14,10 +14,10 @@ import {
     GET_STUDENT_DASHBOARD_CHALLENGES_STATUS,
     GET_STUDENT_DASHBOARD_TEAMPROGRESS,
     GET_STUDENT_DASHBOARD_TUTORIALS,
-    SET_PRESURVEY_STATUS
+    SET_PRESURVEY_STATUS,
 } from '../actions';
 import { URL, KEY } from '../../constants/defaultValues';
-import { getNormalHeaders } from '../../helpers/Utils';
+import { getNormalHeaders, openNotificationWithIcon } from '../../helpers/Utils';
 import { getLanguage } from '../../constants/languageOptions';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -159,16 +159,21 @@ export const getStudentChallengeQuestions = (language) => async (dispatch) => {
         // dispatch({ type: GET_STUDENTS });
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const result = await axios
-            .get(`${URL.getChallengeQuestions}?${getLanguage(language)}`, axiosConfig)
+            .get(`${URL.getChallengeQuestions}/1?${getLanguage(language)}`, axiosConfig)
             .then((user) => user)
             .catch((err) => {
                 return err.response;
             });
         if (result && result.status === 200) {
+            // const data =
+            //     result.data &&
+            //     result?.data?.data[0]?.dataValues[0]?.challenge_questions.length > 0 &&
+            //     result?.data?.data[0]?.dataValues[0]?.challenge_questions;
             const data =
                 result.data &&
-                result?.data?.data[0]?.dataValues[0]?.challenge_questions.length > 0 &&
-                result?.data?.data[0]?.dataValues[0]?.challenge_questions;
+                result?.data?.data[0]?.challenge_questions.length > 0 &&
+                result?.data?.data[0]?.challenge_questions;
+            
             dispatch(getChallengeQuestionsSuccess(data));
         } else {
             dispatch(
@@ -208,6 +213,27 @@ export const getStudentChallengeSubmittedResponse = (id, language) => async (dis
         }
     } catch (error) {
         dispatch(getStudentListError({}));
+    }
+};
+
+export const initiateIdea = async (id, language,history,data,setShowChallenges) => {
+    try {
+        const axiosConfig = getNormalHeaders(KEY.User_API_Key);
+        const result = await axios
+            .post(`${URL.initiateChallenge}${id}&${getLanguage(language)}`,data, axiosConfig)
+            .then((user) => user)
+            .catch((err) => {
+                return err.response;
+            });
+        if (result && result.status === 200) {
+            openNotificationWithIcon('success','Idea initiated successfully');
+            setShowChallenges(true);
+            history.push('/challenges');
+        } else {
+            openNotificationWithIcon('error','Idea initiation went wrong');
+        }
+    } catch (error) {
+        openNotificationWithIcon('error','Idea initiation went wrong');
     }
 };
 

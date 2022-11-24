@@ -12,27 +12,36 @@ table {
     /* border: 2px solid rgb(10, 18, 10);
     /* height: 150px; */
 }
+
 table,
 th,
 td {
-    border-bottom: 1px solid rgb(206, 164, 164);
+    border-bottom: 1px solid rgba(243, 243, 205, 0.698);
     padding: 1rem;
 }
+
 .column-size {
     width: 75%;
     height: 30px;
 }
+
 .th-background-color {
     background-color: aliceblue;
 }
+
 th {
     border-bottom: 1px solid black;
 }
+
 .hr-width {
     width: 100%;
 }
 
 td {
     text-align: left;
-    /* height: 25vh; */
+    font-size: 1.4rem;
+}
+
+.table_data_row:hover {
+    background-color: rgba(255, 203, 52, 0.2);
 }

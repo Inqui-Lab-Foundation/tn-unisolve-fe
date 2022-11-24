@@ -80,7 +80,6 @@ export const compareDates = (filterDate) => {
     );
 };
 export const logout = (history, t,module) => {
-    // const { t } = useTranslation();
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',

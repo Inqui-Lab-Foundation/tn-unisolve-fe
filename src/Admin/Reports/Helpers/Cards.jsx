@@ -98,7 +98,7 @@ const Cards = ({ heading, list, reports, props }) => {
                         {reports.map((val, key) => {
                             const slug = val.replaceAll(' ', '-');
                             return (
-                                <tr key={key}>
+                                <tr key={key} className="table_data_row">
                                     <td>{val}</td>
                                     <td>
                                         {key > 4 ? (
@@ -107,19 +107,19 @@ const Cards = ({ heading, list, reports, props }) => {
                                                 exact
                                                 className="d-flex"
                                             >
-                                                <button className="btn">
-                                                    <i className="fa fa-filter"></i>{' '}
+                                                <button className="btn btn-outline-dark rounded-3 px-sm-4">
+                                                    <i className="fa fa-filter me-2"></i>
                                                     Filter
                                                 </button>
                                             </Link>
                                         ) : (
                                             <button
-                                                className="btn"
+                                                className="btn btn-primary rounded-3"
                                                 onClick={() => {
                                                     handleDownload(val);
                                                 }}
                                             >
-                                                <i className="fa fa-download"></i>{' '}
+                                                <i className="fa fa-download me-2"></i>
                                                 Download
                                             </button>
                                         )}
@@ -141,7 +141,7 @@ const Cards = ({ heading, list, reports, props }) => {
                         {list.map((val, key) => {
                             const slug = val.replaceAll(' ', '-');
                             return (
-                                <tr key={key}>
+                                <tr key={key} className="table_data_row">
                                     <td>{val}</td>
                                     <td>
                                         <Link
@@ -149,8 +149,8 @@ const Cards = ({ heading, list, reports, props }) => {
                                             exact
                                             className="d-flex"
                                         >
-                                            <button className="btn">
-                                                <i className="fa fa-filter"></i>{' '}
+                                            <button className="btn btn-outline-dark rounded-3 px-sm-4">
+                                                <i className="fa fa-filter me-2"></i>
                                                 Filter
                                             </button>
                                         </Link>
@@ -170,14 +170,14 @@ const Cards = ({ heading, list, reports, props }) => {
                         msg == 'Registered Teachers List'
                             ? 'Registered Teachers List.csv'
                             : msg == 'Not Registered Teachers List'
-                            ? 'Not Registered Teachers List.csv'
-                            : msg == 'Teachers Course Completion'
-                            ? 'Teachers Course Completion.csv'
-                            : msg == 'Teachers Pre Survey'
-                            ? 'Teachers Pre Survey.csv'
-                            : msg == 'Students Pre Survey'
-                            ? 'Students Pre Survey.csv'
-                            : 'Report.csv'
+                                ? 'Not Registered Teachers List.csv'
+                                : msg == 'Teachers Course Completion'
+                                    ? 'Teachers Course Completion.csv'
+                                    : msg == 'Teachers Pre Survey'
+                                        ? 'Teachers Pre Survey.csv'
+                                        : msg == 'Students Pre Survey'
+                                            ? 'Students Pre Survey.csv'
+                                            : 'Report.csv'
                     }
                 />
             </div>

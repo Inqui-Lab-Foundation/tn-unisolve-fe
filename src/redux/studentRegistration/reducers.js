@@ -32,7 +32,8 @@ const INIT_STATE = {
     dashboardChallengesStatus:null,
     dashboardTeamProgressStatus:null,
     dashboardTutorials:null,
-    presuveyStatusGl :null
+    presuveyStatusGl :null,
+    ideaSubmissionStatus:null
 };
 
 export default (state = INIT_STATE, action) => {
@@ -72,9 +73,11 @@ export default (state = INIT_STATE, action) => {
             challengeQuestions:action.payload
         };
     case GET_CHALLENGE_SUBMITTED_DATA:
+        var {status} = action.payload[0];
         return {
             ...state,
-            challengesSubmittedResponse:action.payload
+            challengesSubmittedResponse:action.payload,
+            ideaSubmissionStatus:status
         };
     case GET_STUDENT_BADGES:
         return {

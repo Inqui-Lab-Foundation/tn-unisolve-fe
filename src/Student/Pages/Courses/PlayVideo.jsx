@@ -717,7 +717,7 @@ const PlayVideoCourses = (props) => {
                                                                     setCourseData(
                                                                         course
                                                                     );
-
+                                                                    toggle(str);
                                                                     if (
                                                                         index ===
                                                                         0

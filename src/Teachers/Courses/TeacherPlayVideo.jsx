@@ -477,6 +477,12 @@ const TeacherPlayVideo = (props) => {
         // toggle(continueObj[0].course_module_id);
     };
 
+    const handlenextend = () =>{
+        handleVimeoOnEnd();
+        setInstructions(true);
+        setHandbook(false);
+    };
+
     const handleDownload = (path) => {
         let a = document.createElement('a');
         a.target = '_blank';
@@ -835,8 +841,16 @@ const TeacherPlayVideo = (props) => {
                                                                 />
                                                             )
                                                         )}
-                                                </div>
+                                                </div>   
                                             </div>
+                                            <Col className='text-right'>
+                                            <Button 
+                                            label={"Continue"}
+                                            onClick={()=> handlenextend()}
+                                            btnClass="primary mt-4 mb-2"
+                                            size="small"
+                                            />
+                                            </Col>
                                         </CardBody>
                                     </Card>
                                 </Fragment>
