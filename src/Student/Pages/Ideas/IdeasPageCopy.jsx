@@ -249,10 +249,10 @@ const IdeasPageNew = () => {
             {showPage ? (
                 <CommonPage text={comingSoonText} />
             ) : (
-                <Container className="presuervey mb-50 mt-5 " id="start">
+                <Container className="presuervey  mb-50 mt-5 " id="start">
                     <Col>
                         <Row className=" justify-content-center">
-                            <Card className="aside  mb-5 p-4">
+                            <div className="aside  mb-5 p-4">
                                 <CardBody>
                                     {challengeQuestions.length > 0 && (
                                         <Form
@@ -266,13 +266,10 @@ const IdeasPageNew = () => {
                                                             fontSize: '1.6rem'
                                                         }}
                                                     >
-                                                        {1}. Which Sustainable
-                                                        development Goal (SDG)
-                                                        are you targeting with
-                                                        your solution ?
+                                                        {1}. Select SDG that you are submitting the idea for?
                                                     </b>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <p
                                                         className="text-muted ms-5"
                                                         style={{
@@ -284,7 +281,7 @@ const IdeasPageNew = () => {
                                                         Module and pick the
                                                         right option )
                                                     </p>
-                                                </div>
+                                                </div> */}
                                                 <div className=" answers row flex-column p-4">
                                                     <select
                                                         disabled={isDisabled}
@@ -460,7 +457,7 @@ const IdeasPageNew = () => {
                                                                         {eachQuestion.type ===
                                                                             'MRQ' && (
                                                                             <>
-                                                                                <FormGroup
+                                                                                {eachQuestion?.option_a && <FormGroup
                                                                                     check
                                                                                     className="mx-5"
                                                                                 >
@@ -491,8 +488,8 @@ const IdeasPageNew = () => {
                                                                                             eachQuestion.option_a
                                                                                         }
                                                                                     </Label>
-                                                                                </FormGroup>
-                                                                                <FormGroup
+                                                                                </FormGroup>}
+                                                                                {eachQuestion?.option_b && <FormGroup
                                                                                     check
                                                                                     className="mx-5"
                                                                                 >
@@ -523,8 +520,8 @@ const IdeasPageNew = () => {
                                                                                             eachQuestion.option_b
                                                                                         }
                                                                                     </Label>
-                                                                                </FormGroup>
-                                                                                <FormGroup
+                                                                                </FormGroup>}
+                                                                                {eachQuestion?.option_c && <FormGroup
                                                                                     check
                                                                                     className="mx-5"
                                                                                 >
@@ -555,9 +552,9 @@ const IdeasPageNew = () => {
                                                                                             eachQuestion.option_c
                                                                                         }
                                                                                     </Label>
-                                                                                </FormGroup>
+                                                                                </FormGroup>}
 
-                                                                                <FormGroup
+                                                                                {eachQuestion?.option_d &&<FormGroup
                                                                                     check
                                                                                     className="mx-5"
                                                                                 >
@@ -588,7 +585,7 @@ const IdeasPageNew = () => {
                                                                                             eachQuestion.option_d
                                                                                         }
                                                                                     </Label>
-                                                                                </FormGroup>
+                                                                                </FormGroup>}
                                                                             </>
                                                                         )}
                                                                         {eachQuestion.type ===
@@ -867,7 +864,7 @@ const IdeasPageNew = () => {
                                         </Form>
                                     )}
                                 </CardBody>
-                            </Card>
+                            </div>
                         </Row>
                     </Col>
                 </Container>

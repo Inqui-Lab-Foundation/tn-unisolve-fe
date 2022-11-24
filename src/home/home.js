@@ -218,13 +218,13 @@ const Home = () => {
             name: `${t('home_tl.testimonials_name_2')}`,
             title: `${t('home_tl.testimonials_title_2')}`
         },
-        {
-            id: 3,
-            imageUrl: testi3,
-            desc: `${t('home_tl.testimonials_desc_3')}`,
-            name: `${t('home_tl.testimonials_name_3')}`,
-            title: `${t('home_tl.testimonials_title_3')}`
-        }
+        // {
+        //     id: 3,
+        //     imageUrl: testi3,
+        //     desc: `${t('home_tl.testimonials_desc_3')}`,
+        //     name: `${t('home_tl.testimonials_name_3')}`,
+        //     title: `${t('home_tl.testimonials_title_3')}`
+        // }
     ];
 
     const testimonials_settings = {
@@ -308,26 +308,26 @@ const Home = () => {
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
         },
-        {
-            id: 6,
-            title: `${t('home_tl.faq_qn_6')}`,
-            desc: `${t('home_tl.faq_ans_6')}`
-        },
-        {
-            id: 7,
-            title: `${t('home_tl.faq_qn_7')}`,
-            desc: `${t('home_tl.faq_ans_7')}`
-        },
-        {
-            id: 8,
-            title: `${t('home_tl.faq_qn_8')}`,
-            desc: `${t('home_tl.faq_ans_8')}`
-        },
-        {
-            id: 9,
-            title: `${t('home_tl.faq_qn_9')}`,
-            desc: `${t('home_tl.faq_ans_9')}`
-        }
+        // {
+        //     id: 6,
+        //     title: `${t('home_tl.faq_qn_6')}`,
+        //     desc: `${t('home_tl.faq_ans_6')}`
+        // },
+        // {
+        //     id: 7,
+        //     title: `${t('home_tl.faq_qn_7')}`,
+        //     desc: `${t('home_tl.faq_ans_7')}`
+        // },
+        // {
+        //     id: 8,
+        //     title: `${t('home_tl.faq_qn_8')}`,
+        //     desc: `${t('home_tl.faq_ans_8')}`
+        // },
+        // {
+        //     id: 9,
+        //     title: `${t('home_tl.faq_qn_9')}`,
+        //     desc: `${t('home_tl.faq_ans_9')}`
+        // }
     ];
 
     const blogs = [
@@ -343,12 +343,12 @@ const Home = () => {
             title: `${t('home_tl.idea_heading_2')}`,
             desc: `${t('home_tl.idea_desc_2')}`
         },
-        {
-            id: 3,
-            imgUrl: Blog1,
-            title: `${t('home_tl.idea_heading_3')}`,
-            desc: `${t('home_tl.idea_desc_3')}`
-        }
+        // {
+        //     id: 3,
+        //     imgUrl: Blog1,
+        //     title: `${t('home_tl.idea_heading_3')}`,
+        //     desc: `${t('home_tl.idea_desc_3')}`
+        // }
     ];
     // console.log("----379",sidebar);
 
@@ -659,8 +659,8 @@ const Home = () => {
                             className="my-auto mx-auto student-heading px-5 "
                         >
                             <h2 className="mb-5 sub-heading">
-                                UPSHIFT {t('home_tl.power_by')}{' '}
-                                <span className="green">UNISOLVE</span>{' '}
+                                {t('home_tl.power_by')}
+                                <span className="green"> UNISOLVE</span>
                             </h2>
                             <div
                                 dangerouslySetInnerHTML={{
@@ -905,7 +905,7 @@ const Home = () => {
             <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        {/* <div className="heading">
                             <h2 className="sub-heading">
                                 {t('home.student_ideas')}
                                 <span className="blue">
@@ -918,7 +918,7 @@ const Home = () => {
                                     style={{ marginLeft: '2rem' }}
                                 />
                             </h2>
-                        </div>
+                        </div> */}
 
                         <Col md={12} className="blog-slider">
                             <Slider
