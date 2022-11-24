@@ -14,7 +14,7 @@ const MapdataCard = ({ values, all, districtName }) => {
         <>
             {all && !all?.district_name ? (
                 <div className="d-flex flex-column card-width">
-                    <Card className="card text-dark bg-light mb-3">
+                    <Card className="card text-dark text-center bg-light mb-3">
                         <CardBody>
                             <h2 className="text-uppercase">
                                 {values?.district_name &&
@@ -100,8 +100,8 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.students
-                                            ? values?.students
+                                        {values?.boys
+                                            ? values?.boys
                                             : '0'}
                                     </h4>
                                     <small className="blue">
@@ -115,8 +115,8 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.students
-                                            ? values?.students
+                                        {values?.girls
+                                            ? values?.girls
                                             : '0'}
                                     </h4>
                                     <small className="blue">
@@ -129,7 +129,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                 </div>
             ) : (
                 <div className="d-flex flex-column card-width">
-                    <Card className="card text-dark bg-light mb-3">
+                    <Card className="card text-dark text-center bg-light mb-3">
                         <CardBody>
                             <h2 className="">{'Bhutan'}</h2>
                         </CardBody>
@@ -208,7 +208,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {all?.students ? all?.students : '0'}
+                                        {all?.boys ? all?.boys : '0'}
                                     </h4>
                                     <small className="blue">
                                     UPSHIFTers <br/>(Boys)
@@ -221,7 +221,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {all?.students ? all?.students : '0'}
+                                        {all?.girls ? all?.girls : '0'}
                                     </h4>
                                     <small className="blue">
                                     UPSHIFTers <br/>(Girls)
