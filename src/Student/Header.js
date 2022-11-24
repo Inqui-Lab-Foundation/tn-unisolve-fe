@@ -119,7 +119,6 @@ const Header = (props) => {
                                         <span className='header-name-size'>
                                             {currentUser.data[0].full_name}
                                         </span> 
-                                        {/* <CommonDropDownComp {...profileOpt} /> */}
                                         {/* <span className="common-language-selc">
                                             <LanguageSelectorComp module="student" />
                                         </span> */}

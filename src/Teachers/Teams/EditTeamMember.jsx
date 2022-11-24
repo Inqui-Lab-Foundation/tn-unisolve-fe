@@ -114,6 +114,7 @@ const EditTeamMember = (props) => {
             item: item
         });
     };
+    console.log(formik);
     return (
         <Layout>
             <div className="EditPersonalDetails new-member-page">
@@ -309,6 +310,9 @@ const EditTeamMember = (props) => {
                                                     ? 'default'
                                                     : 'primary'
                                             }
+                                            disabled={ (
+                                                !formik.dirty
+                                            )}
                                             size="small"
                                         />
                                     </Col>
