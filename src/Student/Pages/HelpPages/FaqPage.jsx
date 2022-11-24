@@ -107,7 +107,7 @@ const FaqPage = () => {
     };
 
     useEffect(() => {
-        getFaqByCategory(2);
+        getFaqByCategory(1);
         // var config = {
         //     method: "get",
         //     url: process.env.REACT_APP_API_BASE_URL + "/faqs/"+`${1}`+"?"+`${getLanguage(language)}`,

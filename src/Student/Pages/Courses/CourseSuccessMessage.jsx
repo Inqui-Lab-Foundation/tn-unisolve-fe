@@ -26,7 +26,7 @@ const CourseSuccessMessage = () => {
                             btnClass="primary mt-4"
                             size="small"
                             onClick={() =>
-                                history.push("/challenges")
+                                history.push("/challenge-initiation")
                             }
                         />
                     </div>
