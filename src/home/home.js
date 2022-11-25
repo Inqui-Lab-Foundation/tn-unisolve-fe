@@ -22,7 +22,7 @@ import {
 import { Button } from '../stories/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { Input } from 'antd';
-import LanguageSelectorComp from '../components/LanguageSelectorComp';
+// import LanguageSelectorComp from '../components/LanguageSelectorComp';
 import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
@@ -415,9 +415,9 @@ const Home = () => {
                             {t('home_nav_links.faq')}
                         </AnchorLink>
                     </NavItem>
-                     <NavItem className="mt-3 ms-3">
+                     {/* <NavItem className="mt-3 ms-3">
                         <LanguageSelectorComp module="general" />
-                    </NavItem>
+                    </NavItem> */}
                 </Nav>
             </Menu>
             <section className="header ">
@@ -503,9 +503,9 @@ const Home = () => {
                                                 {t('home_nav_links.faq')}
                                             </AnchorLink>
                                         </NavItem>
-                                        <NavItem>
+                                        {/* <NavItem>
                                             <LanguageSelectorComp module="general" />
-                                        </NavItem>
+                                        </NavItem> */}
                                     </Nav>
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </div>
