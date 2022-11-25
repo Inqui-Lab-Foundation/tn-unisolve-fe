@@ -7,10 +7,11 @@ import { getCurrentUser, getNormalHeaders } from '../../../helpers/Utils';
 import TeacherCertificate from '../../../assets/media/img/teacher_certificate_V2.png';
 import { useTranslation } from 'react-i18next';
 import { KEY, URL } from '../../../constants/defaultValues';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getLanguage } from '../../../constants/languageOptions';
 import Congo from '../../../assets/media/survey-success.jpg';
 import axios from 'axios';
+import { updateStudentCertificate } from '../../../redux/studentRegistration/actions';
 
 const MyCertificate = () => {
     const { t } = useTranslation();
@@ -20,6 +21,7 @@ const MyCertificate = () => {
         (state) => state?.studentRegistration?.studentLanguage
     );
     const [postSurveyStatus, setPostSurveyStatus] = useState('');
+    const dispatch = useDispatch();
 
     const handleCertificateDownload = () => {
         const content = pdfRef.current;
@@ -29,6 +31,7 @@ const MyCertificate = () => {
                 doc.save('certificate.pdf');
             }
         });
+        dispatch(updateStudentCertificate(currentUser?.data[0]?.student_id));
     };
 
     useLayoutEffect(() => {

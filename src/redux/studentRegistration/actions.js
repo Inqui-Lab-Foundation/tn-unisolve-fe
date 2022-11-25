@@ -430,3 +430,16 @@ export const getStudentDashboardTutorialVideos = (language) => async (dispatch) 
         dispatch(getStudentDashboardTutorialVideosSuccess(null));
     }
 };
+export const updateStudentCertificate = async (id) => {
+    try {
+        const axiosConfig = getNormalHeaders(KEY.User_API_Key);
+        await axios
+            .get(`${process.env.REACT_APP_API_BASE_URL}/students/${id}/studentCertificate`, axiosConfig)
+            .then((data) => data)
+            .catch((err) => {
+                return err.response;
+            });
+    } catch (error) {
+        openNotificationWithIcon("error","Something went wrong!");
+    }
+};

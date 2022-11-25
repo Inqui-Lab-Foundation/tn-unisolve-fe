@@ -13,6 +13,7 @@ import { cardData } from './SDGData';
 import { useDispatch, useSelector } from 'react-redux';
 import { initiateIdea } from '../../../redux/studentRegistration/actions';
 import { useHistory } from 'react-router-dom';
+import sdg18 from "../../../assets/media/SDG_icons/sdg-18.png";
 
 const SDG = ({setShowChallenges}) => {
     const currentUser = getCurrentUser('current_user');
@@ -64,17 +65,42 @@ const SDG = ({setShowChallenges}) => {
                                                             height: '36rem'
                                                         }}
                                                     ></img>
-                                                    <img
-                                                        src={
-                                                            item?.goal_logo
-                                                        }
-                                                        className="fixed-bottom ms-2 mb-2"
-                                                        alt="..."
-                                                        style={{
-                                                            width: '150px',
-                                                            height: '150px'
-                                                        }}
-                                                    ></img>
+                                                    {
+                                                        item?.goal_logo==="" && item?.goal_number==="18"?
+                                                            (
+                                                                <div className='fixed-bottom'
+                                                                    style={{
+                                                                        width: '150px',
+                                                                        height: '150px'
+                                                                    }}
+                                                                >   
+                                                                    <h1 className="text-white m-0">
+                                                                        {item?.goal_number} 
+                                                                        <span className='fs-5'> OTHERS</span>
+                                                                    </h1>
+                                                                    <img
+                                                                        src={sdg18}
+                                                                        className="text-center"
+                                                                        alt="..."
+                                                                        style={{
+                                                                            width: '100px',
+                                                                            height: '100px'
+                                                                        }}
+                                                                    ></img>
+                                                                </div>
+                                                            ):
+                                                            (<img
+                                                                src={
+                                                                    item?.goal_logo
+                                                                }
+                                                                className="fixed-bottom ms-2 mb-2"
+                                                                alt="..."
+                                                                style={{
+                                                                    width: '150px',
+                                                                    height: '150px'
+                                                                }}
+                                                            ></img>)
+                                                    }
                                                 </div>
                                                 <div
                                                     className="flip-card-back px-2 py-3"

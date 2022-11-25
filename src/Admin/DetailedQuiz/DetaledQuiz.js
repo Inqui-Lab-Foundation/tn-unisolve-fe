@@ -123,14 +123,14 @@ const DetaledQuiz = (props) => {
                     <div className="container new-result">
                         <div className="row justify-content-md-center ">
                             <div className="col col-lg-9">
-                                <div className="results-heading">
+                                {/* <div className="results-heading">
                                     <span></span>
-                                </div>
+                                </div> */}
                                 <div className="mt-4 text-center">
                                      <div className="success_img text-center w-100">
                                         <img src={succesImg} alt=".." /><br />
                                     </div>
-                                    <span>{t('student.quiz_completed')}</span>
+                                    <p>{t('student.quiz_completed')}</p>
                                 </div>
                                 <div className="results-heading mt-4">
                                     <img src={ResultStar} alt="star" />
