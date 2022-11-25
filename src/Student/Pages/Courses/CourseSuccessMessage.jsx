@@ -20,13 +20,22 @@ const CourseSuccessMessage = () => {
                         </div>
                         Course Completed Successfully!
                     </div>
-                    <div className='text-center'>
+                    <div className='d-sm-flex justify-content-center mb-3 text-center'>
                         <Button
-                            label="Go to Challenges"
-                            btnClass="primary mt-4"
+                            label="Go to Idea Submission"
+                            btnClass="primary mt-4 mx-2"
                             size="small"
                             onClick={() =>
                                 history.push("/challenges")
+                            }
+                        />
+
+                        <Button
+                            label="Go to My Certificate"
+                            btnClass="primary mt-4 mx-2"
+                            size="small"
+                            onClick={() =>
+                                history.push("/student/my-certificate")
                             }
                         />
                     </div>

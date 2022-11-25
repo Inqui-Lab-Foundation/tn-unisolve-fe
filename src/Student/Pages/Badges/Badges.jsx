@@ -33,7 +33,7 @@ const BadgesComp = () => {
    
     return (
         <Layout>
-            <div className="badges-page">
+            <div className="badges-page mt-5 mb-50">
                 <Container className=" mt-2 ">
                     {/* <h2 className="mt-5">Badges</h2> */}
                     {/* <Row className="m-0 badges-head mb-50">

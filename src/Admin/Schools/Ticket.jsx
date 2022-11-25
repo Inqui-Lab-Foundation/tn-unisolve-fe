@@ -274,8 +274,8 @@ const TicketsPage = (props) => {
 
     return (
         <Layout>
-            <Container className="ticket-page mb-50">
-                <Row className="mt-2 pt-3">
+            <Container className="ticket-page mt-5 mb-50">
+                <Row className="pt-3">
                     <Row className="mb-2 mb-sm-5 mb-md-5 mb-lg-0">
                         <Col className="col-auto">
                             <h2>List of Institutions</h2>

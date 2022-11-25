@@ -272,8 +272,8 @@ const ViewTeamMember = () => {
 
     return (
         <Layout>
-            <Container className="ticket-page mb-50 userlist">
-                <Row className="mt-5 pt-5">
+            <Container className="ticket-page mt-5 mb-50 userlist">
+                <Row className="pt-5">
                     <Row className="mb-2 mb-sm-5 mb-md-5 mb-lg-0">
                         <Col className="col-auto">
                             <BreadcrumbTwo {...headingDetails} />

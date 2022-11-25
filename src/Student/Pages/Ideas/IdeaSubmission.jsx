@@ -7,7 +7,6 @@ import { getStudentChallengeSubmittedResponse } from '../../../redux/studentRegi
 import Layout from '../../Layout';
 import IdeasPageNew from './IdeasPageCopy';
 import SDG from './SDG';
-
 const IdeaSubmission = () => {
     const dispatch = useDispatch();
     const language = useSelector(
@@ -28,7 +27,6 @@ const IdeaSubmission = () => {
             )
         );
     }, [dispatch, language, currentUser?.data[0]?.team_id]);
-
     useLayoutEffect(() => {
         if (
             challengesSubmittedResponse &&
@@ -61,5 +59,4 @@ const IdeaSubmission = () => {
         <SDG setShowChallenges={setShowChallenges} />
     );
 };
-
 export default IdeaSubmission;
