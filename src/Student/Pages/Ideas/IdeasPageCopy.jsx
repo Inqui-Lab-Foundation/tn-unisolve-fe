@@ -250,7 +250,7 @@ const IdeasPageNew = () => {
             {showPage ? (
                 <CommonPage text={comingSoonText} />
             ) : (
-                <Container className="presuervey mb-50 mt-5 " id="start">
+                <Container className="presuervey  mb-50 mt-5 " id="start">
                     <Col>
                         <Row className=" justify-content-center">
                             <div className="aside  mb-5 p-4">
@@ -267,13 +267,10 @@ const IdeasPageNew = () => {
                                                             fontSize: '1.6rem'
                                                         }}
                                                     >
-                                                        {1}. Which Sustainable
-                                                        development Goal (SDG)
-                                                        are you targeting with
-                                                        your solution ?
+                                                        {1}. Select SDG that you are submitting the idea for?
                                                     </b>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <p
                                                         className="text-muted ms-5"
                                                         style={{
@@ -285,7 +282,7 @@ const IdeasPageNew = () => {
                                                         Module and pick the
                                                         right option )
                                                     </p>
-                                                </div>
+                                                </div> */}
                                                 <div className=" answers row flex-column p-4">
                                                     <select
                                                         disabled={isDisabled}
@@ -461,6 +458,7 @@ const IdeasPageNew = () => {
                                                                         {eachQuestion.type ===
                                                                             'MRQ' && (
                                                                             <>
+
                                                                                 {
                                                                                     eachQuestion.option_a && eachQuestion.option_a!=="" &&                                                
                                                                                         <FormGroup
@@ -602,6 +600,7 @@ const IdeasPageNew = () => {
                                                                                             </Label>
                                                                                         </FormGroup>
                                                                                 }
+
                                                                             </>
                                                                         )}
                                                                         {eachQuestion.type ===

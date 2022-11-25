@@ -27,6 +27,7 @@ const CommonPage = ({text, showButton, showChallenges}) => {
                             size="small"
                             label="View Idea"
                         />
+
                     }
                 </Card>
             </Fragment>

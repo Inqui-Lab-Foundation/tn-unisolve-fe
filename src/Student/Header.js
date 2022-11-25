@@ -4,7 +4,7 @@ import { FaBars } from 'react-icons/fa';
 import { Row, Col, Navbar } from 'reactstrap';
 // import { useHistory } from 'react-router-dom';
 // import { CommonDropDownComp } from '../stories/CommonDropdown/CommonDropdownComp.jsx';
-import LanguageSelectorComp from '../components/LanguageSelectorComp';
+//import LanguageSelectorComp from '../components/LanguageSelectorComp';
 
 // import { VscBell } from 'react-icons/vsc';
 import AvatarImg from '../assets/media/img/Avatar.png';
@@ -13,7 +13,7 @@ import AvatarImg from '../assets/media/img/Avatar.png';
 // import { Badge } from 'antd';
 // import {getCurrentUser, logout} from "../helpers/Utils"; 
 import {getCurrentUser} from "../helpers/Utils"; 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import i18next from 'i18next';
 import { getStudentGlobalLanguage } from '../redux/studentRegistration/actions';
 // import { useTranslation } from 'react-i18next';
@@ -23,10 +23,10 @@ const Header = (props) => {
     // const history = useHistory();
     const dispatch= useDispatch();
     const currentUser = getCurrentUser("current_user");
-    const {presuveyStatusGl} = useSelector(
-        (state) =>
-            state?.studentRegistration
-    );
+    // const {presuveyStatusGl} = useSelector(
+    //     (state) =>
+    //         state?.studentRegistration
+    // );
 
     const localLang = JSON.parse(localStorage.getItem("s_language"));
     useEffect(() => {
@@ -135,10 +135,7 @@ const Header = (props) => {
                                         <span className='header-name-size'>
                                             {currentUser.data[0].full_name}
                                         </span> 
-                                        {/* <CommonDropDownComp {...profileOpt} /> */}
-                                        {window.location.pathname === '/student/pre-survey' && presuveyStatusGl && presuveyStatusGl !=="COMPLETED" && <span className="common-language-selc">
-                                            <LanguageSelectorComp module="student" />
-                                        </span>}
+                                        {/* <CommonDropDownComp {...profileOpt} /> */}        
                                     </div>
                                 </Col>
                             </Row>
