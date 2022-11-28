@@ -220,7 +220,6 @@ const TeacherPlayVideo = (props) => {
     };
 
     async function modulesListUpdateApi(courseTopicId) {
-        // console.log(courseTopicId);
         const body1 = JSON.stringify({
             user_id: JSON.stringify(currentUser.data[0].user_id),
             mentor_course_topic_id: JSON.stringify(courseTopicId),
@@ -324,7 +323,6 @@ const TeacherPlayVideo = (props) => {
     };
 
     const handleSelect = (topicId, couseId, type) => {
-        scrollRef.current.scrollIntoView();
         setCourseTopicId(couseId);
         const topic_Index =
             setTopicArrays &&
@@ -334,6 +332,7 @@ const TeacherPlayVideo = (props) => {
                     data.mentor_course_topic_id === couseId
             );
         const topicObj = setTopicArrays[topic_Index + 1];
+
         setTopicObj(topicObj);
         if (type === 'ATTACHMENT') {
             setWorksheetId(topicId);
@@ -351,6 +350,7 @@ const TeacherPlayVideo = (props) => {
             setItem('');
             setHideQuiz(false);
         }
+        scrollRef.current.scrollIntoView();
     };
 
     const videoStatus = (type, status) => {
@@ -468,13 +468,27 @@ const TeacherPlayVideo = (props) => {
 
     const startContinueCourse = (e) => {
         setCourseData(null);
-        modulesListUpdateApi(continueObj[0].course_topic_id);
+        modulesListUpdateApi(continueObj[0].mentor_course_topic_id);
+        if(continueObj[0].title ==="Handbook"){
+            setHandbook(true);
+            setInstructions(false);
+        }
+        if(continueObj[0].title ==="Additional Resources"){
+            setInstructions(true);
+            setHandbook(false);
+        }
         handleSelect(
             continueObj[0].topic_type_id,
-            continueObj[0].course_topic_id,
+            continueObj[0].mentor_course_topic_id,
             continueObj[0].topic_type
         );
         // toggle(continueObj[0].course_module_id);
+    };
+
+    const handlenextend = () =>{
+        handleVimeoOnEnd();
+        setInstructions(true);
+        setHandbook(false);
     };
 
     const handleDownload = (path) => {
@@ -712,20 +726,20 @@ const TeacherPlayVideo = (props) => {
                                                         Guidelines for Handbook
                                                     </b>
                                                 </p>
-                                                <p>Dear Guide Teachers,</p>
+                                                <p>Dear SIC Incharge Teachers,</p>
                                                 <p>
                                                     This handbook is an
                                                     important document which
                                                     will help you understand the
                                                     program objectives and
                                                     enable you to support your
-                                                    SIDP student teams better.
+                                                    SIC student teams better.
                                                 </p>
                                                 <p>
                                                     Step-1: Read and make short
                                                     notes of the handbook from
                                                     page 1-15 and create
-                                                    awareness with SIDP
+                                                    awareness with SIC
                                                     students.
                                                 </p>
                                                 <p>
@@ -733,8 +747,8 @@ const TeacherPlayVideo = (props) => {
                                                     ensure all your (each and
                                                     every) students understand
                                                     the concepts/knowledge
-                                                    delivered in lesson 1 to
-                                                    lesson 6 of the video
+                                                    delivered in Module 1 to
+                                                    Module 6 of the video
                                                     course.{' '}
                                                 </p>
                                                 <p>
@@ -758,11 +772,10 @@ const TeacherPlayVideo = (props) => {
                                                 <div>
                                                     <p className="mb-0">
                                                         A. Watching the videos
-                                                        as team/individually
+                                                        individually
                                                     </p>
                                                     <p className="mb-0">
-                                                        B. Complete the quiz
-                                                        individually{' '}
+                                                        B.Complete the Reflective Questions & quiz individually
                                                     </p>
                                                     <p className="mb-0">
                                                         C. Complete the
@@ -835,8 +848,16 @@ const TeacherPlayVideo = (props) => {
                                                                 />
                                                             )
                                                         )}
-                                                </div>
+                                                </div>   
                                             </div>
+                                            <Col className='text-right'>
+                                            <Button 
+                                            label={"Continue"}
+                                            onClick={()=> handlenextend()}
+                                            btnClass="primary mt-4 mb-2"
+                                            size="small"
+                                            />
+                                            </Col>
                                         </CardBody>
                                     </Card>
                                 </Fragment>
@@ -984,7 +1005,7 @@ const TeacherPlayVideo = (props) => {
                                                         are worksheets
                                                         for your student teams
                                                         which will aid in this
-                                                        SIDP learning journey:
+                                                        SIC learning journey:
                                                     </p>
                                                     {/* <p className="mb-0">
                                                         A. Worksheets
@@ -998,16 +1019,16 @@ const TeacherPlayVideo = (props) => {
                                                     </p> */}
                                                     <p className="mb-0">
                                                         1. This document has one
-                                                        worksheet per lesson.
+                                                        worksheet per Module.
                                                     </p>
                                                     <p className="mb-0">
                                                         2. Worksheets are
                                                         required to be
                                                         completed/filled by the
-                                                        SIDP students (as a
+                                                        SIC students (as a
                                                         TEAM) when they are
-                                                        watching Lesson 1 to
-                                                        Lesson 6.
+                                                        watching Module 1 to
+                                                        Module 6.
                                                     </p>
                                                     <p className="mb-0">
                                                         3. Download, Print/Xerox
@@ -1016,16 +1037,9 @@ const TeacherPlayVideo = (props) => {
                                                     </p>
                                                     <p className="mb-0">
                                                         4. Support/Mentor/Guide
-                                                        SIDP students to
+                                                        SIC students to
                                                         complete the worksheets
                                                         if they need help.
-                                                    </p>
-                                                    <p className="mb-0">
-                                                        5. Collect the completed
-                                                        worksheet and hand them
-                                                        over to the SIDP
-                                                        District Head by 30th
-                                                        December, 2022.
                                                     </p>
                                                 </CardBody>
                                                 <div className="text-left mb-5">
@@ -1082,7 +1096,7 @@ const TeacherPlayVideo = (props) => {
                                                     lesson.
                                                 </p>
                                                 <p>
-                                                    This can be shared with SIDP
+                                                    This can be shared with SIC
                                                     students. We recommend to
                                                     share the soft copy or print
                                                     it for future reference.

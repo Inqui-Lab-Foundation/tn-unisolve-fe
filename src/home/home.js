@@ -41,28 +41,22 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_SSA_Tamilnadu.jpg';
-import SIDP_tamilnadu from '../assets/media/tn-brands/2_SIDP_tamilnadu.jpg';
-import EDII_tamilnadu from '../assets/media/tn-brands/3_EDII_tamilnadu.jpg';
-import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_Tamilnadu.png';
-import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_Tamilnadu.jpg';
-import IIF_Tamilnadu from '../assets/media/tn-brands/7_IIF_Tamilnadu.png';
-import SS_Tamilnadu from '../assets/media/tn-brands/8_SS_Tamilnadu.jpg';
-import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/9_Unicef OOI_Tamilnadu.jpg';
-import LogoTn from '../assets/media/tn-brands/UPSHIFT_BLACK.png';
-import LogoTs1 from '../assets/media/1_SSA_Telangana.png';
-import LogoTs2 from '../assets/media/2_TSIC_Telangana.png';
-
-import LogoTsF1 from '../assets/media/ts_footer/2_TSIC_Telangana1.png';
-import LogoTsF2 from '../assets/media/ts_footer/1_SSA_Telangana1.png';
-import LogoTsF3 from '../assets/media/ts_footer/5_nif_karnataka2.png';
-import LogoTsF4 from '../assets/media/ts_footer/5_Yuwaah_Tamilnadu.png';
+import SSA_Tamilnadu from '../assets/media/tn-brands/1_govt_ts.png';
+import SIC_tamilnadu from '../assets/media/tn-brands/2_SSA_ts.png';
+import EDII_tamilnadu from '../assets/media/tn-brands/3_nif_ts.png';
+import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_ts.png';
+import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_ts.png';
+import IIF_Tamilnadu from '../assets/media/tn-brands/6_IIF_ts.png';
+import SS_Tamilnadu from '../assets/media/tn-brands/7_SS_ts.png';
+import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/8_Unicef_ts.png';
+import YHub from '../assets/media/tn-brands/9_Y_hub.png';
+import LogoTn from '../assets/media/tn-brands/TS_LOGO.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
 import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
 import RegisterPopup from './registration/RegisterPopup';
-import KarnatakaMap from '../components/MapCard/KarnatakaMap';
+import TelanganaMap from '../components/MapCard/TelanganaMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import SchoolRegisterPopup from './SchoolRegisterPopup';
@@ -72,7 +66,8 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
 import Vimeo from '@u-wave/react-vimeo';
-
+import i18next from 'i18next';
+// new push
 const Home = () => {
     const { t } = useTranslation();
     const [open, setOpen] = useState('1');
@@ -174,46 +169,52 @@ const Home = () => {
             id: 1,
             key: 'SSA',
             // imageUrl: Unicef
-            imageUrl: SIDP_tamilnadu
+            imageUrl: SSA_Tamilnadu
         },
         {
             id: 2,
-            key: 'SIDP',
-            // imageUrl: Telangana
-            imageUrl: SIDP_tamilnadu
+            key: 'YHub',
+            // imageUrl: Congnizant
+            imageUrl: YHub
         },
         {
             id: 3,
+            key: 'SIC',
+            // imageUrl: Telangana
+            imageUrl: SIC_tamilnadu
+        },
+        {
+            id: 4,
             key: 'EDII',
             // imageUrl: Inquilab
             imageUrl: EDII_tamilnadu
         },
         {
-            id: 4,
+            id: 5,
             key: 'UpShift',
             // imageUrl: Yuwaah
             imageUrl: UpShift_Tamilnadu
         },
         {
-            id: 5,
+            id: 6,
             key: 'Yuwaah',
             // imageUrl: YoungWarrior
             imageUrl: Yuwaah_Tamilnadu
         },
         {
-            id: 6,
+            id: 7,
             key: 'IIF',
             // imageUrl: Congnizant
             imageUrl: IIF_Tamilnadu
         },
         {
-            id: 6,
+            id: 8,
             key: 'SS',
             // imageUrl: Congnizant
             imageUrl: SS_Tamilnadu
         },
         {
-            id: 6,
+            id: 9,
             key: 'Unicef',
             // imageUrl: Congnizant
             imageUrl: Unicef_OOI_Tamilnadu
@@ -352,6 +353,7 @@ const Home = () => {
                 className="landing-menu"
                 isOpen={sidebar}
                 onOpen={() => setSidebar(!sidebar)}
+                onClose={() => setSidebar(!sidebar)}
             >
                 <Link className="menu-item" to="/login">
                     {t('home_nav_links.btn_login')}
@@ -405,38 +407,23 @@ const Home = () => {
                             {t('home_nav_links.faq')}
                         </AnchorLink>
                     </NavItem>
+                     <NavItem className="mt-3 ms-3">
+                        <LanguageSelectorComp module="general" />
+                    </NavItem>
                 </Nav>
             </Menu>
             <section className="header ">
                 <div className="home-banner">
                     <Container>
-                        <Row className="justify-content-between  pt-5">
+                        <Row className="justify-content-between fixed-top p-5 pb-lg-0 pb-3 pt-sm-2 mb-5 nav_row">
                             <Col md={5} className="my-auto mobile-menu">
-                                <h2 className="logo">
+                                <h2 className="logo mb-0">
                                     <Link className="" exact="true" to="/">
-                                        <figure>
+                                        <figure className="m-0">
                                             <img
                                                 src={LogoTn}
                                                 alt="logo"
-                                                className="img-fluid w-5 logoImg"
-                                            />
-                                        </figure>
-                                    </Link>
-                                    <Link className="" exact="true" to="/">
-                                        <figure>
-                                            <img
-                                                src={LogoTs1}
-                                                alt="logo"
-                                                className="img-fluid w-5 logoImg"
-                                            />
-                                        </figure>
-                                    </Link>
-                                    <Link className="" exact="true" to="/">
-                                        <figure>
-                                            <img
-                                                src={LogoTs2}
-                                                alt="logo"
-                                                className="img-fluid w-5 logoImg"
+                                                className="w-5 logoImg"
                                             />
                                         </figure>
                                     </Link>
@@ -445,7 +432,7 @@ const Home = () => {
                             </Col>
                             <Col
                                 md={7}
-                                className="text-right multi-actions main-menu"
+                                className="text-right multi-actions main-menu my-auto"
                             >
                                 <div className="nav p-4 justify-content-end">
                                     <Nav className="ml-auto ">
@@ -489,8 +476,11 @@ const Home = () => {
                                                 {t('home_nav_links.faq')}
                                             </AnchorLink>
                                         </NavItem>
+                                        <NavItem>
+                                            <LanguageSelectorComp module="general" />
+                                        </NavItem>
                                     </Nav>
-                                    <LanguageSelectorComp module="general" />
+                                    {/* <LanguageSelectorComp module="general" /> */}
                                 </div>
                             </Col>
                         </Row>
@@ -575,7 +565,7 @@ const Home = () => {
                 <Container>
                     <Row>
                         <Col md={12} className="text-center">
-                            <div className="heading">
+                            <div className="heading" >
                                 <h5>{t('home_tl.about_us')}</h5>
                                 <h2 className="sub-heading text-center">
                                     <div
@@ -589,8 +579,8 @@ const Home = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md={6}>
+                    <Row className="sidp_row p-3">
+                        <Col md={6} className="pe-md-4">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.about_us_desc')
@@ -600,14 +590,16 @@ const Home = () => {
                         <Col md={6} className="position-relative">
                             <div className="position-absolute" style={{width:"100%",height:"100%"}}>
                             <Vimeo 
-                                video={772457997}
+                                video={772458167}
                             />  
                             </div>
                         </Col>
                     </Row>
-                    <Row className="my-5 py-5">
+                </Container>
+                <div className="bg-white mx-0 p-md-5 p-2">
+                    <Row className="my-5 p-5 upshift p-3 ">
                         <Col md={12} lg={5} className="teacher ">
-                            <figure className="text-left">
+                            <figure className="text-center">
                                 <img
                                     src={upshift}
                                     alt="mentor"
@@ -618,7 +610,7 @@ const Home = () => {
                         <Col
                             md={12}
                             lg={7}
-                            className="my-auto teacher-heading "
+                            className="my-auto teacher-heading pe-md-5"
                         >
                             <div
                                 dangerouslySetInnerHTML={{
@@ -632,16 +624,20 @@ const Home = () => {
                             ></div>
                         </Col>
                     </Row>
-
-                    <Row className="student">
-                        <Col
-                            md={12}
-                            lg={6}
-                            className="my-auto mx-auto student-heading px-5 "
-                        >
-                            <h2 className="mb-5 sub-heading">
-                                UPSHIFT {t('home_tl.power_by')}{' '}
-                                <span className="green">UNISOLVE</span>{' '}
+                </div>
+                <Container className="py-md-4 py-2">
+                    <Row className="student py-md-4 py-2">
+                            <Col
+                                md={12}
+                                lg={6}
+                                className="my-auto mx-auto student-heading px-5 "
+                                >
+                            <h2 className="mb-5 sub-heading"
+                            dangerouslySetInnerHTML={{
+                                __html: t('home_tl.power_by')
+                            }}>
+                                {/* UPSHIFT {' '}
+                                <span className="green">UNISOLVE</span>{' '} */}
                             </h2>
                             <div
                                 dangerouslySetInnerHTML={{
@@ -653,26 +649,41 @@ const Home = () => {
                                 exact="true"
                                 to="/login"
                             >
-                                <Button
-                                    label={t(
-                                        'home.learners_students_new_button'
-                                    )}
-                                    btnClass="primary mx-3"
-                                    size="small"
-                                />
-                            </Link> */}
-                        </Col>
-                        <Col md={12} lg={6}>
-                            <figure className="my-0">
-                                <img
-                                    src={LearnMentor}
-                                    alt="learn"
-                                    className="img-fluid"
-                                />
-                            </figure>
-                        </Col>
+                                <h2 className="mb-5 sub-heading">
+                                    UPSHIFT {t('home_tl.power_by')}{' '}
+                                    <span className="green">UNISOLVE</span>{' '}
+                                </h2>
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('home_tl.upshift_power_desc')
+                                    }}
+                                ></div>
+                                {/* <Link
+                                    className="landing-page-actions"
+                                    exact="true"
+                                    to="/login"
+                                >
+                                    <Button
+                                        label={t(
+                                            'home.learners_students_new_button'
+                                        )}
+                                        btnClass="primary mx-3"
+                                        size="small"
+                                    />
+                                </Link> */}
+                            </Col>
+                            <Col md={12} lg={6}>
+                                <figure className="my-0">
+                                    <img
+                                        src={LearnMentor}
+                                        alt="learn"
+                                        className="img-fluid"
+                                    />
+                                </figure>
+                            </Col>
                     </Row>
                 </Container>
+                
             </section>
             {/* <section className="mentor-student">
         <Container className="both">
@@ -758,7 +769,7 @@ const Home = () => {
                             <img src={map_icon_awa} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-1
+                            {t('home_tl.step')}-1
                         </div>
                         <div className="timeline__event__content ">
                             <div className="timeline__event__title">
@@ -778,7 +789,7 @@ const Home = () => {
                             <img src={map_icon_reg} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-2
+                            {t('home_tl.step')}-2
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -798,7 +809,7 @@ const Home = () => {
                             <img src={map_icon_prob} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-3
+                            {t('home_tl.step')}-3
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -818,7 +829,7 @@ const Home = () => {
                             <img src={map_icon_test} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-4
+                            {t('home_tl.step')}-4
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -838,7 +849,7 @@ const Home = () => {
                             <img src={map_icon_pitch} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-5
+                            {t('home_tl.step')}-5
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -858,7 +869,7 @@ const Home = () => {
                             <img src={map_icon_incu} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            Step-6
+                            {t('home_tl.step')}-6
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -881,7 +892,7 @@ const Home = () => {
                         {t('home_tl.engagement')}
                     </h2>
                 </div>
-                <KarnatakaMap />
+                <TelanganaMap />
             </section>
             <section className="blog">
                 <Container>
@@ -957,7 +968,7 @@ const Home = () => {
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -1275,7 +1286,7 @@ const Home = () => {
                 </Container>
                 <Row className="w-100 mt-5 footer-sub">
                     <Col md={12} className="text-center">
-                        <p className="my-0 py-3 text-white">
+                        <p className="my-0 py-3 text-white text-center">
                             © UNISOLVE, UNICEF {new Date().getFullYear()}.{' '}
                             {t('home_nav_links.rights')}{' '}
                         </p>

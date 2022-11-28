@@ -303,27 +303,25 @@ const TicketsPage = (props) => {
                         <Label>Instructions</Label>
                         <List>
                             <li>
-                                Each team needs to have a minimum of 2 members.
+                            20 to 30 students to be enrolled in SIC per School.
                             </li>
                             <li>
-                                Only 5 students in total can be added per team.
+                            Special characters are not allowed in Team name & Student name.
                             </li>
                             <li>
-                                Delete team members will be active only once you
-                                add 3 members to the team.
+                            Team name & Student name has to be only in english. No other language text will be accepted.
                             </li>
                             <li>
-                                You can edit details of the team member by using
-                                edit option.
+                            Each team needs to have a min of 2 to max 4 members.
                             </li>
                             <li>
-                                You can delete the team by using Delete Option
+                            Delete team members will be active only once you add 3 members to the team.
                             </li>
                             <li>
-                                Special characters are not allowed in team name & Student name
+                            You can edit details of the team member by using the edit option.
                             </li>
                             <li>
-                                25 to 30 students to be enrolled in Project per School
+                            You can delete the team by using Delete Option.
                             </li>
                         </List>
                     </Card>

@@ -20,6 +20,7 @@ import {
     getAdminCourseDetails
 } from '../../redux/actions';
 import QuizResponse from './QuizResponse';
+import succesImg from "../../assets/media/success1.jpeg";
 //import { getCurrentUser } from '../../helpers/Utils';
 const DetaledQuiz = (props) => {
     const { t } = useTranslation();
@@ -125,7 +126,10 @@ const DetaledQuiz = (props) => {
                                 <div className="results-heading">
                                     <span></span>
                                 </div>
-                                <div className="mt-4 d-flex justify-content-center align-items-center">
+                                <div className="mt-4 text-center">
+                                     <div className="success_img text-center w-100">
+                                        <img src={succesImg} alt=".." /><br />
+                                    </div>
                                     <span>{t('student.quiz_completed')}</span>
                                 </div>
                                 <div className="results-heading mt-4">
@@ -260,7 +264,7 @@ const DetaledQuiz = (props) => {
                                                     <Button
                                                         btnClass="primary px-5"
                                                         size="small"
-                                                        label="Continue"
+                                                        label={t('student.continue')}
                                                         onClick={(e) =>
                                                             handleNxtQst(e)
                                                         }
@@ -304,9 +308,7 @@ const DetaledQuiz = (props) => {
                                                     <Button
                                                         btnClass="primary px-5"
                                                         size="small"
-                                                        label={t(
-                                                            'teacher.continue'
-                                                        )}
+                                                        label={t('student.continue')}
                                                         onClick={(e) =>
                                                             handleNxtQst(e)
                                                         }

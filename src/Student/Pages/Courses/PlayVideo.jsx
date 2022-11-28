@@ -147,7 +147,6 @@ const PlayVideoCourses = (props) => {
             setOpen(id);
         }
     };
-
     useEffect(() => {
         props.getAdminCourseDetailsActions(course_id, language);
     }, [course_id, language]);
@@ -717,7 +716,7 @@ const PlayVideoCourses = (props) => {
                                                                     setCourseData(
                                                                         course
                                                                     );
-
+                                                                    toggle(str);
                                                                     if (
                                                                         index ===
                                                                         0

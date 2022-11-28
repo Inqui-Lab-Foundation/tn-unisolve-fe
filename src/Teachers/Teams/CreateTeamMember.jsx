@@ -321,7 +321,7 @@ const CreateMultipleMembers = ({ id }) => {
                             disabled={true}
                         />
                     )}
-                    {studentData.length < 5 && (
+                    {studentData.length < 4 && (
                         <div className="mx-5">
                             <Button
                                 label={'Add More'}

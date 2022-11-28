@@ -17,31 +17,32 @@ import { useFormik } from 'formik';
 import Layout from '../Layout';
 import { URL, KEY } from '../../constants/defaultValues';
 import {
+    getCurrentUser,
     getNormalHeaders,
     openNotificationWithIcon
 } from '../../helpers/Utils';
 import axios from 'axios';
 import Congo from '../../assets/media/survey-success.jpg';
 import { getLanguage } from '../../constants/languageOptions';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UncontrolledAlert } from 'reactstrap';
 import CommonPage from '../../components/CommonPage';
 import { useTranslation } from 'react-i18next';
+import { getStudentChallengeSubmittedResponse } from '../../redux/studentRegistration/actions';
 
 const PostSurvey = () => {
     const { t } = useTranslation();
+    const { ideaSubmissionStatus } = useSelector(
+        (state) => state?.studentRegistration
+    );
+    const currentUser = getCurrentUser('current_user');
+    const dispatch = useDispatch();
     const [postSurveyList, setPostSurveyList] = useState([]);
     const [quizSurveyId, setQuizSurveyId] = useState(0);
     const [count, setCount] = useState(0);
     const [postSurveyStatus, setPostSurveyStatus] = useState('COMPLETED');
-    const [showPage, setshowPage] = useState(false);
-    console.log(setshowPage);
-
-
     const language = useSelector(state => state?.studentRegistration?.studentLanguage);
-
-
-
+    const showPage = ideaSubmissionStatus && ideaSubmissionStatus !== "DRAFT";
     const formik = useFormik({
         initialValues: {},
         onSubmit: async (values) => {
@@ -88,7 +89,15 @@ const PostSurvey = () => {
             }
         }
     });
-
+    useEffect(() => {
+        dispatch(
+            getStudentChallengeSubmittedResponse(
+                currentUser?.data[0]?.team_id,
+                language
+            )
+        );
+    }, [language, dispatch, currentUser?.data[0]?.team_id]);
+    
     useEffect(() => {
         let axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const lang = getLanguage(language);

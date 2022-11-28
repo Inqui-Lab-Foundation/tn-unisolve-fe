@@ -205,8 +205,8 @@
         "tamil": "Tamil",
         "eng": "English",
         "about_us": "About Us",
-        "about_us_heading": "School Innovation Development Project (SIDP)",
-        "about_us_desc": "<p>To create a positive and dynamic innovation ecosystem within educational institutions, Government of Karnataka, EDII-TN launches SIP with support of School Education Department. </p><p>The objective of SIP is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership skills. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.</p>",
+        "about_us_heading": "School Innovation Challenge (SIC)",
+        "about_us_desc": "<p>To promote the culture of Design Thinking and Innovation, Samagra Shiksha, Govt. of Telangana and Telangana State Innovation Cell (TSIC), in collaboration with UNICEF and Inqui-lab Foundation, has initiated a School Innovation Challenge in 2020. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.</p><p>Over the last 2 years, we could achieve key-outputs like 9,428 government high schools have registered on the School Innovation Challenge portal. 49,047 government school students from classes 6-10 have completed the online module on ‘Design Thinking for Innovation’ and received certificates. 12,070 government high school teachers across all the 33 districts of Telangana have been oriented and trained on “Managing Design Thinking & Innovation in Schools”. A total of 18,130  innovative ideas have been submitted by the students as part of  the Telangana School Innovation Challenge -2020 & 2021. Around 130 Schools from the Minority welfare department have participated in SIC 2021.</p>",
         "about_upshift_heading": "<h2 class='mb-5 sub-heading'>What is <span class='blue'>UPSHIFT</span></h2>",
         "about_upshift_desc": "<p><b>UPSHIFT</b> is a <span class='blue'><b>UNICEF</b></span> global innovation for transferable skills building of adolescents and young people that is now in implementation in 45 countries. <b>UPSHIFT</b> is designed to build transferable skills and create opportunity, with a focus on the young people. <b>UPSHIFT</b> supports the development of skills for life and livelihood and supports youth to positively engage with their local communities as change-makers. <br/>[LEARN MORE ABOUT <a href='https://www.unicef.org/innovation/upshift' target='_target'><u><b>UPSHIFT</b></u></a> ]</p><p>With the goal of engaging and skilling more adolescents and young people, UNICEF, along with State Government, Yuwaah and Inqui-Lab Foundation embarked on the development of UNISOLVE.</p>",
         "upshift_power_desc": "<p><span class='blue'><b>UNISOLVE</b></span> is a digital platform designed to facilitate <b>UPSHIFT</b> delivery through a school-based, teacher-facilitated blended learning model.</p><p><span class='blue'><b>UNISOLVE</b></span> combines the advantages of distance learning opportunities and face-to-face activities to promote creativity and innovation among adolescents and young people. Designed with and for the education system keeping scalability in mind this specially designed platform, <span class='blue'><b>UNISOLVE</b></span>, is a tool to skill students on social innovation and 21st century skills.</p>",
@@ -222,12 +222,12 @@
         "testimonials_desc_2": "This Program provides participants with an opportunity to put concrete skills into practice-young people invest themselves in developing solutions for the problems they identified in their communities.",
         "testimonials_name_2": "Herve Morin, Global lead",
         "testimonials_title_2": "Unicef Office of innovation",
-        "faq_qn_1": "What is the School Innovation Program",
-        "faq_ans_1": "<p>To promote a culture of innovation and creative problem solving among  the state government in partnership with key stakeholders launched the School Innovation Development Project to inculcate the spirit of innovation amongst the school children.</p><p>Objective of the program is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain 21st century skills and leadership skills.</p>",
-        "faq_qn_2": "Who can participate in this program?",
-        "faq_ans_2": "<p>Guidelines about the schools eligible for participation will be rolled out by the Ministry of Education/Department of School Education. All the eligible schools can register on the portal and participate using the unique identification code (example: UDISE etc.)</p><p>Students from all Government High Schools and Higher Secondary Schools are eligible to participate in the program. This is a team based program and schools/mentors are requested to support in registration of the participants on to the portal and in this learning journey.</p>",
+        "faq_qn_1": "What is the School Innovation Challenge?",
+        "faq_ans_1": "<p>To promote a culture of innovation and creative problem solving, Telangana State Innovation Cell (TSIC) in partnership with UNICEF and Inqui-Lab Foundation proposes to conduct a school-level innovation challenge for the high schools across Telangana. The focus of the SIC 2022 is to introduce the children to the basics of Design Thinking and Innovation as an approach to problem-solving.</p>",
+        "faq_qn_2": "Which students can take part in this Challenge?",
+        "faq_ans_2": "<ul><li><p>SIC is for 6-10th standard students only. Intermediate students are not eligible.</p></li><li><p>Students in a team can be from different grades.</p></li><li><p>Interested students irrespective of academic performance can take part in the School Innovation Challenge.</p></li></ul>",
         "faq_qn_3": "How many teams and teachers/mentors can participate in the program?",
-        "faq_ans_3": "<p>The platform does not have any limitation in terms of the number of teams or students. But it is suggested that teacher/mentor:teams ratio be maintained as 1:5.</p>",
+        "faq_ans_3": "<p>The platform does not have any limitation in terms of the number of teams or students. But it is suggested that teacher/mentor:teams ratio be maintained as 1:4.</p>",
         "faq_qn_4": "How to register your institution for this program?",
         "faq_ans_4": "<p>Open the website and click register. Register your school/Institution there by entering the UDISE code/Unique ID and then filling in all required details. Once the registration process is completed, you can log in to your account by entering a password.<p/>",
         "faq_qn_5": "What are the next steps involved after registering my school on the website?",
@@ -245,7 +245,7 @@
         "roadmpa_five_desc": "<p>Learners submit their idea to the selection panel for shortlisting</p><p>The shortlisted ideas are provided an opportunity to pitch their ideas at the state and national level for incubation</p>",
         "roadmpa_six": "Incubation",
         "roadmpa_six_desc": "<p>Solutions selected in the final event are provided support to actualize their solutions and implement their ideas</p>",
-        "power_by": "powered by",
+        "power_by": "UPSHIFT powered by <span class='green'><b>UNISOLVE</b></span>",
         "engagement": "Engagement & Impact",
         "students": "STUDENTS",
         "student_teams": "STUDENT TEAMS",
@@ -294,7 +294,7 @@
     },
     "student": {
         "profile": "My Profile",
-        "worksheet": "<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIDP guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
+        "worksheet": "<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIC guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
         "download_worksheet": "Download Worksheet",
         "continue": "Continue",
         "w_sheet": "Worksheet",
@@ -388,7 +388,8 @@
         "btn_cancel": "Cancel",
         "btn_ok":"ok",
         "cancelled":"Cancelled",
-        "logged_in":"You are Logged in"
+        "logged_in":"You are Logged in",
+        "submit_idea":"You are attempting to submit your idea Which is not revertable"
     },
     "teacehr_red": {
         "heading": "REGISTER",
@@ -420,7 +421,7 @@
         "student_idea_sub": "Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",
         "student_my_cer": "Dear Student, you will receive your certificate once you complete the course, submit idea and take post survey. All the best :)",
         "student_post_survey": "Dear Students, Post-Survey will be active once your team submits the idea. Hope you and your team are learning a lot of new things. : )",
-        "student_course": "Dear Student, your SIDP learning journey will begin soon. Please discuss with your School SIDP Head cum Guide Teacher and prepare yourself for this journey. All the best 🙂"
+        "student_course": "Dear Student, your SIC learning journey will begin soon. Please discuss with your School SIC Head cum Guide Teacher and prepare yourself for this journey. All the best 🙂"
     },
     "badges": {
         "congratulations": "Congratulations",
@@ -435,10 +436,12 @@
         "lessons":"Lessons",
         "continue course":"Continue Course",
         "exitfullscreen":"Exit Full Screen",
-        "quiz_completed":"Successfully Completed!"
+        "quiz_completed":"Successfully Completed!",
+        "course_scc":"Course Completed Successfully!",
+        "go_to":"Go to Challenges"
     },
     "translation":{
-        "tamil":"Tamil Content :-",
+        "tamil":"Telugu Content :-",
         "tamil_to":"tn"
     }
 }
