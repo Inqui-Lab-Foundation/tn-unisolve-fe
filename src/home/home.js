@@ -41,7 +41,7 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_AP.png';
+//import SSA_Tamilnadu from '../assets/media/tn-brands/1_AP.png';
 import SIC_tamilnadu from '../assets/media/tn-brands/2_SSA-AP.png';
 import EDII_tamilnadu from '../assets/media/tn-brands/3_nif_ts.png';
 import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_ts.png';
@@ -50,7 +50,7 @@ import IIF_Tamilnadu from '../assets/media/tn-brands/6_IIF_ts.png';
 import SS_Tamilnadu from '../assets/media/tn-brands/7_SS_ts.png';
 import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/8_Unicef_ts.png';
 //import YHub from '../assets/media/tn-brands/9_Y_hub.png';
-import LogoTn from '../assets/media/tn-brands/Header and Footer_AP.png';
+import LogoTn from '../assets/media/tn-brands/AP_logo.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
