@@ -41,16 +41,16 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_govt_ts.png';
-import SIC_tamilnadu from '../assets/media/tn-brands/2_SSA_ts.png';
+import SSA_Tamilnadu from '../assets/media/tn-brands/1_AP.png';
+import SIC_tamilnadu from '../assets/media/tn-brands/2_SSA-AP.png';
 import EDII_tamilnadu from '../assets/media/tn-brands/3_nif_ts.png';
 import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_ts.png';
 import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_ts.png';
 import IIF_Tamilnadu from '../assets/media/tn-brands/6_IIF_ts.png';
 import SS_Tamilnadu from '../assets/media/tn-brands/7_SS_ts.png';
 import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/8_Unicef_ts.png';
-import YHub from '../assets/media/tn-brands/9_Y_hub.png';
-import LogoTn from '../assets/media/tn-brands/TS_LOGO.png';
+//import YHub from '../assets/media/tn-brands/9_Y_hub.png';
+import LogoTn from '../assets/media/tn-brands/Header and Footer_AP.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
@@ -165,56 +165,56 @@ const Home = () => {
     // const { Search } = Input;
 
     const partners = [
-        {
-            id: 1,
-            key: 'SSA',
-            // imageUrl: Unicef
-            imageUrl: SSA_Tamilnadu
-        },
+        // {
+        //     id: 1,
+        //     key: 'SSA',
+        //     // imageUrl: Unicef
+        //     imageUrl: SSA_Tamilnadu
+        // },
+        // {
+        //     id: 2,
+        //     key: 'YHub',
+        //     // imageUrl: Congnizant
+        //     imageUrl: YHub
+        // },
         {
             id: 2,
-            key: 'YHub',
-            // imageUrl: Congnizant
-            imageUrl: YHub
-        },
-        {
-            id: 3,
             key: 'SIC',
             // imageUrl: Telangana
             imageUrl: SIC_tamilnadu
         },
         {
-            id: 4,
+            id: 3,
             key: 'EDII',
             // imageUrl: Inquilab
             imageUrl: EDII_tamilnadu
         },
         {
-            id: 5,
+            id: 4,
             key: 'UpShift',
             // imageUrl: Yuwaah
             imageUrl: UpShift_Tamilnadu
         },
         {
-            id: 6,
+            id: 5,
             key: 'Yuwaah',
             // imageUrl: YoungWarrior
             imageUrl: Yuwaah_Tamilnadu
         },
         {
-            id: 7,
+            id: 6,
             key: 'IIF',
             // imageUrl: Congnizant
             imageUrl: IIF_Tamilnadu
         },
         {
-            id: 8,
+            id: 7,
             key: 'SS',
             // imageUrl: Congnizant
             imageUrl: SS_Tamilnadu
         },
         {
-            id: 9,
+            id: 8,
             key: 'Unicef',
             // imageUrl: Congnizant
             imageUrl: Unicef_OOI_Tamilnadu
@@ -590,7 +590,7 @@ const Home = () => {
                         <Col md={6} className="position-relative">
                             <div className="position-absolute" style={{width:"100%",height:"100%"}}>
                             <Vimeo 
-                                video={772458167}
+                                video={772458274}
                             />  
                             </div>
                         </Col>
