@@ -33,7 +33,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <h4>
                                 {!values?.overall_schools
                                     ? '0'
-                                    : `${values?.reg_schools} of ${values?.overall_schools}`}
+                                    : `${values?.reg_schools}`}
                             </h4>
                             <small className="blue">{t('home_tl.institutions')}</small>
                         </div>
@@ -77,7 +77,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <h4>
                                 {!all?.overall_schools
                                     ? '0'
-                                    : `${all?.reg_schools} of ${all?.overall_schools}`}
+                                    : `${all?.reg_schools}`}
                             </h4>
                             <small className="blue">{t('home_tl.institutions')}</small>
                         </div>
