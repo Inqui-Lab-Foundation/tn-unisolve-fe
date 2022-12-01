@@ -23,7 +23,7 @@ const SDG = ({setShowChallenges}) => {
     const history = useHistory();
     const { t } = useTranslation();
     const comingSoonText = t('dummytext.student_idea_sub');
-    const showPage =true;
+    const showPage =false;
     const handleSelect = (data)=>{
         const initialSizeData = {
             sdg:data
