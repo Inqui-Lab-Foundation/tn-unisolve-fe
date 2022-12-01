@@ -56,7 +56,6 @@ import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
 import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
 import RegisterPopup from './registration/RegisterPopup';
-// import TelanganaMap from '../components/MapCard/TelanganaMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import SchoolRegisterPopup from './SchoolRegisterPopup';
