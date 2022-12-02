@@ -218,13 +218,13 @@ const Home = () => {
             name: `${t('home_tl.testimonials_name_2')}`,
             title: `${t('home_tl.testimonials_title_2')}`
         },
-        // {
-        //     id: 3,
-        //     imageUrl: testi3,
-        //     desc: `${t('home_tl.testimonials_desc_3')}`,
-        //     name: `${t('home_tl.testimonials_name_3')}`,
-        //     title: `${t('home_tl.testimonials_title_3')}`
-        // }
+        {
+            id: 3,
+            imageUrl: testi3,
+            desc: `${t('home_tl.testimonials_desc_3')}`,
+            name: `${t('home_tl.testimonials_name_3')}`,
+            title: `${t('home_tl.testimonials_title_3')}`
+        }
     ];
 
     const testimonials_settings = {
@@ -330,26 +330,26 @@ const Home = () => {
         // }
     ];
 
-    const blogs = [
-        {
-            id: 1,
-            imgUrl: Blog2,
-            title: `${t('home_tl.idea_heading_1')}`,
-            desc: `${t('home_tl.idea_desc_1')}`
-        },
-        {
-            id: 2,
-            imgUrl: Blog3,
-            title: `${t('home_tl.idea_heading_2')}`,
-            desc: `${t('home_tl.idea_desc_2')}`
-        },
-        // {
-        //     id: 3,
-        //     imgUrl: Blog1,
-        //     title: `${t('home_tl.idea_heading_3')}`,
-        //     desc: `${t('home_tl.idea_desc_3')}`
-        // }
-    ];
+    // const blogs = [
+    //     {
+    //         id: 1,
+    //         imgUrl: Blog2,
+    //         title: `${t('home_tl.idea_heading_1')}`,
+    //         desc: `${t('home_tl.idea_desc_1')}`
+    //     },
+    //     {
+    //         id: 2,
+    //         imgUrl: Blog3,
+    //         title: `${t('home_tl.idea_heading_2')}`,
+    //         desc: `${t('home_tl.idea_desc_2')}`
+    //     },
+    //     // {
+    //     //     id: 3,
+    //     //     imgUrl: Blog1,
+    //     //     title: `${t('home_tl.idea_heading_3')}`,
+    //     //     desc: `${t('home_tl.idea_desc_3')}`
+    //     // }
+    // ];
     // console.log("----379",sidebar);
 
     return (
@@ -906,10 +906,10 @@ const Home = () => {
                 </div>
                 <BhutanMap />
             </section>
-            <section className="blog">
+            {/* <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        {/* <div className="heading">
+                        <div className="heading">
                             <h2 className="sub-heading">
                                 {t('home.student_ideas')}
                                 <span className="blue">
@@ -922,7 +922,7 @@ const Home = () => {
                                     style={{ marginLeft: '2rem' }}
                                 />
                             </h2>
-                        </div> */}
+                        </div>
 
                         <Col md={12} className="blog-slider">
                             <Slider
@@ -976,7 +976,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
