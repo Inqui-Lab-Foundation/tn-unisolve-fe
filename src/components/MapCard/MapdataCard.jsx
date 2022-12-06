@@ -28,7 +28,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                         <Col>
                             <div className="mb-5 d-flex align-items-center">
                                 <img
-                                    src={youth_centers}
+                                    src={institutions}
                                     alt="institutions"
                                     className=" mx-4"
                                 />
@@ -47,7 +47,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                         <Col>
                             <div className="mb-5 d-flex align-items-center">
                                 <img
-                                    src={institutions}
+                                    src={youth_centers}
                                     alt="Youth center"
                                     className=" mx-4"
                                 />
@@ -138,7 +138,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                         <Col>
                             <div className="mb-5 d-flex align-items-center">
                                 <img
-                                    src={youth_centers}
+                                    src={institutions}
                                     alt="institutions"
                                     className=" mx-4"
                                 />
@@ -157,7 +157,7 @@ const MapdataCard = ({ values, all, districtName }) => {
                         <Col>
                             <div className="mb-5 d-flex align-items-center">
                                 <img
-                                    src={institutions}
+                                    src={youth_centers}
                                     alt="Youth center"
                                     className=" mx-4"
                                 />
