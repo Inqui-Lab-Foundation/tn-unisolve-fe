@@ -32,7 +32,7 @@ import upshift from '../assets/media/UPSHIFT-diagram.jpg';
 import testi1 from '../assets/media/home/testi/PHUB_LHAM_img.png';
 import testi2 from '../assets/media/home/testi/MANI_DEM_img.png';
 import testi3 from '../assets/media/home/testi/NIM_DORJI_img.png';
-//import IdeaBulb from '../assets/media/home/idea-bulb.png';
+import IdeaBulb from '../assets/media/home/idea-bulb.png';
 
 import map_icon_awa from '../assets/media/home/icon_aweraness.png';
 import map_icon_reg from '../assets/media/home/icon_registration.png';
@@ -49,9 +49,9 @@ import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
 import YDF from '../assets/media/tn-brands/5_YDF.png';
 import LogoTn from '../assets/media/tn-brands/logo.png';
 
-import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
-import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
-import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
+//import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
+import Blog2 from '../assets/media/home/blog/UPSHIFT_blog1.jpg';
+import Blog3 from '../assets/media/home/blog/blog_2.jpg';
 import RegisterPopup from './registration/RegisterPopup';
 import BhutanMap from '../components/MapCard/BhutanMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
@@ -330,27 +330,29 @@ const Home = () => {
         // }
     ];
 
-    // const blogs = [
-    //     {
-    //         id: 1,
-    //         imgUrl: Blog2,
-    //         title: `${t('home_tl.idea_heading_1')}`,
-    //         desc: `${t('home_tl.idea_desc_1')}`
-    //     },
-    //     {
-    //         id: 2,
-    //         imgUrl: Blog3,
-    //         title: `${t('home_tl.idea_heading_2')}`,
-    //         desc: `${t('home_tl.idea_desc_2')}`
-    //     },
-    //     // {
-    //     //     id: 3,
-    //     //     imgUrl: Blog1,
-    //     //     title: `${t('home_tl.idea_heading_3')}`,
-    //     //     desc: `${t('home_tl.idea_desc_3')}`
-    //     // }
-    // ];
-    // console.log("----379",sidebar);
+    const blogs = [
+        {
+            id: 1,
+            imgUrl: Blog2,
+            title: `${t('home_tl.idea_heading_1')}`,
+            //desc: `${t('home_tl.idea_desc_1')}`
+            urllinlk:"https://www.unicef.org/bhutan/stories/empowering-young-minds-become-social-innovators"
+        },
+        {
+            id: 2,
+            imgUrl: Blog3,
+            title: `${t('home_tl.idea_heading_2')}`,
+            //desc: `${t('home_tl.idea_desc_2')}`
+            urllinlk:"https://www.unicef.org/bhutan/stories/empowering-adolescents-become-changemakers"
+        },
+        // {
+        //     id: 3,
+        //     imgUrl: Blog1,
+        //     title: `${t('home_tl.idea_heading_3')}`,
+        //     desc: `${t('home_tl.idea_desc_3')}`
+        // }
+    ];
+    console.log("----379",sidebar);
 
     return (
         <div className="home-main">
@@ -431,7 +433,7 @@ const Home = () => {
                                             <img
                                                 src={LogoTn}
                                                 alt="logo"
-                                                className="w-5 logoImg"
+                                                className="w-10 logoImg"
                                             />
                                         </figure>
                                     </Link>
@@ -607,14 +609,14 @@ const Home = () => {
                         </Col>
                     </Row>
                     <Row className="sidp_row p-3">
-                        <Col md={6} className="pe-md-4">
+                        <Col md={12} className="pe-md-4">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.about_us_desc')
                                 }}
                             ></div>
                         </Col>
-                        <Col md={6} className="my-auto ">
+                        {/* <Col md={6} className="my-auto ">
                             <div className="position-relative sidp_video_box">
                                 <FancyVideo
                                     source={taVideo}
@@ -622,7 +624,7 @@ const Home = () => {
                                     id={'sintel'}
                                 />
                             </div>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
                 <div className="bg-white mx-0 p-md-5 p-2">
@@ -906,7 +908,7 @@ const Home = () => {
                 </div>
                 <BhutanMap />
             </section>
-            {/* <section className="blog">
+            <section className="blog">
                 <Container>
                     <Row className="text-center justify-content-md-center">
                         <div className="heading">
@@ -933,6 +935,7 @@ const Home = () => {
                                 {blogs.map((blog, i) => {
                                     return (
                                         <div key={i}>
+                                            <a href={blog.urllinlk} target='_blank' rel="noreferrer">
                                             <div
                                                 className="blog-card"
                                                 // style={{ backgroundImage: `url(${blog.imgUrl})` }}
@@ -952,6 +955,7 @@ const Home = () => {
                                                     </blockquote>
                                                 </CardBody>
                                             </div>
+                                            </a>
                                         </div>
                                     );
                                 })}
@@ -976,7 +980,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section> */}
+            </section>
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
@@ -1239,7 +1243,8 @@ const Home = () => {
                                     <img
                                         src={LogoTn}
                                         alt="logo"
-                                        className="img-fluid w-25 logoImg"
+                                        className="img-fluid logoImg"
+                                        style={{width:"35%"}}
                                     />
                                 </figure>
                             </Link>
