@@ -280,7 +280,7 @@
     "student_presurvey": {
         "submit": "సమర్పించండి"
     },
-    "student": {
+    "student" : {
         "profile": "నా జీవన వివరణ",
         "worksheet": "<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIC guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
         "download_worksheet": "వర్క్‌షీట్‌ని డౌన్‌లోడ్ చేయండి",
@@ -295,14 +295,35 @@
         "backto_quiz": "తిరిగి క్విజ్‌కి",
         "quiz_completed": "క్విజ్ విజయవంతంగా పూర్తయింది",
         "ref_quiz_heading": "మీరు వీడియోలో నేర్చుకున్న కొన్ని విషయాల గురించి ఆలోచిద్దాం"
+        "idea_submitted":"உங்கள் யோசனை வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது",
+        "idea_draft":"உங்கள் யோசனை வரைவாக சமர்ப்பிக்கப்பட்டது",
+        "attempt_all_questions":"அனைத்து கேள்விகளையும் முயற்சிக்கவும்.",
+        "idea_init_succ":"யோசனை வெற்றிகரமாக தொடங்கப்பட்டது.",
+        "please_com_postsurvey_for_certificate":"படிப்பு முடித்ததற்கான சான்றிதழைப் பெற, பின்வரும் இடுகை கணக்கெடுப்பை முடிக்கவும்",
+        "view_idea":"யோசனையைப் பார்க்கவும்",
+        "presurver_scc_sub":"முன்கணிப்பு வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது",
+        "postsurver_scc_sub":"போஸ்ட்சர்வே வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது",
+        "save_draft":"வரைவாக சேமி",
+        "discard": "நிராகரிக்கவும்",
+        "upload_file":"கோப்பை பதிவேற்றவும்",
+        "less_20MB":"20MB க்கும் குறைவான கோப்பை பதிவேற்றவும்",
+        "please_com_all":"சமர்ப்பிக்கும் முன் அனைத்து புலங்களையும் பூர்த்தி செய்யவும்",
+        "not_allowed":"அனுமதி இல்லை",
+        "post_survey":"பின் ஆய்வு",
+        "idea_submitted_desc":"<h2>சிந்தனையை வெற்றிகரமாகச் சமர்ப்பித்ததற்கு வாழ்த்துகள்.</h2>.</br><p>உங்கள் பிந்தைய ஆய்வை முடிக்கவும், உங்கள் சான்றிதழைப் பெற தொடரவும் என்பதைக் கிளிக் செய்யவும்.<p>",
+        "post_survey_desc":"வாழ்த்துகள்! உங்கள் பள்ளி புத்தாக்க மேம்பாட்டுத்திட்டம் - 2022-23-யின்  பயணம் முடிந்தது.",
+        "click_button_post_survey":"உங்கள் சான்றிதழ் விரைவில் தயாராகிவிடும், அதை நீங்கள் ‘சான்றிதழ் பக்கத்தில்’ பதிவிறக்கம் செய்யலாம்."
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"
     },
     "teacher_certificate": {
         "download": "Download Certificate",
+        "participate_certificate": "பங்கேற்பு சான்றிதழ்",
+        "download_participate": "பங்கேற்புச் சான்றிதழைப் பதிவிறக்கவும்",
         "certificate": "Certificate",
         "certificate_desc": "Please Download Certificate...",
+        "part_certificate_desc": "பங்கேற்பு சான்றிதழைப் பதிவிறக்கவும்...",
         "complete_postsurvey": "Please complete post survey to get course completion certificate"
     },
     "teacher_header": {
@@ -310,7 +331,7 @@
         "logout": "Logout"
     },
     "teacher_teams": {
-        "team_heading": "Teams Management",
+       "team_heading": "Teams Management",
         "create_team": "Create Team",
         "create_team_members": "Create Team Members details",
         "add_new_team": "Add New Team details",
@@ -359,6 +380,9 @@
         "male": "Male",
         "female": "Female",
         "others": "Others"
+        "edit_idea":"திருத்த யோசனை சமர்ப்பிப்பு",
+        "draft":"வரைவாக சேமி",
+        "loading":"ஏற்றுகிறது"
     },
     "home_nav_links": {
         "about": "గురించి",
@@ -404,7 +428,7 @@
         "hand_book": "UNISOLVE Hand Book",
         "please_download": "Please Download Handbook..."
     },
-    "dummytext": {
+    "dummytext":{
         "student_idea_sub": "Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",
         "student_my_cer": "Dear Student, you will receive your certificate once you complete the course, submit idea and take post survey. All the best :)",
         "student_post_survey": "Dear Students, Post-Survey will be active once your team submits the idea. Hope you and your team are learning a lot of new things. : )",
@@ -415,7 +439,7 @@
         "earn": "మీరు ఇప్పుడే కొత్త బ్యాడ్జ్‌ని సంపాదించారు",
         "ok": "అలాగే"
     },
-    "student_course": {
+    "student_course":{
         "modules": "మాడ్యూల్స్",
         "videos": "వీడియోలు",
         "start course": "కోర్సు ప్రారంభించండి",
@@ -424,6 +448,14 @@
         "continue course": "కోర్సు కొనసాగించండి",
         "exitfullscreen": "పూర్తి స్క్రీన్ నుండి నిష్క్రమించండి",
         "quiz_completed": "విజయవంతంగా పూర్తైంది!"
+        "go_idea_submission":"தொடரவும்",
+        "go_certificate":"எனது சான்றிதழுக்குச் செல்லவும்",
+        "course_completed_succ":"அனைத்து பாடங்களையும் வெற்றிகரமாக முடித்ததற்கு வாழ்த்துக்கள்!",
+        "continue_to_idea":"கண்டுபிடிப்பு (ஐடியா )  சமர்ப்பிப்புக்குச் செல்ல தொடரவும் என்பதைக் கிளிக் செய்யவும்.",
+        "sdg":"நீங்கள் எந்த நிலையான வளர்ச்சிக்கான  இலக்குகளை  (SDG) உங்கள் தீர்வுக்கான  இலக்காகக் கொண்டீர்களா? உங்கள் சிந்தனை (கண்டுபிடிப்பு) எந்த நிலையான வளர்ச்சி இலக்கிற்கும் உகந்ததாக  இல்லை என்றால், மற்றவற்றைத் தேர்ந்தெடுக்கவும்.",
+        "sdg_desc":"(நீங்கள் FIND தொகுதியிலிருந்து SDGs படிவத்தினைப்  பார்த்து சரியான விருப்பத்தைத் தேர்ந்தெடுக்கலாம்)",
+        "others":"If you picked the option ‘others’ in the above question, write down which SDG or theme is your solution targeting.",
+        "chars":"மீதமுள்ள எழுத்துக்கள்"
     },
     "translation":{
         "tamil":"Telugu Content :-",

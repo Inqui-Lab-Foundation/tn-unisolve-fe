@@ -38,7 +38,7 @@ const BhutanMap = () => {
     return (
         <Container className="state">
             <Row className="w-100">
-                <Col md={6} className="d-flex">
+                <Col md={7} className="d-flex">
                     <svg
                         version="1.1"
                         id="Layer_1"
@@ -3398,7 +3398,7 @@ const BhutanMap = () => {
                         </switch>
                     </svg>
                 </Col>
-                <Col md={6} className="my-auto common-flex">
+                <Col md={5} className="my-auto common-flex">
                     <MapdataCard
                         values={values}
                         all={initial ? overAllData : {}}

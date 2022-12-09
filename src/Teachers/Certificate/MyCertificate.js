@@ -4,7 +4,7 @@ import { Button } from '../../stories/Button';
 import Layout from '../Layout';
 import jsPDF from 'jspdf';
 import { getCurrentUser, getNormalHeaders } from '../../helpers/Utils';
-import TeacherCertificate from '../../assets/media/img/teacher_certificate_V2.png';
+import TeacherCertificate from '../../assets/media/img/certificates/TN_Teacher+Completion+Certficate.png';
 import { useTranslation } from 'react-i18next';
 import { KEY, URL } from '../../constants/defaultValues';
 import { useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ const MyCertificate = () => {
 
     const handleCertificateDownload = () => {
         const content = pdfRef.current;
-        const doc = new jsPDF('l', 'px', [210, 297]);
+        const doc = new jsPDF('p', 'px', [298, 209]);
         doc.html(content, {
             callback: function (doc) {
                 doc.save('certificate.pdf');
@@ -77,8 +77,8 @@ const MyCertificate = () => {
                                             className="text-capitalize"
                                             style={{
                                                 position: 'absolute',
-                                                top: '8rem',
-                                                left: '2.5rem',
+                                                top: '11.5rem',
+                                                left: '8rem',
                                                 fontSize: 'inherit'
                                             }}
                                         >
@@ -88,8 +88,9 @@ const MyCertificate = () => {
                                             src={TeacherCertificate}
                                             alt="certificate"
                                             style={{
-                                                width: '297px',
-                                                height: '209px'
+                                                width: '209px',
+                                                height: '297px',
+                                                border:'1px solid #ccc'
                                             }}
                                         />
                                     </div>

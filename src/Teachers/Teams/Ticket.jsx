@@ -72,9 +72,9 @@ const TicketsPage = (props) => {
         setLoading(false);
     }, [props.teamsList]);
 
-    useEffect(() => {
-        props.getAdminTeamMembersListAction(teamId);
-    }, [teamId]);
+    // useEffect(() => {
+    //     props.getAdminTeamMembersListAction(teamId);
+    // }, [teamId]);
 
     useEffect(() => {
         var teamsMembersArrays = [];

@@ -7,13 +7,16 @@ import { getStudentChallengeSubmittedResponse } from '../../../redux/studentRegi
 import Layout from '../../Layout';
 import IdeasPageNew from './IdeasPageCopy';
 import SDG from './SDG';
+import { useTranslation } from 'react-i18next';
+
 const IdeaSubmission = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const language = useSelector(
         (state) => state?.studentRegistration?.studentLanguage
     );
-    const { challengesSubmittedResponse } = useSelector(
-        (state) => state?.studentRegistration
+    const challengesSubmittedResponse  = useSelector(
+        (state) => state?.studentRegistration.challengesSubmittedResponse
     );
     const currentUser = getCurrentUser('current_user');
     const [showChallenges, setShowChallenges] = useState(false);
@@ -39,7 +42,7 @@ const IdeaSubmission = () => {
             setShowChallenges(false);
         }
     }, [challengesSubmittedResponse,view]);
-    const commonPageText = 'Your Idea has been Submitted Successfully!';
+    const commonPageText = t("student.idea_submitted_desc");
     const handleView = ()=>{
         setShowChallenges(true);
         setShowCompleted(false);
