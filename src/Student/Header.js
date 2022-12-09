@@ -9,7 +9,7 @@ import { Row, Col, Navbar } from 'reactstrap';
 import AvatarImg from '../assets/media/img/Avatar.png';
 
 import {getCurrentUser} from "../helpers/Utils"; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import i18next from 'i18next';
 import { getPresurveyData, getStudentGlobalLanguage } from '../redux/studentRegistration/actions';
 
