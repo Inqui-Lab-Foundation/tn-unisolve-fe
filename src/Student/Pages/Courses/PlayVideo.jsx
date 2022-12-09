@@ -956,6 +956,7 @@ const PlayVideoCourses = (props) => {
                                         <>
 
                                             {item === 'QUIZ' && !showQuiz ? (
+
                                                 <div
                                                                 size="lg"
                                                                 centered
