@@ -25,19 +25,20 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { FaComments } from 'react-icons/fa';
+import { getCurrentUser } from '../../helpers/Utils';
 
 const TicketsPage = (props) => {
     const [rows, setRows] = React.useState([]);
     const dispatch = useDispatch();
+    const currentUser = getCurrentUser('current_user');
     const { supportTickets } = useSelector((state) => state.mentors);
     const language = useSelector((state) => state?.mentors.mentorLanguage);
 
+
     const history = useHistory();
     useEffect(() => {
-        dispatch(getSupportTickets(language));
+        dispatch(getSupportTickets(language,currentUser.data[0]));
     }, [language]);
-
-    console.log('line 40----------', supportTickets);
 
     const SchoolsData = {
         data: supportTickets,
@@ -122,8 +123,8 @@ const TicketsPage = (props) => {
 
     return (
         <Layout>
-            <Container className="ticket-page mb-50">
-                <Row className="mt-2 pt-3">
+            <Container className="ticket-page mt-5 mb-50">
+                <Row className="pt-3">
                     <Row className="mb-2 mb-sm-5 mb-md-5 mb-lg-0">
                         <Col className="col-auto">
                             <h2>Support</h2>

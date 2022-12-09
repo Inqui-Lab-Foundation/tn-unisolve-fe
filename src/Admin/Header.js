@@ -21,7 +21,7 @@ const Header = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
     const currentUser = getCurrentUser("current_user");
-    const MINUTE_MS = 30000;
+    // const MINUTE_MS = 30000;
     const profileOpt = {
         options: [
             // { name: "Home", path: "/admin/dashboard" },
@@ -55,19 +55,15 @@ const Header = (props) => {
         localStorage.setItem("headerOption", JSON.stringify("Home"));
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            // console.log("Logs every minute");
-            props.getAdminNotificationsListActions(history);
-        }, MINUTE_MS);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         // console.log("Logs every minute");
+    //         props.getAdminNotificationsListActions(history);
+    //     }, MINUTE_MS);
 
-        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-    }, []);
-    // console.log(
-    //   props.notificationsList,
-    //   "=============",
-    //   props.NotificationCount
-    // );
+    //     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    // }, []);
+
     return (
         <header>
             <div className="header-comp sticky-top py-3">

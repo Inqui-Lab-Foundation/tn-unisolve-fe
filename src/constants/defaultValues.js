@@ -8,13 +8,15 @@ export const URL = {
     // Post //
     login: process.env.REACT_APP_API_BASE_URL + '/students/login',
     adminLogin: process.env.REACT_APP_API_BASE_URL + '/admins/login',
+    evaluatorLogin: process.env.REACT_APP_API_BASE_URL + '/evaluators/login',
+    evaluatorRegister: `${process.env.REACT_APP_API_BASE_URL}/evaluators/register`,
     teacherLogin: process.env.REACT_APP_API_BASE_URL + '/mentors/login',
     addMentor: process.env.REACT_APP_API_BASE_URL + '/mentors/create',
     addAdminCourses: process.env.REACT_APP_API_BASE_URL + '/course',
     submitChallengeResponse:
-        process.env.REACT_APP_API_BASE_URL + '/challenge/1/submission',
+        process.env.REACT_APP_API_BASE_URL + '/challenge_response?challenge_id=1&',
     initiateChallenge:
-        process.env.REACT_APP_API_BASE_URL + '/challenge/1/initiate?team_id=',
+        process.env.REACT_APP_API_BASE_URL + '/challenge_response/1/initiate?team_id=',
     postAdminRefQuizResponce:
         process.env.REACT_APP_API_BASE_URL + '/reflectiveQuiz/',
     createMentorSupportTickets:
@@ -26,6 +28,8 @@ export const URL = {
     updateOrganization: process.env.REACT_APP_API_BASE_URL + '/organizations/',
     createMultiStudent:
         process.env.REACT_APP_API_BASE_URL + '/students/bulkCreateStudent',
+    uploadFile:
+        process.env.REACT_APP_API_BASE_URL + '/challenge_response/fileUpload?team_id=',
 
     //Put//
     changePassword: process.env.REACT_APP_API_BASE_URL + '/auth/changePassword',
@@ -90,7 +94,7 @@ export const URL = {
     getChallengeQuestions: process.env.REACT_APP_API_BASE_URL + '/challenge',
     getChallengeSubmittedResponse:
         process.env.REACT_APP_API_BASE_URL +
-        '/challenge/submittedDetails?team_id=',
+        '/challenge_response/submittedDetails?team_id=',
     getMentorSupportTickets:
         process.env.REACT_APP_API_BASE_URL + '/supportTickets',
     getMentorSupportTicketsById:
