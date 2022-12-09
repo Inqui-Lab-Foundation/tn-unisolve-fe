@@ -1,7 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // import { Doughnut } from 'react-chartjs-2';
 import 'antd/dist/antd.css';
-import { Progress } from 'reactstrap';
+import { Card, Col, Progress } from 'reactstrap';
 import { Table } from 'antd';
 import { getAdminTeamsList, getTeamMemberStatus } from '../store/teams/actions';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,10 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // import DoubleBounce from '../../components/Loaders/DoubleBounce';
 import { FaCheckCircle,FaTimesCircle } from 'react-icons/fa';
+import { Button } from '../../stories/Button';
+import IdeaSubmissionCard from '../../components/IdeaSubmissionCard';
+import { getStudentChallengeSubmittedResponse } from '../../redux/studentRegistration/actions';
+import { useTranslation } from 'react-i18next';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -56,13 +60,19 @@ export const options = {
 };
 
 export default function DoughnutChart({ user }) {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { teamsList, teamsMembersStatus, teamsMembersStatusErr } =
         useSelector((state) => state.teams);
     const [teamId, setTeamId] = useState(null);
     const [showDefault, setshowDefault] = useState(true);
+    const [ideaShow, setIdeaShow] = useState(false);
+    const { challengesSubmittedResponse } = useSelector(
+        (state) => state?.studentRegistration
+    );
     useEffect(() => {
         dispatch(getTeamMemberStatus(teamId, setshowDefault));
+        dispatch(getStudentChallengeSubmittedResponse(teamId));
     }, [teamId, dispatch]);
     const percentageBWNumbers = (a, b) => {
         return (((a - b) / a) * 100).toFixed(2);
@@ -165,16 +175,16 @@ export default function DoughnutChart({ user }) {
     return (
         <>
             <div  className="select-team w-100">
-                {
-                    <div className="row flex-column p-4" >
-                        <label htmlFor="teams" className="mb-3">
-                            Choose a Team:
-                        </label>
-
+                <label htmlFor="teams" className="">
+                    Team Progress:
+                </label>
+                <div className='d-flex align-items-center'>
+                    <Col className="row p-4" >
                         <select
                             onChange={(e) => setTeamId(e.target.value)}
                             name="teams"
                             id="teams"
+                            style={{backgroundColor:'lavender'}}
                         >
                             <option value="">Select Team</option>
                             {teamsList && teamsList.length > 0 ? (
@@ -187,8 +197,22 @@ export default function DoughnutChart({ user }) {
                                 <option value="">There are no teams</option>
                             )}
                         </select>
-                    </div>
-                }
+                    </Col>
+                    <Col className='d-flex justify-content-end align-items-center'>
+                        <Card className='p-3 mx-4 d-flex flex-row'>
+                            <span className='fw-bold'>IDEA STATUS :</span> 
+                            <span>{" "} {challengesSubmittedResponse[0]?.status ? challengesSubmittedResponse[0]?.status : "NOT STARTED"} </span>
+                        </Card>
+                        <Button
+                            button="button"
+                            label={t('student.view_idea')}
+                            disabled={teamsMembersStatus.length > 0 && challengesSubmittedResponse[0]?.status ? false : true}
+                            btnClass={`${teamsMembersStatus.length > 0 && challengesSubmittedResponse[0]?.status ? "primary" : "default"}`}
+                            size="small"
+                            onClick={()=>setIdeaShow(true)}
+                        />
+                    </Col>
+                </div>
                 {showDefault && (
                     <div
                         className="d-flex justify-content-center align-items-center"
@@ -219,6 +243,7 @@ export default function DoughnutChart({ user }) {
             {/* <div style={{ width: '50%' }}>
                 <Doughnut options={options} data={data} />
             </div> */}
+            {ideaShow && <IdeaSubmissionCard show={ideaShow} handleClose={()=>setIdeaShow(false)} response={challengesSubmittedResponse}/>}
         </>
     );
 }

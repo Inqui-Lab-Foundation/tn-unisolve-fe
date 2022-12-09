@@ -157,7 +157,7 @@ const Quiz = (props) => {
                                                 btnClass="primary px-5"
                                                 size="small"
                                                 // Icon={BsPlusLg}
-                                                label="Continue"
+                                                label={t('student.continue')}
                                                 onClick={(e) => handleNxtQst(e)}
                                             />
                                         </Col>

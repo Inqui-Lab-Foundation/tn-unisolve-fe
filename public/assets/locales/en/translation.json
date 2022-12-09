@@ -298,27 +298,48 @@
     },
     "student" : {
         "profile": "My Profile",
-        "worksheet":"Please download worksheet...",
-        "download_worksheet": "Download Worksheet",
-        "continue": "Continue",
-        "w_sheet": "Worksheet",
-        "quiz_heading": "Ready for a quick test?",
-        "take_challenge": "Test your course skills in a short test challenge!",
-        "questions": "Questions",
-        "minutes": "Minutes",
-        "lets_start": "Let's Start",
-        "videos": "Videos",
-        "backto_quiz": "Back to Quiz",
-        "quiz_completed": "Quiz Successfully Completed",
-        "ref_quiz_heading": "Let's think about a few things you learnt in the video"    
+        "worksheet":"<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your SIDP guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
+        "download_worksheet":"Download Worksheet",
+        "continue":"Continue",
+        "w_sheet":"Worksheet",
+        "quiz_heading":"Ready for a quick test?",
+        "take_challenge":"Test your course skills in a short test challenge!",
+        "questions":"Questions",
+        "minutes":"Minutes",
+        "lets_start":"Let's Start",
+        "videos":"Videos",
+        "backto_quiz":"Back to Quiz",
+        "quiz_completed":"Quiz Successfully Completed",
+        "ref_quiz_heading":"Let's think about a few things you learnt in the video",
+        "idea_submitted":"Your idea has been submitted successfully",
+        "idea_draft":"Your idea has been submitted as draft",
+        "attempt_all_questions":"Please Attempt All Questions..!!",
+        "idea_init_succ":"Idea initiated successfully",
+        "please_com_postsurvey_for_certificate":"Please complete the following post survey to get course completion certificate.",
+        "view_idea":"View Idea",
+        "presurver_scc_sub":"Presurvey has been submitted successfully",
+        "postsurver_scc_sub":"PostSurvey has been submitted successfully..!!",
+        "save_draft":"Save as Draft",
+        "discard": "Discard",
+        "upload_file":"Upload File",
+        "less_20MB":"Please upload file less than 20MB",
+        "please_com_all":"Please complete all the fields before submitting",
+        "not_allowed":"Not Allowed",
+        "post_survey":"Post Survey",
+        "idea_submitted_desc":"<h2>Congratulations for successfully submitting the idea</h2>.</br><p>Please click continue to complete your post survey and get your certificate.</p>",
+        "post_survey_desc":"Congratulations! your SIDP journey for 2022-23 is complete.",
+        "click_button_post_survey":"Your certificate will be ready soon and you can download it from ‘My Certificate Page’"
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"
     },
     "teacher_certificate": {
         "download": "Download Certificate",
-        "certificate": "Certificate",
+        "participate_certificate": "Idea Submission Certificate",
+        "download_participate": "Download Idea Certificate",
+        "certificate": "Course Completion Certificate",
         "certificate_desc": "Please Download Certificate...",
+        "part_certificate_desc": "Please Download Participate Certificate...",
         "complete_postsurvey": "Please complete post survey to get course completion certificate"
     },
     "teacher_header": {
@@ -374,7 +395,10 @@
         "back": "Back",
         "male": "Male",
         "female": "Female",
-        "others": "Others"
+        "others": "Others",
+        "edit_idea":"Edit Idea Submission",
+        "draft":"Save as Draft",
+        "loading":"Loading"
     },
     "home_nav_links": {
         "about": "About",
@@ -422,7 +446,7 @@
     },
     "dummytext":{
         "student_idea_sub":"Dear Student, idea submission will be active once you and your team members complete the learning journey. Your guide teacher will support you with this.",
-        "student_my_cer":"Dear Student, you will receive your certificate once you complete the course, submit idea and take post survey. All the best :)",
+        "student_my_cer":"<p><b>Dear Student, your certificate will be available once you complete the course and submit the idea.</b></p><p><b>If you have completed these, your certificate will be ready shortly.</b></p><p><b>All the best for your exams! :)</b></p>",
         "student_post_survey":"Dear Students, Post-Survey will be active once your team submits the idea. Hope you and your team are learning a lot of new things. : )",        
         "student_course":"Dear Student, your SIDP learning journey will begin soon. Please discuss with your School SIDP Head cum Guide Teacher and prepare yourself for this journey. All the best 🙂"       
 
@@ -441,5 +465,17 @@
         "continue course":"Continue Course",
         "exitfullscreen":"Exit Full Screen",
         "quiz_completed":"Successfully Completed!"
+        "go_idea_submission":"Continue",
+        "go_certificate":"Go to My Certificate",
+        "course_completed_succ":"Congratulations for successful completion of all the lessons!",
+        "continue_to_idea":"Click on continue to proceed to Idea Submission.",
+        "sdg":"Which Sustainable development Goal (SDG) are you targeting with your solution ?",
+        "sdg_desc":"(You can refer to the SDGs sheet from FIND Module and pick the right option )",
+        "others":"If you picked the option ‘others’ in the above question, write down which SDG or theme is your solution targeting.",
+        "chars":"Characters Remaining"
+    },
+    "translation":{
+        "tamil":"Tamil Content :-",
+        "tamil_to":"tn"
     }
 }

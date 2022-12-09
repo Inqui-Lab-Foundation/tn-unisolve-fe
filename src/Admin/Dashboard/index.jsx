@@ -6,12 +6,17 @@ import React, { useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import { Button } from '../../stories/Button';
 import Layout from '../Layout';
-import { deleteTempMentorById } from '../store/admin/actions';
+import { deleteTempMentorById, teacherResetPassword } from '../store/admin/actions';
 import './dashboard.scss';
 import { useHistory } from 'react-router-dom';
 import jsPDF from 'jspdf';
+import Swal from 'sweetalert2/dist/sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+import logout from '../../assets/media/logout.svg';
+import { useDispatch } from 'react-redux';
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
     const pdfRef = React.useRef(null);
     const inputField = {
         type: 'text',
@@ -66,6 +71,39 @@ const Dashboard = () => {
                 where: 'Dashbord'
             }
         });
+    };
+
+    const handleresetpassword = (data) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "You are attempting to reset the password",
+                text: "Are you sure?",
+                imageUrl: `${logout}`,
+                showCloseButton: true,
+                confirmButtonText: "Reset Password",
+                showCancelButton: true,
+                cancelButtonText: "cancel",
+                reverseButtons: false
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(teacherResetPassword({ mobile: data.toString() , otp:'false' }));
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Cancelled",
+                        "Reset password is cancelled",
+                        'error'
+                    );
+                }
+            }).catch(err => console.log(err.response));
     };
     const downloadPDF = () => {
         const content = pdfRef.current;
@@ -152,9 +190,9 @@ const Dashboard = () => {
                                                         <li className='d-flex justify-content-between'>School:<p>{orgData.organization_name}</p></li>
                                                         <li className='d-flex justify-content-between'>City: <p>{orgData.city}</p></li>
                                                         <li className='d-flex justify-content-between'>District: <p>{orgData.district}</p></li>
-                                                        <li className='d-flex justify-content-between'>Faculty Name: <p>{orgData.mentor?.full_name}</p></li>
-                                                        <li className='d-flex justify-content-between'>Faculty Mobile: <p>{orgData.mentor?.mobile}</p></li>
-                                                        <li className='d-flex justify-content-between'>Faculty email: <p>{orgData.mentor?.user?.username}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor Name: <p>{orgData.mentor?.full_name}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor Mobile: <p>{orgData.mentor?.mobile}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor email: <p>{orgData.mentor?.user?.username}</p></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -162,6 +200,7 @@ const Dashboard = () => {
                                     </div>
                                     <div className='d-flex justify-content-between'>
                                         <button onClick={() => handleEdit()} className='btn btn-warning btn-lg'>Edit</button>
+                                        <button onClick={() => handleresetpassword(orgData.mentor?.mobile)} className='btn btn-info rounded-pill px-4 btn-lg text-white'>Reset</button> 
                                         <button onClick={() => { downloadPDF(); }} className='btn btn-primary rounded-pill px-4 btn-lg'>Download</button>
                                         <button onClick={() => {
                                             deleteTempMentorById(orgData.mentor?.user_id);
