@@ -416,7 +416,8 @@
         "btn_cancel": "Cancel",
         "btn_ok":"ok",
         "cancelled":"Cancelled",
-        "logged_in":"You are Logged in"
+        "logged_in":"You are Logged in",
+        "submit_idea":"You are attempting to submit your idea Which is not revertable"
     },
     "teacehr_red": {
         "heading": "REGISTER",
@@ -464,7 +465,7 @@
         "lessons":"Lessons",
         "continue course":"Continue Course",
         "exitfullscreen":"Exit Full Screen",
-        "quiz_completed":"Successfully Completed!"
+        "quiz_completed":"Successfully Completed!",
         "go_idea_submission":"Continue",
         "go_certificate":"Go to My Certificate",
         "course_completed_succ":"Congratulations for successful completion of all the lessons!",
@@ -475,7 +476,7 @@
         "chars":"Characters Remaining"
     },
     "translation":{
-        "tamil":"Tamil Content :-",
+        "tamil":"bhtn Content :-",
         "tamil_to":"tn"
     }
 }
