@@ -29,6 +29,8 @@ import { slide as Menu } from 'react-burger-menu';
 import Slider from 'react-slick';
 import LearnMentor from '../assets/media/home/learn.svg';
 import upshift from '../assets/media/UPSHIFT-diagram.jpg';
+import values from '../assets/media/4values.png';
+import KeyCompetencies from '../assets/media/KeyCompetencies.png';
 import testi1 from '../assets/media/home/testi/Herve_Morin_Global_head.jpg';
 import testi2 from '../assets/media/home/testi/Swathi.JPG';
 import IdeaBulb from '../assets/media/home/idea-bulb.png';
@@ -49,7 +51,7 @@ import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_Tamilnadu.jpg';
 import IIF_Tamilnadu from '../assets/media/tn-brands/7_IIF_Tamilnadu.png';
 import SS_Tamilnadu from '../assets/media/tn-brands/8_SS_Tamilnadu.jpg';
 import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/9_Unicef OOI_Tamilnadu.jpg';
-import LogoTn from '../assets/media/tn-brands/UPSHIFT_SIDP_TN_logo.png';
+import LogoTn from '../assets/media/tn-brands/UNISOLVE.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
@@ -172,18 +174,18 @@ const Home = () => {
             // imageUrl: Unicef
             imageUrl: SSA_Tamilnadu
         },
-        {
-            id: 2,
-            key: 'SIDP',
-            // imageUrl: Telangana
-            imageUrl: SIDP_tamilnadu
-        },
-        {
-            id: 3,
-            key: 'EDII',
-            // imageUrl: Inquilab
-            imageUrl: EDII_tamilnadu
-        },
+        // {
+        //     id: 2,
+        //     key: 'SIDP',
+        //     // imageUrl: Telangana
+        //     imageUrl: SIDP_tamilnadu
+        // },
+        // {
+        //     id: 3,
+        //     key: 'EDII',
+        //     // imageUrl: Inquilab
+        //     imageUrl: EDII_tamilnadu
+        // },
         {
             id: 4,
             key: 'UpShift',
@@ -514,7 +516,7 @@ const Home = () => {
                                             schedules[0].teacher?.registration
                                         ) ? ( */}
                                         <>
-                                            <Button
+                                            {/* <Button
                                                 // label={t('home.get_Started')}
                                                 label={t('home_tl.register')}
                                                 btnClass="primary mx-3"
@@ -540,7 +542,7 @@ const Home = () => {
                                                     }}
                                                     size="small"
                                                 />
-                                            </Link>
+                                            </Link> */}
                                         </>
                                         {/* ) : (
                                             <p className="green reg_text_size">
@@ -666,6 +668,59 @@ const Home = () => {
                                 </figure>
                             </Col>
                     </Row>
+                    <Row className="my-5 py-5">
+                        <Col md={12} lg={5} className="teacher ">
+                            <figure className="text-left">
+                                <img
+                                    src={values}
+                                    alt="mentor"
+                                    className="img-fluid"
+                                />
+                            </figure>
+                        </Col>
+                        <Col
+                            md={12}
+                            lg={7}
+                            className="my-auto teacher-heading "
+                        >
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.section_heading')
+                                }}
+                            ></div>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.section_desc')
+                                }}
+                            ></div>
+                        </Col>
+                    </Row>
+
+                    <Row className="student">
+                        <Col
+                            md={12}
+                            lg={6}
+                            className="my-auto mx-auto student-heading px-5 "
+                        >
+                       
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.clutureDesc')
+                                }}
+                            ></div>
+                            
+                        </Col>
+                        <Col md={12} lg={6}>
+                            <figure className="my-0">
+                                <img
+                                    src={KeyCompetencies}
+                                    alt="KeyCompetencies"
+                                    className="img-fluid"
+                                />
+                            </figure>
+                        </Col>
+                    </Row>
+                    
                 </Container>
                 
             </section>
