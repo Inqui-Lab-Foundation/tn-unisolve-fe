@@ -24,6 +24,7 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { BreadcrumbTwo } from '../../stories/BreadcrumbTwo/BreadcrumbTwo';
 import { useTranslation } from 'react-i18next';
+import DoubleBounce from '../../components/Loaders/DoubleBounce';
 
 // const { TabPane } = Tabs;
 
@@ -42,7 +43,7 @@ const ViewTeamMember = () => {
         teamID.team_id;
 
     const headingDetails = {
-        title: t('teacher_teams.view_team_member_details'),
+        title: teamID.team_name + t('teacher_teams.view_team_member_details'),
         options: [
             {
                 title: t('teacher_teams.teamslist'),
@@ -55,14 +56,12 @@ const ViewTeamMember = () => {
     };
     const [count, setCount] = useState(0);
     // eslint-disable-next-line no-unused-vars
-    const [teamMembersListArray, setTeamMembersArray] = useState([]);
     const [teamsMembersList, setTeamsMemers] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const [pending, setPending] = React.useState(true);
     const [rows, setRows] = React.useState([]);
 
     useEffect(() => {
-        // props.getAdminTeamMembersListAction(teamId);
         handleteamMembersAPI(teamId);
     }, [teamId, count]);
 
@@ -84,23 +83,17 @@ const ViewTeamMember = () => {
             .then(function (response) {
                 if (response.status === 200) {
                     console.log('response.data.data', response.data.data);
-                    setTeamsMemers(response.data && response.data.data);
+                    const updatedWithKey = response.data && response.data.data.map((item, i) => {
+                        const upd = { ...item }; upd["key"] = i + 1;
+                        return upd;
+                    });
+                    setTeamsMemers(updatedWithKey && updatedWithKey);
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
-
-    useEffect(() => {
-        var teamsMembersArrays = [];
-        teamsMembersList.length > 0 &&
-            teamsMembersList.map((teams, index) => {
-                var key = index + 1;
-                return teamsMembersArrays.push({ ...teams, key });
-            });
-        setTeamMembersArray(teamsMembersArrays);
-    }, [teamsMembersList.length > 0, count]);
 
     const handleResetPassword = (data) => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -138,19 +131,24 @@ const ViewTeamMember = () => {
         data: teamsMembersList.length > 0 && teamsMembersList,
         columns: [
             {
-                name: 'User Name',
-                selector: 'user.username',
-                width: '15%'
+                name: 'S.No',
+                selector: 'key',
+                width: '6%'
             },
-            // {
-            //     name: 'Password',
-            //     selector: 'UUID',
-            //     width: '10%'
-            // },
+            {
+                name: 'User Id',
+                selector: 'user.username',
+                width: '16%'
+            },
+            {
+                name: 'Default Password',
+                selector: 'UUID',
+                width: '20%'
+            },
             {
                 name: t('teacher_teams.student_name'),
                 selector: 'full_name',
-                width: '15%'
+                width: '16%'
             },
             {
                 name: "Class",
@@ -160,13 +158,13 @@ const ViewTeamMember = () => {
             {
                 name: t('teacher_teams.age'),
                 selector: 'Age',
-                width: '9%'
+                width: '10%'
             },
 
             {
                 name: t('teacher_teams.gender'),
                 selector: 'Gender',
-                width: '12%'
+                width: '10%'
             },
             {
                 name: t('teacher_teams.actions'),
@@ -180,7 +178,7 @@ const ViewTeamMember = () => {
                             />
                         </a>,
                         <a onClick={() => handleDeleteTeamMember(params)}>
-                            {teamsMembersList && teamsMembersList.length >2 && <i
+                            {teamsMembersList && teamsMembersList.length > 2 && <i
                                 key={params.team_id}
                                 className="fa fa-trash"
                                 style={{ marginRight: '10px' }}
@@ -191,7 +189,7 @@ const ViewTeamMember = () => {
                         </a>
                     ];
                 },
-                width: '15%',
+                width: '12%',
                 center: true
             }
         ]
@@ -265,7 +263,7 @@ const ViewTeamMember = () => {
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire(
                         t('teacher_teams.delete_cancelled'),
-                        t('teacher_teams.delete_member_warning'),
+                        t('teacher_teams.delete_member_cancel'),
                         'error'
                     );
                 }
@@ -274,8 +272,8 @@ const ViewTeamMember = () => {
 
     return (
         <Layout>
-            <Container className="ticket-page mb-50 userlist">
-                <Row className="mt-5 pt-5">
+            <Container className="ticket-page mt-5 mb-50 userlist">
+                <Row className="pt-5">
                     <Row className="mb-2 mb-sm-5 mb-md-5 mb-lg-0">
                         <Col className="col-auto">
                             <BreadcrumbTwo {...headingDetails} />
@@ -296,13 +294,13 @@ const ViewTeamMember = () => {
                             </div>
                         </Col>
                     </Row>
-
+                    {/* 
                     <p>
                         {t('teacher_teams.team_name')}: {teamID.team_name}
-                    </p>
+                    </p> */}
                     <div className="ticket-data">
                         <Tabs defaultActiveKey="1">
-                            <div className="my-2">
+                            {teamsMembersList && !teamsMembersList.length > 0 ? <DoubleBounce /> : <div className="my-2">
                                 <DataTableExtensions
                                     print={false}
                                     export={false}
@@ -318,7 +316,7 @@ const ViewTeamMember = () => {
                                         subHeaderAlign={Alignment.Center}
                                     />
                                 </DataTableExtensions>
-                            </div>
+                            </div>}
                         </Tabs>
                     </div>
                 </Row>

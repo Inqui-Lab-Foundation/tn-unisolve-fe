@@ -10,7 +10,7 @@ import {
     CardSubtitle
 } from 'reactstrap';
 import './style.scss';
-import badgesBg from '../../../assets/media/img/badge_header.svg';
+// import badgesBg from '../../../assets/media/img/badge_header.svg';
 // import { ProgressComp } from '../../../stories/Progress/Progress';
 import { Figure } from 'react-bootstrap';
 import Layout from '../../Layout';
@@ -28,15 +28,16 @@ const BadgesComp = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getStudentBadges(currentUser.data[0].user_id,language));
-    }, [dispatch,currentUser.data[0].user_id,language]);
+    }, []);
+    // }, [dispatch,currentUser.data[0].user_id,language]);
     
    
     return (
         <Layout>
-            <div className="badges-page">
+            <div className="badges-page mt-5 mb-50">
                 <Container className=" mt-2 ">
-                    <h2 className="mt-5">Badges</h2>
-                    <Row className="m-0 badges-head mb-50">
+                    {/* <h2 className="mt-5">Badges</h2> */}
+                    {/* <Row className="m-0 badges-head mb-50">
                         <Col
                             xs={12}
                             sm={12}
@@ -69,7 +70,7 @@ const BadgesComp = () => {
                                 </Figure>
                             </div>
                         </Col>
-                    </Row>
+                    </Row> */}
 
                     <Row>
                         <Col md={12} className="w-100 d-block">

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import { Row, Col, Form, Label } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
+import { useLocation, withRouter } from 'react-router-dom';
 import Layout from '../Layout';
 import { Button } from '../../stories/Button';
 import { InputBox } from '../../stories/InputBox/InputBox';
@@ -22,18 +22,29 @@ const studentBody = {
     Grade: '',
     Gender: ''
 };
+const grades = [6, 7, 8, 9, 10, 11, 12];
+const allowedAge = [10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 const CreateMultipleMembers = ({ id }) => {
+    const tempStudentData = {
+        team_id: id,
+        role: 'STUDENT',
+        full_name: '',
+        Age: '',
+        Grade: '',
+        Gender: ''
+    };
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const [itemDataErrors, setItemDataErrors] = useState([studentBody]);
     const history = useHistory();
+    const [isClicked, setIsClicked] = useState(false);
     const [studentData, setStudentData] = useState([
         {
             team_id: id,
             role: 'STUDENT',
             full_name: '',
-            Age: 10,
+            Age: '',
             Grade: '',
             Gender: ''
         },
@@ -41,12 +52,13 @@ const CreateMultipleMembers = ({ id }) => {
             team_id: id,
             role: 'STUDENT',
             full_name: '',
-            Age: 10,
+            Age: '',
             Grade: '',
             Gender: ''
         }
     ]);
-    const grades = [6, 7, 8, 9, 10, 11, 12];
+    let pattern = /[A-Za-z0-9 ]*$/;
+
     const handleChange = (e, i) => {
         let newItem = [...studentData];
         const dataKeys = Object.keys(studentBody);
@@ -55,6 +67,20 @@ const CreateMultipleMembers = ({ id }) => {
                 if (e.target.name === item) {
                     newItem[i][e.target.name] = e.target.value;
                     let errCopy = [...itemDataErrors];
+                    if (item === 'full_name') {
+                        let check = e.target.value;
+                        if (check && check.match(pattern)) {
+                            const { index } = check.match(pattern);
+                            if (index) {
+                                const foo = { ...errCopy[i] };
+                                foo[e.target.name] =
+                                    'Only alphanumeric are allowed';
+                                errCopy[i] = { ...foo };
+                                setItemDataErrors(errCopy);
+                                return;
+                            }
+                        }
+                    }
                     const foo = { ...errCopy[i] };
                     foo[e.target.name] = '';
                     errCopy[i] = { ...foo };
@@ -67,7 +93,14 @@ const CreateMultipleMembers = ({ id }) => {
     const validateItemData = () => {
         const errors = studentData.map((item, i) => {
             let err = {};
-            if (!item.full_name) err['full_name'] = 'Full name is Required';
+            if (!item.full_name.trim())
+                err['full_name'] = 'Full name is Required';
+            if (item.full_name && item.full_name.match(pattern)) {
+                const { index } = item.full_name.match(pattern);
+                if (index) {
+                    err['full_name'] = 'Only alphanumeric are allowed';
+                }
+            }
             if (!item.Age) err['Age'] = 'Age is Required';
             if (!item.Grade) err['Grade'] = 'Class is Required';
             if (!item.Gender) err['Gender'] = 'Gender is Required';
@@ -90,21 +123,63 @@ const CreateMultipleMembers = ({ id }) => {
             return true;
         }
     };
+    const addItem = () => {
+        if (!validateItemData()) {
+            return;
+        } else {
+            setStudentData([...studentData, tempStudentData]);
+        }
+    };
+    const containsDuplicates = (array) => {
+        if (array.length !== new Set(array).size) {
+            return true;
+        }
+        return false;
+    };
+    const removeItem = (i) => {
+        let newItems = [...studentData];
+        newItems.splice(i, 1);
+        setStudentData(newItems);
+    };
     const handleSumbit = () => {
         if (!validateItemData()) return;
-        dispatch(teacherCreateMultipleStudent(studentData, history));
+        setIsClicked(true);
+        const checkDuplicateName = containsDuplicates(
+            studentData.map((item) => item.full_name)
+        );
+        if (checkDuplicateName) {
+            openNotificationWithIcon('error', 'Student already exists');
+            setIsClicked(false);
+            return;
+        }
+        dispatch(
+            teacherCreateMultipleStudent(studentData, history, setIsClicked)
+        );
     };
     return (
         <div className="create-ticket register-blockt">
             {studentData.map((item, i) => {
                 const foundErrObject = { ...itemDataErrors[i] };
                 return (
-                    <div key={i} className="mb-5">
-                        <h6 className="">Student {i + 1} Details</h6>
+                    <div key={i + item} className="mb-5">
+                        <div className="d-flex justify-content-between align-items-center">
+                            <h6 className="">Student {i + 1} Details</h6>
+                            {i > 1 && (
+                                <Button
+                                    label={'Remove'}
+                                    onClick={() => removeItem(i)}
+                                    btnClass={'secondary float-end'}
+                                    size="small"
+                                />
+                            )}
+                        </div>
                         <hr />
                         <Row className="mb-3">
                             <Col md={4}>
-                                <Label className="name-req" htmlFor="fullName">
+                                <Label
+                                    className="name-req-create-member"
+                                    htmlFor="fullName"
+                                >
                                     {t('teacher_teams.student_name')}
                                 </Label>
                                 <InputBox
@@ -126,33 +201,27 @@ const CreateMultipleMembers = ({ id }) => {
                                 ) : null}
                             </Col>
                             <Col md={2} className="mb-5 mb-xl-0">
-                                <Label className="name-req" htmlFor="age">
+                                <Label
+                                    className="name-req-create-member"
+                                    htmlFor="age"
+                                >
                                     {t('teacher_teams.age')}
                                 </Label>
-
-                                <InputBox
-                                    className={'defaultInput'}
-                                    placeholder={'Enter Age'}
-                                    type="number"
-                                    id="Age"
-                                    name="Age"
-                                    onChange={(e) => {
-                                        if (e.target.value.length === 3)
-                                            return false;
-                                        if (
-                                            Math.sign(
-                                                parseInt(e.target.value)
-                                            ) === -1
-                                        )
-                                            return false;
-                                        if (parseInt(e.target.value) < 10)
-                                            return false;
-                                        if (parseInt(e.target.value) > 18)
-                                            return false;
-                                        handleChange(e, i);
-                                    }}
-                                    value={item.Age}
-                                />
+                                <div className="dropdown CalendarDropdownComp ">
+                                    <select
+                                        name="Age"
+                                        className="form-control custom-dropdown"
+                                        value={item.Age}
+                                        onChange={(e) => handleChange(e, i)}
+                                    >
+                                        <option value={''}>Select Age</option>
+                                        {allowedAge.map((item) => (
+                                            <option key={item} value={item}>
+                                                {item}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                                 {foundErrObject?.Age ? (
                                     <small className="error-cls">
                                         {foundErrObject.Age}
@@ -160,7 +229,10 @@ const CreateMultipleMembers = ({ id }) => {
                                 ) : null}
                             </Col>
                             <Col md={3}>
-                                <Label className="name-req" htmlFor="grade">
+                                <Label
+                                    className="name-req-create-member"
+                                    htmlFor="grade"
+                                >
                                     Class
                                 </Label>
                                 <div className="dropdown CalendarDropdownComp ">
@@ -170,7 +242,7 @@ const CreateMultipleMembers = ({ id }) => {
                                         value={item.Grade}
                                         onChange={(e) => handleChange(e, i)}
                                     >
-                                        <option value="">Select Class..</option>
+                                        <option value="">Select Class</option>
                                         {grades.map((item) => (
                                             <option key={item} value={item}>
                                                 Class {item}
@@ -185,7 +257,10 @@ const CreateMultipleMembers = ({ id }) => {
                                 ) : null}
                             </Col>
                             <Col md={3} className="mb-5 mb-xl-0">
-                                <Label className="name-req" htmlFor="gender">
+                                <Label
+                                    className="name-req-create-member"
+                                    htmlFor="gender"
+                                >
                                     {t('teacher_teams.gender')}
                                 </Label>
 
@@ -230,13 +305,33 @@ const CreateMultipleMembers = ({ id }) => {
                     />
                 </Col>
                 <Col className="col-xs-12 col-sm-6">
-                    <Button
-                        label={t('teacher_teams.submit')}
-                        type="submit"
-                        onClick={handleSumbit}
-                        btnClass={'primary float-end'}
-                        size="small"
-                    />
+                    {!isClicked ? (
+                        <Button
+                            label={t('teacher_teams.submit')}
+                            type="submit"
+                            onClick={handleSumbit}
+                            btnClass={'primary float-end'}
+                            size="small"
+                        />
+                    ) : (
+                        <Button
+                            label={t('teacher_teams.submit')}
+                            type="button"
+                            btnClass={'default float-end'}
+                            size="small"
+                            disabled={true}
+                        />
+                    )}
+                    {studentData.length < 5 && (
+                        <div className="mx-5">
+                            <Button
+                                label={'Add More'}
+                                onClick={addItem}
+                                btnClass={'primary me-3 float-end'}
+                                size="small"
+                            />
+                        </div>
+                    )}
                 </Col>
             </Row>
         </div>
@@ -244,17 +339,15 @@ const CreateMultipleMembers = ({ id }) => {
 };
 
 const CreateTeamMember = (props) => {
-    const history = useHistory();
+    const loc = useLocation();
+    const params = loc.pathname.split('/');
+    const pl = params.length;
     const { t } = useTranslation();
-
-    const teamID = JSON.parse(localStorage.getItem('teamId'));
-    const id =
-        history && history.location && history.location.item
-            ? history.location.item.team_id
-            : teamID.team_id;
-
+    const id = params[pl - 2];
+    const studentCount = params[pl - 1];
     const currentUser = getCurrentUser('current_user');
     const [teamMemberData, setTeamMemberData] = useState({});
+    const [isClicked, setIsClicked] = useState(false);
 
     const headingDetails = {
         title: t('teacher_teams.create_team_members'),
@@ -308,7 +401,12 @@ const CreateTeamMember = (props) => {
             fullName: Yup.string()
                 .required('Please Enter valid Full Name')
                 .max(40)
-                .required(),
+                .required()
+                .matches(
+                    /^[A-Za-z0-9 ]*$/,
+                    'Please enter only alphanumeric characters'
+                )
+                .trim(),
             age: Yup.number()
                 .integer()
                 .min(10, 'Min age is 10')
@@ -331,6 +429,7 @@ const CreateTeamMember = (props) => {
                     'Team Members Maximum Count All Ready Exist'
                 );
             } else {
+                setIsClicked(true);
                 const body = {
                     team_id: id,
                     role: 'STUDENT',
@@ -345,7 +444,7 @@ const CreateTeamMember = (props) => {
                     method: 'post',
                     url:
                         process.env.REACT_APP_API_BASE_URL +
-                        '/students/register',
+                        '/students/addStudent',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${currentUser.data[0].token}`
@@ -354,7 +453,6 @@ const CreateTeamMember = (props) => {
                 };
                 axios(config)
                     .then(function (response) {
-                        console.log(response);
                         if (response.status === 201) {
                             openNotificationWithIcon(
                                 'success',
@@ -366,26 +464,36 @@ const CreateTeamMember = (props) => {
                                 'error',
                                 'Opps! Something Wrong'
                             );
+                            setIsClicked(false);
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        if (error.response.status === 406) {
+                            openNotificationWithIcon(
+                                'error',
+                                error?.response?.data?.message
+                            );
+                        } else {
+                            openNotificationWithIcon(
+                                'error',
+                                'Opps! Something Wrong'
+                            );
+                        }
+                        setIsClicked(false);
                     });
             }
         }
     });
+    console.log(isClicked);
     return (
         <Layout>
             <div className="EditPersonalDetails new-member-page">
                 <Row>
                     <Col className="col-xl-10 offset-xl-1 offset-md-0">
                         <BreadcrumbTwo {...headingDetails} />
-                        {props.location?.item &&
-                        props.location.item.student_count < 2 ? (
-                            <CreateMultipleMembers
-                                teamData={props?.location?.item}
-                                id={props?.location?.item?.team_id}
-                            />
+                        {studentCount &&
+                        (studentCount === 'new' || studentCount < 2) ? (
+                            <CreateMultipleMembers id={id} />
                         ) : (
                             <div>
                                 <Form
@@ -396,7 +504,7 @@ const CreateTeamMember = (props) => {
                                         <Row>
                                             <Col md={4}>
                                                 <Label
-                                                    className="name-req"
+                                                    className="name-req-create-member"
                                                     htmlFor="fullName"
                                                 >
                                                     {t(
@@ -430,26 +538,41 @@ const CreateTeamMember = (props) => {
                                                 className="mb-5 mb-xl-0"
                                             >
                                                 <Label
-                                                    className="name-req"
+                                                    className="name-req-create-member"
                                                     htmlFor="age"
                                                 >
                                                     {t('teacher_teams.age')}
                                                 </Label>
-
-                                                <InputBox
-                                                    className={'defaultInput'}
-                                                    placeholder={t(
-                                                        'teacher_teams.student_age'
-                                                    )}
-                                                    id="age"
-                                                    name="age"
-                                                    onChange={
-                                                        formik.handleChange
-                                                    }
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.age}
-                                                />
-
+                                                <div className="dropdown CalendarDropdownComp ">
+                                                    <select
+                                                        className="form-control custom-dropdown"
+                                                        id="age"
+                                                        name="age"
+                                                        onChange={
+                                                            formik.handleChange
+                                                        }
+                                                        onBlur={
+                                                            formik.handleBlur
+                                                        }
+                                                        value={
+                                                            formik.values.age
+                                                        }
+                                                    >
+                                                        <option value={''}>
+                                                            Select Age
+                                                        </option>
+                                                        {allowedAge.map(
+                                                            (item) => (
+                                                                <option
+                                                                    key={item}
+                                                                    value={item}
+                                                                >
+                                                                    {item}
+                                                                </option>
+                                                            )
+                                                        )}
+                                                    </select>
+                                                </div>
                                                 {formik.touched.age &&
                                                 formik.errors.age ? (
                                                     <small className="error-cls">
@@ -459,25 +582,12 @@ const CreateTeamMember = (props) => {
                                             </Col>
                                             <Col md={3}>
                                                 <Label
-                                                    className="name-req"
+                                                    className="name-req-create-member"
                                                     htmlFor="grade"
                                                 >
                                                     Class
                                                 </Label>
                                                 <div className="dropdown CalendarDropdownComp ">
-                                                    {/* <InputBox
-                                                    className={'defaultInput'}
-                                                    placeholder={t(
-                                                        'teacher_teams.student_grade'
-                                                    )}
-                                                    id="grade"
-                                                    name="grade"
-                                                    onChange={
-                                                        formik.handleChange
-                                                    }
-                                                    onBlur={formik.handleBlur}
-                                                    value={formik.values.grade}
-                                                /> */}
                                                     <select
                                                         name="grade"
                                                         className="form-control custom-dropdown"
@@ -526,7 +636,7 @@ const CreateTeamMember = (props) => {
                                                 className="mb-5 mb-xl-0"
                                             >
                                                 <Label
-                                                    className="name-req"
+                                                    className="name-req-create-member"
                                                     htmlFor="gender"
                                                 >
                                                     {t('teacher_teams.gender')}
@@ -587,27 +697,39 @@ const CreateTeamMember = (props) => {
                                             />
                                         </Col>
                                         <Col className="submit-btn col-xs-12 col-sm-6">
-                                            <Button
-                                                label={t(
-                                                    'teacher_teams.submit'
-                                                )}
-                                                type="submit"
-                                                btnClass={
-                                                    !(
-                                                        formik.dirty &&
-                                                        formik.isValid
-                                                    )
-                                                        ? 'default'
-                                                        : 'primary'
-                                                }
-                                                size="small"
-                                                disabled={
-                                                    !(
-                                                        formik.dirty &&
-                                                        formik.isValid
-                                                    )
-                                                }
-                                            />
+                                            {!isClicked ? (
+                                                <Button
+                                                    label={t(
+                                                        'teacher_teams.submit'
+                                                    )}
+                                                    type="submit"
+                                                    btnClass={
+                                                        !(
+                                                            formik.dirty &&
+                                                            formik.isValid
+                                                        )
+                                                            ? 'default'
+                                                            : 'primary'
+                                                    }
+                                                    size="small"
+                                                    disabled={
+                                                        !(
+                                                            formik.dirty &&
+                                                            formik.isValid
+                                                        )
+                                                    }
+                                                />
+                                            ) : (
+                                                <Button
+                                                    label={t(
+                                                        'teacher_teams.submit'
+                                                    )}
+                                                    type="button"
+                                                    btnClass="default"
+                                                    size="small"
+                                                    disabled={true}
+                                                />
+                                            )}
                                         </Col>
                                     </Row>
                                 </Form>

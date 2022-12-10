@@ -15,6 +15,7 @@ hooks:
           runas: ubuntu
 permissions:
     - object: /var/www/html/mv-unisolve-fe
+
       owner: ubuntu
       group: ubuntu
       type:

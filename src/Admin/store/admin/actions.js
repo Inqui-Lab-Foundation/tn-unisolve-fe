@@ -155,3 +155,31 @@ export const deleteTempMentorById = async (id) => {
         );
     }
 };
+
+export const teacherResetPassword = (body) => async () => {
+    try {
+        const axiosConfig = getNormalHeaders(KEY.User_API_Key);
+        const result = await axios
+            .put(`${URL.putResetPassword}`, body, axiosConfig)
+            .then((user) => user)
+            .catch((err) => {
+                return err.response;
+            });
+        if (result && result.status === 202) {
+            openNotificationWithIcon(
+                'success',
+                'Password Successfully Updated'
+            );
+        } else {
+            openNotificationWithIcon(
+                'error',
+                'Something went wrong'
+            );
+        }
+    } catch (error) {
+        openNotificationWithIcon(
+            'error',
+            'Something went wrong'
+        );
+    }
+};

@@ -1,17 +1,28 @@
+/* eslint-disable indent */
+/* eslint-disable no-unused-vars */
 import { Descriptions, Input } from 'antd';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import { Button } from '../../stories/Button';
 import Layout from '../Layout';
-import { deleteTempMentorById } from '../store/admin/actions';
+import { deleteTempMentorById, teacherResetPassword } from '../store/admin/actions';
 import './dashboard.scss';
+import { useHistory } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import Swal from 'sweetalert2/dist/sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+import logout from '../../assets/media/logout.svg';
+import { useDispatch } from 'react-redux';
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const pdfRef = React.useRef(null);
     const inputField = {
         type: 'text',
         className: 'defaultInput'
     };
+    const history = useHistory();
     const [diesCode, setDiesCode] = useState('');
     const [orgData, setOrgData] = useState({});
     const [error, setError] = useState('');
@@ -22,6 +33,7 @@ const Dashboard = () => {
     };
 
     const handleSearch = (e) => {
+
         const body = JSON.stringify({
             organization_code: diesCode
         });
@@ -48,7 +60,61 @@ const Dashboard = () => {
             });
         e.preventDefault();
     };
-    
+    const handleEdit = () => {
+        history.push({
+            pathname: '/admin/edit-user-profile',
+            data: {
+                full_name: orgData.mentor?.full_name,
+                mobile: orgData.mentor?.mobile,
+                username: orgData.mentor?.user?.username,
+                mentor_id: orgData.mentor?.mentor_id,
+                where: 'Dashbord'
+            }
+        });
+    };
+
+    const handleresetpassword = (data) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "You are attempting to reset the password",
+                text: "Are you sure?",
+                imageUrl: `${logout}`,
+                showCloseButton: true,
+                confirmButtonText: "Reset Password",
+                showCancelButton: true,
+                cancelButtonText: "cancel",
+                reverseButtons: false
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(teacherResetPassword({ mobile: data.toString() , otp:'false' }));
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Cancelled",
+                        "Reset password is cancelled",
+                        'error'
+                    );
+                }
+            }).catch(err => console.log(err.response));
+    };
+    const downloadPDF = () => {
+        const content = pdfRef.current;
+        const doc = new jsPDF('p', 'px', [1280, 1020]);
+        doc.html(content, {
+            callback: function (doc) {
+                doc.save('Detail.pdf');
+            }
+        });
+        console.warn(content);
+    };
     return (
         <Layout>
             <div className="dashboard-wrapper pb-5 my-5 px-5">
@@ -92,10 +158,11 @@ const Dashboard = () => {
                                 </Col>
                             </Row>
 
-                            {diesCode && orgData && 
+                            {diesCode && orgData &&
                                 orgData?.organization_name &&
                                 orgData?.mentor !== null ? (
-                                    <>
+                                <>
+                                    {/* <div>
                                         <Descriptions
                                             bordered
                                             className='mt-3 text-left p-4'
@@ -108,19 +175,48 @@ const Dashboard = () => {
                                             <Descriptions.Item label="Faculty Mobile">{orgData.mentor?.mobile}</Descriptions.Item>
                                             <Descriptions.Item label="Faculty email">{orgData.mentor?.user?.username}</Descriptions.Item>
                                         </Descriptions>
-                                        <button onClick={()=>{
+                                    </div> */}
+                                    <div className='mb-5 p-3' ref={pdfRef}>
+                                        <div className="container-fluid card shadow border">
+                                            <div className="row">
+                                                <div className="col">
+                                                    <h2 className='text-center m-3 text-primary'>Registration Detail</h2>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col">
+                                                    <ul className='p-0'>
+                                                        <li className='d-flex justify-content-between'>School:<p>{orgData.organization_name}</p></li>
+                                                        <li className='d-flex justify-content-between'>City: <p>{orgData.city}</p></li>
+                                                        <li className='d-flex justify-content-between'>District: <p>{orgData.district}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor Name: <p>{orgData.mentor?.full_name}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor Mobile: <p>{orgData.mentor?.mobile}</p></li>
+                                                        <li className='d-flex justify-content-between'>Mentor email: <p>{orgData.mentor?.user?.username}</p></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='d-flex justify-content-between'>
+                                        <button onClick={() => handleEdit()} className='btn btn-warning btn-lg'>Edit</button>
+                                        <button onClick={() => handleresetpassword(orgData.mentor?.mobile)} className='btn btn-info rounded-pill px-4 btn-lg text-white'>Reset</button> 
+                                        <button onClick={() => { downloadPDF(); }} className='btn btn-primary rounded-pill px-4 btn-lg'>Download</button>
+                                        <button onClick={() => {
                                             deleteTempMentorById(orgData.mentor?.user_id);
                                             setOrgData({});
                                             setDiesCode("");
                                         }} className='btn btn-danger btn-lg' >Delete</button>
-                                    </>
-                                ) : !error && diesCode && orgData !=={} && orgData?.organization_name &&(
-                                    // <Card className="mt-3 p-4">
-                                    <div className='text-success fs-highlight d-flex justify-content-center align-items-center'>
-                                        <span>Still No Teacher Registered</span>
                                     </div>
-                                    // </Card>
-                                )}
+
+                                </>
+                            ) : !error && diesCode && orgData !== {} && orgData?.organization_name && (
+                                // <Card className="mt-3 p-4">
+                                <div className='text-success fs-highlight d-flex justify-content-center align-items-center'>
+                                    <span>Still No Teacher Registered</span>
+                                </div>
+                                // </Card>
+                            )}
                             {error && diesCode && (
                                 // <Card className="mt-3 p-4">
                                 <div className='text-danger mt-3 p-4 fs-highlight d-flex justify-content-center align-items-center'>

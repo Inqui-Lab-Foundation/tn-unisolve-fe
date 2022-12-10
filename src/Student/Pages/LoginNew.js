@@ -310,7 +310,7 @@ const LoginNew = (props) => {
                                     {/* {props.error} */}
 
                                     <div className="form-row row mb-5">
-
+                                        {/* <p>Student login will be launched shortly. Please wait for notice from the program coordinators.</p> */}
                                         {/* Login button */}
                                         <Col
 

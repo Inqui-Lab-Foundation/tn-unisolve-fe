@@ -40,7 +40,7 @@ const CreateTeam = (props) => {
             //     .matches(/^[A-Za-z ]*$/, 'Please enter Team name')
             //     .max(40)
             //     .required('Please enter Team name')
-            teamName: Yup.string().required('Please enter Team name')
+            teamName: Yup.string().required('Please enter Team name').matches(/^[A-Za-z0-9 ]*$/, 'Please enter only alphanumeric characters').trim()
         }),
 
         onSubmit: (values) => {

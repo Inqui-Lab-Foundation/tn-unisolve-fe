@@ -24,5 +24,5 @@ export const languageOptions = [
 ];
 
 export const getLanguage = (lang)=>{
-    return `locale=${lang.code}`;
+    return `locale=${lang?.code}`;
 };

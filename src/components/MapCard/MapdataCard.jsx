@@ -3,6 +3,7 @@ import { Card, CardBody } from 'reactstrap';
 import institutions from '../../assets/media/img/university.png';
 import idea from '../../assets/media/img/idea.png';
 import people from '../../assets/media/img/people.png';
+import team from '../../assets/media/img/team.png';
 import { useTranslation } from 'react-i18next';
 
 
@@ -22,13 +23,6 @@ const MapdataCard = ({ values, all,districtName }) => {
                             </h2>
                         </CardBody>
                     </Card>
-                    <div className="mb-5 d-flex align-items-center ">
-                        <img src={people} alt="teams" className="mx-4" />
-                        <div>
-                            <h4>{values?.teams ? values?.teams : '0'}</h4>
-                            <small className="blue">{t('home_tl.student_teams')}</small>
-                        </div>
-                    </div>
                     <div className="mb-5 d-flex align-items-center">
                         <img
                             src={institutions}
@@ -42,6 +36,28 @@ const MapdataCard = ({ values, all,districtName }) => {
                                     : `${values?.reg_schools} of ${values?.overall_schools}`}
                             </h4>
                             <small className="blue">{t('home_tl.institutions')}</small>
+                        </div>
+                    </div>
+                    <div className="mb-5 d-flex align-items-center ">
+                        <img src={people} alt="teams" className="mx-4" />
+                        <div>
+                            <h4>
+                                {!values?.teams
+                                    ? '0'
+                                    : `${values?.teams} from ${values?.schools_with_teams} Schools`}
+                            </h4>
+                            <small className="blue">{t('home_tl.student_teams')}</small>
+                        </div>
+                    </div>
+                    <div className="mb-5 d-flex align-items-center ">
+                        <img src={team} alt="teams" className="mx-4" />
+                        <div>
+                            <h4>
+                                {!values?.students
+                                    ? '0'
+                                    : `${values?.students} from ${values?.schools_with_teams} Schools`}
+                            </h4>
+                            <small className="blue">{t('home_tl.students')}</small>
                         </div>
                     </div>
                     <div className="mb-5 d-flex align-items-center">
@@ -59,13 +75,6 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <h2 className="">{'TAMILNADU'}</h2>
                         </CardBody>
                     </Card>
-                    <div className="mb-5 d-flex align-items-center ">
-                        <img src={people} alt="teams" className="mx-4" />
-                        <div>
-                            <h4>{all?.teams ? all?.teams : '0'}</h4>
-                            <small className="blue">{t('home_tl.student_teams')}</small>
-                        </div>
-                    </div>
                     <div className="mb-5 d-flex align-items-center">
                         <img
                             src={institutions}
@@ -79,6 +88,28 @@ const MapdataCard = ({ values, all,districtName }) => {
                                     : `${all?.reg_schools} of ${all?.overall_schools}`}
                             </h4>
                             <small className="blue">{t('home_tl.institutions')}</small>
+                        </div>
+                    </div>
+                    <div className="mb-5 d-flex align-items-center ">
+                        <img src={people} alt="teams" className="mx-4" />
+                        <div>
+                            <h4>
+                                {!all?.teams
+                                    ? '0'
+                                    : `${all?.teams} from ${all?.schools_with_teams} Schools`}
+                            </h4>
+                            <small className="blue">{t('home_tl.student_teams')}</small>
+                        </div>
+                    </div>
+                    <div className="mb-5 d-flex align-items-center ">
+                        <img src={team} alt="teams" className="mx-4" />
+                        <div>
+                            <h4>
+                                {!all?.students
+                                    ? '0'
+                                    : `${all?.students} from ${all?.schools_with_teams} Schools`}
+                            </h4>
+                            <small className="blue">{t('home_tl.students')}</small>
                         </div>
                     </div>
                     <div className="mb-5 d-flex align-items-center">

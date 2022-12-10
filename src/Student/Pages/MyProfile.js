@@ -167,7 +167,7 @@ const MyProfile = () => {
                                                  <CardText>
                                                  <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Name</b>
@@ -176,7 +176,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -189,7 +189,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Class</b>
@@ -198,7 +198,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -211,7 +211,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Age</b>
@@ -220,7 +220,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -233,7 +233,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Gender</b>
@@ -242,12 +242,12 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
-                                                        {teamMember?.gender
-                                                            ? teamMember?.gender
+                                                        {teamMember?.Gender
+                                                            ? teamMember?.Gender
                                                             : '-'}
                                                     </b>
                                                                 </Col>
@@ -269,7 +269,7 @@ const MyProfile = () => {
                                                  <CardText>
                                                  <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>UDISE</b>
@@ -278,7 +278,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -290,7 +290,7 @@ const MyProfile = () => {
                                                             </Row>
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -302,7 +302,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -315,7 +315,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Team Name</b>
@@ -324,7 +324,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -337,7 +337,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>Teacher Name</b>
@@ -346,7 +346,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -358,7 +358,7 @@ const MyProfile = () => {
                                                             </Row>
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>City</b>
@@ -367,7 +367,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -380,7 +380,7 @@ const MyProfile = () => {
 
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>District</b>
@@ -389,7 +389,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -401,7 +401,7 @@ const MyProfile = () => {
                                                             </Row>
                                                             <Row className="pt-3 pb-3">
                                                                 <Col
-                                                                    md={5}
+                                                                    md={3}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>State</b>
@@ -410,7 +410,7 @@ const MyProfile = () => {
                                                                     :
                                                                 </Col>
                                                                 <Col
-                                                                    md={6}
+                                                                    md={8}
                                                                     className="my-auto profile-detail"
                                                                 >
                                                                     <b>
@@ -476,7 +476,7 @@ const MyProfile = () => {
                                             {personal_details.map((item) => {
                                                 return (
                                                     <Col
-                                                        md={6}
+                                                        md={8}
                                                         className="mb-5"
                                                         key={item.id}
                                                     >
@@ -534,7 +534,7 @@ const MyProfile = () => {
                                                         />
                                                         <span>Level 15</span>
                                                     </Col>
-                                                    <Col md={5}>
+                                                    <Col md={3}>
                                                         <h6>
                                                             Points:{' '}
                                                             <span>300</span>
