@@ -137,7 +137,7 @@ const TicketsPage = (props) => {
         data: reqSchoolsResponse,
         columns: [
             {
-                name: 'UDISE Code',
+                name: 'Unique Code',
                 selector: (row) => row.organization_code,
                 sortable: true,
                 width: '25%'
@@ -201,7 +201,7 @@ const TicketsPage = (props) => {
                 width: '6%'
             },
             {
-                name: 'UDISE Code',
+                name: 'Unique Code',
                 selector: 'organization_code',
                 sortable: true,
                 width: '13%'

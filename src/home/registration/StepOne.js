@@ -59,7 +59,7 @@ function StepOne({
                             } else {
                                 formik.setErrors({
                                     organization_code:
-                                        'Oops..! UDISE Code seems incorrect'
+                                        'Oops..! Unique Code seems incorrect'
                                 });
                             }
                         } else {
@@ -71,7 +71,7 @@ function StepOne({
                     } else {
                         formik.setErrors({
                             organization_code:
-                                'Oops..! UDISE Code seems incorrect 2'
+                                'Oops..! Unique Code seems incorrect 2'
                         });
                     }
                 })
@@ -120,14 +120,14 @@ function StepOne({
                         </small>
                     ) : data ? (
                         <p>
-                            Entered UDISE Code is Invalid.
+                            Entered Unique Code is Invalid.
                             {/* <a onClick={(e) => handleOnClick(e)}>
                                 <u>Click here</u>
                             </a>
                             {''} to request to Add School Information. */}
                         </p>
                     ) : null}
-                    {/* <span>Please enter your school UDISE code to continue</span> */}
+                    {/* <span>Please enter your school Unique Code to continue</span> */}
                 </FormGroup>
                 <div className="mt-5">
                     <Button
