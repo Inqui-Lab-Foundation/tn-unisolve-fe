@@ -14,8 +14,9 @@ import {
     updateStudentBadges,
     updateStudentCertificate
 } from '../../../redux/studentRegistration/actions';
-import CommonPage from '../../../components/CommonPage';
+//import CommonPage from '../../../components/CommonPage';
 import moment from 'moment';
+import Congo from '../../../assets/media/survey-success.jpg';
 
 const Certificate = ({
     type,
@@ -136,6 +137,7 @@ const Certificate = ({
 const MyCertificate = () => {
     const showDummypage = false;
     const { t } = useTranslation();
+    // const teamMember = useSelector((state) => state?.studentRegistration.teamMember);
     const language = useSelector(
         (state) => state?.studentRegistration?.studentLanguage
     );
@@ -187,7 +189,31 @@ const MyCertificate = () => {
                             </Col>
                         </Row>
                     ) : (
-                        <CommonPage text={t('dummytext.student_my_cer')} />
+                        //<CommonPage text={t('dummytext.certificate_msg')+t('dummytext.student_my_cer')} />
+                        <Card className="course-sec-basic p-5">
+                            <div className="text-left">
+                                <div>
+                                    <img
+                                        className={`${'w-25'} img-fluid `}
+                                        src={Congo}
+                                    ></img>
+                                </div>
+                                <h6
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            t('dummytext.name') + currentUser?.data[0].full_name
+                                            // t('dummytext.school') + teamMember.team?.mentor?.organization?.organization_name
+                                    }}
+                                ></h6>
+                                <p
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            t('dummytext.certificate_msg') +
+                                            t('dummytext.student_my_cer')
+                                    }}
+                                ></p>
+                            </div>
+                        </Card>
                     )}
                 </Fragment>
             </Container>

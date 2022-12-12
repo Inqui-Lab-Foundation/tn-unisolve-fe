@@ -15,13 +15,13 @@ import {
 import { Button } from '../../../stories/Button';
 import { TextArea } from '../../../stories/TextArea/TextArea';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-
+import { useHistory } from 'react-router-dom';
 import Layout from '../../Layout';
 import { useSelector } from 'react-redux';
 import {
     getStudentChallengeQuestions,
-    getStudentChallengeSubmittedResponse,
-    updateStudentBadges
+    getStudentChallengeSubmittedResponse
+    // updateStudentBadges
 } from '../../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from '../../../helpers/Utils';
@@ -71,6 +71,7 @@ const LinkComponent = ({ original, item,url, removeFileHandler, i }) => {
 };
 const IdeasPageNew = () => {
     const { t } = useTranslation();
+     const history = useHistory();
     const challengeQuestions = useSelector(
         (state) => state?.studentRegistration.challengeQuestions
     );
@@ -108,7 +109,7 @@ const IdeasPageNew = () => {
                 return {
                     i: item[0],
                     count:
-                        (item[1]?.word_limit ? item[1]?.word_limit : 5000) -
+                        (item[1]?.word_limit ? item[1]?.word_limit : 100) -
                         item[1]?.selected_option[0]?.length
                 };
             });
@@ -138,6 +139,9 @@ const IdeasPageNew = () => {
         return data && data.length > 0 && data[0].selected_option
             ? data[0].selected_option
             : '';
+    };
+    const redirect = () => {
+        window.location.reload(false);
     };
     useEffect(() => {
         dispatch(getStudentChallengeQuestions(language));
@@ -174,7 +178,7 @@ const IdeasPageNew = () => {
         challengesSubmittedResponse
     ]);
     const handleWordCount = (e, i, max) => {
-        let obj = { i, count: (max ? max : 5000) - e.target.value.length };
+        let obj = { i, count: (max ? max : 100) - e.target.value.length };
         let newItems = [...wordCount];
         const findExistanceIndex = newItems.findIndex((item) => item?.i == i);
         if (findExistanceIndex === -1) {
@@ -183,7 +187,7 @@ const IdeasPageNew = () => {
             let temp = newItems[findExistanceIndex];
             newItems[findExistanceIndex] = {
                 ...temp,
-                count: (max ? max : 5000) - e.target.value.length
+                count: (max ? max : 100) - e.target.value.length
             };
         }
         setWordCount(newItems);
@@ -197,7 +201,7 @@ const IdeasPageNew = () => {
             ? data[0].count
             : max
             ? max
-            : 5000;
+            : 100;
     };
     const handleChange = (e) => {
         let newItems = [...answerResponses];
@@ -313,7 +317,7 @@ const IdeasPageNew = () => {
     const fileHandler = (e, id) => {
         let choosenFiles = Array.prototype.slice.call(e.target.files);
         e.target.files = null;
-        let pattern = /^[a-zA-Z0-9_\s]{0,}$/;
+        let pattern = /^[a-zA-Z0-9_-\s]{0,}$/;
         const checkPat = choosenFiles.filter((item) => {
             let pat = item.name.split('.');
             pat.pop();
@@ -358,17 +362,35 @@ const IdeasPageNew = () => {
                             type ? t("student.idea_draft") : t("student.idea_submitted")
                         } `
                     );
-                    const badge = 'the_change_maker';
-                    if (!type) {
-                        dispatch(
-                            updateStudentBadges(
-                                { badge_slugs: [badge] },
-                                currentUser.data[0].user_id,
-                                language,
-                                t
-                            )
-                        );
-                    }
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success'
+                        },
+                        buttonsStyling: false
+                    });
+
+                    swalWithBootstrapButtons.fire({
+                        title: t('badges.congratulations'),
+                        text: t('badges.earn'),
+                        // text:`You have Earned a New Badge ${data.badge_slugs[0].replace("_"," ").toUpperCase()}`,
+                        imageUrl: `${logout}`,
+                        showCloseButton: true,
+                        confirmButtonText: t('badges.ok'),
+                        showCancelButton: false,
+                        reverseButtons: false
+                    });
+                    
+                    // const badge = 'the_change_maker';
+                    // if (!type) {
+                    //     dispatch(
+                    //         updateStudentBadges(
+                    //             { badge_slugs: [badge] },
+                    //             currentUser.data[0].user_id,
+                    //             language,
+                    //             t
+                    //         )
+                    //     );
+                    // }
                     setTimeout(() => {
                         dispatch(
                             getStudentChallengeSubmittedResponse(
@@ -580,6 +602,7 @@ const IdeasPageNew = () => {
                                                                 }
                                                                 placeholder="Enter others description"
                                                                 value={others}
+                                                                maxLength={100}
                                                                 onChange={(e) =>
                                                                     setOthers(
                                                                         e.target
@@ -594,7 +617,7 @@ const IdeasPageNew = () => {
                                                             'student_course.chars'
                                                         )}{' '}
                                                         :
-                                                        {5000 -
+                                                        {100 -
                                                             (others
                                                                 ? others.length
                                                                 : 0)}
@@ -696,8 +719,7 @@ const IdeasPageNew = () => {
                                                                                 <div className="float-end">
                                                                                     {t(
                                                                                         'student_course.chars'
-                                                                                    )}
-
+                                                                                    )}{' '}
                                                                                     :{' '}
                                                                                     {filterCount(
                                                                                         eachQuestion.challenge_question_id,
@@ -1224,14 +1246,7 @@ const IdeasPageNew = () => {
                                                                 <Button
                                                                     type="button"
                                                                     btnClass="secondary me-3"
-                                                                    onClick={() => {
-                                                                        setIsDisabled(
-                                                                            true
-                                                                        );
-                                                                        setSdg(
-                                                                            initialSDG
-                                                                        );
-                                                                    }}
+                                                                    onClick={redirect}
                                                                     size="small"
                                                                     label={t(
                                                                         'teacher_teams.discard'

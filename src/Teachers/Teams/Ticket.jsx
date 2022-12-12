@@ -7,7 +7,7 @@ import Layout from '../Layout';
 import { Link } from 'react-router-dom';
 import { BsPlusLg } from 'react-icons/bs';
 import { Button } from '../../stories/Button';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // import dummyCSV from '../../media/basic-csv.csv';
 import {
@@ -30,6 +30,7 @@ import DoubleBounce from '../../components/Loaders/DoubleBounce';
 const TicketsPage = (props) => {
     const history = useHistory();
     const { t } = useTranslation();
+    const dashboardStates  = useSelector((state) => state.teacherDashBoard.dashboardStates);
 
     localStorage.setItem('teamId', JSON.stringify(''));
     const [count, setCount] = useState(0);

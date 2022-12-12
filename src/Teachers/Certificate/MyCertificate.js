@@ -18,7 +18,8 @@ const MyCertificate = () => {
     const currentUser = getCurrentUser('current_user');
     const language = useSelector((state) => state?.mentors.mentorLanguage);
     const [postSurveyStatus, setPostSurveyStatus] = useState('');
-
+    let tempVar = postSurveyStatus;
+    tempVar = 0;
     const handleCertificateDownload = () => {
         const content = pdfRef.current;
         const doc = new jsPDF('p', 'px', [298, 209]);
@@ -56,72 +57,71 @@ const MyCertificate = () => {
             <Container className="presuervey mb-50 mt-5 ">
                 <Fragment>
                     <Card className="course-sec-basic p-5">
-                        {postSurveyStatus &&
-                        postSurveyStatus === 'COMPLETED' ? (
-                                <CardBody>
-                                    <CardTitle
-                                        className=" text-left pt-4 pb-4"
-                                        tag="h2"
-                                    >
-                                        {t('teacher_certificate.certificate')}
-                                    </CardTitle>
-                                    <p>
-                                        {t('teacher_certificate.certificate_desc')}
-                                    </p>
+                        {tempVar ? (
+                            <CardBody>
+                                <CardTitle
+                                    className=" text-left pt-4 pb-4"
+                                    tag="h2"
+                                >
+                                    {t('teacher_certificate.certificate')}
+                                </CardTitle>
+                                <p>
+                                    {t('teacher_certificate.certificate_desc')}
+                                </p>
 
-                                    <div
-                                        ref={pdfRef}
-                                        style={{ position: 'relative' }}
+                                <div
+                                    ref={pdfRef}
+                                    style={{ position: 'relative' }}
+                                >
+                                    <span
+                                        className="text-capitalize"
+                                        style={{
+                                            position: 'absolute',
+                                            top: '11.5rem',
+                                            left: '8rem',
+                                            fontSize: 'inherit'
+                                        }}
                                     >
-                                        <span
-                                            className="text-capitalize"
-                                            style={{
-                                                position: 'absolute',
-                                                top: '11.5rem',
-                                                left: '8rem',
-                                                fontSize: 'inherit'
-                                            }}
-                                        >
-                                            {currentUser?.data[0]?.full_name}
-                                        </span>
-                                        <img
-                                            src={TeacherCertificate}
-                                            alt="certificate"
-                                            style={{
-                                                width: '209px',
-                                                height: '297px',
-                                                border:'1px solid #ccc'
-                                            }}
-                                        />
-                                    </div>
-                                    <div className="text-right">
-                                        <Button
-                                            button="submit"
-                                            label={t(
-                                                'teacher_certificate.download'
-                                            )}
-                                            btnClass="primary mt-4"
-                                            size="small"
-                                            style={{ marginRight: '2rem' }}
-                                            onClick={handleCertificateDownload}
-                                        />
-                                    </div>
-                                </CardBody>
-                            ) : (
-                                <div className='text-center'>
-                                    <div>
-                                        <img
-                                            className="img-fluid w-25"
-                                            src={Congo}
-                                        ></img>
-                                    </div>
-                                    <div>
-                                        <h2>
-                                            {t('teacher_certificate.complete_postsurvey')}
-                                        </h2>
-                                    </div>
+                                        {currentUser?.data[0]?.full_name}
+                                    </span>
+                                    <img
+                                        src={TeacherCertificate}
+                                        alt="certificate"
+                                        style={{
+                                            width: '209px',
+                                            height: '297px',
+                                            border: '1px solid #ccc'
+                                        }}
+                                    />
                                 </div>
-                            )}
+                                <div className="text-right">
+                                    <Button
+                                        button="submit"
+                                        label={t(
+                                            'teacher_certificate.download'
+                                        )}
+                                        btnClass="primary mt-4"
+                                        size="small"
+                                        style={{ marginRight: '2rem' }}
+                                        onClick={handleCertificateDownload}
+                                    />
+                                </div>
+                            </CardBody>
+                        ) : (
+                            <div className='text-center'>
+                                <div>
+                                    <img
+                                        className="img-fluid w-25"
+                                        src={Congo}
+                                    ></img>
+                                </div>
+                                <div>
+                                    <h2>
+                                        {t('teacher_certificate.complete_postsurvey')}
+                                    </h2>
+                                </div>
+                            </div>
+                        )}
                     </Card>
                 </Fragment>
             </Container>
