@@ -36,6 +36,12 @@ const PostSurvey = () => {
     const ideaSubmissionStatus = useSelector(
         (state) => state?.studentRegistration.ideaSubmissionStatus
     );
+    const topicTotalCount = useSelector(
+        (state) => state?.studentRegistration.dashboardStatus.all_topics_count
+    );
+    const topicCompletedCount = useSelector(
+        (state) => state?.studentRegistration.dashboardStatus.topics_completed_count
+    );
     // const  postSurveyStatusGl  = useSelector((state) => state?.studentRegistration?.postSurveyStatusGl);
     const history = useHistory();
     const currentUser = getCurrentUser('current_user');
@@ -45,11 +51,11 @@ const PostSurvey = () => {
     const [count, setCount] = useState(0);
     const [postSurveyStatus, setPostSurveyStatus] = useState('COMPLETED');
     const language = useSelector(state => state?.studentRegistration?.studentLanguage);
-    const showPage = ideaSubmissionStatus && ideaSubmissionStatus !== "DRAFT";
+    const showPage = ideaSubmissionStatus && ideaSubmissionStatus !== "DRAFT" && (topicTotalCount === topicCompletedCount);
     const handleClick =()=>{
         history.push("/student/my-certificate");
     };
-
+    console.log(showPage);
     const formik = useFormik({
         initialValues: {},
         onSubmit: async (values) => {
