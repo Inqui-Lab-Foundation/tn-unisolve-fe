@@ -19,6 +19,7 @@ const IdeaSubmissionCard = ({handleClose,show,response}) => {
             const data = Object.entries(submittedResponse);
             const answerFormat = data.map((item) => {
                 return {
+                    question_no: item[1].question_no,
                     question: item[1].question,
                     answer: item[1]?.selected_option,
                     type:item[1]?.question_type
@@ -27,6 +28,7 @@ const IdeaSubmissionCard = ({handleClose,show,response}) => {
             setAnswers(answerFormat);
         }
     }, [submittedResponse]);
+    const answersSort = [...answers].sort((a, b) => a.question_no - b.question_no);
     return (
         <Modal
             show={show}
@@ -46,7 +48,7 @@ const IdeaSubmissionCard = ({handleClose,show,response}) => {
             </Modal.Header>
 
             <Modal.Body>
-                {answers.length>0 && answers.map((item,i)=>    
+                {answersSort.length>0 && answersSort.map((item,i)=>    
                     <Card key={i} className="p-2 mb-3">
                         <CardTitle className='fw-bold'>{item.question}</CardTitle>
                         <CardBody>{item.type === "DRAW" ? <LinkComponent item={item.answer} /> : item.answer}</CardBody>

@@ -43,8 +43,8 @@ const PostSurvey = () => {
     const dashboardStates  = useSelector((state) => state.teacherDashBoard.dashboardStates);
 
     useEffect(() => {
-        if(!dashboardStates)
-            dispatch(getDashboardStates(currentUser.data[0].user_id));
+        //if(!dashboardStates)
+        dispatch(getDashboardStates(currentUser.data[0].user_id));
     }, [dispatch, currentUser.data[0].user_id]);
     const formik = useFormik({
         initialValues: {},
@@ -124,6 +124,8 @@ const PostSurvey = () => {
                 return err.response;
             });
     }, [language, count]);
+    console.log(dashboardStates,"dashboard");
+    console.log(postSurveyStatus,"postSurveyStatus");
     return (
         <Layout>
             <Container className="presuervey mb-50 mt-5 ">
@@ -132,7 +134,7 @@ const PostSurvey = () => {
                         <div className="aside  p-4 bg-white">
                             <h2>{t("teacher.post_survey")}</h2>
                             <CardBody>
-                                {(dashboardStates && dashboardStates.ideas_count===dashboardStates.teams_count && postSurveyStatus != 'COMPLETED') ? (
+                                {(dashboardStates && dashboardStates.teams_count && dashboardStates.ideas_count===dashboardStates.teams_count && postSurveyStatus != 'COMPLETED') ? (
                                     <>
                                         <UncontrolledAlert
                                             color="danger"
