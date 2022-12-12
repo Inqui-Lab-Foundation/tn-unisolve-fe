@@ -57,7 +57,6 @@ import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
 import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
 import RegisterPopup from './registration/RegisterPopup';
-import TamilNaduMap from '../components/MapCard/TamilNaduMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import FancyVideo from 'react-videojs-fancybox';
@@ -70,6 +69,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
 import i18next from 'i18next';
+import MaldivesMap from '../components/MapCard/MaldivesMap';
 // new push
 const Home = () => {
     const { t } = useTranslation();
@@ -931,7 +931,7 @@ const Home = () => {
                         {t('home_tl.engagement')}
                     </h2>
                 </div>
-                <TamilNaduMap />
+                <MaldivesMap/>
             </section>
             <section className="blog">
                 <Container>
