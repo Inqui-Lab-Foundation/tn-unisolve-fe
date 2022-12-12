@@ -9,7 +9,7 @@ if [ $ec2Type="c5a.2xlarge" ]
 then
   npm run start:production
 else
-  npm run start:tnstaging
+  npm run start:kastaging
 fi
 sudo systemctl restart apache2.service
 echo 'Apache service started'
