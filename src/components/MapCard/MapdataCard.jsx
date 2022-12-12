@@ -18,7 +18,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                             <h2 className="text-uppercase">
                                 {values?.district_name &&
                                 values?.district_name === 'all'
-                                    ? 'TAMILNADU'
+                                    ? 'MALDIVES'
                                     : districtName}
                             </h2>
                         </CardBody>
@@ -72,7 +72,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                 <div className="d-flex flex-column card-width">
                     <Card className="card text-dark bg-light mb-3">
                         <CardBody>
-                            <h2 className="">{'TAMILNADU'}</h2>
+                            <h2 className="">{'MALDIVES'}</h2>
                         </CardBody>
                     </Card>
                     <div className="mb-5 d-flex align-items-center">
