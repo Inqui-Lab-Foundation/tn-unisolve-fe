@@ -26,7 +26,7 @@ import {
     getStudentDashboardTeamProgressStatus,
     getStudentDashboardTutorialVideos
 } from '../../../redux/studentRegistration/actions.js';
-import LanguageSelectorComp from '../../../components/LanguageSelectorComp/index.js';
+//import LanguageSelectorComp from '../../../components/LanguageSelectorComp/index.js';
 
 const Dashboard = () => {
     const language = useSelector(
@@ -219,7 +219,7 @@ const Dashboard = () => {
                     <h2>Dashboard</h2>
                     <div className='bg-white rounded p-3 d-flex align-items-center' style={{width:"max-content"}}>
                         <p>Preferred Language : </p>
-                        <LanguageSelectorComp module="student" />
+                        {/* <LanguageSelectorComp module="student" /> */}
                     </div>
                 </div>
                 <hr />
