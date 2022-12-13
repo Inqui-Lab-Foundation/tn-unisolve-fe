@@ -9,13 +9,11 @@ import { useTranslation } from 'react-i18next';
 
 const MapdataCard = ({ values, all,districtName }) => {
     const { t } = useTranslation();
-    console.log(values);
-    console.log(all);
     return (
         <>
             {all && !all?.district_name ? (
                 <div className="d-flex flex-column card-width">
-                    <Card className="card text-dark bg-light mb-3">
+                    <Card className="card text-center text-dark bg-light mb-3">
                         <CardBody>
                             <h2 className="text-uppercase">
                                 {values?.district_name &&
@@ -74,7 +72,7 @@ const MapdataCard = ({ values, all,districtName }) => {
                 <div className="d-flex flex-column card-width">
                     <Card className="card text-dark bg-light mb-3">
                         <CardBody>
-                            <h2 className="">{'MALDIVES'}</h2>
+                            <h2 className="text-center">{'MALDIVES'}</h2>
                         </CardBody>
                     </Card>
                     <div className="mb-5 d-flex align-items-center">
