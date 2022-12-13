@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next';
 
 const MapdataCard = ({ values, all,districtName }) => {
     const { t } = useTranslation();
+    console.log(values);
+    console.log(all);
     return (
         <>
             {all && !all?.district_name ? (
