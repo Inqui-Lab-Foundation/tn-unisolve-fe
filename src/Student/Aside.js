@@ -192,8 +192,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                             'sidebar-active'
                         }
                     >
-                        <NavLink exact={true} onClick={(e)=>e.preventDefault()} to={'/challenges'}>
-                            {/* <NavLink exact={true} onClick={handleClick} to={'/challenges'}> */}
+                        {/* <NavLink exact={true} onClick={(e)=>e.preventDefault()} to={'/challenges'}> */}
+                        <NavLink exact={true} onClick={handleClick} to={'/challenges'}>
                             {t('home.idea_submission')}
                         </NavLink>
                     </MenuItem>
@@ -229,8 +229,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                     >
                         <NavLink
                             exact={true}
-                            onClick={(e)=>e.preventDefault()}
-                            // onClick={handleClick}
+                            // onClick={(e)=>e.preventDefault()}
+                            onClick={handleClick}
                             to={'/student/post-survey'}
                         >
                             {/* PostSurvey */}
@@ -247,8 +247,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                     >
                         <NavLink
                             exact={true}
-                            onClick={(e)=>e.preventDefault()}
-                            // onClick={(e) => handleClick(e, '')}
+                            // onClick={(e)=>e.preventDefault()}
+                            onClick={(e) => handleClick(e, '')}
                             // onClick={(e) => handleClick(e, 'certificate')}
                             to={'/student/my-certificate'}
                         >
