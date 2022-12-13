@@ -16,7 +16,7 @@ import TopSectionCard from './sections/TopSectionCard.jsx';
 import DashboardOverviewCard from './DashboardOverviewCard.jsx';
 import { Table } from 'antd';
 import { Progress } from 'reactstrap';
-import Vimeo from '@u-wave/react-vimeo';
+//import Vimeo from '@u-wave/react-vimeo';
 import { useDispatch } from 'react-redux';
 import { FaCheckCircle,FaTimesCircle } from 'react-icons/fa';
 import {
@@ -217,10 +217,10 @@ const Dashboard = () => {
             <Container className="dashboard-wrapper">
                 <div className='d-flex justify-content-between align-items-center'>
                     <h2>Dashboard</h2>
-                    <div className='bg-white rounded p-3 d-flex align-items-center' style={{width:"max-content"}}>
+                    {/* <div className='bg-white rounded p-3 d-flex align-items-center' style={{width:"max-content"}}>
                         <p>Preferred Language : </p>
-                        {/* <LanguageSelectorComp module="student" /> */}
-                    </div>
+                        <LanguageSelectorComp module="student" />
+                    </div> */}
                 </div>
                 <hr />
                 <Row className="d-flex flex-start mb-5" style={{ gap: '1rem' }}>
@@ -336,7 +336,7 @@ const Dashboard = () => {
                             />
                         </div>
                     </Col>
-                    <Col md={12} className="flex-1">
+                    {/* <Col md={12} className="flex-1">
                         <p style={{ fontSize: '1.5rem' }}>
                             Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
                         </p>
@@ -353,7 +353,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="bg-white learning-statistics rounded p-3">
+                        <div className="bg-white learning-statistics rounded p-3">
                             <div className="flex-2 px-3">
                                 <div
                                     style={{
@@ -392,8 +392,8 @@ const Dashboard = () => {
                                         ))}
                                 </ol>
                             </div>
-                        </div> */}
-                    </Col>
+                        </div>
+                    </Col> */}
                 </Row>
             </Container>
         </Layout>
