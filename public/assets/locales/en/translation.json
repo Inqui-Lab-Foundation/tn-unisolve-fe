@@ -327,7 +327,9 @@
         "post_survey":"Post Survey",
         "idea_submitted_desc":"<h2>Congratulations for successfully submitting the idea</h2>.</br><p>Please click continue to complete your post survey and get your certificate.</p>",
         "post_survey_desc":"Congratulations! your SIDP journey for 2022-23 is complete.",
-        "click_button_post_survey":"Your certificate will be ready soon and you can download it from ‘My Certificate Page’"
+        "click_button_post_survey":"Your certificate will be ready soon and you can download it from ‘My Certificate Page’",
+        "max_length_msg1":"Maximum length of characters is ",
+        "max_length_msg2":" only..."
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"

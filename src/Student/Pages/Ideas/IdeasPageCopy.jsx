@@ -690,10 +690,7 @@ const IdeasPageNew = () => {
                                                                                             disabled={
                                                                                                 isDisabled
                                                                                             }
-                                                                                            placeholder={`Maximum length of characters is ${
-                                                                                                eachQuestion?.word_limit ||
-                                                                                                100
-                                                                                            } only...`}
+                                                                                            placeholder= {`${t('student.max_length_msg1')}${eachQuestion?.word_limit ||100}${t('student.max_length_msg2')}`}
                                                                                             maxLength={
                                                                                                 eachQuestion?.word_limit ||
                                                                                                 100
