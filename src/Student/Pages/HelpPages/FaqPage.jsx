@@ -32,7 +32,7 @@ const FaqPage = () => {
                 console.log(err.response);
             });
     };
-    const catId = 2;
+    const catId = 1;
 
     useEffect(() => {
         getFaqByCategory(catId);
