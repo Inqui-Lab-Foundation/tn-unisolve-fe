@@ -46,30 +46,34 @@ const Dashboard = () => {
     // const [videoId, setVideoId] = useState(null);
     const history = useHistory();
     useEffect(() => {
-        dispatch(
-            getStudentDashboardStatus(currentUser.data[0].user_id, language)
-        );
-        // dispatch(
-        //     getStudentDashboardChallengesStatus(
-        //         currentUser.data[0].user_id,
-        //         language
-        //     )
-        // );
-        dispatch(
-            getStudentDashboardTeamProgressStatus(
-                currentUser.data[0].user_id,
-                language
-            )
-        );
-    }, [currentUser.data[0].user_id, language]);
+        if(currentUser){
+            dispatch(
+                getStudentDashboardStatus(currentUser?.data[0]?.user_id, language)
+            );
+            // dispatch(
+            //     getStudentDashboardChallengesStatus(
+            //         currentUser.data[0].user_id,
+            //         language
+            //     )
+            // );
+            dispatch(
+                getStudentDashboardTeamProgressStatus(
+                    currentUser?.data[0]?.user_id,
+                    language
+                )
+            );
+        }
+    }, [currentUser?.data[0]?.user_id, language]);
     
     useEffect(() => {
-        dispatch(getStudentDashboardTutorialVideos(language));
+        if(currentUser)
+            dispatch(getStudentDashboardTutorialVideos(language));
     }, [language]);
     
     useEffect(() => {
-        dispatch(getStudentByIdData(currentUser.data[0].student_id));
-    }, [dispatch, currentUser.data[0].student_id]);
+        if(currentUser)
+            dispatch(getStudentByIdData(currentUser?.data[0]?.student_id));
+    }, [dispatch, currentUser?.data[0]?.student_id]);
 
     useLayoutEffect(() => {
         if(presuveyStatusGl !=='COMPLETED')
@@ -325,7 +329,7 @@ const Dashboard = () => {
                                     htmlFor="teams"
                                     className="mb-3 text-capitalize"
                                 >
-                                    <span>{currentUser.data[0].team_name}</span>
+                                    <span>{currentUser?.data[0]?.team_name}</span>
                                 </label>
                             </div>
                             <Table
