@@ -95,8 +95,8 @@ import Terms from './home/termsandconditions';
 import AdminChallengesComp from './Admin/Challenges/Badges';
 import Preservey from './Admin/PreSurvey';
 import StudentPostservey from './Student/PostSurvey/PostSurvey';
-// import TeacherPostservey from './Teachers/PostSurvey/PostSurvey';
-import TeacherPostservey from './Teachers/PostSurvey/PostSurveyStatic';
+import TeacherPostservey from './Teachers/PostSurvey/PostSurvey';
+// import TeacherPostservey from './Teachers/PostSurvey/PostSurveyStatic';
 // const hashHistory = createHashHistory();.
 
 // TEACHER ROUTES
@@ -131,6 +131,14 @@ import CreateTranslation from './Admin/Translation/CreateTranslation';
 // import DummyStuMyCer from './Student/DummyStudentMyCertificate';
 
 import EditSchool from './Admin/Schools/EditSchool';
+
+//evaluator routes
+import LoginEvaluator from './Evaluator/LoginEvaluator';
+import EvaluatorDashboard from './Evaluator/Dashboard/index';
+import EvaluatorChangePassword from './Evaluator/ChangePSWModal';
+import EvaluatorForgotPassword from './Evaluator/ForgotPassword';
+import EvaluatorIdeaList from './Evaluator/IdeaList/IdeaList';
+import EvaluatorInstructions from './Evaluator/Instructions/Instructions';
 
 
 const Routers = () => {
@@ -688,6 +696,39 @@ const Routers = () => {
                         path="/admin/create-translation"
                         component={CreateTranslation}
                     />
+
+                    {/* evaluator routes */}
+                    <Route
+                        exact={true}
+                        path="/evaluator"
+                        render={() => <LoginEvaluator />}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/evaluator/dashboard"
+                        component={EvaluatorDashboard}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/evaluator/change-password"
+                        component={EvaluatorChangePassword}
+                    />
+                    <Route
+                        exact={true}
+                        path="/evaluator/forgotpassword"
+                        component={EvaluatorForgotPassword}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/evaluator/submitted-ideas"
+                        component={EvaluatorIdeaList}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/evaluator/instructions"
+                        component={EvaluatorInstructions}
+                    />
+                    
                     <Route component={PageNotFound} path="*" />
                 </Switch>
             </Router>

@@ -149,6 +149,7 @@ const CreateMultipleMembers = ({ id }) => {
         );
         if (checkDuplicateName) {
             openNotificationWithIcon('error', 'Student already exists');
+            setIsClicked(false);
             return;
         }
         dispatch(
