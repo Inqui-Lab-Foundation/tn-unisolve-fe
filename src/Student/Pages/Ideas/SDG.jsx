@@ -36,7 +36,7 @@ const SDG = ({setShowChallenges}) => {
         if(all_topics_count && (all_topics_count !== topics_completed_count))
             setShowPage(false);
     }, [all_topics_count,topics_completed_count]);
-    
+   
     const handleSelect = (data)=>{
         const initialSizeData = {
             sdg:data

@@ -308,9 +308,7 @@ const DetaledQuiz = (props) => {
                                                     <Button
                                                         btnClass="primary px-5"
                                                         size="small"
-                                                        label={t(
-                                                            'teacher.continue'
-                                                        )}
+                                                        label={t('student.continue')}
                                                         onClick={(e) =>
                                                             handleNxtQst(e)
                                                         }
