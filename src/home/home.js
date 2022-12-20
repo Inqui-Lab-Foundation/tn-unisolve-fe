@@ -27,18 +27,19 @@ import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import Slider from 'react-slick';
-import LearnMentor from '../assets/media/home/learn.svg';
+import LearnMentor from '../assets/media/home/learn.png';
 import upshift from '../assets/media/UPSHIFT-diagram.jpg';
 import values from '../assets/media/4values.png';
 import KeyCompetencies from '../assets/media/KeyCompetencies.png';
 import projectimg1 from '../assets/media/Picture1.jpg';
-import projectimg2 from '../assets/media/Picture2.jpg';
+import projectimg3 from '../assets/media/pro3.png';
+//import projectimg2 from '../assets/media/Picture2.jpg';
 import testi1 from '../assets/media/home/testi/tes1.jpg';
 import testi2 from '../assets/media/home/testi/tes2.jpg';
 import testi3 from '../assets/media/home/testi/tes3.jpg';
 import testi4 from '../assets/media/home/testi/tes4.jpg';
 import testi5 from '../assets/media/home/testi/tes5.jpg';
-import IdeaBulb from '../assets/media/home/idea-bulb.png';
+//import IdeaBulb from '../assets/media/home/idea-bulb.png';
 
 import map_icon_awa from '../assets/media/home/icon_aweraness.png';
 import map_icon_reg from '../assets/media/home/icon_registration.png';
@@ -309,6 +310,26 @@ const Home = () => {
             id: 5,
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
+        },
+        {
+            id: 6,
+            title: `${t('home_tl.faq_qn_6')}`,
+            desc: `${t('home_tl.faq_ans_6')}`
+        },
+        {
+            id: 7,
+            title: `${t('home_tl.faq_qn_7')}`,
+            desc: `${t('home_tl.faq_ans_7')}`
+        },
+        {
+            id: 8,
+            title: `${t('home_tl.faq_qn_8')}`,
+            desc: `${t('home_tl.faq_ans_8')}`
+        },
+        {
+            id: 9,
+            title: `${t('home_tl.faq_qn_9')}`,
+            desc: `${t('home_tl.faq_ans_9')}`
         }
     ];
 
@@ -626,7 +647,7 @@ const Home = () => {
                             >
                                 <h2 className="mb-5 sub-heading">
                                     UPSHIFT {t('home_tl.power_by')}{' '}
-                                    <span className="green">UNISOLVE</span>{' '}
+                                    <span className="blue">UNISOLVE</span>{' '}
                                 </h2>
                                 <div
                                     dangerouslySetInnerHTML={{
@@ -688,18 +709,18 @@ const Home = () => {
                     <Row className="student">
                         <Col
                             md={12}
-                            lg={6}
-                            className="my-auto mx-auto student-heading px-5 "
+                            lg={12}
+                            className="student-heading px-5 pb-5"
                         >
                        
-                            <div
+                            <h1
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.clutureDesc')
                                 }}
-                            ></div>
+                            ></h1>
                             
                         </Col>
-                        <Col md={12} lg={6}>
+                        <Col md={12} lg={12}>
                             <figure className="my-0">
                                 <img
                                     src={KeyCompetencies}
@@ -723,18 +744,26 @@ const Home = () => {
                     </Col>
                     <Col md={12} lg={6}>
                             <figure className="my-0">
-                                <p className='pt-5'>Meet the team:</p>
+                                <p className='pt-5'
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.project_sample_team_title')
+                                }}></p>
                                 <img
                                     src={projectimg1}
                                     alt="projectimg1"
-                                    className="img-fluid"
+                                    className="img-fluid pb-5"
                                 />
-                                <p className='pt-5'>PROTOTYPE OF SOLUTION:</p>
+                                {/* <p className='pt-5'>PROTOTYPE OF SOLUTION:</p>
                                 <img
                                     src={projectimg2}
                                     alt="projectimg2"
                                     className="img-fluid"
-                                />
+                                /> */}
+                                <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.project_sample_team')
+                                }}
+                            ></div>
                             </figure>
                         </Col>
                         <Col
@@ -748,6 +777,13 @@ const Home = () => {
                                     __html: t('home_tl.project_sample_desc')
                                 }}
                             ></div>
+                                <figure className="my-0">
+                                <img
+                                    src={projectimg3}
+                                    alt="projectimg3"
+                                    className="img-fluid"
+                                />
+                            </figure>
                             
                         </Col>
                         
