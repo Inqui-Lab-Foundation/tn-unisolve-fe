@@ -473,7 +473,13 @@
         "sdg":"Which Sustainable development Goal (SDG) are you targeting with your solution ?",
         "sdg_desc":"(You can refer to the SDGs sheet from FIND Module and pick the right option )",
         "others":"If you picked the option ‘others’ in the above question, write down which SDG or theme is your solution targeting.",
-        "chars":"Characters Remaining"
+        "chars":"Characters Remaining",
+        "idea_submission":"Idea Submission",
+        "idea_submission_msg1":"Idea submission is",
+        "idea_status1":" initiated by ",
+        "idea_status2":" submitted by ",
+        "idea_submission_msg2":"your teammate ",
+        "idea_submission_msg3":" on "
     },
     "translation":{
         "tamil":"Telugu Content :-",
