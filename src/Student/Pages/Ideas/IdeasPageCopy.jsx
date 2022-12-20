@@ -483,28 +483,25 @@ const IdeasPageNew = () => {
                 <CommonPage text={comingSoonText} />
             ) : (
                 <Container className="presuervey mb-50 mt-5 " id="start">
-                    <h2>Idea Submission</h2>
+                    <h2>{t('student_course.idea_submission')}</h2>
                     <Col>
                         {initiatedBy &&
                             initiatedBy !== currentUser?.data[0]?.user_id && (
                                 <div className="d-md-flex justify-content-end px-4">
                                     <Card className="p-3">
-                                        Idea submission is
+                                        {t('student_course.idea_submission_msg1')}
                                         {challengesSubmittedResponse[0]
                                             ?.status === 'DRAFT'
-                                            ? ' initiated by '
-                                            : ' submitted by '}
-                                        your teammate{' '}
+                                            ? t('student_course.idea_status1')
+                                            : t('student_course.idea_status2')}
+                                        {t('student_course.idea_submission_msg2')}
                                         {
                                             challengesSubmittedResponse[0]
                                                 ?.initiated_name
-                                        }{' '}
-                                        on{' '}
-                                        {moment(challengesSubmittedResponse[0]
-                                            ?.status === 'DRAFT' ? 
+                                        }{t('student_course.idea_submission_msg3')}
+                                        {moment(
                                             challengesSubmittedResponse[0]
-                                                ?.created_at : challengesSubmittedResponse[0]
-                                                ?.submitted_by
+                                                ?.created_at
                                         ).format('DD-MM-YYYY')}
                                     </Card>
                                 </div>
