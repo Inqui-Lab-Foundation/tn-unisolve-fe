@@ -114,9 +114,9 @@ const LoginNew = (props) => {
             handlePassword('password');
         }
     };
-    const handleOnClick = () => {
-        setShowPopUp(true);
-    };
+    // const handleOnClick = () => {
+    //     setShowPopUp(true);
+    // };
     return (
         <React.Fragment>
             <div className="container-fluid  SignUp Login">
@@ -301,7 +301,7 @@ const LoginNew = (props) => {
                                                         </small>
                                                     </FormGroup>
                                                 </Col>
-                                                <Col className="col-sm-2 text-right">
+                                                {/* <Col className="col-sm-2 text-right">
                                                     <Link
                                                         exact="true"
                                                         onClick={handleOnClick}
@@ -311,7 +311,7 @@ const LoginNew = (props) => {
                                                                 'loginPage.Forgot_password'
                                                             )}
                                                     </Link>
-                                                </Col>
+                                                </Col> */}
                                             </Row>
                                         </Col>
                                     </div>
