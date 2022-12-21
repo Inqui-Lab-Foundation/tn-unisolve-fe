@@ -323,9 +323,9 @@ const TicketsPage = (props) => {
                             <li>
                                 Special characters are not allowed in team name & Student name
                             </li>
-                            <li>
+                            {/* <li>
                                 25 to 30 students to be enrolled in Project per School
-                            </li>
+                            </li> */}
                         </List>
                     </Card>
                 </Row>
