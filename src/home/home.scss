@@ -869,7 +869,21 @@
     }
     img {
       text-align: center;
-      width: 10rem;
+      width: 10rem !important; 
+    }
+    @media (min-width: 991px) {
+      img {
+        text-align: center;
+        width: 13rem !important;
+        height: 13rem;
+      }
+    }
+    @media (min-width: 1700px) {
+      img {
+        text-align: center;
+        width: 25rem !important;
+        height: 25rem;
+      }
     }
     .container {
       &::before {
@@ -1372,7 +1386,7 @@ section.road-map{
       }
   
       &__title {
-        font-size: 1.2rem;
+        font-size: 2.3rem;
         line-height: 1.4;
         text-transform: uppercase;
   
@@ -1479,7 +1493,7 @@ section.road-map{
           }
         }
         .timeline__event__title {
-          color: $color4;
+          color: $color5;
         }
         .timeline__event__title {
         }
@@ -1598,5 +1612,11 @@ section.road-map{
   .student-heading {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+  }
+}
+
+@media (min-width: 991px) {
+  .slider-width{
+    max-width: 85%;
   }
 }
