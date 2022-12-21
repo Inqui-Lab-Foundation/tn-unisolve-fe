@@ -356,16 +356,16 @@ const LoginNew = (props) => {
                                         <a href="https://youtu.be/0_yokNMN-QM" target="_blank" rel='noopener noreferrer'>(Teacher Login + Forgot Password)</a>
                                     </li>
                                     <li>
-                                        <a href="https://youtu.be/94anzpnC4d8" target="_blank" rel='noopener noreferrer'>How to complete SIDP Teacher Modules</a>
+                                        <a href="https://youtu.be/94anzpnC4d8" target="_blank" rel='noopener noreferrer'>How to complete Unisolve Teacher Modules</a>
                                     </li>
                                     <li>
                                         <a href="https://youtu.be/VCN232xCmCQ" target="_blank" rel='noopener noreferrer'>How to create teams and add students</a>
                                     </li>
                                     <li>
-                                        <a href="https://youtu.be/RaeW9pIAAqg" target="_blank" rel='noopener noreferrer'>How to edit SIDP Student details/team</a>
+                                        <a href="https://youtu.be/RaeW9pIAAqg" target="_blank" rel='noopener noreferrer'>How to edit Unisolve Student details/team</a>
                                     </li>
                                     <li>
-                                        <a href="https://youtu.be/RaeW9pIAAqg" target="_blank" rel='noopener noreferrer'>How to give SIDP Login details to the students</a>
+                                        <a href="https://youtu.be/RaeW9pIAAqg" target="_blank" rel='noopener noreferrer'>How to give Unisolve Login details to the students</a>
                                     </li>
                                     <li>
                                         <a href="https://youtu.be/qdmR-PA1KWc" target="_blank" rel='noopener noreferrer'>How the students can use the Website</a>
