@@ -68,8 +68,8 @@ function StepTwo({
                 .required('required')
                 .trim()
                 .matches(phoneRegExp, 'Phone number is not valid')
-                .min(10, 'Please enter valid number')
-                .max(10, 'Please enter valid number'),
+                .min(8, 'Please enter valid number')
+                .max(8, 'Please enter valid number'),
             username: Yup.string()
                 .trim()
                 .email('Invalid username format')
