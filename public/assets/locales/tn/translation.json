@@ -465,9 +465,9 @@
         "chars":"మిగిలిన అక్షరాలు",
         "go_to":"సవాళ్లకు వెళ్లండి",
         "idea_submission":"ఆలోచన సమర్పణ",
-        "idea_submission_msg1":"ఐడియా సమర్పణ",
-        "idea_status1":" ద్వారా ప్రారంభించబడింది ",
-        "idea_status2":" సమర్పించినది ",
+        "idea_submission_msg1":" ద్వారా ఐడియా సమర్పణ",
+        "idea_status1":" ప్రారంభించబడింది ",
+        "idea_status2":" సమర్పించబడింది ",
         "idea_submission_msg2":"మీ సహచరుడు ",
         "idea_submission_msg3":" న "
     },

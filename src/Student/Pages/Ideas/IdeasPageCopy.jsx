@@ -488,6 +488,7 @@ const IdeasPageNew = () => {
                         {initiatedBy &&
                             initiatedBy !== currentUser?.data[0]?.user_id && (
                                 <div className="d-md-flex justify-content-end px-4">
+                                    {language.code==="en"?
                                     <Card className="p-3">
                                         {t('student_course.idea_submission_msg1')}
                                         {challengesSubmittedResponse[0]
@@ -503,7 +504,25 @@ const IdeasPageNew = () => {
                                             challengesSubmittedResponse[0]
                                                 ?.created_at
                                         ).format('DD-MM-YYYY')}
+                                    </Card>:
+                                    <Card className="p-3">
+                                        {moment(
+                                            challengesSubmittedResponse[0]
+                                                ?.created_at
+                                        ).format('DD-MM-YYYY')}
+                                        {t('student_course.idea_submission_msg3')}
+                                        {t('student_course.idea_submission_msg2')}
+                                        {
+                                            challengesSubmittedResponse[0]
+                                                ?.initiated_name
+                                        }
+                                        {t('student_course.idea_submission_msg1')}
+                                        {challengesSubmittedResponse[0]
+                                            ?.status === 'DRAFT'
+                                            ? t('student_course.idea_status1')
+                                            : t('student_course.idea_status2')}
                                     </Card>
+                                    }
                                 </div>
                             )}
                         <Row className=" justify-content-center">
