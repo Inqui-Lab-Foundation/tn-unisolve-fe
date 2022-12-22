@@ -1322,7 +1322,7 @@ const Home = () => {
                 </Container>
             </section>
             <footer className="footer">
-                <Container>
+                <Container fluid>
                     <Row>
                         <Col
                             md={12}
@@ -1334,7 +1334,7 @@ const Home = () => {
                                         src={LogoTn}
                                         alt="logo"
                                         className="img-fluid logoImg"
-                                        style={{width:"35%"}}
+                                        style={{width:"39.5%"}}
                                     />
                                 </figure>
                             </Link>

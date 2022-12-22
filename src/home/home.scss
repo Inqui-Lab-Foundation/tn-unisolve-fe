@@ -696,8 +696,11 @@
     //   }
     // }
   }
-
-
+.testimonials-slider{
+  .slick-track{
+    transform: none !important;
+  }
+}
 
   .blog {
     padding: 10rem 0;
@@ -710,7 +713,10 @@
       position: relative;
       padding: 25rem 2rem 0rem 2rem;
       background-size: cover;
-
+      @media (min-width: 1600px) {
+        height: 80rem;
+        position: relative;
+      }
 
       @media (max-width: 991px) {
         padding: 6rem 2rem 0rem 2rem;
@@ -721,6 +727,12 @@
         p {
           color: var(--color-white-1);
         }
+      }
+    }
+    .card-body{
+      @media (min-width: 1600px) {
+        position: absolute;
+        bottom: 0;
       }
     }
 
