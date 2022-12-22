@@ -461,11 +461,11 @@
         "others":"ಮೇಲಿನ ಪ್ರಶ್ನೆಯಲ್ಲಿ ನೀವು 'ಇತರರು' ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿದರೆ, ಯಾವ SDG ಅಥವಾ ಥೀಮ್ ನಿಮ್ಮ ಪರಿಹಾರ ಗುರಿಯಾಗಿದೆ ಎಂಬುದನ್ನು ಬರೆಯಿರಿ.",
         "chars":"ಉಳಿದಿರುವ ಪಾತ್ರಗಳು",
         "idea_submission":"ಐಡಿಯಾ ಸಲ್ಲಿಕೆ",
-        "idea_submission_msg1":"ಐಡಿಯಾ ಸಲ್ಲಿಕೆ ಆಗಿದೆ",
-        "idea_status1":" ಮೂಲಕ ಪ್ರಾರಂಭಿಸಲಾಗಿದೆ ",
-        "idea_status2":" ಮೂಲಕ ಸಲ್ಲಿಸಿದ ",
-        "idea_submission_msg2":"ನಿಮ್ಮ ಸಹ ಆಟಗಾರ ",
-        "idea_submission_msg3":" ಮೇಲೆ "
+        "idea_submission_msg1":" ಅವರಿಂದ ಐಡಿಯಾ ಸಲ್ಲಿಕೆಯನ್ನು",
+        "idea_status1":" ಪ್ರಾರಂಭಿಸಲಾಗಿದೆ ",
+        "idea_status2":" ಸಲ್ಲಿಸಲಾಗಿದೆ ",
+        "idea_submission_msg2":"ನಿಮ್ಮ ತಂಡದ ",
+        "idea_submission_msg3":" ರಂದು "
     },
     "translation":{
         "tamil":"kannada Content :-",
