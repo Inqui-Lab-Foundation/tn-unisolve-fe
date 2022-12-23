@@ -725,13 +725,13 @@ const TeacherPlayVideo = (props) => {
                                                     will help you understand the
                                                     program objectives and
                                                     enable you to support your
-                                                    SIDP student teams better.
+                                                    SIP student teams better.
                                                 </p>
                                                 <p>
                                                     Step-1: Read and make short
                                                     notes of the handbook from
                                                     page 1-15 and create
-                                                    awareness with SIDP
+                                                    awareness with SIP
                                                     students.
                                                 </p>
                                                 <p>
@@ -998,7 +998,7 @@ const TeacherPlayVideo = (props) => {
                                                         are worksheets
                                                         for your student teams
                                                         which will aid in this
-                                                        SIDP learning journey:
+                                                        SIP learning journey:
                                                     </p>
                                                     {/* <p className="mb-0">
                                                         A. Worksheets
@@ -1018,7 +1018,7 @@ const TeacherPlayVideo = (props) => {
                                                         2. Worksheets are
                                                         required to be
                                                         completed/filled by the
-                                                        SIDP students (as a
+                                                        SIP students (as a
                                                         TEAM) when they are
                                                         watching Lesson 1 to
                                                         Lesson 6.
@@ -1030,14 +1030,14 @@ const TeacherPlayVideo = (props) => {
                                                     </p>
                                                     <p className="mb-0">
                                                         4. Support/Mentor/Guide
-                                                        SIDP students to
+                                                        SIP students to
                                                         complete the worksheets
                                                         if they need help.
                                                     </p>
                                                     <p className="mb-0">
                                                         5. Collect the completed
                                                         worksheet and hand them
-                                                        over to the SIDP
+                                                        over to the SIP
                                                         District Head by 30th
                                                         December, 2022.
                                                     </p>
@@ -1096,7 +1096,7 @@ const TeacherPlayVideo = (props) => {
                                                     lesson.
                                                 </p>
                                                 <p>
-                                                    This can be shared with SIDP
+                                                    This can be shared with SIP
                                                     students. We recommend to
                                                     share the soft copy or print
                                                     it for future reference.
