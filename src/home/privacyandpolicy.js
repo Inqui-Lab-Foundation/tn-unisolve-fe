@@ -389,13 +389,13 @@ const Home = () => {
                     <Row>
                         <Col md={6}>
                             <h2>
-                            School Innovation Program (SIDP)
+                            School Innovation Program (SIP)
                             </h2>
                             <p>
-                            To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, SSK launches SIDP with support of School Education Department.
+                            To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, SSK launches SIP with support of School Education Department.
                             </p>
                             <p>
-                            The objective of SIDP is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership skills. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.
+                            The objective of SIP is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership skills. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.
                             </p>
                         </Col>
                         <Col md={6}>
