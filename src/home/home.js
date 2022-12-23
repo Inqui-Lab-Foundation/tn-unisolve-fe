@@ -57,9 +57,9 @@ import LogoTn from '../assets/media/tn-brands/logo.png';
 // import Blog2 from '../assets/media/home/blog/UPSHIFT_blog1.jpg';
 // import Blog3 from '../assets/media/home/blog/blog_2.jpg';
 import Blogimg1 from '../assets/media/home/blog/b1.jpg';
-import Blogimg2 from '../assets/media/home/blog/b2.jpg';
+//import Blogimg2 from '../assets/media/home/blog/b2.jpg';
 import Blogimg3 from '../assets/media/home/blog/b3.jpg';
-import Blogimg4 from '../assets/media/home/blog/b4.jpg';
+//import Blogimg4 from '../assets/media/home/blog/b4.jpg';
 import Blogimg5 from '../assets/media/home/blog/b5.jpg';
 import Blogimg6 from '../assets/media/home/blog/b6.jpg';
 import Blogimg7 from '../assets/media/home/blog/b7.jpg';
@@ -388,21 +388,21 @@ const Home = () => {
             imgUrl: Blogimg1,
             desc: `${t('home_tl.idea_desc_1')}`
         },
-        {
-            id: 2,
-            imgUrl: Blogimg2,
-            desc: `${t('home_tl.idea_desc_2')}`
-        },
+        // {
+        //     id: 2,
+        //     imgUrl: Blogimg2,
+        //     desc: `${t('home_tl.idea_desc_2')}`
+        // },
         {
             id: 3,
             imgUrl: Blogimg3,
             desc: `${t('home_tl.idea_desc_3')}`
         },
-        {
-            id: 4,
-            imgUrl: Blogimg4,
-            desc: `${t('home_tl.idea_desc_4')}`
-        },
+        // {
+        //     id: 4,
+        //     imgUrl: Blogimg4,
+        //     desc: `${t('home_tl.idea_desc_4')}`
+        // },
         {
             id: 5,
             imgUrl: Blogimg5,
