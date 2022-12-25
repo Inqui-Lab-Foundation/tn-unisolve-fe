@@ -8,6 +8,8 @@ export const URL = {
     // Post //
     login: process.env.REACT_APP_API_BASE_URL + '/students/login',
     adminLogin: process.env.REACT_APP_API_BASE_URL + '/admins/login',
+    eadminLogin: process.env.REACT_APP_API_BASE_URL + '/admins/login?eAdmin=true',
+    adminRegister: process.env.REACT_APP_API_BASE_URL + '/admins/register',
     evaluatorLogin: process.env.REACT_APP_API_BASE_URL + '/evaluators/login',
     evaluatorRegister: `${process.env.REACT_APP_API_BASE_URL}/evaluators/register`,
     teacherLogin: process.env.REACT_APP_API_BASE_URL + '/mentors/login',
@@ -61,7 +63,7 @@ export const URL = {
     getModules: process.env.REACT_APP_API_BASE_URL + '/modules/list',
     getAdminCouses: process.env.REACT_APP_API_BASE_URL + '/courses',
     getAdminCousesDetails: process.env.REACT_APP_API_BASE_URL + '/courses/',
-    getAdminEvaluator: process.env.REACT_APP_API_BASE_URL + '/evaluator/list',
+    getAdminEvaluator: process.env.REACT_APP_API_BASE_URL + '/evaluators',
     getNotificationsList:
         process.env.REACT_APP_API_BASE_URL + '/notifications/tome',
     getAdminQstList: process.env.REACT_APP_API_BASE_URL + '/quiz/',
@@ -84,8 +86,10 @@ export const URL = {
     getTeacherCousesDetails:
         process.env.REACT_APP_API_BASE_URL + '/mentorCourses/',
     getStudents: process.env.REACT_APP_API_BASE_URL + '/students',
+    getDistrictsOnly: process.env.REACT_APP_API_BASE_URL + '/organizations/districts',
     getStudentBadges: process.env.REACT_APP_API_BASE_URL + '/students/',
     getStudentById: process.env.REACT_APP_API_BASE_URL + '/students/',
+    getAdmin: process.env.REACT_APP_API_BASE_URL + '/admins/',
     getStudentDashboardStatusCommonById:
         process.env.REACT_APP_API_BASE_URL + '/dashboard/studentStats/',
     getTeacherById: process.env.REACT_APP_API_BASE_URL + '/mentors/',
@@ -113,7 +117,11 @@ export const URL = {
     getAdminMentorReports:
         process.env.REACT_APP_API_BASE_URL + '/reports/allMentorReports',
     getTeamMemberStatusEndpoint:
-        process.env.REACT_APP_API_BASE_URL + '/dashboard/teamStats/'
+        process.env.REACT_APP_API_BASE_URL + '/dashboard/teamStats/',
+    getidealist:
+    process.env.REACT_APP_API_BASE_URL + '/challenge_response?',
+    gettotalcount:
+    process.env.REACT_APP_API_BASE_URL + '/dashboard/evaluatorStats'
 };
 const API = 'O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870';
 

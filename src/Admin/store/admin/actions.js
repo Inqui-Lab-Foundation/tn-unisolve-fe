@@ -28,19 +28,19 @@ export const getAdminError = (message) => async (dispatch) => {
     });
 };
 
-export const getAdminByIdData = (id) => async (dispatch) => {
+export const getAdmin = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMINS });
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const result = await axios
-            .get(`${URL.getStudentById}${id}`, axiosConfig)
+            .get(`${URL.getAdmin}`, axiosConfig)
             .then((user) => user)
             .catch((err) => {
                 return err.response;
             });
         if (result && result.status === 200) {
-            const data =
-                result.data && result.data.data[0] && result.data.data[0];
+            const data = result.data?.data[0]?.dataValues || [];
+            data.length > 0 ? data.forEach((item, i) => (item.id = i + 1)) : [];
             dispatch(getAdminSuccess(data));
         } else {
             dispatch(getAdminError(result.statusText));

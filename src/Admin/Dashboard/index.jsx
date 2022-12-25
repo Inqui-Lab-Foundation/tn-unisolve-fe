@@ -28,6 +28,7 @@ import {
     openNotificationWithIcon
 } from '../../helpers/Utils';
 const Dashboard = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const pdfRef = React.useRef(null);
     const inputField = {
@@ -35,21 +36,20 @@ const Dashboard = () => {
         className: 'defaultInput'
     };
     const currentUser = getCurrentUser('current_user');
-    const history = useHistory();
     const [diesCode, setDiesCode] = useState('');
     const [orgData, setOrgData] = useState({});
     // console.log(orgData);
     const [mentorId, setMentorId] = useState('');
     const [SRows, setSRows] = React.useState([]);
     const [mentorTeam, setMentorTeam] = useState([]);
-
+    const [count, setCount] = useState(0);
     const [error, setError] = useState('');
     const handleOnChange = (e) => {
+        setCount(0);
         setDiesCode(e.target.value);
         setOrgData({});
         setError('');
     };
-
     const handleSearch = (e) => {
         const body = JSON.stringify({
             organization_code: diesCode
@@ -62,12 +62,13 @@ const Dashboard = () => {
             },
             data: body
         };
+
         axios(config)
             .then(function (response) {
                 // console.log(response);
                 if (response.status == 200) {
                     setOrgData(response?.data?.data[0]);
-
+                    setCount(count + 1);
                     setMentorId(response?.data?.data[0]?.mentor.mentor_id);
                     setError('');
                     if (response?.data?.data[0]?.mentor.mentor_id) {
@@ -179,6 +180,13 @@ const Dashboard = () => {
         });
         console.warn(content);
     };
+    const viewDetails = () => {
+        history.push({
+            pathname: '/admin/View-More-details',
+            data: orgData
+        });
+        localStorage.setItem('orgData', JSON.stringify(orgData));
+    };
     const MentorsData = {
         data: mentorTeam,
         columns: [
@@ -192,13 +200,13 @@ const Dashboard = () => {
                 selector: 'team_name',
                 sortable: true,
                 center: true,
-                width: '20%'
+                width: '25%'
             },
             {
-                name: 'Students Count',
+                name: 'Student Count',
                 selector: 'student_count',
                 center: true,
-                width: '25%'
+                width: '20%'
             },
             {
                 name: 'Idea Sub Status',
@@ -245,7 +253,7 @@ const Dashboard = () => {
                 JSON.stringify(id),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             },
             data: submitData
         };
@@ -428,6 +436,12 @@ const Dashboard = () => {
                                             Download
                                         </button>
                                         <button
+                                            onClick={viewDetails}
+                                            className="btn btn-success rounded-pill px-4 btn-lg"
+                                        >
+                                            View More
+                                        </button>
+                                        <button
                                             onClick={() => {
                                                 deleteTempMentorById(
                                                     orgData.mentor?.user_id
@@ -455,10 +469,12 @@ const Dashboard = () => {
                                                 <DataTableExtensions
                                                     print={false}
                                                     export={false}
+                                                    // style={{ fontSize: '10' }}
                                                     {...MentorsData}
                                                 >
                                                     <DataTable
                                                         // data={SRows}
+                                                        // style={{ fontSize: 8 }}
                                                         noHeader
                                                         defaultSortField="id"
                                                         defaultSortAsc={false}
@@ -475,10 +491,10 @@ const Dashboard = () => {
                                     </div>
                                 </>
                             ) : (
-                                !error &&
-                                diesCode &&
-                                orgData !== {} &&
-                                orgData?.organization_name && (
+                                // !error &&
+                                // diesCode &&
+                                // orgData !== {} &&
+                                count != 0 && (
                                     // <Card className="mt-3 p-4">
                                     <div className="text-success fs-highlight d-flex justify-content-center align-items-center">
                                         <span>Still No Teacher Registered</span>

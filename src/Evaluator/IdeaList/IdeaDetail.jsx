@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getSubmittedIdeaList } from '../store/evaluator/action';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Modal } from 'react-bootstrap';
+import Select from '../Helper/Select';
 
 const IdeaDetail = (props) => {
     const dispatch = useDispatch();
@@ -19,6 +21,15 @@ const IdeaDetail = (props) => {
     const [feasabilityScore, setFeasabilityScore] = React.useState(0);
     const [scalabilityScore, setScalabilityScore] = React.useState(0);
     const [affordabilityScore, setAffordabilityScore] = React.useState(0);
+    const [isReject, setIsreject]=React.useState(false);
+    const [reason, setReason]=React.useState('');
+    const selectData = [
+        'Idea is very common and already in use.',
+        'Idea does not have proper details and information to make a decision.',
+        'Idea does not solve the problem identified/the solution and problem are not connected.',
+        'Not very clear about the idea and solution.',
+        'Inaccurate Data (Form is not filled properly)'
+    ];
 
     // eslint-disable-next-line no-unused-vars
     const [isL2, setIsL2] = React.useState(false);
@@ -71,7 +82,8 @@ const IdeaDetail = (props) => {
     const handleL1Round = (handledText) => {
         const body = JSON.stringify({
             status:
-                handledText == 'accept' ? 'SELECTEDROUND1' : 'REJECTEDROUND1'
+                handledText == 'accept' ? 'SELECTEDROUND1' : 'REJECTEDROUND1',
+            rejected_reason:handledText == 'reject' ? reason : ''
         });
         var config = {
             method: 'put',
@@ -82,7 +94,7 @@ const IdeaDetail = (props) => {
             }`,
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             },
             data: body
         };
@@ -101,6 +113,12 @@ const IdeaDetail = (props) => {
                 );
             });
     };
+   const handleReject=()=>{
+        if(reason){
+            handleAlert('reject'); 
+            setIsreject(false);
+        }
+   };
 
     return (
         <>
@@ -201,6 +219,7 @@ const IdeaDetail = (props) => {
                                             className="btn btn-lg px-5 py-2 btn-success me-3 rounded-pill"
                                             onClick={() => {
                                                 handleAlert('accept');
+                                                setReason('');
                                             }}
                                         >
                                             <span className="fs-4">Accept</span>
@@ -208,7 +227,9 @@ const IdeaDetail = (props) => {
                                         <button
                                             className="btn btn-lg px-5 py-2 btn-danger me-3 rounded-pill"
                                             onClick={() => {
-                                                handleAlert('reject');
+                                                // handleAlert('reject');
+                                                setIsreject(true);
+                                                setReason('');
                                             }}
                                         >
                                             <span className="fs-4">Reject</span>
@@ -340,6 +361,48 @@ const IdeaDetail = (props) => {
                     </div>
                 </>
             )}
+            {/* ----------reject-modal----- */}
+            <Modal
+            show={isReject}
+            onHide={()=>setIsreject(false)}
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            className="assign-evaluator ChangePSWModal teacher-register-modal"
+            backdrop="static"
+            scrollable={true}
+        >
+            <Modal.Header closeButton onHide={()=>setIsreject(false)}>
+                <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    className="w-100 d-block text-center"
+                >
+                    Reject
+                </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <div className='my-3 text-center'>
+                    <h3 className='mb-sm-4 mb-3'>Please Select the reason for rejection.</h3>
+                    <Select 
+                    list={selectData}
+                    setValue={setReason}
+                    placeHolder={'Please Select'}
+                    value={reason}
+                    />
+                </div>
+                <div className='text-center'>
+                    <Button
+                        label={'Submit'}
+                        btnClass={!reason?'default':'primary'}
+                        size="small "
+                        onClick={()=>handleReject()}
+                       disabled={!reason}
+                    />
+                </div>
+            </Modal.Body>
+        </Modal>
         </>
     );
 };

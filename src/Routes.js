@@ -138,17 +138,23 @@ import EvaluatorDashboard from './Evaluator/Dashboard/index';
 import EvaluatorChangePassword from './Evaluator/ChangePSWModal';
 import EvaluatorForgotPassword from './Evaluator/ForgotPassword';
 import EvaluatorIdeaList from './Evaluator/IdeaList/IdeaList';
+import ViewMore from './Admin/Dashboard/ViewMore';
 import EvaluatorInstructions from './Evaluator/Instructions/Instructions';
+import EvaluatedIdea from './Evaluator/EvaluatedIdea/EvaluatedIdea';
 
-
+import EvalutorAdminLogins from './Evaluator/Admin/EvaluatorAdminLogin';
+import Eadmindashboard from './Evaluator/Admin/Dashboard/EAdminDashboard';
+import EadminChangePassword from './Evaluator/Admin/Pages/ChangePSWModal';
+import ListOfIdeas from './Evaluator/Admin/ViewTable/ViewSelectedIdea';
+ 
 const Routers = () => {
     // const history = useHistory();
     // const currentUser = getCurrentUser('current_user');
-    // if (currentUser && currentUser.data[0].role === 'ADMIN') {
+    // if (currentUser && currentUser?.data[0]?.role === 'ADMIN') {
     //     history.push('/admin/dashboard');
-    // } else if (currentUser && currentUser.data[0].role === 'STUDENT') {
+    // } else if (currentUser && currentUser?.data[0]?.role === 'STUDENT') {
     //     history.push('/dashboard');
-    // } else if (currentUser && currentUser.data[0].role === 'TEACHER') {
+    // } else if (currentUser && currentUser?.data[0]?.role === 'TEACHER') {
     //     history.push('/teacher/dashboard');
     // }
     // if (currentUser) {
@@ -485,6 +491,11 @@ const Routers = () => {
                     />
                     <ProtectedRoute
                         exact={true}
+                        path="/admin/View-More-details"
+                        component={ViewMore}
+                    />
+                    <ProtectedRoute
+                        exact={true}
                         path="/admin/register-new-schools"
                         component={AddNewSchool}
                     />
@@ -526,7 +537,7 @@ const Routers = () => {
 
                     <ProtectedRoute
                         exact={true}
-                        path="/admin/challenges "
+                        path="/admin/challenges"
                         component={AdminBadgesComp}
                     />
 
@@ -723,12 +734,38 @@ const Routers = () => {
                         path="/evaluator/submitted-ideas"
                         component={EvaluatorIdeaList}
                     />
+
                     <ProtectedRoute
                         exact={true}
                         path="/evaluator/instructions"
                         component={EvaluatorInstructions}
                     />
-                    
+
+                    <ProtectedRoute
+                        exact={true}
+                        path="/evaluator/evaluated-ideas"
+                        component={EvaluatedIdea}
+                    />
+                    <Route
+                        exact={true}
+                        path="/eadmin"
+                        render={() => <EvalutorAdminLogins />}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/eadmin/dashboard"
+                        component={Eadmindashboard}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/eadmin/change-password"
+                        component={EadminChangePassword}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/eadmin/listofideas"
+                        component={ListOfIdeas}
+                    />
                     <Route component={PageNotFound} path="*" />
                 </Switch>
             </Router>

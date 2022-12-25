@@ -52,7 +52,7 @@ const Dashboard = () => {
             );
             // dispatch(
             //     getStudentDashboardChallengesStatus(
-            //         currentUser.data[0].user_id,
+            //         currentUser?.data[0]?.user_id,
             //         language
             //     )
             // );

@@ -70,7 +70,7 @@ const ChangePSWModal = (props) => {
                 }).toString();
 
                 const body = JSON.stringify({
-                    user_id: JSON.stringify(currentUser.data[0].user_id),
+                    user_id: JSON.stringify(currentUser?.data[0]?.user_id),
                     old_password: old1,
                     new_password: new1,
                 });
@@ -95,7 +95,7 @@ const ChangePSWModal = (props) => {
                     headers: {
                         'Content-Type': 'application/json',
                         // Accept: "application/json",
-                        Authorization: `Bearer ${currentUser.data[0].token}`,
+                        Authorization: `Bearer ${currentUser?.data[0]?.token}`,
                     },
                     data: body,
                 };

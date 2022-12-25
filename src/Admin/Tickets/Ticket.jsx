@@ -34,7 +34,7 @@ const TicketsPage = () => {
             url: process.env.REACT_APP_API_BASE_URL + '/supportTickets',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
@@ -59,7 +59,7 @@ const TicketsPage = () => {
                 '/supportTickets?status=OPEN',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
@@ -84,7 +84,7 @@ const TicketsPage = () => {
                 '/supportTickets?status=INPROGRESS',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
@@ -109,7 +109,7 @@ const TicketsPage = () => {
                 '/supportTickets?status=RESOLVED',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)

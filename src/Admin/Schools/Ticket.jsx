@@ -59,14 +59,15 @@ const TicketsPage = (props) => {
 
     const handleEdit = (item) => {
         history.push({
-            pathname: '/admin/register-edit-schools',
-            item: item
+            pathname: '/admin/register-edit-schools'
         });
         localStorage.setItem('listId', JSON.stringify(item));
     };
-    const handleStatusUpdate = (item, itemS) => {
+    const handleActiveStatusUpdate = (item, itemA) => {
         const body = {
-            status: itemS
+            status: itemA,
+            organization_code: item.organization_code,
+            organization_name: item.organization_name
         };
         var config = {
             method: 'put',
@@ -76,7 +77,41 @@ const TicketsPage = (props) => {
                 item.organization_id,
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
+            },
+            data: body
+        };
+        axios(config)
+            .then(function (response) {
+                if (response.status === 200) {
+                    setReqList(false);
+                    openNotificationWithIcon(
+                        'success',
+                        'Status update successfully'
+                    );
+                    props.getSchoolRegistationBulkUploadActions('i');
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                openNotificationWithIcon('error', 'Something went wrong');
+            });
+    };
+    const handleStatusUpdate = (item, itemS) => {
+        const body = {
+            status: itemS,
+            organization_code: item.organization_code,
+            organization_name: item.organization_name
+        };
+        var config = {
+            method: 'put',
+            url:
+                process.env.REACT_APP_API_BASE_URL +
+                '/organizations/' +
+                item.organization_id,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             },
             data: body
         };
@@ -103,16 +138,17 @@ const TicketsPage = (props) => {
             method: 'get',
             url:
                 process.env.REACT_APP_API_BASE_URL +
-                '/organizations?status=NEW',
+                '/organizations?status=NOTACTIVE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response.data);
+
                     setReqSchoolsResponse(
                         response.data.data[0] &&
                             response.data.data[0].dataValues
@@ -131,23 +167,41 @@ const TicketsPage = (props) => {
 
     const handleBack = (e) => {
         setReqList(false);
+        props.getSchoolRegistationBulkUploadActions('i');
     };
 
     const reqSchoolsData = {
         data: reqSchoolsResponse,
         columns: [
             {
+                name: 'No',
+                selector: (row, key) => key + 1,
+                sortable: true,
+                width: '6%'
+                // center: true,
+            },
+            {
                 name: 'UDISE Code',
                 selector: (row) => row.organization_code,
                 sortable: true,
-                width: '25%'
+                width: '15%'
                 // center: true,
             },
             {
                 name: 'Institution Name',
                 selector: (row) => row.organization_name,
-                width: '30%'
+                width: '25%'
                 // center: true,
+            },
+            {
+                name: 'Principal Name',
+                selector: 'principal_name',
+                width: '15%'
+            },
+            {
+                name: 'Principal Mobile',
+                selector: 'principal_mobile',
+                width: '15%'
             },
             {
                 name: 'Status',
@@ -156,13 +210,13 @@ const TicketsPage = (props) => {
                         {row.status}
                     </Badge>
                 ],
-                width: '15%'
+                width: '8%'
                 // center: right,
             },
             {
-                name: 'ACTIONS',
+                name: 'Actions',
                 selector: 'action',
-                width: '40%',
+                width: '16%',
                 cell: (record) => [
                     <>
                         <Link
@@ -171,11 +225,9 @@ const TicketsPage = (props) => {
                             onClick={() => handleStatusUpdate(record, 'ACTIVE')}
                             style={{ marginRight: '10px' }}
                         >
-                            <div className="btn btn-secondary btn-lg">
-                                ACTIVE
-                            </div>
+                            <div className="btn btn-primary btn-lg">ACTIVE</div>
                         </Link>
-                        <Link
+                        {/* <Link
                             exact="true"
                             key={record}
                             onClick={() =>
@@ -186,7 +238,7 @@ const TicketsPage = (props) => {
                             <div className="btn btn-danger btn-lg">
                                 INACTIVE
                             </div>
-                        </Link>
+                        </Link> */}
                     </>
                 ]
             }
@@ -196,37 +248,37 @@ const TicketsPage = (props) => {
         data: props.schoolsRegistrationList,
         columns: [
             {
-                name: 'S.No',
-                selector: 'organization_id',
+                name: 'No',
+                selector: (row, key) => key + 1,
                 width: '6%'
             },
             {
                 name: 'UDISE Code',
                 selector: 'organization_code',
                 sortable: true,
-                width: '13%'
+                width: '15%'
             },
             {
                 name: 'Institution Name',
                 selector: 'organization_name',
-                width: '15%'
+                width: '20%'
             },
             {
-                name: 'Principle Name',
+                name: 'Principal Name',
                 selector: 'principal_name',
                 width: '15%'
             },
             {
-                name: 'Principle Mobile',
+                name: 'Principal Mobile',
                 selector: 'principal_mobile',
                 width: '15%'
             },
 
-            {
-                name: 'State',
-                selector: 'state',
-                width: '15%'
-            },
+            // {
+            //     name: 'State',
+            //     selector: 'state',
+            //     width: '15%'
+            // },
             {
                 name: 'Status',
                 cell: (row) => [
@@ -239,12 +291,12 @@ const TicketsPage = (props) => {
                         {row.status}
                     </Badge>
                 ],
-                width: '7%'
+                width: '11%'
             },
             {
                 name: 'Actions',
                 selector: 'action',
-                width: '14%',
+                width: '18%',
                 cell: (record) => [
                     <>
                         {/* <a onClick={() => handleEdit(record)}>
@@ -258,10 +310,22 @@ const TicketsPage = (props) => {
                             exact="true"
                             key={record}
                             onClick={() => handleEdit(record)}
-                            style={{ marginRight: '10px' }}
+                            style={{ marginRight: '7px' }}
                         >
                             <div className="btn btn-primary btn-lg mx-2">
-                                Edit
+                                EDIT
+                            </div>
+                        </Link>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() =>
+                                handleActiveStatusUpdate(record, 'INACTIVE')
+                            }
+                            style={{ marginRight: '10px' }}
+                        >
+                            <div className="btn btn-danger btn-lg">
+                                INACTIVE
                             </div>
                         </Link>
                     </>
@@ -278,7 +342,11 @@ const TicketsPage = (props) => {
                 <Row className="pt-3">
                     <Row className="mb-2 mb-sm-5 mb-md-5 mb-lg-0">
                         <Col className="col-auto">
-                            <h2>List of Institutions</h2>
+                            {reqList ? (
+                                <h2>List of inactive institutions</h2>
+                            ) : (
+                                <h2>List of active institutions</h2>
+                            )}
                         </Col>
 
                         <Col className="ticket-btn col ml-auto ">
@@ -317,7 +385,7 @@ const TicketsPage = (props) => {
                                     />
 
                                     <Button
-                                        label="Req Schools"
+                                        label="InActive Schools"
                                         btnClass="primary"
                                         size="small"
                                         shape="btn-square"

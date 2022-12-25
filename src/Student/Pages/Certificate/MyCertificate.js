@@ -35,7 +35,7 @@ const Certificate = ({
         const size = type ? [210, 297] : [298, 200];
         const orientation = type ? 'l' : 'p';
         const doc = new jsPDF(orientation, 'px', size);
-        const certName = `${currentUser.data[0].full_name}_${
+        const certName = `${currentUser?.data[0]?.full_name}_${
             type ? 'idea_certificate' : 'course_certificate'
         }`;
         doc.html(content, {
@@ -47,7 +47,7 @@ const Certificate = ({
             dispatch(
                 updateStudentBadges(
                     { badge_slugs: [badge] },
-                    currentUser.data[0].user_id,
+                    currentUser?.data[0]?.user_id,
                     language,
                     t
                 )
@@ -155,7 +155,7 @@ const MyCertificate = () => {
     useLayoutEffect(() => {
         if (!dashboardStatus)
             dispatch(
-                getStudentDashboardStatus(currentUser.data[0].user_id, language)
+                getStudentDashboardStatus(currentUser?.data[0]?.user_id, language)
             );
         if (!postSurveyStatusGl)
             dispatch(studentPostSurveyCertificate(language));

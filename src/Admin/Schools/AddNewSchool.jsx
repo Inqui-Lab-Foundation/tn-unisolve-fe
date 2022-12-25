@@ -81,7 +81,11 @@ const AddNewSchool = (props) => {
                 'Organization  Name is Required'
             ),
             organization_code: Yup.string()
-                .matches(phoneRegExp, 'organization code is not valid')
+                // .matches(
+                //     phoneRegExp,
+                //     /^[aA-zZ\s]+$/,
+                //     'organization code is not valid'
+                // )
                 .required('UDISE  Code is Required'),
             city: Yup.string().matches(/^[aA-zZ\s]+$/, 'Invalid City'),
             district: Yup.string()
@@ -128,6 +132,7 @@ const AddNewSchool = (props) => {
                                         <Label
                                             className="mb-2"
                                             htmlFor="organization_code"
+                                            // style={{ fontSize: 15 }}
                                         >
                                             UDISE Code
                                         </Label>
@@ -154,6 +159,7 @@ const AddNewSchool = (props) => {
                                         <Label
                                             className="mb-2"
                                             htmlFor="organization_name"
+                                            // style={{ fontSize: 15 }}
                                         >
                                             Institute/School Name
                                         </Label>
