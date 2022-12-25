@@ -186,7 +186,7 @@
         "change_pass":"ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ"
     },
     "home_tl": {
-        "Hero_section-header": "<span className='green'>21 ನೇ ಶತಮಾನದ ಕೌಶಲ್ಯಗಳೊಂದಿಗೆ</span> ನಾಳಿನ ಬದಲಾವಣೆ ತರುವ ತಯಾರಕರನ್ನು ಹುಟ್ಟುಹಾಕುವುದು.",
+        "Hero_section-header": "<span class='green'> ಕರ್ನಾಟಕ </span> <br/><span className='green'>21 ನೇ ಶತಮಾನದ ಕೌಶಲ್ಯಗಳೊಂದಿಗೆ</span> ನಾಳಿನ ಬದಲಾವಣೆ ತರುವ ತಯಾರಕರನ್ನು ಹುಟ್ಟುಹಾಕುವುದು.",
         "Hero_section-description": "social innovation/ಸಾಮಾಜಿಕ ನಾವೀನ್ಯತೆಯ ಸಂಸ್ಕೃತಿಯನ್ನು ಪೋಷಿಸಿ ಮತ್ತು ಕೌಶಲ್ಯಗಳನ್ನು ಬೆಳೆಸಿಕೊಳ್ಳಿ ಮತ್ತು ಯುವಜನರನ್ನು ಪರಿವರ್ತಕ ನಾಯಕರಾಗಲು ಪ್ರೇರೇಪಿಸುತ್ತದೆ.",
         "register": "ನೋಂದಣಿ",
         "login": "ಲಾಗಿನ್",
