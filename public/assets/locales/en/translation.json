@@ -198,7 +198,7 @@
     },
     
     "home_tl": {
-        "Hero_section-header": "<span class='green'> TAMIL NADU </span> <br/>Creating Change Makers of Tomorrow with <span className='green'>21st Century Skills</span>",
+        "Hero_section-header": "<span class='green'> ANDHRA PRADESH </span> <br/>Creating Change Makers of Tomorrow with <span className='green'>21st Century Skills</span>",
         "Hero_section-description": "Nurture a culture of social innovation and build skills while inspiring young people to become transformative leaders.",
         "register": "Register",
         "login": "Login",
@@ -417,7 +417,8 @@
         "btn_ok":"ok",
         "cancelled":"Cancelled",
         "logged_in":"You are Logged in",
-        "submit_idea":"You are attempting to submit your idea Which is not revertable"
+        "submit_idea":"You are attempting to submit your idea Which is not revertable",
+        "idea_sub_cancelled":"Idea Submission Cancelled"
     },
     "teacehr_red": {
         "heading": "REGISTER",
