@@ -537,30 +537,30 @@ const TicketsPage = (props) => {
         ]
     };
     const adminData = {
-        data: props.adminData,
+        data: props.adminData && props.adminData.length > 0 ? props.adminData : [],
         columns: [
             {
                 name: 'S.No.',
-                selector: 'id',
+                selector: (row) => row?.id,
             },
             {
                 name: 'Admin Name',
-                selector: 'user.full_name',
+                selector: (row) => row?.user?.full_name,
             },
             {
                 name: 'Email',
-                selector: 'user.username',
+                selector: (row) => row?.user?.username,
             },
             {
                 name: 'Role',
-                selector: 'user.role',
+                selector: (row) => row?.user?.role, 
             },
             {
                 name: 'Action',
                 sortable: false,
                 cell: (record) => [
                     <Link
-                        key={record.id}
+                        key={record?.id}
                         exact="true"
                         onClick={() => handleSelect(record)}
                         style={{ marginRight: '10px' }}
@@ -569,7 +569,7 @@ const TicketsPage = (props) => {
                     </Link>,
                     <Link
                         exact="true"
-                        key={record.id}
+                        key={record?.id}
                         onClick={() => handleEdit(record)}
                         style={{ marginRight: '10px' }}
                     >
