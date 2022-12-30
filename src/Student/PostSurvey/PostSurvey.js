@@ -91,11 +91,11 @@ const PostSurvey = () => {
                                 dispatch(
                                     updateStudentBadges(
                                         { badge_slugs: [badge] },
-                                        currentUser.data[0].user_id,
+                                        currentUser?.data[0]?.user_id,
                                         language,t
                                     )
                                 );
-                                dispatch(getStudentDashboardStatus(currentUser.data[0].user_id, language));
+                                dispatch(getStudentDashboardStatus(currentUser?.data[0]?.user_id, language));
                                 dispatch(studentPostSurveyCertificate(language));
                                 openNotificationWithIcon(
                                     'success',

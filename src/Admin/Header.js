@@ -29,7 +29,7 @@ const Header = (props) => {
             // { name: "My Settings", path: "/admin/settings" },
             { name: "Logout", path: "", onClick: () => logout(history, t) },
         ],
-        name: currentUser.data[0].full_name,
+        name: currentUser?.data[0]?.full_name,
         img: AvatarImg,
     };
     const notifyOpt = {
@@ -94,7 +94,7 @@ const Header = (props) => {
                                         <div className="d-flex align-items-center profile">
                                             <img src={AvatarImg} className="img-fluid"  />
                                             <span className='header-name-size'>
-                                                {currentUser.data[0].full_name}
+                                                {currentUser?.data[0]?.full_name}
                                             </span> 
                                         </div>
 

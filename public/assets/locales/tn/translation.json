@@ -327,7 +327,8 @@
         "certificate": "Certificate",
         "certificate_desc": "Please Download Certificate...",
         "part_certificate_desc": "దయచేసి పార్టిసిపేట్ సర్టిఫికెట్‌ని డౌన్‌లోడ్ చేసుకోండి...",
-        "complete_postsurvey": "Please complete post survey to get course completion certificate"
+        "complete_postsurvey": "Please complete post survey to get course completion certificate",
+        "complete_post_survey_default":"Thank you for completing the journey and supporting your students in successful completion of the course and idea submission. Your certificate will be enabled soon."
     },
     "teacher_header": {
         "profile": "My Profile",

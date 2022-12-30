@@ -29,7 +29,7 @@ const Instructions = () => {
 
                 <div className="text-right">
                     <Button
-                        label={"let's start"}
+                        label={"Let's Start"}
                         btnClass="primary mx-3"
                         size="small"
                         onClick={() =>

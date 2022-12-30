@@ -76,7 +76,7 @@ const ViewTeamMember = () => {
                 '?status=ACTIVE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
@@ -239,7 +239,7 @@ const ViewTeamMember = () => {
                             item.student_id,
                         headers: {
                             'Content-Type': 'application/json',
-                            Authorization: `Bearer ${currentUser.data[0].token}`
+                            Authorization: `Bearer ${currentUser?.data[0]?.token}`
                         }
                     };
                     axios(config)

@@ -125,7 +125,7 @@ const PlayVideoCourses = (props) => {
     React.useEffect(()=>{
         if(!dashboardStatus){
             dispatch(
-                getStudentDashboardStatus(currentUser.data[0].user_id, language)
+                getStudentDashboardStatus(currentUser?.data[0]?.user_id, language)
             );
         }
     },[]);
@@ -214,7 +214,7 @@ const PlayVideoCourses = (props) => {
                 getLanguage(language),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         await axios(config)
@@ -239,7 +239,7 @@ const PlayVideoCourses = (props) => {
                 getLanguage(language),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             }
         };
         axios(config)
@@ -263,7 +263,7 @@ const PlayVideoCourses = (props) => {
 
     async function modulesListUpdateApi(courseTopicId) {
         const body1 = JSON.stringify({
-            user_id: JSON.stringify(currentUser.data[0].user_id),
+            user_id: JSON.stringify(currentUser?.data[0]?.user_id),
             course_topic_id: JSON.stringify(courseTopicId),
             status: 'Completed'
         });
@@ -276,7 +276,7 @@ const PlayVideoCourses = (props) => {
                 getLanguage(language),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             },
             data: body1
         };
@@ -583,7 +583,7 @@ const PlayVideoCourses = (props) => {
                 getLanguage(language),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${currentUser.data[0].token}`
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
             },
             data: data
         };
@@ -598,7 +598,7 @@ const PlayVideoCourses = (props) => {
                     dispatch(
                         updateStudentBadges(
                             { badge_slugs: [badge] },
-                            currentUser.data[0].user_id,
+                            currentUser?.data[0]?.user_id,
                             language,t
                         )
                     );

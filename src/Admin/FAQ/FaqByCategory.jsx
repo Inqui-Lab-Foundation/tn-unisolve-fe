@@ -34,7 +34,7 @@ const FaqByCategory = () => {
     //         headers: {
     //             "Content-Type": "application/json",
     //             // Accept: "application/json",
-    //             Authorization: `Bearer ${currentUser.data[0].token}`,
+    //             Authorization: `Bearer ${currentUser?.data[0]?.token}`,
     //         },
     //         // data: body,
     //     };
