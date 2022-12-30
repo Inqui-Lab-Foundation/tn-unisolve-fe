@@ -103,6 +103,10 @@ const Home = () => {
                 ? history.push('/teacher/dashboard')
                 : moduleName === 'ADMIN'
                 ? history.push('/admin/dashboard')
+                : moduleName === 'EVALUATOR'
+                ? history.push('/evaluator/submitted-ideas')
+                : moduleName === 'EADMIN'
+                ? history.push('/eadmin/dashboard')
                 : history.push('/dashboard');
         }
     }, []);
@@ -651,7 +655,9 @@ const Home = () => {
                                                     label={t('home_tl.login')}
                                                     btnClass="primary "
                                                     onClick={() => {
-                                                        history.push("/teacher");
+                                                        history.push(
+                                                            '/teacher'
+                                                        );
                                                         i18next.changeLanguage(
                                                             'en'
                                                         );
@@ -746,21 +752,21 @@ const Home = () => {
                 </div>
                 <Container className="py-md-4 py-2 px-5" fluid>
                     <Row className="student py-md-4 py-2">
-                            <Col
-                                md={12}
-                                lg={6}
-                                className="my-auto mx-auto student-heading px-5 "
-                            >
-                                <h2 className="mb-5 sub-heading">
-                                    UPSHIFT {t('home_tl.power_by')}{' '}
-                                    <span className="green">UNISOLVE</span>{' '}
-                                </h2>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('home_tl.upshift_power_desc')
-                                    }}
-                                ></div>
-                                {/* <Link
+                        <Col
+                            md={12}
+                            lg={6}
+                            className="my-auto mx-auto student-heading px-5 "
+                        >
+                            <h2 className="mb-5 sub-heading">
+                                UPSHIFT {t('home_tl.power_by')}{' '}
+                                <span className="green">UNISOLVE</span>{' '}
+                            </h2>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t('home_tl.upshift_power_desc')
+                                }}
+                            ></div>
+                            {/* <Link
                                     className="landing-page-actions"
                                     exact="true"
                                     to="/login"
@@ -773,19 +779,18 @@ const Home = () => {
                                         size="small"
                                     />
                                 </Link> */}
-                            </Col>
-                            <Col md={12} lg={6}>
-                                <figure className="my-0">
-                                    <img
-                                        src={LearnMentor}
-                                        alt="learn"
-                                        className="img-fluid"
-                                    />
-                                </figure>
-                            </Col>
+                        </Col>
+                        <Col md={12} lg={6}>
+                            <figure className="my-0">
+                                <img
+                                    src={LearnMentor}
+                                    alt="learn"
+                                    className="img-fluid"
+                                />
+                            </figure>
+                        </Col>
                     </Row>
                 </Container>
-                
             </section>
             {/* <section className="mentor-student">
         <Container className="both">

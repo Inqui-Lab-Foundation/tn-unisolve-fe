@@ -198,7 +198,7 @@
 
     },
     "home_tl": {
-        "Hero_section-header": "Creating Change Makers of Tomorrow with <span className='green'>21st Century Skills</span>",
+        "Hero_section-header": "<span class='green'> TAMIL NADU </span> <br/>Creating Change Makers of Tomorrow with <span className='green'>21st Century Skills</span>",
         "Hero_section-description": "Nurture a culture of social innovation and build skills while inspiring young people to become transformative leaders.",
         "register": "Register",
         "login": "Login",
@@ -347,7 +347,9 @@
         "post_survey":"Post Survey",
         "idea_submitted_desc":"<h2>Congratulations for successfully submitting the idea</h2>.</br><p>Please click continue to complete your post survey and get your certificate.</p>",
         "post_survey_desc":"Congratulations! your SIDP journey for 2022-23 is complete.",
-        "click_button_post_survey":"Your certificate will be ready soon and you can download it from ‘My Certificate Page’"
+        "click_button_post_survey":"Your certificate will be ready soon and you can download it from ‘My Certificate Page’",
+        "max_length_msg1":"Maximum length of characters is ",
+        "max_length_msg2":" only..."
     },
     "teacher_presurvey": {
         "completed_text": "Your survey has been successfully submitted!"
@@ -359,7 +361,8 @@
         "certificate": "Course Completion Certificate",
         "certificate_desc": "Please Download Certificate...",
         "part_certificate_desc": "Please Download Participate Certificate...",
-        "complete_postsurvey": "Please complete post survey to get course completion certificate"
+        "complete_postsurvey": "Please complete post survey to get course completion certificate",
+        "complete_post_survey_default":"Thank you for completing the journey and supporting your students in successful completion of the course and idea submission. Your certificate will be enabled soon."
     },
     "teacher_header": {
         "profile": "My Profile",
@@ -495,7 +498,13 @@
         "sdg":"Which Sustainable development Goal (SDG) are you targeting with your solution ?",
         "sdg_desc":"(You can refer to the SDGs sheet from FIND Module and pick the right option )",
         "others":"If you picked the option ‘others’ in the above question, write down which SDG or theme is your solution targeting.",
-        "chars":"Characters Remaining"
+        "chars":"Characters Remaining",
+        "idea_submission":"Idea Submission",
+        "idea_submission_msg1":"Idea submission is",
+        "idea_status1":" initiated by ",
+        "idea_status2":" submitted by ",
+        "idea_submission_msg2":"your teammate ",
+        "idea_submission_msg3":" on "
     },
     "translation":{
         "tamil":"bhtn Content :-",

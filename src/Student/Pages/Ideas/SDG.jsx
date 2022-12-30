@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './style.scss';
 import Layout from '../../Layout.jsx';
 import {
@@ -26,16 +27,17 @@ const SDG = ({setShowChallenges}) => {
     const { t } = useTranslation();
     const [showPage, setShowPage] = useState(true);
     const comingSoonText = t('dummytext.student_idea_sub');
-    const dashboardStatus = useSelector((state) => state?.studentRegistration?.dashboardStatus);
-    let {all_topics_count,topics_completed_count} = dashboardStatus ? dashboardStatus : {all_topics_count:null,topics_completed_count:null};
-    useLayoutEffect(() => {
-        if(!dashboardStatus)
-            dispatch(getStudentDashboardStatus(currentUser.data[0].user_id, language));
-    }, [language]);
-    useEffect(() => {
-        if(all_topics_count && (all_topics_count !== topics_completed_count))
-            setShowPage(false);
-    }, [all_topics_count,topics_completed_count]);
+    // const dashboardStatus = useSelector((state) => state?.studentRegistration?.dashboardStatus);
+    // let {all_topics_count,topics_completed_count} = dashboardStatus ? dashboardStatus : {all_topics_count:null,topics_completed_count:null};
+    // useLayoutEffect(() => {
+    //     if(!dashboardStatus)
+    //         dispatch(getStudentDashboardStatus(currentUser?.data[0]?.user_id, language));
+    // }, [language]);
+    // useEffect(() => {
+    //     if(all_topics_count && (all_topics_count !== topics_completed_count))
+    //         setShowPage(false);
+    // }, [all_topics_count,topics_completed_count]);
+
     
     const handleSelect = (data)=>{
         const initialSizeData = {

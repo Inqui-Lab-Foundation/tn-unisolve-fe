@@ -26,7 +26,15 @@ const LoginEvaluator = (props) => {
     React.useLayoutEffect(() => {
         const moduleName = localStorage.getItem("module");
         if (localStorage.getItem("current_user") && localStorage.getItem("module")) {
-            moduleName === "MENTOR" ? history.push("/teacher/dashboard") : moduleName === "ADMIN" ? history.push("/admin/dashboard"): moduleName === "EVALUATOR" ? history.push("/evaluator/submitted-ideas") : history.push("/dashboard");
+            moduleName === 'MENTOR'
+                ? history.push('/teacher/dashboard')
+                : moduleName === 'ADMIN'
+                ? history.push('/admin/dashboard')
+                : moduleName === 'EVALUATOR'
+                ? history.push('/evaluator/submitted-ideas')
+                : moduleName === 'EADMIN'
+                ? history.push('/eadmin/dashboard')
+                : history.push('/dashboard');
         }
     }, []);
 
@@ -257,12 +265,12 @@ const LoginEvaluator = (props) => {
                                             }
                                             disabled={!(formik.dirty && formik.isValid)}
                                         />
-                                        <div
+                                        {/* <div
                                         className="text-primary text-center fs-4 pointer pt-1 mt-4"
                                         onClick={() => setRegisterModalShow(true)}
                                     >
                                         Sign Up
-                                    </div>
+                                    </div> */}
                                     </Col>
                                     
                                 </div>

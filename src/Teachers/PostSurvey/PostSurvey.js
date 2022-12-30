@@ -44,8 +44,8 @@ const PostSurvey = () => {
 
     useEffect(() => {
         //if(!dashboardStates)
-        dispatch(getDashboardStates(currentUser.data[0].user_id));
-    }, [dispatch, currentUser.data[0].user_id]);
+        dispatch(getDashboardStates(currentUser?.data[0]?.user_id));
+    }, [dispatch, currentUser?.data[0]?.user_id]);
     const formik = useFormik({
         initialValues: {},
         onSubmit: async (values) => {
