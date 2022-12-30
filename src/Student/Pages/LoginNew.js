@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import './SignUp.scss';
 import React, { useLayoutEffect, useState } from 'react';
-import { Row, Col, Form, FormGroup, Label, Input, List } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { InputBox } from '../../stories/InputBox/InputBox.jsx';
 import { Button } from '../../stories/Button.jsx';
@@ -383,19 +383,6 @@ const LoginNew = (props) => {
                                 </Row> */}
 
                                 
-                            </Col>
-                            <Col>
-                                <List type="unstyled">
-                                    <li>
-                                        <a href="http://tiny.cc/StudentVideoOne" target="_blank" rel='noopener noreferrer'>Click here to watch video 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://tiny.cc/StudentVideoTwo" target="_blank" rel='noopener noreferrer'>Click here to watch video 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://tiny.cc/StudentVideoThree" target="_blank" rel='noopener noreferrer'>Click here to watch video 3</a>
-                                    </li>
-                                </List>
                             </Col>
                         </Row>
                     </Col>

@@ -167,7 +167,6 @@ const PlayVideoCourses = (props) => {
             setOpen(id);
         }
     };
-
     useEffect(() => {
         props.getAdminCourseDetailsActions(course_id, language);
     }, [course_id, language]);
