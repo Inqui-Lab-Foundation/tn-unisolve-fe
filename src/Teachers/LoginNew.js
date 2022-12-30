@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import '../Student/Pages/SignUp.scss';
 import React, { useLayoutEffect, useState } from 'react';
-import { Row, Col, Form, FormGroup, Label, Input, List } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { InputBox } from '../stories/InputBox/InputBox';
 import { Button } from '../stories/Button';
@@ -122,9 +122,9 @@ const LoginNew = (props) => {
             handlePassword('password');
         }
     };
-    const handleOnClick = () => {
-        setShowPopUp(true);
-    };
+    // const handleOnClick = () => {
+    //     setShowPopUp(true);
+    // };
     return (
         <React.Fragment>
             <div className="container-fluid  SignUp Login">
@@ -309,7 +309,7 @@ const LoginNew = (props) => {
                                                         </small>
                                                     </FormGroup>
                                                 </Col>
-                                                <Col className="col-sm-2 text-right">
+                                                {/* <Col className="col-sm-2 text-right">
                                                     <Link
                                                         exact="true"
                                                         onClick={handleOnClick}
@@ -319,7 +319,7 @@ const LoginNew = (props) => {
                                                                 'loginPage.Forgot_password'
                                                             )}
                                                     </Link>
-                                                </Col>
+                                                </Col> */}
                                             </Row>
                                         </Col>
                                     </div>
@@ -354,7 +354,7 @@ const LoginNew = (props) => {
                                     </div>
                                 </Form>
                             </Col>
-                            <Col>
+                            {/* <Col>
                             <Label>Reference Videos</Label>
                                 <List>
                                     <li>
@@ -379,7 +379,7 @@ const LoginNew = (props) => {
                                         <a href="https://youtu.be/qdmR-PA1KWc" target="_blank" rel='noopener noreferrer'>How the students can use the Website</a>
                                     </li>
                                 </List>
-                            </Col>
+                            </Col> */}
                         </Row>
                     </Col> 
                 </Row>

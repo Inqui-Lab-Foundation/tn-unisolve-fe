@@ -22,15 +22,20 @@ import {
 import { Button } from '../stories/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { Input } from 'antd';
-import LanguageSelectorComp from '../components/LanguageSelectorComp';
+// import LanguageSelectorComp from '../components/LanguageSelectorComp';
 import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import Slider from 'react-slick';
 import LearnMentor from '../assets/media/home/learn.svg';
 import upshift from '../assets/media/UPSHIFT-diagram.jpg';
-import testi1 from '../assets/media/home/testi/Herve_Morin_Global_head.jpg';
-import testi2 from '../assets/media/home/testi/Swathi.JPG';
+import testi1 from '../assets/media/home/testi/PHUB_LHAM_img.png';
+import testi2 from '../assets/media/home/testi/MANI_DEM_img.png';
+import testi3 from '../assets/media/home/testi/NIM_DORJI_img.png';
+import testi4 from '../assets/media/home/testi/te1.jpg';
+import testi5 from '../assets/media/home/testi/te2.jpg';
+import testi6 from '../assets/media/home/testi/te3.jpg';
+
 import IdeaBulb from '../assets/media/home/idea-bulb.png';
 
 import map_icon_awa from '../assets/media/home/icon_aweraness.png';
@@ -40,27 +45,36 @@ import map_icon_test from '../assets/media/home/icon_solution_testing.png';
 import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
-// ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_SSA_Tamilnadu.jpg';
-import SIDP_tamilnadu from '../assets/media/tn-brands/2_SIDP_tamilnadu.jpg';
-import EDII_tamilnadu from '../assets/media/tn-brands/3_EDII_tamilnadu.jpg';
-import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_Tamilnadu.png';
-import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_Tamilnadu.jpg';
-import IIF_Tamilnadu from '../assets/media/tn-brands/7_IIF_Tamilnadu.png';
-import SS_Tamilnadu from '../assets/media/tn-brands/8_SS_Tamilnadu.jpg';
-import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/9_Unicef OOI_Tamilnadu.jpg';
-import LogoTn from '../assets/media/tn-brands/UPSHIFT_SIDP_TN_logo.png';
+import Loden from '../assets/media/tn-brands/4_Loden_circle.png';
+import MoE from '../assets/media/tn-brands/3_MoE.jpg';
+import IIF from '../assets/media/tn-brands/2_IIF.png';
+import Unicef_OOI from '../assets/media/tn-brands/1_Unicef OOI.jpg';
+import Unicef from '../assets/media/tn-brands/6_unicef.jpg';
+import YDF from '../assets/media/tn-brands/5_YDF.png';
+import LogoTn from '../assets/media/tn-brands/logo.png';
 
-import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
-import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
-import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
+//import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
+// import Blog2 from '../assets/media/home/blog/UPSHIFT_blog1.jpg';
+// import Blog3 from '../assets/media/home/blog/blog_2.jpg';
+import Blogimg1 from '../assets/media/home/blog/b1.jpg';
+//import Blogimg2 from '../assets/media/home/blog/b2.jpg';
+import Blogimg3 from '../assets/media/home/blog/b3.jpg';
+//import Blogimg4 from '../assets/media/home/blog/b4.jpg';
+import Blogimg5 from '../assets/media/home/blog/b5.jpg';
+import Blogimg6 from '../assets/media/home/blog/b6.jpg';
+import Blogimg7 from '../assets/media/home/blog/b7.jpg';
+import Blogimg8 from '../assets/media/home/blog/b8.jpg';
+import Blogimg9 from '../assets/media/home/blog/b9.jpg';
+import Blogimg10 from '../assets/media/home/blog/b10.jpg';
+import Blogimg11 from '../assets/media/home/blog/b11.jpg';
+
 import RegisterPopup from './registration/RegisterPopup';
-import TamilNaduMap from '../components/MapCard/TamilNaduMap';
+import BhutanMap from '../components/MapCard/BhutanMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import FancyVideo from 'react-videojs-fancybox';
-import taVideo from '../assets/media/tn-brands/ta-video.mp4';
-import tnVideoCover from '../assets/media/tn-brands/videoCover.png';
+// import FancyVideo from 'react-videojs-fancybox';
+// import taVideo from '../assets/media/tn-brands/ta-video.mp4';
+// import tnVideoCover from '../assets/media/tn-brands/videoCover.png';
 import SchoolRegisterPopup from './SchoolRegisterPopup';
 import axios from 'axios';
 import ScrollToTop from 'react-scroll-to-top';
@@ -172,68 +186,86 @@ const Home = () => {
     const partners = [
         {
             id: 1,
-            key: 'SSA',
-            // imageUrl: Unicef
-            imageUrl: SSA_Tamilnadu
+            key: 'MoE',
+            // imageUrl: Telangana
+            imageUrl: MoE
         },
         {
             id: 2,
-            key: 'SIDP',
-            // imageUrl: Telangana
-            imageUrl: SIDP_tamilnadu
+            key: 'YDF',
+            // imageUrl: Congnizant
+            imageUrl: YDF
         },
         {
             id: 3,
-            key: 'EDII',
-            // imageUrl: Inquilab
-            imageUrl: EDII_tamilnadu
+            key: 'Loden',
+            // imageUrl: Unicef
+            imageUrl: Loden
         },
         {
             id: 4,
-            key: 'UpShift',
-            // imageUrl: Yuwaah
-            imageUrl: UpShift_Tamilnadu
+            key: 'Unicef',
+            // imageUrl: Congnizant
+            imageUrl: Unicef
         },
         {
             id: 5,
-            key: 'Yuwaah',
-            // imageUrl: YoungWarrior
-            imageUrl: Yuwaah_Tamilnadu
+            key: 'Unicef_OOI',
+            // imageUrl: Congnizant
+            imageUrl: Unicef_OOI
         },
         {
             id: 6,
             key: 'IIF',
             // imageUrl: Congnizant
-            imageUrl: IIF_Tamilnadu
+            imageUrl: IIF
         },
-        {
-            id: 6,
-            key: 'SS',
-            // imageUrl: Congnizant
-            imageUrl: SS_Tamilnadu
-        },
-        {
-            id: 6,
-            key: 'Unicef',
-            // imageUrl: Congnizant
-            imageUrl: Unicef_OOI_Tamilnadu
-        }
+        
+        
     ];
 
     const testimonials = [
         {
             id: 1,
-            imageUrl: testi2,
+            imageUrl: testi1,
             desc: `${t('home_tl.testimonials_desc_1')}`,
             name: `${t('home_tl.testimonials_name_1')}`,
             title: `${t('home_tl.testimonials_title_1')}`
         },
         {
             id: 2,
-            imageUrl: testi1,
+            imageUrl: testi2,
             desc: `${t('home_tl.testimonials_desc_2')}`,
             name: `${t('home_tl.testimonials_name_2')}`,
             title: `${t('home_tl.testimonials_title_2')}`
+        },
+        {
+            id: 3,
+            imageUrl: testi3,
+            desc: `${t('home_tl.testimonials_desc_3')}`,
+            name: `${t('home_tl.testimonials_name_3')}`,
+            title: `${t('home_tl.testimonials_title_3')}`
+        },
+        {
+            id: 4,
+            imageUrl: testi4,
+            desc: `${t('home_tl.testimonials_desc_4')}`,
+            name: `${t('home_tl.testimonials_name_4')}`,
+            title: `${t('home_tl.testimonials_title_4')}`
+        },
+        {
+            id: 5,
+            imageUrl: testi5,
+            desc: `${t('home_tl.testimonials_desc_5')}`,
+            name: `${t('home_tl.testimonials_name_5')}`,
+            title: `${t('home_tl.testimonials_title_5')}`
+        },
+        {
+            id: 6,
+            imageUrl: testi6,
+            desc: `${t('home_tl.testimonials_desc_6')}`,
+            name: `${t('home_tl.testimonials_name_6')}`,
+            title: `${t('home_tl.testimonials_title_6')}`
         }
     ];
 
@@ -318,37 +350,104 @@ const Home = () => {
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
         },
-        {
-            id: 6,
-            title: `${t('home_tl.faq_qn_6')}`,
-            desc: `${t('home_tl.faq_ans_6')}`
-        }
+        // {
+        //     id: 6,
+        //     title: `${t('home_tl.faq_qn_6')}`,
+        //     desc: `${t('home_tl.faq_ans_6')}`
+        // },
+        // {
+        //     id: 7,
+        //     title: `${t('home_tl.faq_qn_7')}`,
+        //     desc: `${t('home_tl.faq_ans_7')}`
+        // },
+        // {
+        //     id: 8,
+        //     title: `${t('home_tl.faq_qn_8')}`,
+        //     desc: `${t('home_tl.faq_ans_8')}`
+        // },
+        // {
+        //     id: 9,
+        //     title: `${t('home_tl.faq_qn_9')}`,
+        //     desc: `${t('home_tl.faq_ans_9')}`
+        // }
     ];
 
     const blogs = [
+        // {
+        //     id: 112,
+        //     imgUrl: Blog2,
+        //     title: `${t('home_tl.idea_heading_1')}`,
+        //     //desc: `${t('home_tl.idea_desc_1')}`
+        //     urllinlk:"https://www.unicef.org/bhutan/stories/empowering-young-minds-become-social-innovators"
+        // },
+        // {
+        //     id: 21,
+        //     imgUrl: Blog3,
+        //     title: `${t('home_tl.idea_heading_2')}`,
+        //     //desc: `${t('home_tl.idea_desc_2')}`
+        //     urllinlk:"https://www.unicef.org/bhutan/stories/empowering-adolescents-become-changemakers"
+        // },
         {
             id: 1,
-            imgUrl: Blog2,
-            title: `${t('home_tl.idea_heading_1')}`,
+            imgUrl: Blogimg1,
             desc: `${t('home_tl.idea_desc_1')}`
         },
-        {
-            id: 2,
-            imgUrl: Blog3,
-            title: `${t('home_tl.idea_heading_2')}`,
-            desc: `${t('home_tl.idea_desc_2')}`
-        },
+        // {
+        //     id: 2,
+        //     imgUrl: Blogimg2,
+        //     desc: `${t('home_tl.idea_desc_2')}`
+        // },
         {
             id: 3,
-            imgUrl: Blog1,
-            title: `${t('home_tl.idea_heading_3')}`,
+            imgUrl: Blogimg3,
             desc: `${t('home_tl.idea_desc_3')}`
-        }
+        },
+        // {
+        //     id: 4,
+        //     imgUrl: Blogimg4,
+        //     desc: `${t('home_tl.idea_desc_4')}`
+        // },
+        {
+            id: 5,
+            imgUrl: Blogimg5,
+            desc: `${t('home_tl.idea_desc_5')}`
+        },
+        {
+            id: 6,
+            imgUrl: Blogimg6,
+            desc: `${t('home_tl.idea_desc_6')}`
+        },
+        {
+            id: 7,
+            imgUrl: Blogimg7,
+            desc: `${t('home_tl.idea_desc_7')}`
+        },
+        {
+            id: 8,
+            imgUrl: Blogimg8,
+            desc: `${t('home_tl.idea_desc_8')}`
+        },
+        {
+            id: 9,
+            imgUrl: Blogimg9,
+            desc: `${t('home_tl.idea_desc_9')}`
+        },
+        {
+            id: 10,
+            imgUrl: Blogimg10,
+            desc: `${t('home_tl.idea_desc_10')}`
+        },
+        {
+            id: 11,
+            imgUrl: Blogimg11,
+            desc: `${t('home_tl.idea_desc_11')}`
+        },
+
     ];
-    // console.log("----379",sidebar);
+    console.log("----379",sidebar);
 
     return (
-        <div className="home-main">
+        <div className="home-main overflow-hidden">
             <ScrollToTop smooth color="#0da650" />
             {/* Mobile menu */}
             <Menu
@@ -410,9 +509,9 @@ const Home = () => {
                             {t('home_nav_links.faq')}
                         </AnchorLink>
                     </NavItem>
-                    <NavItem className="mt-3 ms-3">
+                     {/* <NavItem className="mt-3 ms-3">
                         <LanguageSelectorComp module="general" />
-                    </NavItem>
+                    </NavItem> */}
                 </Nav>
             </Menu>
             <section className="header ">
@@ -426,10 +525,29 @@ const Home = () => {
                                             <img
                                                 src={LogoTn}
                                                 alt="logo"
-                                                className="w-5 logoImg"
+                                                className="w-10 logoImg"
                                             />
                                         </figure>
                                     </Link>
+                                    {/* <Link className="" exact="true" to="/">
+                                        <figure>
+                                            <img
+                                                src={LogoTs1}
+                                                alt="logo"
+                                                className="img-fluid w-5 logoImg"
+                                            />
+                                        </figure>
+                                    </Link>
+                                    <Link className="" exact="true" to="/">
+                                        <figure>
+                                            <img
+                                                src={LogoTs2}
+                                                alt="logo"
+                                                className="img-fluid w-5 logoImg"
+                                            />
+                                        </figure>
+                                    </Link> */}
+
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </h2>
                             </Col>
@@ -479,9 +597,9 @@ const Home = () => {
                                                 {t('home_nav_links.faq')}
                                             </AnchorLink>
                                         </NavItem>
-                                        <NavItem>
+                                        {/* <NavItem>
                                             <LanguageSelectorComp module="general" />
-                                        </NavItem>
+                                        </NavItem> */}
                                     </Nav>
                                     {/* <LanguageSelectorComp module="general" /> */}
                                 </div>
@@ -567,7 +685,7 @@ const Home = () => {
                 </div>
             </section>
             <section className="about-us" id="about">
-                <Container>
+                <Container fluid className='px-5'>
                     <Row>
                         <Col md={12} className="text-center">
                             <div className="heading">
@@ -584,15 +702,15 @@ const Home = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="sidp_row p-3">
-                        <Col md={6} className="pe-md-4">
+                    <Row className="sidp_row p-3 px-md-5">
+                        <Col md={12} className="pe-md-4">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.about_us_desc')
                                 }}
                             ></div>
                         </Col>
-                        <Col md={6} className="my-auto ">
+                        {/* <Col md={6} className="my-auto ">
                             <div className="position-relative sidp_video_box">
                                 <FancyVideo
                                     source={taVideo}
@@ -600,7 +718,7 @@ const Home = () => {
                                     id={'sintel'}
                                 />
                             </div>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
                 <div className="bg-white mx-0 p-md-5 p-2">
@@ -632,7 +750,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </div>
-                <Container className="py-md-4 py-2">
+                <Container className="py-md-4 py-2 px-5" fluid>
                     <Row className="student py-md-4 py-2">
                         <Col
                             md={12}
@@ -758,10 +876,10 @@ const Home = () => {
                             <img src={map_icon_awa} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-1
+                            Step-1
                         </div>
                         <div className="timeline__event__content ">
-                            <div className="timeline__event__title">
+                            <div className="timeline__event__title" style={{color:"#067de1"}}>
                                 {t('home_tl.roadmpa_one')}
                             </div>
                             <div className="timeline__event__description">
@@ -778,7 +896,7 @@ const Home = () => {
                             <img src={map_icon_reg} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-2
+                            Step-2
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -798,7 +916,7 @@ const Home = () => {
                             <img src={map_icon_prob} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-3
+                            Step-3
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -818,7 +936,7 @@ const Home = () => {
                             <img src={map_icon_test} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-4
+                            Step-4
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -838,7 +956,7 @@ const Home = () => {
                             <img src={map_icon_pitch} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-5
+                            Step-5
                         </div>
                         <div className="timeline__event__content">
                             <div className="timeline__event__title">
@@ -858,10 +976,10 @@ const Home = () => {
                             <img src={map_icon_incu} />
                         </div>
                         <div className="timeline__event__date text-white">
-                            {t('home_tl.step')}-6
+                            Step-6
                         </div>
                         <div className="timeline__event__content">
-                            <div className="timeline__event__title">
+                            <div className="timeline__event__title" style={{color:"#067de1"}}>
                                 {t('home_tl.roadmpa_six')}
                             </div>
                             <div className="timeline__event__description">
@@ -881,10 +999,10 @@ const Home = () => {
                         {t('home_tl.engagement')}
                     </h2>
                 </div>
-                <TamilNaduMap />
+                <BhutanMap />
             </section>
             <section className="blog">
-                <Container>
+                <Container fluid className='px-5'>
                     <Row className="text-center justify-content-md-center">
                         <div className="heading">
                             <h2 className="sub-heading">
@@ -901,63 +1019,67 @@ const Home = () => {
                             </h2>
                         </div>
 
-                        <Col md={12} className="blog-slider">
-                            <Slider
-                                {...blog_settings}
-                                asNavFor={nav2}
-                                ref={(slider) => setSlider1(slider)}
-                            >
-                                {blogs.map((blog, i) => {
-                                    return (
-                                        <div key={i}>
-                                            <div
-                                                className="blog-card"
-                                                // style={{ backgroundImage: `url(${blog.imgUrl})` }}
-                                                style={{
-                                                    backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(35, 31, 32, 0.99)),
-                        url(${blog.imgUrl})`
-                                                }}
-                                            >
-                                                <CardBody className="text-left ">
-                                                    <h4 className="pt-5 text-white">
-                                                        {blog.title}
-                                                    </h4>
-                                                    <blockquote className="blockquote text-white">
-                                                        <p className="pb-5 text-white">
-                                                            {blog.desc}
-                                                        </p>
-                                                    </blockquote>
-                                                </CardBody>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </Slider>
-                            <div className="thumbnail-slider-wrap">
-                                <Slider
-                                    {...blog_settings_thumbs}
-                                    asNavFor={nav1}
-                                    ref={(slider) => setSlider2(slider)}
+                        <Col md={12} className="blog-slider slider-width">
+                            <div className=''>
+                                <Slider 
+                                    {...blog_settings}
+                                    asNavFor={nav2}
+                                    ref={(slider) => setSlider1(slider)}
                                 >
-                                    {blogs.map((slide, i) => (
-                                        <div className="slick-slide" key={i}>
-                                            <img
-                                                className="slick-slide-image"
-                                                src={slide.imgUrl}
-                                                alt="thumbnail"
-                                            />
-                                        </div>
-                                    ))}
+                                    {blogs.map((blog, i) => {
+                                        return (
+                                            <div key={i}>
+                                                {/* <a href={blog.urllinlk} target='_blank' rel="noreferrer"> */}
+                                                <div
+                                                    className="blog-card"
+                                                    // style={{ backgroundImage: `url(${blog.imgUrl})` }}
+                                                    style={{
+                                                        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(35, 31, 32, 0.99)),
+                            url(${blog.imgUrl})`
+                                                    }}
+                                                >
+                                                    <CardBody className="text-left ">
+                                                        <h4 className="pt-5 text-white">
+                                                            {blog.title}
+                                                        </h4>
+                                                        <blockquote className="blockquote text-white">
+                                                            <p className="pb-5 text-white">
+                                                                {blog.desc}
+                                                            </p>
+                                                        </blockquote>
+                                                    </CardBody>
+                                                </div>
+                                                {/* </a> */}
+                                            </div>
+                                        );
+                                    })}
                                 </Slider>
+                                <div className="thumbnail-slider-wrap">
+                                    <Slider
+                                        {...blog_settings_thumbs}
+                                        asNavFor={nav1}
+                                        ref={(slider) => setSlider2(slider)}
+                                    >
+                                        {blogs.map((slide, i) => (
+                                            <div className="slick-slide" key={i}>
+                                                <img
+                                                    className="slick-slide-image"
+                                                    src={slide.imgUrl}
+                                                    alt="thumbnail"
+                                                />
+                                            </div>
+                                        ))}
+                                    </Slider>
+                                </div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
             </section>
             <section className="testimonials ">
-                <Container>
+                <Container fluid>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -977,8 +1099,10 @@ const Home = () => {
                                             </figure>
                                             <CardBody>
                                                 <blockquote className="blockquote text-center">
-                                                    <p className="mb-0">
-                                                        {testimonial.desc}
+                                                    <p className="mb-0"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: testimonial.desc
+                                                    }}>
                                                     </p>
                                                     <footer className="blockquote-footer pt-5">
                                                         {' '}
@@ -1127,7 +1251,7 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered UDISE Code &
+                                                        Entered Teacher Unique Code &
                                                         School details are not
                                                         registered with us.
                                                     </span>
@@ -1203,7 +1327,7 @@ const Home = () => {
                 </Container>
             </section>
             <footer className="footer">
-                <Container>
+                <Container fluid>
                     <Row>
                         <Col
                             md={12}
@@ -1214,7 +1338,8 @@ const Home = () => {
                                     <img
                                         src={LogoTn}
                                         alt="logo"
-                                        className="img-fluid w-25 logoImg"
+                                        className="img-fluid logoImg"
+                                        style={{width:"39.5%"}}
                                     />
                                 </figure>
                             </Link>

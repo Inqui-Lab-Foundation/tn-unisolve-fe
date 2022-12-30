@@ -68,8 +68,8 @@ function StepTwo({
                 .required('required')
                 .trim()
                 .matches(phoneRegExp, 'Phone number is not valid')
-                .min(10, 'Please enter valid number')
-                .max(10, 'Please enter valid number'),
+                .min(8, 'Please enter valid number')
+                .max(8, 'Please enter valid number'),
             username: Yup.string()
                 .trim()
                 .email('Invalid username format')
@@ -128,8 +128,8 @@ function StepTwo({
                         <UncontrolledAlert color="primary ">
                             {t('teacehr_red.school')}:{' '}
                             {orgData?.organization_name} <br />
-                            {t('teacehr_red.city')}:{' '}
-                            {orgData?.city ? orgData?.city : ' N/A'} <br />
+                            {t('teacehr_red.org_type')}:{' '}
+                            {orgData?.organization_type ? orgData?.organization_type : ' N/A'} <br />
                             {t('teacehr_red.district')}:{' '}
                             {orgData?.district ? orgData?.district : ' N/A'}
                         </UncontrolledAlert>

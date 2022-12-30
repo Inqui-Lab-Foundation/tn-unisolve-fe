@@ -367,7 +367,7 @@ const TicketsPage = (props) => {
                 // center: true,
             },
             {
-                name: 'UDISE Code',
+                name: 'Teacher Unique Code',
                 selector: (row) => row.organization_code,
                 sortable: true,
                 width: '15%'
@@ -446,7 +446,7 @@ const TicketsPage = (props) => {
                 width: '6%'
             },
             {
-                name: 'UDISE Code',
+                name: 'Teacher Unique Code',
                 selector: 'organization_code',
                 sortable: true,
                 width: '15%'
