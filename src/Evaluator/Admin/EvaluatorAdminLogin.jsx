@@ -68,6 +68,7 @@ const LoginAdminEvaluator = (props) => {
                 role: "EADMIN"
             };
             props.evaluatorAdminLoginUserAction(body, history,"EADMIN");
+            console.log('======', body);
         }
     });
 

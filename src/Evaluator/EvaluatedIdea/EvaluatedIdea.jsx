@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useEffect } from 'react';
+import React from 'react';
 import './EvaluatedIdea.scss';
 import Layout from '../Layout';
 import DataTable, { Alignment } from 'react-data-table-component';
@@ -9,72 +9,19 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getL1EvaluatedIdea } from '../store/evaluator/action';
 import EvaluatedIdeaDetail from './EvaluatedIdeaDetail';
-import { Container, Row, Col } from 'reactstrap';
-import Select from '../Helper/Select';
-import { getDistrictData } from '../../redux/studentRegistration/actions';
-import { ReasonsOptions } from '../Admin/Pages/ReasonForRejectionData';
-import { cardData } from '../../Student/Pages/Ideas/SDGData';
-import { Button } from '../../stories/Button';
 
 const EvaluatedIdea = () => {
     const dispatch = useDispatch();
-    const [reason, setReason] = React.useState('');
-    const [district, setdistrict] = React.useState('');
-    const [sdg, setsdg] = React.useState('');
-    const [status, setstatus] = React.useState('');
     const evaluatedIdeaList = useSelector(
         (state) => state?.evaluator.evaluatedIdeaL1
     );
 
-    const SDGDate = cardData.map((i) => {
-        return i.goal_title;
-    });
-    SDGDate.push('ALL');
-    const fullDistrictsNames = useSelector(
-        (state) => state?.studentRegistration?.dists
-    );
-    const statusdata = ['Accepted', 'Rejected', 'Both'];
-
-    // React.useEffect(() => {
-    //     dispatch(getL1EvaluatedIdea(filterParams));
-    // }, [reason, district, sdg, status]);
-
-    useEffect(() => {
-        dispatch(getDistrictData());
+    React.useEffect(() => {
+        dispatch(getL1EvaluatedIdea());
     }, []);
 
-    const handleclickcall = () => {
-        dispatch(getL1EvaluatedIdea(filterParams));
-    };
-    const statusparam =
-        status && status !== 'Both'
-            ? '?evaluation_status=' +
-              (status === 'Accepted' ? 'SELECTEDROUND1' : 'REJECTEDROUND1')
-            : '';
-    const districtparam =
-        district && district !== 'All Districts'
-            ? statusparam !== ''
-                ? '&district=' + district
-                : '?district=' + district
-            : '';
-    const sdgparam =
-        sdg && sdg !== 'ALL'
-            ? districtparam !== ''
-                ? '&sdg=' + sdg
-                : '?sdg=' + sdg
-            : '';
-    const filterParams =
-        statusparam +
-        districtparam +
-        sdgparam +
-        (reason && (sdgparam !== ''
-            ? '&rejected_reason=' + reason
-            : '?rejected_reason=' + reason));
-
     const [isDetail, setIsDetail] = React.useState(false);
-    const [ideaDetails, setIdeaDetails] = React.useState([]);
-    const [currentRow, setCurrentRow]=React.useState(1);
-    const [tablePage, setTablePage]=React.useState(1);
+    const [ideaDetails, setIdeaDetails] = React.useState({});
     // const evaluatedIdeaList = [
     //     {
     //         team_name: 'Test Team 1',
@@ -104,7 +51,7 @@ const EvaluatedIdea = () => {
                 width: '15%'
             },
             {
-                name: 'SDG',
+                name: 'Idea Name',
                 selector: (row) => row.sdg,
                 width: '20%'
             },
@@ -127,15 +74,14 @@ const EvaluatedIdea = () => {
                 cell: (row) => {
                     return [
                         <div className="d-flex" key={row}>
-                            {row.evaluation_status &&
-                                row.evaluation_status == 'SELECTEDROUND1' && (
-                                    <span className="text-success">
-                                        Accepted
-                                    </span>
-                                )}
-                            {row.evaluation_status == 'REJECTEDROUND1' && (
-                                <span className="text-danger">Rejected</span>
-                            )}
+                            {
+                                row.evaluation_status && row.evaluation_status=='SELECTEDROUND1'&&
+                                <span className='text-success'>Accepted</span>
+                            }
+                            {
+                                row.evaluation_status=='REJECTEDROUND1'&&
+                                <span className='text-danger'>Rejected</span>
+                            }
                         </div>
                     ];
                 },
@@ -151,14 +97,6 @@ const EvaluatedIdea = () => {
                                 onClick={() => {
                                     setIdeaDetails(params);
                                     setIsDetail(true);
-                                    let index=0;
-                                    evaluatedIdeaList?.forEach((item, i)=>{
-                                        if(item?.challenge_response_id==params?.challenge_response_id){
-                                            index=i;
-                                        }
-                                    });
-                                    setCurrentRow(index+1);
-                                  
                                 }}
                             >
                                 View Idea Details
@@ -171,100 +109,15 @@ const EvaluatedIdea = () => {
             }
         ]
     };
-
-    const handleNext=()=>{
-        if(evaluatedIdeaList && currentRow < evaluatedIdeaList?.length){
-            setIdeaDetails(evaluatedIdeaList[currentRow]);
-            setIsDetail(true);
-            setCurrentRow(currentRow+1);
-        }
-    };
-    const handlePrev=()=>{
-        if(evaluatedIdeaList && currentRow > 1){
-            setIdeaDetails(evaluatedIdeaList[currentRow]);
-            setIsDetail(true);
-            setCurrentRow(currentRow-1);
-        }
-    };
-
     return (
         <Layout>
             <div className="container evaluated_idea_wrapper pt-5 mb-50">
                 <div className="row">
                     <div className="col-12 p-0">
-                        {!isDetail && (
-                            <div>
-                                <h2 className="ps-2 pb-3">Evaluated Idea</h2>
-                                <Container fluid className="px-0">
-                                    <Row className="align-items-center">
-                                        <Col md={2}>
-                                            <div className="my-3 d-md-block d-flex justify-content-center">
-                                                <Select
-                                                    list={statusdata}
-                                                    setValue={setstatus}
-                                                    placeHolder={
-                                                        'Select Status'
-                                                    }
-                                                    value={status}
-                                                />
-                                            </div>
-                                        </Col>
-                                        <Col md={3}>
-                                            <div className="my-3 d-md-block d-flex justify-content-center">
-                                                <Select
-                                                    list={fullDistrictsNames}
-                                                    setValue={setdistrict}
-                                                    placeHolder={
-                                                        'Select District'
-                                                    }
-                                                    value={district}
-                                                />
-                                            </div>
-                                        </Col>
-                                        <Col md={3}>
-                                            <div className="my-3 d-md-block d-flex justify-content-center">
-                                                <Select
-                                                    list={SDGDate}
-                                                    setValue={setsdg}
-                                                    placeHolder={'Select SDG'}
-                                                    value={sdg}
-                                                />
-                                            </div>
-                                        </Col>
-                                        {status && status !== 'Accepted' && (
-                                            <Col md={3}>
-                                                <div className="my-3 d-md-block d-flex justify-content-center">
-                                                    <Select
-                                                        list={ReasonsOptions}
-                                                        setValue={setReason}
-                                                        placeHolder={
-                                                            'Select Reason for rejection'
-                                                        }
-                                                        value={reason}
-                                                    />
-                                                </div>
-                                            </Col>
-                                        )}
-                                            <Col md={1}>
-                                                <div className="text-center">
-                                                    <Button
-                                                        btnClass={status && district && sdg ? 'primary': 'default'}
-                                                        size="small"
-                                                        label="Search"
-                                                        disabled={!(status && district && sdg)}
-                                                        onClick={() =>
-                                                            handleclickcall()
-                                                        }
-                                                    />
-                                                </div>
-                                            </Col>
-                                    </Row>
-                                </Container>
-                            </div>
-                        )}
-
+                        {!isDetail && <h2 className="ps-2">Evaluated Ideas</h2>}
+                        
                         {!isDetail ? (
-                            <div className="bg-white border card pt-3 mt-5">
+                            <div className="bg-white border card pt-3">
                                 <DataTableExtensions
                                     print={false}
                                     export={false}
@@ -279,11 +132,9 @@ const EvaluatedIdea = () => {
                                         fixedHeader
                                         subHeaderAlign={Alignment.Center}
                                         paginationRowsPerPageOptions={[
-                                            10, 25, 50, 100
+                                            10, 20, 30
                                         ]}
                                         paginationPerPage={10}
-                                        onChangePage={(page)=>setTablePage(page)}
-                                        paginationDefaultPage={tablePage}
                                     />
                                 </DataTableExtensions>
                             </div>
@@ -291,10 +142,6 @@ const EvaluatedIdea = () => {
                             <EvaluatedIdeaDetail
                                 ideaDetails={ideaDetails}
                                 setIsDetail={setIsDetail}
-                                handleNext={handleNext}
-                                handlePrev={handlePrev}
-                                currentRow={currentRow}
-                                dataLength={evaluatedIdeaList && evaluatedIdeaList?.length}
                             />
                         )}
                     </div>

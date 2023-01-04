@@ -15,11 +15,11 @@ import {
     ProSidebar,
     Menu,
     MenuItem,
-    // SubMenu,
+    SubMenu,
     SidebarHeader,
     SidebarContent
 } from 'react-pro-sidebar';
-import { FaBars, FaHouseUser, FaLightbulb, FaPen } from 'react-icons/fa';
+import { FaBars, FaHouseUser } from 'react-icons/fa';
 
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useLocation } from 'react-router-dom';
@@ -139,41 +139,14 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                         </NavLink>
                     </MenuItem> */}
                     <MenuItem
-                        icon={<FaLightbulb />}
+                        icon={<img src={BadgesIcon} />}
                         className={
-                            (location.pathname === '/admin/challenges' ||
-                                location.pathname ===
-                                    '/admin/challenges/viewlistofchallenges') &&
+                            location.pathname === '/admin/challenges ' &&
                             'sidebar-active'
                         }
                     >
-                        <NavLink exact={true} to={'/admin/challenges'}>
+                        <NavLink exact={true} to={'/admin/challenges '}>
                             Challenges
-                        </NavLink>
-                    </MenuItem>
-
-                    <MenuItem
-                        icon={<FaPen />}
-                        className={
-                            (location.pathname === '/admin/evaluationStatus' ||
-                                location.pathname ===
-                                    '/admin/evaluationStatus/viewlist') &&
-                            'sidebar-active'
-                        }
-                    >
-                        <NavLink exact={true} to={'/admin/evaluationStatus'}>
-                            Evaluation Status
-                        </NavLink>
-                    </MenuItem>
-                    <MenuItem
-                        icon={<FaPen />}
-                        className={
-                            location.pathname === '/admin/evaluationProcess' &&
-                            'sidebar-active'
-                        }
-                    >
-                        <NavLink exact={true} to={'/admin/evaluationProcess'}>
-                            Evaluation Config
                         </NavLink>
                     </MenuItem>
                     <MenuItem
@@ -267,28 +240,11 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                         }
                     >
                         <NavLink exact={true} to={'/admin/tickets'}>
-                            Support
+                            Tickets
                         </NavLink>
                     </MenuItem>
 
-                    <MenuItem
-                        icon={
-                            <img
-                                src={FaqIcon}
-                                className="img-fluid"
-                                alt="faq"
-                            />
-                        }
-                        className={
-                            location.pathname === '/admin/translation' &&
-                            'sidebar-active'
-                        }
-                    >
-                        <NavLink exact={true} to={'/admin/translation'}>
-                            Tranlsation
-                        </NavLink>
-                    </MenuItem>
-                    {/* <SubMenu
+                    <SubMenu
                         title="Settings"
                         icon={<img src={TicketIcon} />}
                         data-element={location.pathname}
@@ -309,8 +265,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                             <NavLink exact={true} to={'/admin/road-map'}>
                                 Schedule Roadmap
                             </NavLink>
-                        </MenuItem> */}
-                    {/* <MenuItem
+                        </MenuItem>
+                        <MenuItem
                             icon={
                                 <img
                                     src={FaqIcon}
@@ -326,8 +282,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                             <NavLink exact={true} to={'/admin/translation'}>
                                 Tranlsation
                             </NavLink>
-                        </MenuItem> */}
-                    {/* </SubMenu> */}
+                        </MenuItem>
+                    </SubMenu>
 
                     <MenuItem
                         icon={
