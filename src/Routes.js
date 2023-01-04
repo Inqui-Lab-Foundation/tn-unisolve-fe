@@ -51,7 +51,10 @@ import AdminDashboard from './Admin/Dashboard/index';
 import AdminMyProfile from './Admin/MyProfile';
 import AdminMySettings from './Admin/MySettings';
 
-import AdminBadgesComp from './Admin/Badges/Badges';
+import AdminChallenges from './Admin/Challenges/ViewSelectedChallenges';
+import AdminEvaluation from './Admin/Evaluation/index';
+import AdminEvaluationProcess from './Admin/EvalProcess/index';
+import Selectedlist from './Admin/Evaluation/ViewSelectedIdea/ViewSelectedideas';
 import AdminNewBadge from './Admin/Badges/NewBadge';
 import AdminCourses from './Admin/Courses';
 import AdminCourseView from './Admin/Courses/coursesView';
@@ -92,7 +95,7 @@ import IndividualReport from './Admin/Reports/ReportFilter';
 import StudentSignup from './Admin/StudentSignup';
 import Home from './home/home';
 import Terms from './home/termsandconditions';
-import AdminChallengesComp from './Admin/Challenges/Badges';
+import AdminChallengesComp from './Admin/Badges/Badges';
 import Preservey from './Admin/PreSurvey';
 import StudentPostservey from './Student/PostSurvey/PostSurvey';
 import TeacherPostservey from './Teachers/PostSurvey/PostSurvey';
@@ -146,7 +149,11 @@ import EvalutorAdminLogins from './Evaluator/Admin/EvaluatorAdminLogin';
 import Eadmindashboard from './Evaluator/Admin/Dashboard/EAdminDashboard';
 import EadminChangePassword from './Evaluator/Admin/Pages/ChangePSWModal';
 import ListOfIdeas from './Evaluator/Admin/ViewTable/ViewSelectedIdea';
- 
+import TicketResView from './Admin/Tickets/TicketResView';
+import EditEvalProcess from './Admin/EvalProcess/EditEvalProcess';
+import SelDistricts from './Admin/EvalProcess/SelectingDistricts';
+import CreateEvalProcess from './Admin/EvalProcess/CreateEvalProcess';
+
 const Routers = () => {
     // const history = useHistory();
     // const currentUser = getCurrentUser('current_user');
@@ -538,7 +545,25 @@ const Routers = () => {
                     <ProtectedRoute
                         exact={true}
                         path="/admin/challenges"
-                        component={AdminBadgesComp}
+                        component={AdminChallenges}
+                    />
+
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/evaluationStatus"
+                        component={AdminEvaluation}
+                    />
+
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/evaluationStatus/viewlist"
+                        component={Selectedlist}
+                    />
+
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/evaluationProcess"
+                        component={AdminEvaluationProcess}
                     />
 
                     <ProtectedRoute
@@ -658,6 +683,11 @@ const Routers = () => {
                         path="/teacher/support-journey/ans-ticket"
                         component={TeacherSupportAnswer}
                     />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/support-journey/ans-ticket"
+                        component={TicketResView}
+                    />
 
                     <ProtectedRoute
                         exact={true}
@@ -696,6 +726,21 @@ const Routers = () => {
                         exact={true}
                         path="/admin/translation"
                         component={Translation}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/create-evaluationProcess"
+                        component={CreateEvalProcess}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/edit-evaluationProcess"
+                        component={EditEvalProcess}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/selectingDistricts-evaluationProcess"
+                        component={SelDistricts}
                     />
                     <ProtectedRoute
                         exact={true}

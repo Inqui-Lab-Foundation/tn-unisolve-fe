@@ -29,7 +29,10 @@ const TicketsPage = (props) => {
     const currentUser = getCurrentUser('current_user');
     const [showImportPopup, setImportPopup] = useState(false);
     const [reqList, setReqList] = useState(false);
+    const [newList, setNewList] = useState(false);
+
     const [reqSchoolsResponse, setReqSchoolsResponse] = useState([]);
+    const [newSchoolsResponse, setNewSchoolsResponse] = useState([]);
 
     const [pending, setPending] = React.useState(true);
     const [rows, setRows] = React.useState([]);
@@ -133,12 +136,52 @@ const TicketsPage = (props) => {
             });
     };
 
+    const handleNewUpdate = (item, itemS) => {
+        const body = {
+            status: itemS,
+            organization_code: item.organization_code,
+            organization_name: item.organization_name
+        };
+        var config = {
+            method: 'put',
+            url:
+                process.env.REACT_APP_API_BASE_URL +
+                '/organizations/' +
+                item.organization_id,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
+            },
+            data: body
+        };
+        axios(config)
+            .then(function (response) {
+                if (response.status === 200) {
+                    setNewList(true);
+                    newListApi();
+                    openNotificationWithIcon(
+                        'success',
+                        'Status update successfully'
+                    );
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                openNotificationWithIcon('error', 'Something went wrong');
+            });
+    };
+
+    const handleNewSchoolsList = () => {
+        setReqList(false);
+        newListApi();
+    };
+
     async function listApi() {
         var config = {
             method: 'get',
             url:
                 process.env.REACT_APP_API_BASE_URL +
-                '/organizations?status=NOTACTIVE',
+                '/organizations?status=INACTIVE',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${currentUser?.data[0]?.token}`
@@ -161,13 +204,156 @@ const TicketsPage = (props) => {
             });
     }
 
+    async function newListApi() {
+        var config = {
+            method: 'get',
+            url:
+                process.env.REACT_APP_API_BASE_URL +
+                '/organizations?status=NEW',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
+            }
+        };
+        await axios(config)
+            .then(function (response) {
+                if (response.status === 200) {
+                    console.log(response.data);
+
+                    setNewSchoolsResponse(
+                        response.data.data[0] &&
+                            response.data.data[0].dataValues
+                    );
+                    setNewList(true);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     const handleReqSchoolsList = (e) => {
         listApi();
     };
 
     const handleBack = (e) => {
         setReqList(false);
+        setNewList(false);
         props.getSchoolRegistationBulkUploadActions('i');
+    };
+
+    const handleNewBack = (e) => {
+        setReqList(false);
+        setNewList(false);
+        props.getSchoolRegistationBulkUploadActions('i');
+    };
+    console.log(props.schoolsRegistrationList,"-----test");
+    const [array,setarray]=useState([]);
+    useEffect(() => {
+        if(props.schoolsRegistrationList && props.schoolsRegistrationList.length>0){
+            let dataarray = [];
+            props.schoolsRegistrationList.forEach((item,index) => {
+                dataarray.push(Object.assign(item, {index: index+1}));
+            }); 
+            setarray([...dataarray]); 
+        }
+    }, [props.schoolsRegistrationList]);
+
+    console.log(array,"---newarray----");
+    const SchoolsData = {
+        data: array,
+        columns: [
+            {
+                name: 'No',
+                selector: (row) => row.index,
+                cellExport: (row) => row.index,
+                width: '6%'
+            },
+            {
+                name: 'UDISE Code ',
+                selector: 'organization_code',
+                cellExport:(row) => row.organization_code,
+                sortable: true,
+
+                width: '15%'
+            },
+            {
+                name: 'Institution Name',
+                selector: 'organization_name',
+                cellExport:(row) => row.organization_name,
+                width: '19%'
+            },
+            {
+                name: 'Principal Name',
+                selector: 'principal_name',
+                cellExport:(row) => row.principal_name,
+                width: '15%'
+            },
+            {
+                name: 'Mobile',
+                selector: 'principal_mobile',
+                cellExport:(row) => row.principal_mobile,
+                width: '12%'
+            },
+            {
+                name: 'Status',
+                cellExport:(row) => row.status,
+                cell: (row) => [
+                    <Badge
+                        key={row.organization_id}
+                        bg={`${
+                            row.status === 'ACTIVE' ? 'secondary' : 'danger'
+                        }`}
+                    >
+                        {row.status}
+                    </Badge>
+                ],
+                width: '10%'
+            },
+            {
+                name: 'Actions',
+                selector: 'action',
+                width: '23%',
+                center: true,
+                cellExport:(row) => {},
+                cell: (record) => [
+                    <>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() => handleEdit(record)}
+                            style={{ marginRight: '7px' }}
+                        >
+                            <div className="btn btn-primary btn-lg mx-2">
+                                EDIT
+                            </div>
+                        </Link>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() =>
+                                handleActiveStatusUpdate(record, 'NEW')
+                            }
+                            style={{ marginRight: '10px' }}
+                        >
+                            <div className="btn btn-success btn-lg">NEW</div>
+                        </Link>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() =>
+                                handleActiveStatusUpdate(record, 'INACTIVE')
+                            }
+                            style={{ marginRight: '10px' }}
+                        >
+                            <div className="btn btn-danger btn-lg">
+                                INACTIVE
+                            </div>
+                        </Link>
+                    </>
+                ]
+            }
+        ]
     };
 
     const reqSchoolsData = {
@@ -190,7 +376,7 @@ const TicketsPage = (props) => {
             {
                 name: 'Institution Name',
                 selector: (row) => row.organization_name,
-                width: '25%'
+                width: '19%'
                 // center: true,
             },
             {
@@ -199,9 +385,9 @@ const TicketsPage = (props) => {
                 width: '15%'
             },
             {
-                name: 'Principal Mobile',
+                name: 'Mobile',
                 selector: 'principal_mobile',
-                width: '15%'
+                width: '12%'
             },
             {
                 name: 'Status',
@@ -210,42 +396,49 @@ const TicketsPage = (props) => {
                         {row.status}
                     </Badge>
                 ],
-                width: '8%'
+                width: '10%'
                 // center: right,
             },
             {
                 name: 'Actions',
                 selector: 'action',
-                width: '16%',
+                center: true,
+                width: '23%',
                 cell: (record) => [
                     <>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() => handleEdit(record)}
+                            style={{ marginRight: '7px' }}
+                        >
+                            <div className="btn btn-primary btn-lg mx-2">
+                                EDIT
+                            </div>
+                        </Link>
                         <Link
                             exact="true"
                             key={record}
                             onClick={() => handleStatusUpdate(record, 'ACTIVE')}
                             style={{ marginRight: '10px' }}
                         >
-                            <div className="btn btn-primary btn-lg">ACTIVE</div>
+                            <div className="btn btn-warning btn-lg">ACTIVE</div>
                         </Link>
-                        {/* <Link
+                        <Link
                             exact="true"
                             key={record}
-                            onClick={() =>
-                                handleStatusUpdate(record, 'INACTIVE')
-                            }
+                            onClick={() => handleStatusUpdate(record, 'NEW')}
                             style={{ marginRight: '10px' }}
                         >
-                            <div className="btn btn-danger btn-lg">
-                                INACTIVE
-                            </div>
-                        </Link> */}
+                            <div className="btn btn-success btn-lg">NEW</div>
+                        </Link>
                     </>
                 ]
             }
         ]
     };
-    const SchoolsData = {
-        data: props.schoolsRegistrationList,
+    const newSchoolsData = {
+        data: newSchoolsResponse,
         columns: [
             {
                 name: 'No',
@@ -261,7 +454,7 @@ const TicketsPage = (props) => {
             {
                 name: 'Institution Name',
                 selector: 'organization_name',
-                width: '20%'
+                width: '19%'
             },
             {
                 name: 'Principal Name',
@@ -269,9 +462,9 @@ const TicketsPage = (props) => {
                 width: '15%'
             },
             {
-                name: 'Principal Mobile',
+                name: 'Mobile',
                 selector: 'principal_mobile',
-                width: '15%'
+                width: '12%'
             },
 
             // {
@@ -284,28 +477,20 @@ const TicketsPage = (props) => {
                 cell: (row) => [
                     <Badge
                         key={row.organization_id}
-                        bg={`${
-                            row.status === 'ACTIVE' ? 'secondary' : 'danger'
-                        }`}
+                        bg={`${row.status === 'NEW' ? 'secondary' : 'success'}`}
                     >
                         {row.status}
                     </Badge>
                 ],
-                width: '11%'
+                width: '10%'
             },
             {
                 name: 'Actions',
                 selector: 'action',
-                width: '18%',
+                width: '23%',
+                center: true,
                 cell: (record) => [
                     <>
-                        {/* <a onClick={() => handleEdit(record)}>
-                            <i
-                                key={record.list}
-                                className="fa fa-edit"
-                                style={{ marginRight: '10px' }}
-                            />
-                        </a> */}
                         <Link
                             exact="true"
                             key={record}
@@ -319,9 +504,15 @@ const TicketsPage = (props) => {
                         <Link
                             exact="true"
                             key={record}
-                            onClick={() =>
-                                handleActiveStatusUpdate(record, 'INACTIVE')
-                            }
+                            onClick={() => handleNewUpdate(record, 'ACTIVE')}
+                            style={{ marginRight: '10px' }}
+                        >
+                            <div className="btn btn-warning btn-lg">ACTIVE</div>
+                        </Link>
+                        <Link
+                            exact="true"
+                            key={record}
+                            onClick={() => handleNewUpdate(record, 'INACTIVE')}
                             style={{ marginRight: '10px' }}
                         >
                             <div className="btn btn-danger btn-lg">
@@ -333,9 +524,6 @@ const TicketsPage = (props) => {
             }
         ]
     };
-
-    console.log('reqSchoolsResponse', SchoolsData);
-
     return (
         <Layout>
             <Container className="ticket-page mt-5 mb-50">
@@ -344,6 +532,8 @@ const TicketsPage = (props) => {
                         <Col className="col-auto">
                             {reqList ? (
                                 <h2>List of inactive institutions</h2>
+                            ) : newList ? (
+                                <h2>List of new institutions</h2>
                             ) : (
                                 <h2>List of active institutions</h2>
                             )}
@@ -360,19 +550,20 @@ const TicketsPage = (props) => {
                                         onClick={(e) => handleBack(e)}
                                     />
                                 </div>
-                            ) : (
+                            ) : newList ? (
                                 <div className="d-flex justify-content-end">
-                                    {/* <Button
-                                        label="Import"
-                                        btnClass="primary-outlined"
+                                    <Button
+                                        label="Back"
+                                        btnClass="primary"
                                         size="small"
                                         shape="btn-square"
-                                        Icon={BsUpload}
-                                        onClick={() => setImportPopup(true)}
-                                    /> */}
-
+                                        onClick={(e) => handleNewBack(e)}
+                                    />
+                                </div>
+                            ) : (
+                                <div className="d-flex justify-content-end">
                                     <Button
-                                        label="Add New School"
+                                        label="Add Institutions"
                                         btnClass="primary mx-3"
                                         size="small"
                                         shape="btn-square"
@@ -383,13 +574,19 @@ const TicketsPage = (props) => {
                                             )
                                         }
                                     />
-
                                     <Button
-                                        label="InActive Schools"
-                                        btnClass="primary"
+                                        label="InActive Institutions"
+                                        btnClass="primary mx-3"
                                         size="small"
                                         shape="btn-square"
                                         onClick={(e) => handleReqSchoolsList(e)}
+                                    />
+                                    <Button
+                                        label="New Institutions"
+                                        btnClass="primary"
+                                        size="small"
+                                        shape="btn-square"
+                                        onClick={(e) => handleNewSchoolsList(e)}
                                     />
                                 </div>
                             )}
@@ -416,9 +613,28 @@ const TicketsPage = (props) => {
                                 />
                             </DataTableExtensions>
                         </div>
+                    ) : newList ? (
+                        <div className="my-2">
+                            <DataTableExtensions
+                                {...newSchoolsData}
+                                exportHeaders
+                            >
+                                <DataTable
+                                    // data={rows}
+                                    // noHeader
+                                    defaultSortField="id"
+                                    defaultSortAsc={false}
+                                    pagination
+                                    highlightOnHover
+                                    fixedHeader
+                                    // fixedHeaderScrollHeight='300px'
+                                    subHeaderAlign={Alignment.Center}
+                                />
+                            </DataTableExtensions>
+                        </div>
                     ) : (
                         <div className="my-2">
-                            <DataTableExtensions {...SchoolsData} exportHeaders>
+                            <DataTableExtensions {...SchoolsData} export={true} exportHeaders>
                                 <DataTable
                                     data={rows}
                                     // noHeader

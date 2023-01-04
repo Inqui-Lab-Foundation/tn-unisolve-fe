@@ -460,7 +460,8 @@
         "btn_ok":"ok",
         "cancelled":"Cancelled",
         "logged_in":"You are Logged in",
-        "submit_idea":"You are attempting to submit your idea Which is not revertable"
+        "submit_idea":"You are attempting to submit your idea Which is not revertable",
+        "idea_sub_cancelled":"Idea Submission Cancelled"
     },
     "teacehr_red": {
         "heading": "REGISTER",
