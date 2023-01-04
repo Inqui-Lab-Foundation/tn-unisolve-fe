@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 import React from 'react';
 import { Button } from '../../stories/Button';
-import RangeSlider from './RangeSlider';
 import LinkComponent from './LinkComponent';
 import { getCurrentUser, openNotificationWithIcon } from '../../helpers/Utils';
 import axios from 'axios';
@@ -10,17 +9,13 @@ import { getSubmittedIdeaList } from '../store/evaluator/action';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Modal } from 'react-bootstrap';
 import Select from '../Helper/Select';
+import RateIdea from './RateIdea';
 
 const IdeaDetail = (props) => {
     const dispatch = useDispatch();
     const currentUser = getCurrentUser('current_user');
-    const ratingParams=['novelity', 'usefulness', 'feasability', 'scalability', 'affordability'];
     const [teamResponse, setTeamResponse] = React.useState([]);
-    const [novelityScore, setNovelityScore] = React.useState(0);
-    const [usefulnessScore, setUsefulnessScore] = React.useState(0);
-    const [feasabilityScore, setFeasabilityScore] = React.useState(0);
-    const [scalabilityScore, setScalabilityScore] = React.useState(0);
-    const [affordabilityScore, setAffordabilityScore] = React.useState(0);
+   
     const [isReject, setIsreject]=React.useState(false);
     const [reason, setReason]=React.useState('');
     const selectData = [
@@ -31,8 +26,15 @@ const IdeaDetail = (props) => {
         'Inaccurate Data (Form is not filled properly)'
     ];
 
-    // eslint-disable-next-line no-unused-vars
-    const [isL2, setIsL2] = React.useState(false);
+
+     const [levelName, setLevelName]=React.useState('');
+     const [evalSchema, setEvalSchema]=React.useState('');
+     React.useEffect(()=>{
+         if(currentUser){
+             setLevelName(currentUser?.data[0]?.level_name);
+             setEvalSchema(currentUser?.data[0]?.eval_schema);
+         }
+     },[currentUser]);
 
     React.useEffect(() => {
         if (props?.ideaDetails?.response) {
@@ -129,7 +131,7 @@ const IdeaDetail = (props) => {
                             <div className="row">
                                 <div className="col-sm-8">
                                     <h2 className="mb-md-4 mb-3">
-                                        Idea Name:{' '}
+                                        SDG:{' '}
                                         <span className="text-capitalize fs-3">
                                             {props?.ideaDetails?.sdg?.toLowerCase() ||
                                                 ''}
@@ -211,7 +213,9 @@ const IdeaDetail = (props) => {
                                     </div>
                                 );
                             })}
-                            <div className="d-md-flex">
+                            {/* -----level 1 accept/reject process---- */}
+                            {evalSchema?.toLowerCase()=='accept_reject' && 
+                                <div className="d-md-flex">
                                 
                                 {props?.ideaDetails?.status === 'SUBMITTED' && (
                                     <div className="d-flex ms-auto">
@@ -236,113 +240,23 @@ const IdeaDetail = (props) => {
                                         </button>
                                     </div>
                                 )}
-                            </div>
+                                </div>
+                            }
                         </div>
-                        
-                        {props?.ideaDetails?.status !== 'SUBMITTED' && (
-                            <div className="col-lg-4 order-lg-1 order-0 p-0 h-100 mt-3">
-                                <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3 text-center">
-                                    <p className="fs-3">
-                                        L1 Status & TimeStamp
-                                    </p>
-                                    <p>
-                                        {props?.ideaDetails?.status ===
-                                        'SELECTEDROUND1' ? (
-                                            <span className="fs-3 text-success">
-                                                Accepted
-                                            </span>
-                                        ) : props?.ideaDetails?.status ===
-                                          'REJECTEDROUND1' ? (
-                                            <span className="fs-3 text-danger">
-                                                Rejected
-                                            </span>
-                                        ) : (
-                                            ''
-                                        )}
-                                    </p>
-                                </div>
-                                <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3 text-center">
-                                    L2 Status & TimeStamp
-                                </div>
-                                <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3 text-center">
-                                    Final Status & TimeStamp
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     {/* //-----------Rating section---- */}
-                    {isL2 && (
-                        <div className="rating_card mt-md-5 mt-4 card p-md-5 p-3">
-                            <h2 className="mb-3">Idea Scoring</h2>
-                            <div className="row">
-                                {ratingParams?.map((item, index) => {
-                                    return (
-                                        <div className="col-lg-4 col-md-6 mb-5" key={index}>
-                                            <div className="for-novelity px-3">
-                                                <label
-                                                    htmlFor="novelity"
-                                                    className="form-label text-capitalize"
-                                                >
-                                                    {item} score -{' '}
-                                                    <span
-                                                        className={
-                                                            (item==='novelity'?novelityScore:item==='usefulness'?usefulnessScore:item==='feasability'?feasabilityScore:item==='scalability'?scalabilityScore:affordabilityScore )== 0
-                                                                ? 'text-muted fs-2'
-                                                                : 'fs-2'
-                                                        }
-                                                    >
-                                                        {item==='novelity'?novelityScore:item==='usefulness'?usefulnessScore:item==='feasability'?feasabilityScore:item==='scalability'?scalabilityScore:affordabilityScore}
-                                                    </span>
-                                                </label>
-                                                <RangeSlider
-                                                    name={item}
-                                                    setScore={item==='novelity'?setNovelityScore:item==='usefulness'?setUsefulnessScore:item==='feasability'?setFeasabilityScore:item==='scalability'?setScalabilityScore:setAffordabilityScore}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                                <div className="row">
-                                    <div className="col-md-6 mb-5 ps-4">
-                                        <label htmlFor="floatingTextarea">
-                                            Comments
-                                        </label>
-                                        <div className="form-floating">
-                                            <textarea
-                                                className="form-control fs-4 lh-sm"
-                                                maxLength={500}
-                                                placeholder="Leave a comment here"
-                                                id="ComentTextarea"
-                                                style={{ height: '10rem' }}
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 d-flex justify-content-end">
-                                    <div className="me-3">
-                                        <Button
-                                            btnClass="secondary"
-                                            size="small"
-                                            label="Back to List"
-                                            // onClick={() => {
-                                            //     props?.setIsIdeaDetail(false);
-                                            // }}
-                                        />
-                                    </div>
-                                    <Button
-                                        btnClass="primary"
-                                        size="small"
-                                        label="Update Score"
-                                        // onClick={() => {
-                                        //     props?.setIsIdeaDetail(false);
-                                        // }}
-                                    />
-                                </div>
-                            </div>
-                           
-                        </div>
-                    )}
+                    {evalSchema?.toLowerCase()=='rating_scale'? (
+                       <RateIdea
+                        challenge_response_id={props?.ideaDetails?.challenge_response_id}
+                        evaluator_id={currentUser?.data[0]?.user_id}
+                        level={levelName}
+                        setIsNextDiv={props?.setIsNextDiv}
+                       />
+                    ):
+                    <>
+                    </>
+                }
                 </>
             ) : (
                 <>
