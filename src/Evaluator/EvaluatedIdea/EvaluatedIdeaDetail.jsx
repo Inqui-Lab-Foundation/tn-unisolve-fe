@@ -14,7 +14,7 @@ const EvaluatedIdeaDetail = (props) => {
             );
         }
     },[props]);
-
+console.warn(props);
   return (
     <div>
         {teamResponse && teamResponse?.length > 0 ? (
@@ -22,46 +22,24 @@ const EvaluatedIdeaDetail = (props) => {
                     <div className="row idea_detail_card">
                         <div className="col-12 p-0">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-sm-8">
                                     <h2 className="mb-md-4 mb-3">
-                                        SDG:{' '}
+                                        Idea Name:{' '}
                                         <span className="text-capitalize fs-3">
                                             {props?.ideaDetails?.sdg?.toLowerCase() ||
                                                 ''}
                                         </span>
                                     </h2>
                                 </div>
-                                <div className="col-lg-6 d-flex justify-content-end">
-                                <div className="ms-auto me-sm-3 p-0">
+                                <div className="col-sm-4 d-flex justify-content-end">
+                                    <div className="ms-auto me-sm-3 p-0">
                                         <Button
                                             btnClass="primary"
                                             size="small"
-                                            label='Back to List'
+                                            label="Back"
                                             onClick={() =>
                                                 props?.setIsDetail(false)
                                             }
-                                        />
-                                    </div>
-                                    <div className="ms-auto me-sm-3 p-0">
-                                        <Button
-                                            btnClass={props?.currentRow > 1 ? "primary":'default'}
-                                            size="small"
-                                            label={'Previous'}
-                                            onClick={() =>
-                                                props?.handlePrev()
-                                            }
-                                            disabled={props?.currentRow==1}
-                                        />
-                                    </div>
-                                    <div className="ms-auto me-sm-3 p-0">
-                                        <Button
-                                            btnClass={props?.dataLength!=props?.currentRow?"primary":'default'}
-                                            size="small"
-                                            label={'Next'}
-                                            onClick={() =>
-                                                props?.handleNext()
-                                            }
-                                            disabled={props?.dataLength==props?.currentRow}
                                         />
                                     </div>
                                 </div>
@@ -126,7 +104,7 @@ const EvaluatedIdeaDetail = (props) => {
                         <div className="col-lg-4 order-lg-1 order-0 p-0 h-100 mt-3 status_info_col">
                             <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
                                 <p className={`${props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'text-success':'text-danger'} fs-3 fw-bold text-center`}>
-                                <span className='fs-3 text-dark'>L1: </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
+                                    {props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
                                 </p>
                                 <p className='text-center'>
                                     <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluated_at).format('DD-MM-YY h:mm:ss a')|| ''}
