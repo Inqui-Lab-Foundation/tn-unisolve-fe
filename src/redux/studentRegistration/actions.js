@@ -71,15 +71,17 @@ export const getStudentRegistationData = (studentType) => async (dispatch) => {
                 });
         } else {
             result = await axios
-                .get(`${URL.getStudents}?status=ALL&district=${studentType}`, axiosConfig)
+                .get(`${URL.getStudents}?district=${studentType}`, axiosConfig)
                 .then((user) => user)
                 .catch((err) => {
                     return err.response;
                 });
         }
         if (result && result.status === 200) {
-            const data = result.data?.data[0]?.dataValues || [];
-            data.length > 0 ? data.forEach((item, i) => (item.id = i + 1)) : [];
+            const data =
+                result.data &&
+                result.data.data[0] &&
+                result.data.data[0].dataValues;
             dispatch(getStudentListSuccess(data));
         } else {
             dispatch(getStudentListError(result.statusText));

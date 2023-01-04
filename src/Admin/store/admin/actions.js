@@ -5,9 +5,7 @@ import {
     ADMIN_LOGIN_USER_SUCCESS,
     ADMIN_LOGIN_USER_ERROR,
     ADMIN_LANGUAGE,
-    GET_ADMINS,
-    ADMIN_LIST_SUCCESS,
-    ADMIN_LIST_ERROR
+    GET_ADMINS
 } from '../../../redux/actions.js';
 import { URL, KEY } from '../../../constants/defaultValues.js';
 import {
@@ -51,43 +49,6 @@ export const getAdmin = () => async (dispatch) => {
         dispatch(getAdminError({}));
     }
 };
-// ----------------get adminlistData-----------
-export const getAdminListSuccess = (user) => async (dispatch) => {
-    dispatch({
-        type: ADMIN_LIST_SUCCESS,
-        payload: user
-    });
-};
-
-export const getAdminListError = (message) => async (dispatch) => {
-    dispatch({
-        type: ADMIN_LIST_ERROR,
-        payload: { message }
-    });
-};
-
-export const getAdminList = () => async (dispatch) => {
-    try {
-        // dispatch({ type: GET_ADMINS });
-        const axiosConfig = getNormalHeaders(KEY.User_API_Key);
-        const result = await axios
-            .get(`${URL.getAdmin}`, axiosConfig)
-            .then((user) => user)
-            .catch((err) => {
-                return err.response;
-            });
-        if (result && result.status === 200) {
-            const data = result.data?.data[0]?.dataValues || [];
-            data.length > 0 ? data.forEach((item, i) => (item.id = i + 1)) : [];
-            dispatch(getAdminListSuccess(data));
-        } else {
-            dispatch(getAdminListError(result.statusText));
-        }
-    } catch (error) {
-        dispatch(getAdminListError({}));
-    }
-};
-// --------------------------
 
 export const adminLoginUserSuccess = (user) => async (dispatch) => {
     dispatch({
@@ -175,10 +136,11 @@ export const deleteTempMentorById = async (id) => {
             .catch((err) => {
                 return err.response;
             });
+        console.log(result);
         if (result && result.status === 202) {
             openNotificationWithIcon(
                 'success',
-                'Deleted Successfully'
+                result.data && result.data?.message
             );
         } else {
             openNotificationWithIcon(

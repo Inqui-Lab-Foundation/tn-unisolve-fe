@@ -47,15 +47,15 @@ const EditSchool = (props) => {
     const phoneRegExp =
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const headingDetails = {
-        title: 'Edit Institutions Details',
+        title: 'Edit Organization Details',
 
         options: [
             {
-                title: 'Institutions',
+                title: 'School Registration',
                 path: '/admin/registered-schools'
             },
             {
-                title: 'Edit Institutions',
+                title: 'Edit Organization',
                 path: '/admin/register-edit-schools'
             }
         ]
@@ -88,7 +88,7 @@ const EditSchool = (props) => {
                 'Organization  Name is Required'
             ),
             organization_code: Yup.string()
-                .matches(/^[A-Za-z0-9 ]*$/, 'Please enter only alphanumeric characters')
+                .matches(phoneRegExp, 'organization code is not valid')
                 .required('UDISE  Code is Required'),
             city: Yup.string().matches(/^[aA-zZ\s]+$/, 'Invalid City'),
 
@@ -137,7 +137,6 @@ const EditSchool = (props) => {
                                             htmlFor="organization_code"
                                         >
                                             UDISE Code
-                                            <span required>*</span>
                                         </Label>
                                         <InputBox
                                             {...inputDICE}
@@ -164,7 +163,6 @@ const EditSchool = (props) => {
                                             htmlFor="organization_name"
                                         >
                                             Institute/School Name
-                                            <span required>*</span>
                                         </Label>
                                         <InputBox
                                             {...inputDICE}
@@ -209,7 +207,6 @@ const EditSchool = (props) => {
                                             htmlFor="district"
                                         >
                                             District
-                                            <span required>*</span>
                                         </Label>
                                         <InputBox
                                             {...inputDICE}
