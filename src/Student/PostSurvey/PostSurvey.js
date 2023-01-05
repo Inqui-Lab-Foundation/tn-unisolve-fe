@@ -51,7 +51,8 @@ const PostSurvey = () => {
     const [count, setCount] = useState(0);
     const [postSurveyStatus, setPostSurveyStatus] = useState('COMPLETED');
     const language = useSelector(state => state?.studentRegistration?.studentLanguage);
-    const showPage = ideaSubmissionStatus && ideaSubmissionStatus !== "DRAFT" && (topicTotalCount === topicCompletedCount);
+    // const showPage = ideaSubmissionStatus && ideaSubmissionStatus !== "DRAFT" && (topicTotalCount === topicCompletedCount);
+    const showPage = topicTotalCount === topicCompletedCount;
     const handleClick =()=>{
         history.push("/student/my-certificate");
     };
@@ -120,6 +121,10 @@ const PostSurvey = () => {
                     currentUser?.data[0]?.team_id,
                     language
                 )
+            );
+        if(!topicCompletedCount)
+            dispatch(
+                getStudentDashboardStatus(currentUser?.data[0]?.user_id, language)
             );
     }, [language, dispatch, currentUser?.data[0]?.team_id]);
     
