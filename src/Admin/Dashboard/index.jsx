@@ -45,11 +45,56 @@ const Dashboard = () => {
     const [count, setCount] = useState(0);
     const [error, setError] = useState('');
     const handleOnChange = (e) => {
+        localStorage.removeItem('organization_code');
         setCount(0);
         setDiesCode(e.target.value);
         setOrgData({});
         setError('');
     };
+    useEffect(() => {
+        const list = JSON.parse(localStorage.getItem('organization_code'));
+        setDiesCode(list);
+        apiCall(list);
+    }, []);
+
+    async function apiCall(list) {
+        const body = JSON.stringify({
+            organization_code: list
+        });
+        var config = {
+            method: 'post',
+            url: process.env.REACT_APP_API_BASE_URL + '/organizations/checkOrg',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: body
+        };
+
+        await axios(config)
+            .then(function (response) {
+                // console.log(response);
+                if (response.status == 200) {
+                    setOrgData(response?.data?.data[0]);
+                    setCount(count + 1);
+                    setMentorId(response?.data?.data[0]?.mentor.mentor_id);
+                    setError('');
+                    
+                    if (response?.data?.data[0]?.mentor.mentor_id) {
+                        console.log(response);
+                        getMentorIdApi(
+                            response?.data?.data[0]?.mentor.mentor_id
+                        );
+                    }
+                }
+            })
+            .catch(function (error) {
+                if (error?.response?.data?.status === 404) {
+                    setError('Entered Invalid UDISE Code');
+                }
+                setOrgData({});
+            });
+    }
+
     const handleSearch = (e) => {
         const body = JSON.stringify({
             organization_code: diesCode
@@ -272,6 +317,7 @@ const Dashboard = () => {
                 console.log(error);
             });
     };
+
     return (
         <Layout>
             <div className="dashboard-wrapper pb-5 my-5 px-5">
@@ -320,8 +366,7 @@ const Dashboard = () => {
                                 </Col>
                             </Row>
 
-                            {diesCode &&
-                            orgData &&
+                            {orgData &&
                             orgData?.organization_name &&
                             orgData?.mentor !== null ? (
                                 <>

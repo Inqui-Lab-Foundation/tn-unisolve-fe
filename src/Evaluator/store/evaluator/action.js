@@ -121,11 +121,12 @@ export const getSubmittedIdeaListSuccess = (data) => async (dispatch) => {
 };
 export const getSubmittedIdeaList = () => async (dispatch) => {
     const currentUser = getCurrentUser('current_user');
+    const level=currentUser?.data[0]?.level_name;
     try {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const result = await axios
             .get(
-                `${process.env.REACT_APP_API_BASE_URL + '/challenge_response/fetchRandomChallenge?status=SUBMITTED&evaluator_user_id='+currentUser?.data[0]?.user_id}`,
+                `${process.env.REACT_APP_API_BASE_URL + '/challenge_response/fetchRandomChallenge?evaluator_user_id='+currentUser?.data[0]?.user_id +'&level='+level}`,
                 axiosConfig
             )
             .then((data) => data)
@@ -181,13 +182,13 @@ export const getL1EvaluatedIdeaSuccess = (data) => async (dispatch) => {
         payload: data
     });
 };
-export const getL1EvaluatedIdea = () => async (dispatch) => {
+export const getL1EvaluatedIdea = (params) => async (dispatch) => {
     const currentUser = getCurrentUser('current_user');
     try {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         const result = await axios
             .get(
-                `${process.env.REACT_APP_API_BASE_URL + '/challenge_response/evaluated/'+currentUser?.data[0]?.user_id}`,
+                `${process.env.REACT_APP_API_BASE_URL + '/challenge_response/evaluated/'+currentUser?.data[0]?.user_id+params}`,
                 axiosConfig
             )
             .then((data) => data)
