@@ -44,7 +44,7 @@ const TicketResponse = (props) => {
     }, [dispatch, id]);
 
     const headingDetails = {
-        title: 'Support Details',
+        title: 'Answer Ticket',
 
         options: [
             {
@@ -56,14 +56,14 @@ const TicketResponse = (props) => {
                 path: '/teacher/support-journey/add-ticket'
             },
             {
-                title: 'Support View'
+                title: 'Answer'
             }
         ]
     };
     const formik = useFormik({
         initialValues: {
             ansDetails: '',
-            selectStatus: ''
+            selectStatus:'' 
         },
 
         validationSchema: Yup.object({
@@ -91,10 +91,7 @@ const TicketResponse = (props) => {
     });
 
     const selectProgress = {
-        label:
-            supportTicket && supportTicket.status
-                ? supportTicket.status
-                : 'Select Status',
+        label: supportTicket && supportTicket.status ? supportTicket.status : 'Select Status',
         options: [
             { label: 'OPEN', value: 'OPEN' },
             { label: 'INPROGRESS', value: 'INPROGRESS' },
@@ -310,12 +307,7 @@ const TicketResponse = (props) => {
                                                     : 'primary'
                                             }
                                             size="small"
-                                            disabled={
-                                                !(
-                                                    formik.dirty &&
-                                                    formik.isValid
-                                                )
-                                            }
+                                            disabled={!(formik.dirty && formik.isValid)}
                                         />
                                     </Col>
                                 </Row>

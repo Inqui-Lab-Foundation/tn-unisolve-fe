@@ -10,7 +10,7 @@ import { InputBox } from '../../stories/InputBox/InputBox';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { BreadcrumbTwo } from '../../stories/BreadcrumbTwo/BreadcrumbTwo';
-import { getCurrentUser, openNotificationWithIcon } from '../../helpers/Utils';
+import { getCurrentUser } from '../../helpers/Utils';
 import { useHistory } from 'react-router-dom';
 import { getAdminEvalutorsList } from '../store/adminEvalutors/actions';
 import { getAdmin } from '../store/admin/actions';
@@ -38,30 +38,33 @@ const EditProfile = (props) => {
 
     const phoneRegExp =
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-    
-    const getValidationSchema = (data)=>{
-        const adminValidation = Yup.object({
-            name: Yup.string()
-                .matches(/^[aA-zZ\s]+$/, 'Invalid name ')
-                .min(2, 'Enter a valid name')
-                .required('Name is Required'),
-            email: Yup.string()
-                .email('Invalid email address format')
-                .required('Email is required'),
-        });
-        if (data?.mentor_id)
-            adminValidation['phone']= Yup.string()
-                .matches(phoneRegExp, 'Mobile number is not valid')
-                .min(10, 'Enter a valid mobile number')
-                .max(10, 'Enter a valid mobile number')
-                .required('Mobile Number is Required');
-        if(data?.evaluator_id)
-            adminValidation['district']= Yup.string()
-                .matches(/^[aA-zZ\s]+$/, 'Invalid District Name ')
-                .min(2, 'Enter a valid district')
-                .required('District is Required');
-        return adminValidation;
-    };
+    const commonValidation = Yup.object({
+        name: Yup.string()
+            .matches(/^[aA-zZ\s]+$/, 'Invalid name ')
+            .min(2, 'Enter a valid name')
+            .required('Name is Required'),
+        district: Yup.string()
+            .matches(/^[aA-zZ\s]+$/, 'Invalid District Name ')
+            .min(2, 'Enter a valid district')
+            .required('District is Required'),
+        email: Yup.string()
+            .email('Invalid email address format')
+            .required('Email is required'),
+        phone: Yup.string()
+            .matches(phoneRegExp, 'Mobile number is not valid')
+            .min(10, 'Enter a valid mobile number')
+            .max(10, 'Enter a valid mobile number')
+            .required('Mobile Number is Required')
+    });
+    const adminValidation = Yup.object({
+        name: Yup.string()
+            .matches(/^[aA-zZ\s]+$/, 'Invalid name ')
+            .min(2, 'Enter a valid name')
+            .required('Name is Required'),
+        email: Yup.string()
+            .email('Invalid email address format')
+            .required('Email is required'),
+    });
     const getInitialValues = (data)=>{
         const commonInitialValues ={
             name: mentorData.full_name || mentorData.user.full_name,
@@ -69,14 +72,13 @@ const EditProfile = (props) => {
         };
         if(!data?.admin_id){
             commonInitialValues['phone']= mentorData.mobile;
-            if(!data?.mentor_id)
-                commonInitialValues['district']= mentorData.district;
+            commonInitialValues['district']= mentorData.district;
         }
         return commonInitialValues;
     };
     const formik = useFormik({
         initialValues: getInitialValues(mentorData),
-        validationSchema: getValidationSchema(mentorData),
+        validationSchema: mentorData?.admin_id ? adminValidation : commonValidation,
         onSubmit: (values) => {
             const full_name = values.name;
             const email = values.email;
@@ -110,7 +112,6 @@ const EditProfile = (props) => {
                 .then(function (response) {
                     if (response.status === 200) {
                         mentorData?.evaluator_id  ? dispatch(getAdminEvalutorsList())  : mentorData?.admin_id && dispatch(getAdmin());
-                        openNotificationWithIcon('success','Updated Successfully');
                         setTimeout(() => {     
                             props.history.push(
                                 mentorData.where === 'Dashbord'
@@ -125,7 +126,7 @@ const EditProfile = (props) => {
                 });
         }
     });
-    
+
     return (
         <Layout>
             <div className="EditPersonalDetails new-member-page">
@@ -211,7 +212,7 @@ const EditProfile = (props) => {
                                                     ) : null}
                                             </Col>
                                             <div className="w-100" />
-                                            {!mentorData?.mentor_id && <Col md={6}>
+                                            <Col md={6}>
                                                 <Label
                                                     className="name-req mt-5"
                                                     htmlFor="district"
@@ -233,7 +234,7 @@ const EditProfile = (props) => {
                                                             {formik.errors.district}
                                                         </small>
                                                     ) : null}
-                                            </Col>}
+                                            </Col>
                                         </>
                                         }
                                     </Row>
@@ -260,7 +261,6 @@ const EditProfile = (props) => {
                                         <Button
                                             label="Submit details"
                                             type="submit"
-                                            // onClick={handleBack}
                                             btnClass={
                                                 !(
                                                     formik.dirty &&

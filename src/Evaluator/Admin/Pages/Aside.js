@@ -108,7 +108,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
                     <MenuItem
                         icon={ <FaLightbulb />}
                         className={
-                            (location.pathname === '/eadmin/dashboard' || location.pathname ==='/eadmin/listofideas') &&
+                            location.pathname === '/eadmin/dashboard' &&
                             'sidebar-active'
                         }
                     >
