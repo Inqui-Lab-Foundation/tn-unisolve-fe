@@ -5,7 +5,7 @@ import { Card, Col, Progress } from 'reactstrap';
 import { Table } from 'antd';
 import { getAdminTeamsList, getTeamMemberStatus } from '../store/teams/actions';
 import { useSelector } from 'react-redux';
-import { useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // import DoubleBounce from '../../components/Loaders/DoubleBounce';
@@ -67,6 +67,7 @@ export default function DoughnutChart({ user }) {
     const [teamId, setTeamId] = useState(null);
     const [showDefault, setshowDefault] = useState(true);
     const [ideaShow, setIdeaShow] = useState(false);
+    const [mentorid ,setmentorid] = useState('');
     const { challengesSubmittedResponse } = useSelector(
         (state) => state?.studentRegistration
     );
@@ -77,11 +78,15 @@ export default function DoughnutChart({ user }) {
     const percentageBWNumbers = (a, b) => {
         return (((a - b) / a) * 100).toFixed(2);
     };
-
-    useLayoutEffect(() => {
+    useEffect (( )=> {
+        if(user){
+            setmentorid(user[0].mentor_id);
+        }
+    },[user]);
+    useEffect(() => {
         setshowDefault(true);
-        dispatch(getAdminTeamsList(user[0].mentor_id));
-    }, [user[0].mentor_id]);
+        dispatch(getAdminTeamsList(mentorid));
+    }, [mentorid]);
     const columns = [
         {
             title: 'Name',

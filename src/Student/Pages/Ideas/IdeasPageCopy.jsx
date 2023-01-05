@@ -295,7 +295,10 @@ const IdeasPageNew = () => {
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
-                    swalWithBootstrapButtons.fire(t('general_req.cancelled'));
+                    swalWithBootstrapButtons.fire(
+                    t('general_req.cancelled'),
+                    t('general_req.idea_sub_cancelled'),
+                    'error');
                 }
             });
     };
@@ -477,6 +480,7 @@ const IdeasPageNew = () => {
         scroll();
     };
     const comingSoonText = t('dummytext.student_idea_sub');
+    const acceptedParamfileTypes="Accepting only png,jpg,jpeg,pdf,mp4,doc,docx Only, file size should be below 20MB";
     return (
         <Layout>
             {showPage ? (
@@ -828,6 +832,7 @@ const IdeasPageNew = () => {
                                                                         {eachQuestion.type ===
                                                                             'DRAW' &&  (
                                                                             <>
+                                                                                {acceptedParamfileTypes}
                                                                                 {initiatedBy &&
                                                                             initiatedBy ===
                                                                                 currentUser?.data[0]
@@ -855,6 +860,7 @@ const IdeasPageNew = () => {
                                                                                             disabled={
                                                                                                 isDisabled
                                                                                             }
+                                                                                            accept=".png, .jpg, .jpeg,.pdf,video/mp4,video/x-m4v,.doc,.docx"
                                                                                             multiple
                                                                                             onChange={(
                                                                                                 e
