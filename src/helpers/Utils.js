@@ -111,7 +111,19 @@ export const logout = (history, t,module,dispatch) => {
                         localStorage.removeItem('module');
                     if(dispatch)
                         dispatch(userLogout());
-                    history.push('/');
+                    switch (module){
+                    case 'EVALUATOR':
+                        history.push('/evaluator');
+                        break;
+                    case 'ADMIN':
+                        history.push('/admin');
+                        break;
+                    case 'EADMIN':
+                        history.push('/eadmin');
+                        break;
+                    default:
+                        history.push('/');
+                    }
                 }
             } else if (
                 /* Read more about handling dismissals below */

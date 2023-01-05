@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Card } from 'reactstrap';
 import { Tabs } from 'antd';
 import Layout from '../../Admin/Layout';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ import {
     getAdmin,
     getAdminEvalutorsList,
     getAdminMentorsList,
+    getAdminMentorsListSuccess,
     updateMentorStatus
 } from '../../redux/actions';
 
@@ -27,6 +28,7 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import {
     getDistrictData,
+    getStudentListSuccess,
     getStudentRegistationData,
     updateStudentStatus
 } from '../../redux/studentRegistration/actions';
@@ -95,7 +97,7 @@ const TicketsPage = (props) => {
     }, [tab,studentDist]);
     useEffect(() => {
         if (Number(tab) === 2 && mentorDist !=='') {
-            props.getAdminMentorsListAction('ACTIVE',mentorDist);
+            props.getAdminMentorsListAction('ALL',mentorDist);
         } 
     }, [tab,mentorDist]);
 
@@ -115,6 +117,8 @@ const TicketsPage = (props) => {
         return () => clearTimeout(timeout);
     }, []);
 
+
+
     const changeTab = (e) => {
         setmentorDist('');
         setstudentDist('');
@@ -131,13 +135,15 @@ const TicketsPage = (props) => {
             // activeAdmin(false);
             activeEvaluater(true);
         } else if (e === '2') {
-            props.getAdminMentorsListAction('ACTIVE',mentorDist);
+            //props.getAdminMentorsListAction('ALL',mentorDist);
+            dispatch(getAdminMentorsListSuccess([],0));
             activeMenter(!menter);
             // activeAdmin(false);
             activeEvaluater(false);
         } else {
             activeEvaluater(false);
             activeMenter(false);
+            dispatch(getStudentListSuccess([]));
         }
     };
     useEffect(() => {
@@ -224,7 +230,7 @@ const TicketsPage = (props) => {
                     if (type && type === 'student') {
                         props.studentStatusUpdate({ status }, id);
                         setTimeout(() => {
-                            props.getStudentListAction();
+                            props.getStudentListAction(studentDist);
                         }, 500);
                     } else if(type && type === 'evaluator'){
                         console.warn(status,id,type);
@@ -236,7 +242,7 @@ const TicketsPage = (props) => {
                         const obj={full_name:all.full_name,username:all.username,mobile:all.mobile,status};
                         props.mentorStatusUpdate(obj, id);
                         setTimeout(() => {
-                            props.getAdminMentorsListAction("ACTIVE",mentorDist);
+                            props.getAdminMentorsListAction("ALL",mentorDist);
                         }, 500);
                     }
                     swalWithBootstrapButtons.fire(
@@ -261,7 +267,7 @@ const TicketsPage = (props) => {
         columns: [
             {
                 name: 'S.No',
-                selector: 'mentor_id',
+                selector: 'id',
                 width: '8%'
             },
             {
@@ -352,13 +358,13 @@ const TicketsPage = (props) => {
         columns: [
             {
                 name: 'S.No.',
-                selector: 'student_id',
+                selector: 'id',
                 width: '10%'
                 // center: true,
             },
             {
                 name: 'Team Name',
-                selector: 'team_name',
+                selector: 'team.team_name',
                 // sortable: true,
                 width: '20%'
                 // center: true,
@@ -372,20 +378,34 @@ const TicketsPage = (props) => {
             {
                 name: 'Grade',
                 selector: 'Grade',
-                width: '10%'
+                width: '9%'
                 // center: right,
             },
             {
                 name: 'Age',
                 selector: 'Age',
-                width: '10%'
+                width: '8%'
                 // center: right,
             },
             {
                 name: 'Gender',
                 selector: 'Gender',
-                width: '15%'
+                width: '10%'
                 // center: right,
+            },
+            {
+                name: 'Status',
+                cell: (row) => [
+                    <Badge
+                        key={row.mentor_id}
+                        bg={`${
+                            row.status === 'ACTIVE' ? 'secondary' : 'danger'
+                        }`}
+                    >
+                        {row.status}
+                    </Badge>
+                ],
+                width: '8%'
             },
             {
                 name: 'Action',
@@ -456,7 +476,16 @@ const TicketsPage = (props) => {
             },
             {
                 name: 'Status',
-                selector: 'status',
+                cell: (row) => [
+                    <Badge
+                        key={row.mentor_id}
+                        bg={`${
+                            row.status === 'ACTIVE' ? 'secondary' : 'danger'
+                        }`}
+                    >
+                        {row.status}
+                    </Badge>
+                ],
                 width: '10%'
             },
             {
@@ -508,35 +537,30 @@ const TicketsPage = (props) => {
         ]
     };
     const adminData = {
-        data: props.adminData,
+        data: props.adminData && props.adminData.length > 0 ? props.adminData : [],
         columns: [
             {
                 name: 'S.No.',
-                selector: 'id',
+                selector: (row) => row?.id,
             },
             {
                 name: 'Admin Name',
-                selector: 'user.full_name',
-            },
-            {
-                name: 'City',
-                selector: 'city',
+                selector: (row) => row?.user?.full_name,
             },
             {
                 name: 'Email',
-                selector: 'user.username',
+                selector: (row) => row?.user?.username,
             },
             {
-                name: 'District',
-                selector: 'district',
+                name: 'Role',
+                selector: (row) => row?.user?.role, 
             },
             {
                 name: 'Action',
                 sortable: false,
-                selector: 'null',
                 cell: (record) => [
                     <Link
-                        key={record.id}
+                        key={record?.id}
                         exact="true"
                         onClick={() => handleSelect(record)}
                         style={{ marginRight: '10px' }}
@@ -545,7 +569,7 @@ const TicketsPage = (props) => {
                     </Link>,
                     <Link
                         exact="true"
-                        key={record.id}
+                        key={record?.id}
                         onClick={() => handleEdit(record)}
                         style={{ marginRight: '10px' }}
                     >
@@ -567,7 +591,7 @@ const TicketsPage = (props) => {
                     {/* <h2 onClick={handleDelete}>User List</h2> */}
                     <div className="ticket-data">
                         <Tabs
-                            defaultActiveKey={localStorage.getItem('tab')}
+                            defaultActiveKey={localStorage.getItem('tab') ? localStorage.getItem('tab') :'1'}
                             onChange={(key) => changeTab(key)}
                         >
                             <Row className="mt-0">
@@ -575,29 +599,40 @@ const TicketsPage = (props) => {
                                     <div
                                         className={`d-flex ${
                                             tab == 1 || tab == 2
-                                                ? 'justify-content-between'
+                                                ? ''
                                                 : 'justify-content-end'
                                         }`}
                                     >
                                         {tab && tab == 1 && (
-                                            <SelectDists
-                                                getDistrictsListAction={
-                                                    props.getDistrictsListAction
-                                                }
-                                                setDist = { setstudentDist}
-                                                dists={props.dists}
-                                                tab={tab}
-                                            />
+                                            <>
+                                                <SelectDists
+                                                    getDistrictsListAction={
+                                                        props.getDistrictsListAction
+                                                    }
+                                                    setDist = { setstudentDist}
+                                                    dists={props.dists}
+                                                    tab={tab}
+                                                />
+                                                {studentDist && <Card className='ms-3 p-3'>
+                                                    Total Students : {props.studentList.length}
+                                                </Card>}
+                                            </>
+
                                         )}
                                         {tab && tab == 2 && (
-                                            <SelectDists
-                                                getDistrictsListAction={
-                                                    props.getDistrictsListAction
-                                                }
-                                                setDist = {setmentorDist}
-                                                dists={props.dists}
-                                                tab={tab}
-                                            />
+                                            <>
+                                                <SelectDists
+                                                    getDistrictsListAction={
+                                                        props.getDistrictsListAction
+                                                    }
+                                                    setDist = {setmentorDist}
+                                                    dists={props.dists}
+                                                    tab={tab}
+                                                />
+                                                {mentorDist && <Card className='ms-3 p-3'>
+                                                    Total Teachers : {props.mentorsList.length}
+                                                </Card>}
+                                            </>
                                         )}
                                         {tab && (tab == 3 || tab==4 )&&<Button
                                             label={tab == 3 ? "Add New Evaluator": "Add New Admin"}
@@ -729,7 +764,7 @@ const TicketsPage = (props) => {
                                     >
                                         <DataTable
                                             responsive={true}
-                                            data={props.studentList}
+                                            data={props.evalutorsList}
                                             defaultSortField="id"
                                             defaultSortAsc={false}
                                             pagination

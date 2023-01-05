@@ -177,6 +177,7 @@ const Register = (props) => {
     //             break;
     //     }
     // };
+    const dists = ["ADMIN","EADMIN"];
     return (
         <Modal
             {...props}
@@ -205,10 +206,10 @@ const Register = (props) => {
                         onSubmit={formik.handleSubmit}
                         isSubmitting
                     >
-                        <div className="row justify-content-center pe-md-0">
-                            <div className="col-md-6 p-0">
+                        <div className={`row justify-content-center pe-md-0 ${props.roleToBeAdded !=='EVALUATOR' && 'add-admin'}`}>
+                            <div className={`col-md-6 p-0 ${props.roleToBeAdded !=='EVALUATOR' && 'w-100'}`}>
                                 <FormGroup
-                                    className="form-group mt-md-0 mt-5 me-md-3"
+                                    className={`form-group mt-md-0 mt-5 ${props.roleToBeAdded ==='EVALUATOR' && 'me-md-3'}`}
                                     md={12}
                                 >
                                     <Label className="mb-2" htmlFor="name">
@@ -234,9 +235,9 @@ const Register = (props) => {
                                 </FormGroup>
                             </div>
                             {props.roleToBeAdded !== 'EVALUATOR' ? (
-                                <div className="col-md-6 p-0">
+                                <div className="col-md-6 p-0 w-100">
                                     <FormGroup
-                                        className="form-group me-md-3"
+                                        className={`form-group  w-100`}
                                         md={12}
                                     >
                                         <Label
@@ -245,6 +246,7 @@ const Register = (props) => {
                                         >
                                             Email Address
                                         </Label>
+
                                         <InputBox
                                             {...inputEmail}
                                             id="username"
@@ -260,6 +262,36 @@ const Register = (props) => {
                                         formik.errors.username ? (
                                             <small className="error-cls">
                                                 {formik.errors.username}
+                                            </small>
+                                        ) : null}
+                                    </FormGroup>
+                                    <FormGroup
+                                        className={`form-group me-md-3 w-100`}
+                                        md={12}
+                                    >
+                                        <Label
+                                            className="mb-2"
+                                            htmlFor="username"
+                                        >
+                                            Admin Type
+                                        </Label>
+                                        <select
+                                            id="role"
+                                            name="role"
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.role}
+                                        >
+                                            {dists.map((item, i) => (
+                                                <option key={i} value={item}>
+                                                    {item}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {formik.touched.role &&
+                                        formik.errors.role ? (
+                                            <small className="error-cls">
+                                                {formik.errors.role}
                                             </small>
                                         ) : null}
                                     </FormGroup>

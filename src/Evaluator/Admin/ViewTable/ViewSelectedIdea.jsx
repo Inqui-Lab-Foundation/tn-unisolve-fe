@@ -6,31 +6,86 @@ import DataTable, { Alignment } from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import moment from 'moment';
 import ViewDetail from './ViewDetail';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { URL, KEY } from '../../../constants/defaultValues';
 import { getNormalHeaders } from '../../../helpers/Utils';
 import { Button } from '../../../stories/Button';
+import Select from '../../Helper/Select';
+import { Col, Container, Row } from 'reactstrap';
+import { cardData } from '../../../Student/Pages/Ideas/SDGData.js';
+import { useSelector } from 'react-redux';
+import { getDistrictData } from '../../../redux/studentRegistration/actions';
+import { useDispatch } from 'react-redux';
+import { ReasonsOptions } from '../Pages/ReasonForRejectionData';
+import { getAdminList, getAdminEvalutorsList } from '../../../redux/actions';
+
 
 const ViewSelectedIdea = () => {
+    const { search } = useLocation();
     const history = useHistory();
-
-    const Data = (history && history.location && history.location.item) || {};
-
+    const dispatch = useDispatch();
+    const title = new URLSearchParams(search).get("title");
+    const status = new URLSearchParams(search).get("status");
+    const evaluation_status = new URLSearchParams(search).get("evaluation_status");
     const [isDetail, setIsDetail] = React.useState(false);
     const [ideaDetails, setIdeaDetails] = React.useState({});
-    const [tableDate, settableDate] = React.useState({});
+    const [tableData, settableData] = React.useState([]);
+    const [reason, setReason] = React.useState('');
+    const [district, setdistrict] = React.useState('');
+    const [sdg, setsdg] = React.useState('');
+    const [evalname,setevalname] = React.useState('');
+     //---for handle next idea---
+     const [currentRow, setCurrentRow]= React.useState(1);
+     const [tablePage, setTablePage]=React.useState(1);
+
+    const SDGDate = cardData.map((i) => {
+        return i.goal_title;
+    });
+    SDGDate.push('ALL');
+    const fullDistrictsNames = useSelector(
+        (state) => state?.studentRegistration?.dists
+    );
+    
+    const evallist = useSelector(
+        (state) => state?.adminEvalutors?.evalutorsList
+    );
+    const adminlist = useSelector(
+        (state) => state?.admin?.adminList
+    );    
+    const Allevalobj={};
+    const Allevalnamelist = evallist.map((i) => {
+        Allevalobj[i.user.full_name] = i.user.user_id;
+        return i.user.full_name;
+    });
+    adminlist?.map((i) =>{
+        Allevalobj[i.user.full_name] = i.user.user_id; 
+        Allevalnamelist.push(i.user.full_name);
+    });
+
+    const dataParam =  title === 'Submitted' ? 'status='+status : 'evaluation_status='+evaluation_status;
+    const filterParams =
+        (district && district !== 'All Districts' ? '&district=' + district : '') +
+        (sdg && sdg !== 'ALL' ? '&sdg=' + sdg : '') +
+        (reason && '&rejected_reason=' + reason) + (evalname && '&evaluator_id=' + Allevalobj[evalname]);
 
     useEffect(() => {
-        handleideaList();
-    }, []);
+        dispatch(getDistrictData());
+        dispatch(getAdminEvalutorsList());
+        dispatch(getAdminList());
+    },[]);
+    
+    // useEffect(() => {
+    //     handleideaList();
+    // }, [reason,district,sdg]);
+
     async function handleideaList() {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         await axios
-            .get(`${URL.getidealist}${Data.param}`, axiosConfig)
+            .get(`${URL.getidealist}${dataParam}${filterParams}`, axiosConfig)
             .then(function (response) {
                 if (response.status === 200) {
-                    settableDate(
+                    settableData(
                         response.data &&
                             response.data.data[0] &&
                             response.data.data[0].dataValues
@@ -41,10 +96,11 @@ const ViewSelectedIdea = () => {
                 console.log(error);
             });
     }
-
-    console.log(tableDate, 'get----', Data);
+    const handleclickcall = () => {
+        handleideaList();
+    };
     const evaluatedIdea = {
-        data: tableDate && tableDate.length > 0 ? tableDate : [],
+        data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
             {
                 name: 'No',
@@ -65,13 +121,20 @@ const ViewSelectedIdea = () => {
                 width: '15%'
             },
             {
-                name: 'Idea Name',
+                name: 'SDG',
                 selector: (row) => row.sdg,
                 width: '15%'
             },
             {
                 name: 'Submitted By',
                 selector: (row) => row.initiated_name,
+                width: '15%'
+            },
+            {
+                name: 'Evaluated By',
+                cell: (row) => {
+                    return [row.evaluated_name ? row.evaluated_name : ''];
+                },
                 width: '15%'
             },
             {
@@ -82,15 +145,7 @@ const ViewSelectedIdea = () => {
                         : row.evaluated_at,
                 width: '15%'
             },
-            {
-                name: 'Evaluated Name',
-                cell: (row) => {
-                    return [
-                        row.evaluated_name ? row.evaluated_name : ''
-                    ];
-                },
-                width: '15%'
-            },
+            
             {
                 name: 'Status',
                 // selector: (row) => row.evaluation_status && row.evaluation_status=='SELECTEDROUND1'?'Accepted':row.evaluation_status=='REJECTEDROUND1'?'Rejected':'',
@@ -135,7 +190,7 @@ const ViewSelectedIdea = () => {
     };
 
     const evaluatedIdeaforsub = {
-        data: tableDate && tableDate.length > 0 ? tableDate : [],
+        data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
             {
                 name: 'No',
@@ -156,7 +211,7 @@ const ViewSelectedIdea = () => {
                 width: '21%'
             },
             {
-                name: 'Idea Name',
+                name: 'SDG',
                 selector: (row) => row.sdg,
                 width: '21%'
             },
@@ -180,6 +235,13 @@ const ViewSelectedIdea = () => {
                                 onClick={() => {
                                     setIdeaDetails(params);
                                     setIsDetail(true);
+                                    let index=0;
+                                    tableData?.forEach((item, i)=>{
+                                        if(item?.challenge_response_id==params?.challenge_response_id){
+                                            index=i;
+                                        }
+                                    });
+                                    setCurrentRow(index+1);
                                 }}
                             >
                                 View
@@ -192,7 +254,25 @@ const ViewSelectedIdea = () => {
             }
         ]
     };
-const sel = Data.title==='Submitted'? evaluatedIdeaforsub : evaluatedIdea;
+    const sel =
+        title === 'Submitted' ? evaluatedIdeaforsub : evaluatedIdea;
+    const showbutton = district && sdg;
+
+    const handleNext=()=>{
+        if(tableData && currentRow < tableData?.length){
+            setIdeaDetails(tableData[currentRow]);
+            setIsDetail(true);
+            setCurrentRow(currentRow+1);
+           
+        }
+    };
+    const handlePrev=()=>{
+        if(tableData && currentRow > 1){
+            setIdeaDetails(tableData[currentRow]);
+            setIsDetail(true);
+            setCurrentRow(currentRow-1);
+        }
+    };
     return (
         <Layout>
             <div className="container evaluated_idea_wrapper pt-5 mb-50">
@@ -200,27 +280,98 @@ const sel = Data.title==='Submitted'? evaluatedIdeaforsub : evaluatedIdea;
                     <div className="col-12 p-0">
                         {!isDetail && (
                             <div>
-                                <h2 className="ps-2">{Data.title} Ideas</h2>
-                                <div className="text-right pb-4">
-                                    <Button
-                                        btnClass="primary"
-                                        size="small"
-                                        label="Back"
-                                        onClick={() => history.goBack()}
-                                    />
-                                </div>
+                                <h2 className="ps-2 pb-3">{title} Ideas</h2>
+
+                                <Container fluid className='px-0'>
+                                    <Row className='align-items-center'>
+                                        <Col md={2} >
+                                            <div className="my-3 d-md-block d-flex justify-content-center">
+                                                <Select
+                                                    list={fullDistrictsNames}
+                                                    setValue={setdistrict}
+                                                    placeHolder={
+                                                        'Select District'
+                                                    }
+                                                    value={district}
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col md={2}>
+                                            <div className="my-3 d-md-block d-flex justify-content-center">
+                                                <Select
+                                                    list={SDGDate}
+                                                    setValue={setsdg}
+                                                    placeHolder={'Select SDG'}
+                                                    value={sdg}
+                                                />
+                                            </div>
+                                        </Col>
+                                        {title !== 'Submitted' ? (<Col md={2}>
+                                            <div className="my-3 d-md-block d-flex justify-content-center">
+                                                <Select
+                                                    list={Allevalnamelist}
+                                                    setValue={setevalname}
+                                                    placeHolder={'Select evaluator name'}
+                                                    value={evalname}
+                                                />
+                                            </div>
+                                        </Col>) : ''}
+                                        
+                                        {title === 'Rejected' ? (
+                                            <Col md={3}>
+                                                <div className="my-3 d-md-block d-flex justify-content-center">
+                                                    <Select
+                                                        list={ReasonsOptions}
+                                                        setValue={setReason}
+                                                        placeHolder={
+                                                            'Select Reason for rejection'
+                                                        }
+                                                        value={reason}
+                                                    />
+                                                </div>
+                                            </Col>
+                                        ) : (
+                                            ''
+                                        )}
+                                        <Col md={2}>
+                                            <div className="text-center">
+                                                <Button
+                                                    btnClass={showbutton ? 'primary': 'default'}
+                                                    size="small"
+                                                    label="Search"
+                                                    disabled={!showbutton}
+                                                    onClick={() =>
+                                                        handleclickcall()
+                                                    }
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col md={title === 'Rejected' ? 1 : title==='Submitted' ? 6 : 4}>
+                                            <div className="text-right">
+                                                <Button
+                                                    btnClass="primary"
+                                                    size="small"
+                                                    label="Back"
+                                                    onClick={() =>
+                                                        history.goBack()
+                                                    }
+                                                />
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
                             </div>
                         )}
 
                         {!isDetail ? (
-                            <div className="bg-white border card pt-3">
+                            <div className="bg-white border card pt-3 mt-5">
                                 <DataTableExtensions
                                     print={false}
                                     export={false}
                                     {...sel}
                                 >
                                     <DataTable
-                                        data={tableDate || []}
+                                        data={tableData || []}
                                         defaultSortField="id"
                                         defaultSortAsc={false}
                                         pagination
@@ -228,9 +379,11 @@ const sel = Data.title==='Submitted'? evaluatedIdeaforsub : evaluatedIdea;
                                         fixedHeader
                                         subHeaderAlign={Alignment.Center}
                                         paginationRowsPerPageOptions={[
-                                            10, 20, 30
+                                            10, 25, 50, 100
                                         ]}
                                         paginationPerPage={10}
+                                        onChangePage={(page)=>setTablePage(page)}
+                                        paginationDefaultPage={tablePage}
                                     />
                                 </DataTableExtensions>
                             </div>
@@ -238,6 +391,10 @@ const sel = Data.title==='Submitted'? evaluatedIdeaforsub : evaluatedIdea;
                             <ViewDetail
                                 ideaDetails={ideaDetails}
                                 setIsDetail={setIsDetail}
+                                handleNext={handleNext}
+                                handlePrev={handlePrev}
+                                currentRow={currentRow}
+                                dataLength={tableData && tableData?.length}
                             />
                         )}
                     </div>
