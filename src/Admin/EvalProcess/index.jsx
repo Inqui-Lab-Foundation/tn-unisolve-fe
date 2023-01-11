@@ -14,7 +14,6 @@ const evalprocess = () => {
     const history = useHistory();
     const [evalList, setEvalList] = useState([]);
     const currentUser = getCurrentUser('current_user');
-    console.log(evalList);
     useEffect(() => {
         handleEvalList();
     }, []);
@@ -31,7 +30,7 @@ const evalprocess = () => {
         };
         await axios(config)
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 200) {
                     setEvalList(
                         response.data &&
@@ -45,7 +44,6 @@ const evalprocess = () => {
             });
     }
 
-    console.log(evalList);
     const handleEdit = (item) => {
         history.push({
             pathname: '/admin/edit-evaluationProcess'
@@ -59,6 +57,13 @@ const evalprocess = () => {
         });
         localStorage.setItem('eavlId', JSON.stringify(item));
     };
+
+    // const handlePro = (item) => {
+    //     history.push({
+    //         pathname: '/admin/evaluationProcess-promoteNextLevel'
+    //     });
+    //     localStorage.setItem('eavlId', JSON.stringify(item));
+    // };
 
     const handleActiveStatusUpdate = (item, itemA) => {
         const body = {
@@ -80,7 +85,7 @@ const evalprocess = () => {
         };
         axios(config)
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 200) {
                     handleEvalList();
 
@@ -202,6 +207,16 @@ const evalprocess = () => {
                                 </div>
                             </Link>
                         )}
+                        {/* <Link
+                            exact="true"
+                            key={record}
+                            onClick={() => handlePro(record)}
+                            style={{ marginRight: '12px' }}
+                        >
+                            <div className="btn btn-info btn-lg mx-2">
+                                PROMOTE
+                            </div>
+                        </Link> */}
                     </>
                 ]
             }

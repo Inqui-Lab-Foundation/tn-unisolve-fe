@@ -16,7 +16,6 @@ import { URL, KEY } from '../../constants/defaultValues';
 
 const EditEvalProcess = (props) => {
     const evalID = JSON.parse(localStorage.getItem('eavlId'));
-    console.log(evalID);
 
     const inputDICE = {
         type: 'text',
@@ -63,7 +62,6 @@ const EditEvalProcess = (props) => {
                     axiosConfig
                 )
                 .then((response) => {
-                    console.log(response);
                     if (response.status == 200) {
                         openNotificationWithIcon(
                             'success',

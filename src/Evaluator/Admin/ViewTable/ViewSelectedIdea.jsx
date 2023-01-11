@@ -19,6 +19,10 @@ import { getDistrictData } from '../../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
 import { ReasonsOptions } from '../Pages/ReasonForRejectionData';
 import { getAdminList, getAdminEvalutorsList } from '../../../redux/actions';
+import jsPDF from 'jspdf';
+import {FaDownload, FaHourglassHalf} from 'react-icons/fa';
+import DetailToDownload from '../../../Admin/Evaluation/ViewSelectedIdea/DetailToDownload';
+import ReactDOMServer from "react-dom/server";
 
 
 const ViewSelectedIdea = () => {
@@ -28,6 +32,8 @@ const ViewSelectedIdea = () => {
     const title = new URLSearchParams(search).get("title");
     const status = new URLSearchParams(search).get("status");
     const evaluation_status = new URLSearchParams(search).get("evaluation_status");
+    const level0 = new URLSearchParams(search).get("level0");
+    const level = new URLSearchParams(search).get("level");
     const [isDetail, setIsDetail] = React.useState(false);
     const [ideaDetails, setIdeaDetails] = React.useState({});
     const [tableData, settableData] = React.useState([]);
@@ -42,7 +48,7 @@ const ViewSelectedIdea = () => {
     const SDGDate = cardData.map((i) => {
         return i.goal_title;
     });
-    SDGDate.push('ALL');
+    SDGDate.unshift('ALL SDGs');
     const fullDistrictsNames = useSelector(
         (state) => state?.studentRegistration?.dists
     );
@@ -63,11 +69,15 @@ const ViewSelectedIdea = () => {
         Allevalnamelist.push(i.user.full_name);
     });
 
-    const dataParam =  title === 'Submitted' ? 'status='+status : 'evaluation_status='+evaluation_status;
+    const level0Param =  level0 ==='L0' ? 'status='+status:'';
+    const levelParm = level ? 'level='+level : '';
+    const dataParam = level==='L1'? '&evaluation_status='+evaluation_status : title==='L2 - Yet to Processed' ? '&yetToProcessList=true': '';
     const filterParams =
         (district && district !== 'All Districts' ? '&district=' + district : '') +
-        (sdg && sdg !== 'ALL' ? '&sdg=' + sdg : '') +
+        (sdg && sdg !== 'ALL SDGs' ? '&sdg=' + sdg : '') +
         (reason && '&rejected_reason=' + reason) + (evalname && '&evaluator_id=' + Allevalobj[evalname]);
+    const filterParamsfinal = (district && district !== 'All Districts' ? '?district=' + district : '') +
+    (sdg && sdg !== 'ALL SDGs' ? '&sdg=' + sdg : '');
 
     useEffect(() => {
         dispatch(getDistrictData());
@@ -82,14 +92,14 @@ const ViewSelectedIdea = () => {
     async function handleideaList() {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         await axios
-            .get(`${URL.getidealist}${dataParam}${filterParams}`, axiosConfig)
+            .get(title === 'Final'? `${URL.getidealistfinal}${filterParamsfinal}` :`${URL.getidealist}${level0Param}${levelParm}${dataParam}${filterParams}`, axiosConfig)
             .then(function (response) {
                 if (response.status === 200) {
-                    settableData(
-                        response.data &&
-                            response.data.data[0] &&
-                            response.data.data[0].dataValues
-                    );
+                    const updatedWithKey = response.data && response.data.data[0] && response.data.data[0].dataValues.map((item, i) => {
+                        const upd = { ...item }; upd["key"] = i + 1;
+                         return upd;
+                     });
+                     settableData(updatedWithKey && updatedWithKey);
                 }
             })
             .catch(function (error) {
@@ -99,18 +109,13 @@ const ViewSelectedIdea = () => {
     const handleclickcall = () => {
         handleideaList();
     };
-    const evaluatedIdea = {
+    const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
+    const evaluatedIdeaL1 = {
         data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
             {
                 name: 'No',
-                cell: (params, index) => {
-                    return [
-                        <div className="ms-3" key={params}>
-                            {index + 1}
-                        </div>
-                    ];
-                },
+                selector: (row) => row.key,
                 sortable: true,
                 width: '7%'
             },
@@ -176,6 +181,13 @@ const ViewSelectedIdea = () => {
                                 onClick={() => {
                                     setIdeaDetails(params);
                                     setIsDetail(true);
+                                    let index=0;
+                                    tableData?.forEach((item, i)=>{
+                                        if(item?.challenge_response_id==params?.challenge_response_id){
+                                            index=i;
+                                        }
+                                    });
+                                    setCurrentRow(index+1);
                                 }}
                             >
                                 View
@@ -188,8 +200,99 @@ const ViewSelectedIdea = () => {
             }
         ]
     };
+    const [pdfLoader, setPdfLoader]=React.useState(false);
+const [teamResponse, setTeamResponse] = React.useState([]);
+const downloadPDF = async(params) => {
+    if (params?.response) {
+                setTeamResponse(
+                    Object.entries(params?.response).map((e) => e[1])
+                );
+            }
+    console.log(teamResponse,"teamResponse");
+    setPdfLoader(true);
+    const content=ReactDOMServer.renderToString(<DetailToDownload ideaDetails={params} teamResponse={teamResponse} level={level}/>);
+    const doc = new jsPDF('p', 'px', [1754, 1240]);
+    await doc.html(content, {
+        pagesplit:true,
+        margin: [8, 8, 8, 8],
+        callback: function (doc) {
+            doc.save('Detail.pdf');
+        }
+    });
+    setPdfLoader(false);
+};
+    const evaluatedIdeaL2 = {
+        data: tableData && tableData.length > 0 ? tableData : [],
+        columns: [
+            {
+                name: 'No',
+                selector: (row) => row.key,
+                width: '10%'
+            },
+            {
+                name: 'Team Name',
+                selector: (row) => row.team_name || '',
+                width: '20%'
+            },
+            {
+                name: 'SDG',
+                selector: (row) => row.sdg,
+                width: '15%'
+            },
+            {
+                name: 'Submitted By',
+                selector: (row) => row.initiated_name,
+                width: '25%'
+            },
+            {
+                name: 'Overall',
+                // cell :(row) => {
+                //     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].overall) :' ' :' '];},
+                selector: (row) => row.evaluator_ratings[0]?.overall_avg ? row.evaluator_ratings[0]?.overall_avg : '-',
+                 width : '10%',
+                 sortable: true,
+            },
 
-    const evaluatedIdeaforsub = {
+            {
+                name: 'Actions',
+                cell: (params) => {
+                    return [
+                        <>
+                        <div className="d-flex" key={params}>
+                            <div
+                                className="btn btn-primary btn-lg mr-5 mx-2"
+                                onClick={() => {
+                                    setIdeaDetails(params);
+                                    setIsDetail(true);
+                                    let index=0;
+                                    tableData?.forEach((item, i)=>{
+                                        if(item?.challenge_response_id==params?.challenge_response_id){
+                                            index=i;
+                                        }
+                                    });
+                                    setCurrentRow(index+1);
+                                }}
+                            >
+                                View
+                            </div>
+                        </div>
+                        <div className='mx-2 pointer d-flex align-items-center'>
+                        {
+                            !pdfLoader?
+                            <FaDownload size={22} onClick={()=>{downloadPDF(params);}} className="text-danger"/>:
+                            <FaHourglassHalf size={22} className="text-info"/>
+                        }
+                    </div>
+                    </>
+                    ];
+                },
+                width: '20%',
+                left: true
+            }
+        ]
+    };
+
+    const evaluatedIdeaforL0 = {
         data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
             {
@@ -254,8 +357,99 @@ const ViewSelectedIdea = () => {
             }
         ]
     };
-    const sel =
-        title === 'Submitted' ? evaluatedIdeaforsub : evaluatedIdea;
+
+    const evaluatedIdeafinal = {
+        data: tableData && tableData.length > 0 ? tableData : [],
+        columns: [
+            {
+                name: 'No',
+                selector: (row) => row.key,
+                sortable: true,
+                width: '6%'
+            },
+            {
+                name: 'Team Name',
+                selector: (row) => row.team_name || '',
+                sortable: true,
+                width: '11.5%'
+            },
+            {
+                name: 'SDG',
+                selector: (row) => row.sdg,
+                width: '10%'
+            },
+            {
+                name: 'Submitted By',
+                selector: (row) => row.initiated_name,
+                width: '11.5%'
+            },
+            {
+                name: 'overall',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].overall).toFixed(2) :' ' :' '];},
+                 width : '7%'
+            },
+            {
+                name: 'Novelity',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_1).toFixed(2) :' ' :' '];},
+                 width : '8%'
+            },
+            {
+                name: 'Usefulness',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_2).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Feasability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_3).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Scalability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_4).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Sustainability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_5).toFixed(2) :' ' :' '];},
+                 width : '11%'
+            },
+
+            {
+                name: 'Actions',
+                cell: (params) => {
+                    return [
+                        <div className="d-flex" key={params}>
+                            <div
+                                className="btn btn-primary btn-lg mr-5 mx-2"
+                                onClick={() => {
+                                    setIdeaDetails(params);
+                                    setIsDetail(true);
+                                    let index=0;
+                                    tableData?.forEach((item, i)=>{
+                                        if(item?.challenge_response_id==params?.challenge_response_id){
+                                            index=i;
+                                        }
+                                    });
+                                    setCurrentRow(index+1);
+                                }}
+                            >
+                                View
+                            </div>
+                        </div>
+                    ];
+                },
+                width: '8%',
+                left: true
+            }
+        ]
+    };
+    const sel = level0 ? evaluatedIdeaforL0 : level==='L1' ? evaluatedIdeaL1 : level === 'L2' ? evaluatedIdeaL2 :  evaluatedIdeafinal;
     const showbutton = district && sdg;
 
     const handleNext=()=>{
@@ -267,8 +461,8 @@ const ViewSelectedIdea = () => {
         }
     };
     const handlePrev=()=>{
-        if(tableData && currentRow > 1){
-            setIdeaDetails(tableData[currentRow]);
+        if(tableData && currentRow >= 1){
+            setIdeaDetails(tableData[currentRow-2]);
             setIsDetail(true);
             setCurrentRow(currentRow-1);
         }
@@ -280,7 +474,7 @@ const ViewSelectedIdea = () => {
                     <div className="col-12 p-0">
                         {!isDetail && (
                             <div>
-                                <h2 className="ps-2 pb-3">{title} Ideas</h2>
+                                <h2 className="ps-2 pb-3">{title} Challenges</h2>
 
                                 <Container fluid className='px-0'>
                                     <Row className='align-items-center'>
@@ -306,7 +500,7 @@ const ViewSelectedIdea = () => {
                                                 />
                                             </div>
                                         </Col>
-                                        {title !== 'Submitted' ? (<Col md={2}>
+                                        {level === 'L1' && (<Col md={2}>
                                             <div className="my-3 d-md-block d-flex justify-content-center">
                                                 <Select
                                                     list={Allevalnamelist}
@@ -315,7 +509,7 @@ const ViewSelectedIdea = () => {
                                                     value={evalname}
                                                 />
                                             </div>
-                                        </Col>) : ''}
+                                        </Col>)}
                                         
                                         {title === 'Rejected' ? (
                                             <Col md={3}>
@@ -346,7 +540,7 @@ const ViewSelectedIdea = () => {
                                                 />
                                             </div>
                                         </Col>
-                                        <Col md={title === 'Rejected' ? 1 : title==='Submitted' ? 6 : 4}>
+                                        <Col md={title === 'Rejected' ? 1 : level !== 'L1' ? 6 : 4}>
                                             <div className="text-right">
                                                 <Button
                                                     btnClass="primary"

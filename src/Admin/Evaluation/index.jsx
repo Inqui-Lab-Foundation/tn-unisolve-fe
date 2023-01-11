@@ -33,19 +33,18 @@ const eadmindashboard = () => {
                 console.log(error);
             });
     }
-
     return (
         <Layout>
-            <div className="container dashboard-wrapper mt-5 mb-50">
+            <div className="container dashboard-wrapper mt-5 mb-5">
                 <h2 className="mb-5">Evaluation</h2>
                 <div className="dashboard">
                     <Container>
-                        <Row>
-                            <Col lg={4} md={6}>
-                                <Link to="/admin/challenges">
+                        <Row className="mb-5">
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/challenges?status=SUBMITTED">
                                     <Card className="p-4 text-center card-effect mb-3">
                                         <b className="text-primary">
-                                            SUBMITTED IDEAS
+                                            SUBMITTED CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
                                             {dateCount.submitted_count}
@@ -53,20 +52,38 @@ const eadmindashboard = () => {
                                     </Card>
                                 </Link>
                             </Col>
-                            <Col lg={4} md={6}>
-                                <Link to="/admin/evaluationStatus/viewlist?evaluation_status=SELECTEDROUND1&title=Accepted">
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/challenges?status=DRAFT">
                                     <Card className="p-4 text-center card-effect mb-3">
-                                        <b className="text-success">ACCEPTED</b>
+                                        <b className="text-secondary">
+                                            DRAFT CHALLENGES
+                                        </b>
+                                        <h3 className="display-5 bold m-2">
+                                            {dateCount?.draft_count || 0}
+                                        </h3>
+                                    </Card>
+                                </Link>
+                            </Col>
+                        </Row>
+                        <Row className="mb-5">
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/evaluationStatus/viewlist?evaluation_status=SELECTEDROUND1&title=Accepted&level=L1">
+                                    <Card className="p-4 text-center card-effect mb-3">
+                                        <b className="text-success">
+                                            ACCEPTED CHALLENGES
+                                        </b>
                                         <h3 className="display-5 bold m-2">
                                             {dateCount.selected_round_one_count}
                                         </h3>
                                     </Card>
                                 </Link>
                             </Col>
-                            <Col lg={4} md={6}>
-                                <Link to="/admin/evaluationStatus/viewlist?evaluation_status=REJECTEDROUND1&title=Rejected">
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/evaluationStatus/viewlist?evaluation_status=REJECTEDROUND1&title=Rejected&level=L1">
                                     <Card className="p-4 text-center card-effect mb-3">
-                                        <b className="text-danger">REJECTED</b>
+                                        <b className="text-danger">
+                                            REJECTED CHALLENGES
+                                        </b>
                                         <h3 className="display-5 bold m-2">
                                             {dateCount.rejected_round_one_count}
                                         </h3>
@@ -74,6 +91,46 @@ const eadmindashboard = () => {
                                 </Link>
                             </Col>
                         </Row>
+                        <Row className="mb-5">
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/evaluationStatus/viewlist?title=L2 - Processed&level=L2">
+                                    <Card className="p-4 text-center card-effect mb-3">
+                                        <b className="text-success">
+                                            L2 - PROCESSED CHALLENGES
+                                        </b>
+                                        <h3 className="display-5 bold m-2">
+                                            {dateCount.l2_processed}
+                                        </h3>
+                                    </Card>
+                                </Link>
+                            </Col>
+                            <Col lg={6} md={6}>
+                                <Link to="/admin/evaluationStatus/viewlist?title=L2 - Yet to Processed&level=L2">
+                                    <Card className="p-4 text-center card-effect mb-3">
+                                        <b className="text-warning">
+                                            L2 - YET TO PROCESSED CHALLENGES
+                                        </b>
+                                        <h3 className="display-5 bold m-2">
+                                            {dateCount.l2_yet_to_processed}
+                                        </h3>
+                                    </Card>
+                                </Link>
+                            </Col>
+                        </Row>
+                        {/* <Row className="mb-5">
+                            <Col>
+                                <Link to="/admin/evaluationStatus/viewlist?title=Final">
+                                    <Card className="p-4 text-center card-effect mb-3">
+                                        <b className="text-success">
+                                            FINAL CHALLENGES
+                                        </b>
+                                        <h3 className="display-5 bold m-2">
+                                            1
+                                        </h3>
+                                    </Card>
+                                </Link>
+                            </Col>
+                        </Row> */}
                     </Container>
                 </div>
             </div>

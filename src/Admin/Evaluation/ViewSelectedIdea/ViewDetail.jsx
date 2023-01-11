@@ -9,12 +9,19 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Modal } from 'react-bootstrap';
 import axios from 'axios';
 import Select from '../Pages/Select';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import RatedDetailCard from '../Pages/RatedDetailCard';
 //import { useDispatch } from 'react-redux';
+import jsPDF from 'jspdf';
+import {FaDownload, FaHourglassHalf} from 'react-icons/fa';
+import DetailToDownload from './DetailToDownload';
+import ReactDOMServer from "react-dom/server";
 
 const ViewDetail = (props) => {
     //const dispatch = useDispatch();
     const history = useHistory();
+    const { search } = useLocation();
+    const level = new URLSearchParams(search).get('level');
     const currentUser = getCurrentUser('current_user');
     const [teamResponse, setTeamResponse] = React.useState([]);
     const [isReject, setIsreject]=React.useState(false);
@@ -113,6 +120,21 @@ const handleReject=()=>{
     }
 };
 
+const [pdfLoader, setPdfLoader]=React.useState(false);
+const downloadPDF = async() => {
+    setPdfLoader(true);
+    const content=ReactDOMServer.renderToString(<DetailToDownload ideaDetails={props?.ideaDetails} teamResponse={teamResponse} level={level}/>);
+    const doc = new jsPDF('p', 'px', [1754, 1240]);
+    await doc.html(content, {
+        pagesplit:true,
+        margin: [8, 8, 8, 8],
+        callback: function (doc) {
+            doc.save('Detail.pdf');
+        }
+    });
+    setPdfLoader(false);
+};
+
   return (
     <div>
         {teamResponse && teamResponse?.length > 0 ? (
@@ -162,10 +184,17 @@ const handleReject=()=>{
                                             disabled={props?.dataLength==props?.currentRow}
                                         />
                                     </div>
+                                    <div className='mx-2 pointer d-flex align-items-center'>
+                                        {
+                                            !pdfLoader?
+                                            <FaDownload size={22} onClick={()=>{downloadPDF();}}/>:
+                                            <FaHourglassHalf size={22}/>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div className="col-lg-8 order-lg-0 order-1 p-0 h-100">
                             {teamResponse?.map((item, index) => {
                                 return (
@@ -225,7 +254,7 @@ const handleReject=()=>{
                             <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
                                    
                                 {props?.ideaDetails?.evaluation_status ? <p className={`${props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'text-success':'text-danger'} fs-3 fw-bold text-center`}>
-                                    <span className='fs-3 text-dark'>L1: </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
+                                    <span className='fs-3 text-info'>L1: </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
                                 </p> : ''}
                                 
                     
@@ -244,7 +273,8 @@ const handleReject=()=>{
                                         <span className='text-bold'>Rejected Reason: </span> {props?.ideaDetails?.rejected_reason || ''}
                                     </p>
                                 }
-                                {props?.ideaDetails?.evaluation_status 
+                                {(level==='L1') &&
+                                (props?.ideaDetails?.evaluation_status 
                                 ? 
                                             props?.ideaDetails?.evaluation_status=='SELECTEDROUND1' ?
                                             <button
@@ -286,8 +316,14 @@ const handleReject=()=>{
                                             }}
                                         >
                                             <span className="fs-4">Accept</span>
-                                </button></>}
+                                </button></>)}
                             </div>
+                            {level!=='L1' && props?.ideaDetails?.evaluator_ratings.length > 0 &&(
+                                <RatedDetailCard 
+                                details={props?.ideaDetails}
+                            />
+                            )}
+                            
                         </div>
                         
                         

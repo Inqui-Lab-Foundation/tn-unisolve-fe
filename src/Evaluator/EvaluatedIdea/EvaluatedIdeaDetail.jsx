@@ -4,9 +4,12 @@ import './EvaluatedIdea.scss';
 import { Button } from '../../stories/Button';
 import LinkComponent from '../IdeaList/LinkComponent';
 import moment from 'moment';
+import { getCurrentUser } from '../../helpers/Utils';
+import RatedDetailCard from './RatedDetailCard';
 
 const EvaluatedIdeaDetail = (props) => {
     const [teamResponse, setTeamResponse] = React.useState([]);
+    const currentUser = getCurrentUser('current_user');
     React.useEffect(()=>{
         if (props?.ideaDetails?.response) {
             setTeamResponse(
@@ -14,6 +17,12 @@ const EvaluatedIdeaDetail = (props) => {
             );
         }
     },[props]);
+    const [levelName, setLevelName]=React.useState('');
+    React.useEffect(()=>{
+        if(currentUser){
+            setLevelName(currentUser?.data[0]?.level_name);
+        }
+    },[currentUser]);
 
   return (
     <div>
@@ -126,7 +135,7 @@ const EvaluatedIdeaDetail = (props) => {
                         <div className="col-lg-4 order-lg-1 order-0 p-0 h-100 mt-3 status_info_col">
                             <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
                                 <p className={`${props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'text-success':'text-danger'} fs-3 fw-bold text-center`}>
-                                <span className='fs-3 text-dark'>L1: </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
+                                <span className='fs-2 text-info'>L1 - </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
                                 </p>
                                 <p className='text-center'>
                                     <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluated_at).format('DD-MM-YY h:mm:ss a')|| ''}
@@ -139,6 +148,37 @@ const EvaluatedIdeaDetail = (props) => {
                                     </p>
                                 }
                             </div>
+                            {levelName !== 'L1' && ( 
+                            //     <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
+                            //     <p className='text-center fs-3 fw-bold'>
+                            //     <span className='fs-2 text-info'>{props?.ideaDetails?.evaluator_ratings[0]?.level} - </span> <span className='fs-3'>Overall Rating: </span>{props?.ideaDetails?.evaluator_ratings[0]?.overall}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluator_ratings[0]?.created_at).format('DD-MM-YY h:mm:ss a')|| ''}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Novelity Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_1}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Usefulness Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_2}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Feasability Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_3}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Scalability Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_4}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Sustainability Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_5}
+                            //     </p>
+                            //     <p className='text-center'>
+                            //         <span className='text-bold'>Comments: </span>{props?.ideaDetails?.evaluator_ratings[0]?.comments} 
+                            //     </p>
+                            // </div>
+                            <RatedDetailCard 
+                                details={props?.ideaDetails}
+                            />
+                            )}
                         </div>
                         
                         

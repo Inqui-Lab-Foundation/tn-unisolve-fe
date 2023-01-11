@@ -11,6 +11,10 @@ import axios from 'axios';
 import Select from './pages/Select';
 //import { useHistory } from 'react-router-dom';
 //import { useDispatch } from 'react-redux';
+import jsPDF from 'jspdf';
+import {FaDownload, FaHourglassHalf} from 'react-icons/fa';
+import DetailToDownload from '../Evaluation/ViewSelectedIdea/DetailToDownload';
+import ReactDOMServer from "react-dom/server";
 
 const ViewDetail = (props) => {
     //const dispatch = useDispatch();
@@ -114,6 +118,21 @@ const handleReject=()=>{
     }
 };
 
+const [pdfLoader, setPdfLoader]=React.useState(false);
+const downloadPDF = async() => {
+    setPdfLoader(true);
+    const content=ReactDOMServer.renderToString(<DetailToDownload ideaDetails={props?.ideaDetails} teamResponse={teamResponse} level={'Draft'}/>);
+    const doc = new jsPDF('p', 'px', [1754, 1240]);
+    await doc.html(content, {
+        pagesplit:true,
+        margin: [8, 8, 8, 8],
+        callback: function (doc) {
+            doc.save('Detail.pdf');
+        }
+    });
+    setPdfLoader(false);
+};
+
   return (
     <div>
         {teamResponse && teamResponse?.length > 0 ? (
@@ -162,6 +181,13 @@ const handleReject=()=>{
                                             }
                                             disabled={props?.dataLength==props?.currentRow}
                                         />
+                                    </div>
+                                    <div className='mx-2 pointer d-flex align-items-center'>
+                                        {
+                                            !pdfLoader?
+                                            <FaDownload size={22} onClick={()=>{downloadPDF();}}/>:
+                                            <FaHourglassHalf size={22}/>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +248,7 @@ const handleReject=()=>{
                                 );
                             })}
                         </div>
+                        {props?.ideaDetails?.status ==='SUBMITTED' && (
                         <div className="col-lg-4 order-lg-1 order-0 p-0 h-100 mt-3 status_info_col">
                             <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
                                    
@@ -290,9 +317,7 @@ const handleReject=()=>{
                                 </button></>}
                             </div>
                         </div>
-                        
-                        
-                    
+                        )}
                     </div>
                         <div>
                             <Button

@@ -38,12 +38,12 @@ const Cards = ({ heading, list, reports, props }) => {
             url = '/reports/mentorRegList';
         } else if (item == 'Not Registered Teachers List') {
             url = '/reports/notRegistered';
-        } else if (item == 'Teachers Course Completion') {
+        } else if (item == 'Teachers Course Completion List') {
             url = '/reports/courseComplete';
-        } else if (item == 'Teachers Pre Survey') {
+        } else if (item == 'Teachers Pre Survey Completed List') {
             url = '/reports/preSurvey?role=MENTOR';
-        } else if (item == 'Students Pre Survey') {
-            url = '/reports/preSurvey?role=STUDENT';
+            // } else if (item == 'Students Pre Survey') {
+            //     url = '/reports/preSurvey?role=STUDENT';
         }
         var config = {
             method: 'get',
@@ -170,14 +170,14 @@ const Cards = ({ heading, list, reports, props }) => {
                         msg == 'Registered Teachers List'
                             ? 'Registered Teachers List.csv'
                             : msg == 'Not Registered Teachers List'
-                                ? 'Not Registered Teachers List.csv'
-                                : msg == 'Teachers Course Completion'
-                                    ? 'Teachers Course Completion.csv'
-                                    : msg == 'Teachers Pre Survey'
-                                        ? 'Teachers Pre Survey.csv'
-                                        : msg == 'Students Pre Survey'
-                                            ? 'Students Pre Survey.csv'
-                                            : 'Report.csv'
+                            ? 'Not Registered Teachers List.csv'
+                            : msg == 'Teachers Course Completion'
+                            ? 'Teachers Course Completion.csv'
+                            : msg == 'Teachers Pre Survey'
+                            ? 'Teachers Pre Survey.csv'
+                            : msg == 'Students Pre Survey'
+                            ? 'Students Pre Survey.csv'
+                            : 'Report.csv'
                     }
                 />
             </div>

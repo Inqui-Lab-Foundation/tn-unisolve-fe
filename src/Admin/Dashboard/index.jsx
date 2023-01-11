@@ -38,7 +38,6 @@ const Dashboard = () => {
     const currentUser = getCurrentUser('current_user');
     const [diesCode, setDiesCode] = useState('');
     const [orgData, setOrgData] = useState({});
-    // console.log(orgData);
     const [mentorId, setMentorId] = useState('');
     const [SRows, setSRows] = React.useState([]);
     const [mentorTeam, setMentorTeam] = useState([]);
@@ -72,15 +71,13 @@ const Dashboard = () => {
 
         await axios(config)
             .then(function (response) {
-                // console.log(response);
                 if (response.status == 200) {
                     setOrgData(response?.data?.data[0]);
                     setCount(count + 1);
                     setMentorId(response?.data?.data[0]?.mentor.mentor_id);
                     setError('');
-                    
+
                     if (response?.data?.data[0]?.mentor.mentor_id) {
-                        console.log(response);
                         getMentorIdApi(
                             response?.data?.data[0]?.mentor.mentor_id
                         );
@@ -110,14 +107,12 @@ const Dashboard = () => {
 
         axios(config)
             .then(function (response) {
-                // console.log(response);
                 if (response.status == 200) {
                     setOrgData(response?.data?.data[0]);
                     setCount(count + 1);
                     setMentorId(response?.data?.data[0]?.mentor.mentor_id);
                     setError('');
                     if (response?.data?.data[0]?.mentor.mentor_id) {
-                        console.log(response);
                         getMentorIdApi(
                             response?.data?.data[0]?.mentor.mentor_id
                         );
@@ -144,7 +139,6 @@ const Dashboard = () => {
             .get(`${URL.getTeamMembersList}`, axiosConfig)
             .then((res) => {
                 if (res?.status == 200) {
-                    console.log(res);
                     var mentorTeamArray = [];
                     res &&
                         res.data &&
@@ -155,7 +149,6 @@ const Dashboard = () => {
                             var key = index + 1;
                             return mentorTeamArray.push({ ...teams, key });
                         });
-                    console.log('mentorTeamArray', mentorTeamArray);
                     setMentorTeam(mentorTeamArray);
                 }
             })
@@ -500,7 +493,7 @@ const Dashboard = () => {
                                         </button>
                                     </div>
 
-                                    <div className="mb-5 p-3" ref={pdfRef}>
+                                    <div className="mb-5 p-3">
                                         <div className="container-fluid card shadow border">
                                             <div className="row">
                                                 <div className="col">

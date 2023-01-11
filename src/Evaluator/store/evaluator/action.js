@@ -182,7 +182,7 @@ export const getL1EvaluatedIdeaSuccess = (data) => async (dispatch) => {
         payload: data
     });
 };
-export const getL1EvaluatedIdea = (params) => async (dispatch) => {
+export const getL1EvaluatedIdea = (params,setshowspin) => async (dispatch) => {
     const currentUser = getCurrentUser('current_user');
     try {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
@@ -198,11 +198,14 @@ export const getL1EvaluatedIdea = (params) => async (dispatch) => {
         if (result && result.status === 200) {
             const data =result?.data?.data;
             dispatch(getL1EvaluatedIdeaSuccess(data));
+            setshowspin(false);
         } else {
             dispatch(getL1EvaluatedIdeaSuccess(null));
+            setshowspin(false);
         }
     } catch (error) {
         dispatch(getL1EvaluatedIdeaSuccess(null));
+        setshowspin(false);
     }
 };      
 

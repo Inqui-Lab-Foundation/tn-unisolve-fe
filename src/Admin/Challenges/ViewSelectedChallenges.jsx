@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux';
 import { getDistrictData } from '../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
 import { getNormalHeaders } from '../../helpers/Utils';
+import Spinner from 'react-bootstrap/Spinner';
+import { useLocation } from 'react-router-dom';
 
 const ViewSelectedIdea = () => {
     const dispatch = useDispatch();
@@ -28,25 +30,28 @@ const ViewSelectedIdea = () => {
     const [tablePage, setTablePage]=React.useState(1);
     // eslint-disable-next-line no-unused-vars
     const [btnDisabler, setBtnDisabler]=React.useState(false);
+    const [showspin,setshowspin]=React.useState(false);
 
     const SDGDate = cardData.map((i) => {
         return i.goal_title;
     });
-    SDGDate.push('ALL');
+    SDGDate.unshift('ALL SDGs');
     const fullDistrictsNames = useSelector(
         (state) => state?.studentRegistration?.dists
     );
-
+    const {search} = useLocation();
+    const status = new URLSearchParams(search).get('status');
     const filterParams =
         (district && district !== 'All Districts'
             ? '&district=' + district
-            : '') + (sdg && sdg !== 'ALL' ? '&sdg=' + sdg : '');
+            : '') + (sdg && sdg !== 'ALL SDGs' ? '&sdg=' + sdg : '');
 
     useEffect(() => {
         dispatch(getDistrictData());
     }, []);
 
     const handleclickcall = () => {
+        setshowspin(true);
         handleideaList();
     };
 
@@ -54,20 +59,23 @@ const ViewSelectedIdea = () => {
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         await axios
             .get(
-                `${URL.getidealist}status=SUBMITTED${filterParams}`,
+                `${URL.getidealist}status=${status ? status : "ALL"}${filterParams}`,
                 axiosConfig
             )
             .then(function (response) {
                 if (response.status === 200) {
-                    settableData(
-                        response.data &&
-                            response.data.data[0] &&
-                            response.data.data[0].dataValues
-                    );
+                    
+                   const updatedWithKey = response.data && response.data.data[0] && response.data.data[0].dataValues.map((item, i) => {
+                       const upd = { ...item }; upd["key"] = i + 1;
+                        return upd;
+                    });
+                    settableData(updatedWithKey && updatedWithKey);
+                    setshowspin(false);
                 }
             })
             .catch(function (error) {
                 console.log(error);
+                setshowspin(false);
             });
     }
 
@@ -76,13 +84,7 @@ const ViewSelectedIdea = () => {
         columns: [
             {
                 name: 'No',
-                cell: (params, index) => {
-                    return [
-                        <div className="ms-3" key={params}>
-                            {index + 1}
-                        </div>
-                    ];
-                },
+                selector: (row) => row.key,
                 sortable: true,
                 width: '10%'
             },
@@ -149,8 +151,8 @@ const ViewSelectedIdea = () => {
         }
     };
     const handlePrev=()=>{
-        if(tableData && currentRow > 1){
-            setIdeaDetails(tableData[currentRow]);
+        if(tableData && currentRow >= 1){
+            setIdeaDetails(tableData[currentRow-2]);
             setIsDetail(true);
             setCurrentRow(currentRow-1);
         }
@@ -205,8 +207,13 @@ const ViewSelectedIdea = () => {
                                 </Container>
                             </div>
                         )}
-
-                        {!isDetail ? (
+                        {
+                        showspin && <div className='text-center mt-5'>
+                        <Spinner animation="border" variant="secondary"/>
+                        </div>
+                        }
+                        {!showspin && 
+                        (!isDetail ? (
                             <div className="bg-white border card pt-3 mt-5">
                                 <DataTableExtensions
                                     print={false}
@@ -242,7 +249,7 @@ const ViewSelectedIdea = () => {
                                 currentRow={currentRow}
                                 dataLength={tableData && tableData?.length}
                             />
-                        )}
+                        ))}
                     </div>
                 </div>
             </div>

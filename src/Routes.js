@@ -153,6 +153,7 @@ import TicketResView from './Admin/Tickets/TicketResView';
 import EditEvalProcess from './Admin/EvalProcess/EditEvalProcess';
 import SelDistricts from './Admin/EvalProcess/SelectingDistricts';
 import CreateEvalProcess from './Admin/EvalProcess/CreateEvalProcess';
+import Promote from './Admin/EvalProcess/PromoteNext';
 
 const Routers = () => {
     // const history = useHistory();
@@ -741,6 +742,12 @@ const Routers = () => {
                         exact={true}
                         path="/admin/selectingDistricts-evaluationProcess"
                         component={SelDistricts}
+                    />
+
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/evaluationProcess-promoteNextLevel"
+                        component={Promote}
                     />
                     <ProtectedRoute
                         exact={true}

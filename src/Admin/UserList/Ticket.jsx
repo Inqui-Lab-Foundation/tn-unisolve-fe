@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'reactstrap';
 import { Tabs } from 'antd';
@@ -5,7 +6,7 @@ import Layout from '../../Admin/Layout';
 import { Link } from 'react-router-dom';
 import {
     // BsPlusLg,
-    BsUpload,
+    BsUpload
     // BsGraphUp
 } from 'react-icons/bs';
 import { Button } from '../../stories/Button';
@@ -18,6 +19,10 @@ import {
     getAdminMentorsListSuccess,
     updateMentorStatus
 } from '../../redux/actions';
+import axios from 'axios';
+import { URL, KEY } from '../../constants/defaultValues.js';
+
+import { getNormalHeaders } from '../../helpers/Utils';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -40,13 +45,11 @@ import Register from '../../Evaluator/Register';
 
 const { TabPane } = Tabs;
 
-const SelectDists = ({ getDistrictsListAction, dists,tab,setDist }) => {
-
+const SelectDists = ({ getDistrictsListAction, dists, tab, setDist }) => {
     useEffect(() => {
-        if(tab && (tab ==1 || tab ==2))
-            getDistrictsListAction();
+        if (tab && (tab == 1 || tab == 2)) getDistrictsListAction();
     }, [tab]);
-    const handleDists = (e)=>{
+    const handleDists = (e) => {
         setDist(e.target.value);
     };
     return (
@@ -69,7 +72,6 @@ const SelectDists = ({ getDistrictsListAction, dists,tab,setDist }) => {
         </select>
     );
 };
-
 const TicketsPage = (props) => {
     const dispatch = useDispatch();
     const [showImportPopup, setImportPopup] = useState(false);
@@ -81,7 +83,6 @@ const TicketsPage = (props) => {
     const [mentorDist, setmentorDist] = useState('');
     const [registerModalShow, setRegisterModalShow] = useState(false);
 
-
     useEffect(() => {
         if (tab === 3) {
             props.getEvaluatorListAction();
@@ -91,15 +92,15 @@ const TicketsPage = (props) => {
     }, [tab]);
 
     useEffect(() => {
-        if (Number(tab) === 1 && studentDist !=='') {
+        if (Number(tab) === 1 && studentDist !== '') {
             props.getStudentListAction(studentDist);
-        } 
-    }, [tab,studentDist]);
+        }
+    }, [tab, studentDist]);
     useEffect(() => {
-        if (Number(tab) === 2 && mentorDist !=='') {
-            props.getAdminMentorsListAction('ALL',mentorDist);
-        } 
-    }, [tab,mentorDist]);
+        if (Number(tab) === 2 && mentorDist !== '') {
+            props.getAdminMentorsListAction('ALL', mentorDist);
+        }
+    }, [tab, mentorDist]);
 
     const [rows, setRows] = React.useState([]);
     const [mentorRows, setMentorRows] = React.useState([]);
@@ -116,9 +117,6 @@ const TicketsPage = (props) => {
         }, 2000);
         return () => clearTimeout(timeout);
     }, []);
-
-
-
     const changeTab = (e) => {
         setmentorDist('');
         setstudentDist('');
@@ -136,7 +134,7 @@ const TicketsPage = (props) => {
             activeEvaluater(true);
         } else if (e === '2') {
             //props.getAdminMentorsListAction('ALL',mentorDist);
-            dispatch(getAdminMentorsListSuccess([],0));
+            dispatch(getAdminMentorsListSuccess([], 0));
             activeMenter(!menter);
             // activeAdmin(false);
             activeEvaluater(false);
@@ -201,7 +199,17 @@ const TicketsPage = (props) => {
     //             }
     //         });
     // };
-    const handleStatus = (status, id, type = undefined,all=undefined) => {
+    const handleStatusUpdateInAdmin = async (data, id) => {
+        const axiosConfig = getNormalHeaders(KEY.User_API_Key);
+        await axios
+            .put(`${URL.updateMentorStatus + '/' + id}`, data, axiosConfig)
+            .then((user) => console.log(user))
+            .catch((err) => {
+                console.log('error', err);
+            });
+    };
+
+    const handleStatus = (status, id, type = undefined, all = undefined) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -216,7 +224,15 @@ const TicketsPage = (props) => {
                     status.toLowerCase() === 'active'
                         ? 'activate'
                         : 'inactivate'
-                } ${type && type === 'student' ? 'Student':type && type === 'evaluator' ?'Evaluator' : 'Mentor'}.`,
+                } ${
+                    type && type === 'student'
+                        ? 'Student'
+                        : type && type === 'evaluator'
+                        ? 'evaluator'
+                        : type && type === 'admin'
+                        ? 'Admin'
+                        : 'Mentor'
+                }.`,
                 text: 'Are you sure?',
                 imageUrl: `${logout}`,
                 showCloseButton: true,
@@ -232,22 +248,50 @@ const TicketsPage = (props) => {
                         setTimeout(() => {
                             props.getStudentListAction(studentDist);
                         }, 500);
-                    } else if(type && type === 'evaluator'){
-                        console.warn(status,id,type);
-                        dispatch(updateEvaluator({status},id));
+                    } else if (type && type === 'evaluator') {
+                        console.warn(status, id, type);
+                        dispatch(updateEvaluator({ status }, id));
                         setTimeout(() => {
                             props.getEvaluatorListAction();
                         }, 500);
+                    } else if (type && type === 'admin') {
+                        console.log(all);
+                        const obj = {
+                            full_name: all.full_name,
+                            username: all.username,
+                            mobile: all.mobile,
+                            status
+                        };
+                        handleStatusUpdateInAdmin({ obj }, id);
+                        // dispatch(updateAdmin({ status }, id));
+                        setTimeout(() => {
+                            props.getAdminListAction();
+                        }, 500);
+
+                        // setTimeout(() => {
+                        //     props.getEvaluatorListAction();
+                        // }, 500);
                     } else {
-                        const obj={full_name:all.full_name,username:all.username,mobile:all.mobile,status};
+                        const obj = {
+                            full_name: all.full_name,
+                            username: all.username,
+                            mobile: all.mobile,
+                            status
+                        };
                         props.mentorStatusUpdate(obj, id);
                         setTimeout(() => {
-                            props.getAdminMentorsListAction("ALL",mentorDist);
+                            props.getAdminMentorsListAction('ALL', mentorDist);
                         }, 500);
                     }
                     swalWithBootstrapButtons.fire(
                         `${
-                            type && type === 'student' ? 'Student' :type && type === 'evaluator' ?'Evaluator': 'Mentor'
+                            type && type === 'student'
+                                ? 'Student'
+                                : type && type === 'evaluator'
+                                ? 'evaluator'
+                                : type && type === 'admin'
+                                ? 'Admin'
+                                : 'Mentor'
                         } Status has been changed!`,
                         'Successfully updated.',
                         'success'
@@ -266,31 +310,31 @@ const TicketsPage = (props) => {
         totalItems: props.totalItems,
         columns: [
             {
-                name: 'S.No',
+                name: 'No',
                 selector: 'id',
-                width: '8%'
+                width: '6%'
             },
             {
                 name: 'UDISE',
                 selector: 'organization_code',
-                width: '10%'
+                width: '13%'
             },
 
             {
                 name: 'Teacher Name',
                 selector: 'full_name',
-                width: '17%'
+                width: '21%'
             },
 
             {
                 name: 'Email',
                 selector: 'username',
-                width: '20%'
+                width: '22%'
             },
             {
                 name: 'Phone',
                 selector: 'mobile',
-                width: '15%'
+                width: '10%'
             },
             {
                 name: 'Status',
@@ -304,10 +348,10 @@ const TicketsPage = (props) => {
                         {row.status}
                     </Badge>
                 ],
-                width: '8%'
+                width: '9%'
             },
             {
-                name: 'ACTIONS',
+                name: 'Actions',
                 selector: 'action',
                 width: '20%',
                 cell: (record) => [
@@ -317,7 +361,7 @@ const TicketsPage = (props) => {
                         onClick={() => handleSelect(record)}
                         style={{ marginRight: '10px' }}
                     >
-                        <div className="btn btn-primary btn-lg">View</div>
+                        <div className="btn btn-primary btn-lg">VIEW</div>
                     </Link>,
                     <Link
                         exact="true"
@@ -325,7 +369,7 @@ const TicketsPage = (props) => {
                         onClick={() => handleEdit(record)}
                         style={{ marginRight: '10px' }}
                     >
-                        <div className="btn btn-warning btn-lg">Edit</div>
+                        <div className="btn btn-warning btn-lg">EDIT</div>
                     </Link>,
                     <Link
                         exact="true"
@@ -336,17 +380,20 @@ const TicketsPage = (props) => {
                                 record?.status === 'ACTIVE'
                                     ? 'INACTIVE'
                                     : 'ACTIVE';
-                            handleStatus(status, record?.mentor_id,undefined,record);
+                            handleStatus(
+                                status,
+                                record?.mentor_id,
+                                undefined,
+                                record
+                            );
                         }}
                     >
                         {record?.status === 'ACTIVE' ? (
                             <div className="btn btn-danger btn-lg">
-                                Inactive
+                                INACTIVE
                             </div>
                         ) : (
-                            <div className="btn btn-secondary btn-lg">
-                                Active
-                            </div>
+                            <div className="btn btn-success btn-lg">ACTIVE</div>
                         )}
                     </Link>
                 ]
@@ -357,22 +404,22 @@ const TicketsPage = (props) => {
         data: props.studentList,
         columns: [
             {
-                name: 'S.No.',
+                name: 'No',
                 selector: 'id',
-                width: '10%'
+                width: '6%'
                 // center: true,
             },
             {
                 name: 'Team Name',
                 selector: 'team.team_name',
                 // sortable: true,
-                width: '20%'
+                width: '17%'
                 // center: true,
             },
             {
                 name: 'Student Name',
                 selector: 'full_name',
-                width: '16%'
+                width: '20%'
                 // center: true,
             },
             {
@@ -408,7 +455,7 @@ const TicketsPage = (props) => {
                 width: '8%'
             },
             {
-                name: 'Action',
+                name: 'Actions',
                 sortable: false,
                 selector: 'null',
                 width: '19%',
@@ -419,11 +466,12 @@ const TicketsPage = (props) => {
                         onClick={() => handleSelect(record)}
                         style={{ marginRight: '10px' }}
                     >
-                        <div className="btn btn-primary btn-lg mr-5">View</div>
+                        <div className="btn btn-primary btn-lg mr-5">VIEW</div>
                     </Link>,
                     <Link
                         key={record.id}
                         exact="true"
+                        style={{ marginRight: '10px' }}
                         onClick={() => {
                             let status =
                                 record?.status === 'ACTIVE'
@@ -434,12 +482,10 @@ const TicketsPage = (props) => {
                     >
                         {record?.status === 'ACTIVE' ? (
                             <div className="btn btn-danger btn-lg">
-                                Inactive
+                                INACTIVE
                             </div>
                         ) : (
-                            <div className="btn btn-secondary btn-lg">
-                                Active
-                            </div>
+                            <div className="btn btn-warning btn-lg">ACTIVE</div>
                         )}
                     </Link>
                 ]
@@ -450,9 +496,9 @@ const TicketsPage = (props) => {
         data: props.evalutorsList,
         columns: [
             {
-                name: 'S.No.',
+                name: 'No',
                 selector: 'id',
-                width: '8%'
+                width: '6%'
             },
             {
                 name: 'Evaluator Name',
@@ -489,7 +535,7 @@ const TicketsPage = (props) => {
                 width: '10%'
             },
             {
-                name: 'Action',
+                name: 'Actions',
                 sortable: false,
                 selector: 'null',
                 width: '15%',
@@ -508,7 +554,7 @@ const TicketsPage = (props) => {
                         onClick={() => handleEdit(record)}
                         style={{ marginRight: '10px' }}
                     >
-                        <div className="btn btn-warning btn-lg">Edit</div>
+                        <div className="btn btn-primary btn-lg">EDIT</div>
                     </Link>,
                     <Link
                         exact="true"
@@ -519,17 +565,19 @@ const TicketsPage = (props) => {
                                 record?.status === 'ACTIVE'
                                     ? 'INACTIVE'
                                     : 'ACTIVE';
-                            handleStatus(status, record?.evaluator_id,'evaluator');
+                            handleStatus(
+                                status,
+                                record?.evaluator_id,
+                                'evaluator'
+                            );
                         }}
                     >
                         {record?.status === 'ACTIVE' ? (
                             <div className="btn btn-danger btn-lg">
-                                Inactive
+                                INACTIVE
                             </div>
                         ) : (
-                            <div className="btn btn-secondary btn-lg">
-                                Active
-                            </div>
+                            <div className="btn btn-warning btn-lg">ACTIVE</div>
                         )}
                     </Link>
                 ]
@@ -537,48 +585,118 @@ const TicketsPage = (props) => {
         ]
     };
     const adminData = {
-        data: props.adminData && props.adminData.length > 0 ? props.adminData : [],
+        data:
+            props.adminData && props.adminData.length > 0
+                ? props.adminData
+                : [],
         columns: [
             {
-                name: 'S.No.',
+                name: 'No',
                 selector: (row) => row?.id,
+                width: '6%'
             },
             {
                 name: 'Admin Name',
                 selector: (row) => row?.user?.full_name,
+                width: '17%'
             },
             {
                 name: 'Email',
                 selector: (row) => row?.user?.username,
+                width: '27%'
             },
             {
                 name: 'Role',
-                selector: (row) => row?.user?.role, 
+                selector: (row) => row?.user?.role,
+                width: '15%',
+                cell: (params) => [
+                    params.user.role === 'ADMIN' ? (
+                        <span className="py-2 px-4 rounded-pill bg-danger bg-opacity-25 text-danger fw-bold">
+                            ADMIN
+                        </span>
+                    ) : params.user.role === 'EADMIN' ? (
+                        <span className="py-2 px-4 rounded-pill bg-success bg-opacity-25 text-info fw-bold">
+                            EADMIN
+                        </span>
+                    ) : params.user.role === 'STUDENT' ? (
+                        <span className="bg-success bg-opacity-25 px-4 py-2 rounded-pill text-success fw-bold">
+                            STUDENT
+                        </span>
+                    ) : (
+                        ''
+                    )
+                ]
             },
             {
-                name: 'Action',
+                name: 'Status',
+                cell: (row) => [
+                    <Badge
+                        key={row.mentor_id}
+                        bg={`${
+                            row.status === 'ACTIVE' ? 'secondary' : 'danger'
+                        }`}
+                    >
+                        {row.status}
+                    </Badge>
+                ],
+                width: '10%'
+            },
+            {
+                name: 'Actions',
                 sortable: false,
+                selector: 'null',
+
+                width: '25%',
                 cell: (record) => [
                     <Link
-                        key={record?.id}
                         exact="true"
-                        onClick={() => handleSelect(record)}
-                        style={{ marginRight: '10px' }}
-                    >
-                        <div className="btn btn-primary btn-lg mr-5">View</div>
-                    </Link>,
-                    <Link
-                        exact="true"
+                        className="mr-5"
                         key={record?.id}
                         onClick={() => handleEdit(record)}
                         style={{ marginRight: '10px' }}
                     >
-                        <div className="btn btn-warning btn-lg">Edit</div>
+                        <div className="btn btn-primary btn-lg">EDIT</div>
+                    </Link>,
+                    <Link
+                        exact="true"
+                        key={record.id}
+                        style={{ marginRight: '10px' }}
+                        onClick={() => {
+                            let status =
+                                record?.status === 'ACTIVE'
+                                    ? 'INACTIVE'
+                                    : 'ACTIVE';
+                            handleStatus(
+                                status,
+                                record?.admin_id,
+                                'admin',
+                                record
+                            );
+                        }}
+                    >
+                        {record?.status === 'ACTIVE' ? (
+                            <div className="btn btn-danger btn-lg">
+                                INACTIVE
+                            </div>
+                        ) : (
+                            <div className="btn btn-secondary btn-lg">
+                                ACTIVE
+                            </div>
+                        )}
                     </Link>
+                    // <Link
+                    //     key={record?.id}
+                    //     exact="true"
+                    //     onClick={() => handleSelect(record)}
+                    //     style={{ marginRight: '10px' }}
+                    // >
+                    //     <div className="btn btn-primary btn-lg mr-5">View</div>
+                    // </Link>,
                 ]
             }
         ]
     };
+    // console.log(adminData);
 
     // const handleEvaluatorStatus=(status,id)=>{
     //     console.warn(status,id);
@@ -591,7 +709,11 @@ const TicketsPage = (props) => {
                     {/* <h2 onClick={handleDelete}>User List</h2> */}
                     <div className="ticket-data">
                         <Tabs
-                            defaultActiveKey={localStorage.getItem('tab') ? localStorage.getItem('tab') :'1'}
+                            defaultActiveKey={
+                                localStorage.getItem('tab')
+                                    ? localStorage.getItem('tab')
+                                    : '1'
+                            }
                             onChange={(key) => changeTab(key)}
                         >
                             <Row className="mt-0">
@@ -609,15 +731,20 @@ const TicketsPage = (props) => {
                                                     getDistrictsListAction={
                                                         props.getDistrictsListAction
                                                     }
-                                                    setDist = { setstudentDist}
+                                                    setDist={setstudentDist}
                                                     dists={props.dists}
                                                     tab={tab}
                                                 />
-                                                {studentDist && <Card className='ms-3 p-3'>
-                                                    Total Students : {props.studentList.length}
-                                                </Card>}
+                                                {studentDist && (
+                                                    <Card className="ms-3 p-3">
+                                                        Total Students :{' '}
+                                                        {
+                                                            props.studentList
+                                                                .length
+                                                        }
+                                                    </Card>
+                                                )}
                                             </>
-
                                         )}
                                         {tab && tab == 2 && (
                                             <>
@@ -625,25 +752,37 @@ const TicketsPage = (props) => {
                                                     getDistrictsListAction={
                                                         props.getDistrictsListAction
                                                     }
-                                                    setDist = {setmentorDist}
+                                                    setDist={setmentorDist}
                                                     dists={props.dists}
                                                     tab={tab}
                                                 />
-                                                {mentorDist && <Card className='ms-3 p-3'>
-                                                    Total Teachers : {props.mentorsList.length}
-                                                </Card>}
+                                                {mentorDist && (
+                                                    <Card className="ms-3 p-3">
+                                                        Total Teachers :{' '}
+                                                        {
+                                                            props.mentorsList
+                                                                .length
+                                                        }
+                                                    </Card>
+                                                )}
                                             </>
                                         )}
-                                        {tab && (tab == 3 || tab==4 )&&<Button
-                                            label={tab == 3 ? "Add New Evaluator": "Add New Admin"}
-                                            btnClass="primary"
-                                            size="small"
-                                            shape="btn-square"
-                                            Icon={BsUpload}
-                                            onClick={() =>
-                                                setRegisterModalShow(true)
-                                            }
-                                        />}
+                                        {tab && (tab == 3 || tab == 4) && (
+                                            <Button
+                                                label={
+                                                    tab == 3
+                                                        ? 'Add New Evaluator'
+                                                        : 'Add New Admin'
+                                                }
+                                                btnClass="primary"
+                                                size="small"
+                                                shape="btn-square"
+                                                Icon={BsUpload}
+                                                onClick={() =>
+                                                    setRegisterModalShow(true)
+                                                }
+                                            />
+                                        )}
                                         {/* <div>
                                             <Button
                                                 label="Import"
@@ -703,9 +842,9 @@ const TicketsPage = (props) => {
                                 className="bg-white p-3 mt-2 sub-tab"
                                 tabId="1"
                             >
-                                {  studentDist ==="" ? 
+                                {studentDist === '' ? (
                                     <CommonPage text="Please select a district" />
-                                    :
+                                ) : (
                                     <div className="my-5">
                                         <DataTableExtensions
                                             {...StudentsData}
@@ -718,11 +857,13 @@ const TicketsPage = (props) => {
                                                 pagination
                                                 highlightOnHover
                                                 fixedHeader
-                                                subHeaderAlign={Alignment.Center}
+                                                subHeaderAlign={
+                                                    Alignment.Center
+                                                }
                                             />
                                         </DataTableExtensions>
                                     </div>
-                                }
+                                )}
                             </TabPane>
                             <TabPane
                                 tab="Teachers"
@@ -730,9 +871,9 @@ const TicketsPage = (props) => {
                                 className="bg-white p-3 mt-2 sub-tab"
                                 tabId="2"
                             >
-                                {  mentorDist ==="" ? 
+                                {mentorDist === '' ? (
                                     <CommonPage text="Please select a district" />
-                                    :
+                                ) : (
                                     <div className="my-5">
                                         <DataTableExtensions
                                             {...TableMentorsProps}
@@ -745,11 +886,13 @@ const TicketsPage = (props) => {
                                                 pagination
                                                 highlightOnHover
                                                 fixedHeader
-                                                subHeaderAlign={Alignment.Center}
+                                                subHeaderAlign={
+                                                    Alignment.Center
+                                                }
                                             />
                                         </DataTableExtensions>
                                     </div>
-                                }
+                                )}
                             </TabPane>
                             <TabPane
                                 tab="Evaluators"
@@ -812,7 +955,10 @@ const TicketsPage = (props) => {
                     show={registerModalShow}
                     setShow={setRegisterModalShow}
                     onHide={() => setRegisterModalShow(false)}
-                    roleToBeAdded = {tab && (tab == 3 ? 'EVALUATOR':tab == 4 ? "ADMIN":null)}
+                    roleToBeAdded={
+                        tab &&
+                        (tab == 3 ? 'EVALUATOR' : tab == 4 ? 'ADMIN' : null)
+                    }
                 />
             )}
         </Layout>
