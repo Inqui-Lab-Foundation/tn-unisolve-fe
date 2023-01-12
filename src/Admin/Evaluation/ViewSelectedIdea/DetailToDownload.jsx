@@ -9,7 +9,7 @@ const detailToDownload = (props) => {
     const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
   
     return (
-        <div className="container bg-light" style={{ minWidth: '1240px' }}>
+        <div className="container bg-light">
             <div className="row">
                 {/* --------personal-------detail---------- */}
                 <div className="col-md-7 col-12 h-100">
@@ -42,7 +42,7 @@ const detailToDownload = (props) => {
                 <div className="col-md-5 col-12 h1-100">
                     {
                         props?.ideaDetails?.evaluation_status &&
-                        <div className="status p-5 bg-white shadow rounded border h-100">
+                        <div className="status p-5 bg-white shadow rounded border h-100 w-100">
                             <p className='fs-2 fw-bold text-primary'>STATUS</p>
                             <div className="row my-2">
                                 <div className="col-2 fw-bold fs-4">L1</div>

@@ -15,7 +15,7 @@ import RatedDetailCard from '../Pages/RatedDetailCard';
 import jsPDF from 'jspdf';
 import {FaDownload, FaHourglassHalf} from 'react-icons/fa';
 import DetailToDownload from './DetailToDownload';
-import ReactDOMServer from "react-dom/server";
+import html2canvas from "html2canvas";
 
 const ViewDetail = (props) => {
     //const dispatch = useDispatch();
@@ -120,25 +120,31 @@ const handleReject=()=>{
     }
 };
 
+
 const [pdfLoader, setPdfLoader]=React.useState(false);
 const downloadPDF = async() => {
     setPdfLoader(true);
-    const content=ReactDOMServer.renderToString(<DetailToDownload ideaDetails={props?.ideaDetails} teamResponse={teamResponse} level={level}/>);
-    const doc = new jsPDF('p', 'px', [1754, 1240]);
-    await doc.html(content, {
-        pagesplit:true,
-        margin: [8, 8, 8, 8],
-        callback: function (doc) {
-            doc.save('Detail.pdf');
-        }
-    });
-    setPdfLoader(false);
+    const domElement = document.getElementById("pdfId");
+    await html2canvas(domElement,{
+            onclone: document => {
+                document.getElementById("pdfId").style.display = "block";
+            }, scale:1.13
+        }).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF('p', 'px', [1754, 1240]);
+        pdf.addImage(imgData, "JPEG", 10, 10);
+        pdf.save(`${new Date().toISOString()}.pdf`);
+      });
+      setPdfLoader(false);
 };
 
   return (
     <div>
         {teamResponse && teamResponse?.length > 0 ? (
                 <>
+                    <div id='pdfId' style={{display:'none'}}>
+                        <DetailToDownload ideaDetails={props?.ideaDetails} teamResponse={teamResponse} level={level}/>
+                    </div>
                     <div className="row idea_detail_card">
                         <div className="col-12 p-0">
                             <div className="row">
