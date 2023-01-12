@@ -7,7 +7,7 @@ import { Button } from '../../stories/Button';
 
 const CommonUserProfile = (props) => {
     const history = useHistory();
-    
+
     const headingDetails = {
         title: 'User List Details',
 
@@ -30,38 +30,49 @@ const CommonUserProfile = (props) => {
                         <BreadcrumbTwo {...headingDetails} />
                     </div>
                     <div className="col-6 text-end">
-                        <Button btnClass={"primary"} size="small" onClick={()=>history.push('/admin/userlist')} label="Back"/>
+                        <Button
+                            btnClass={'primary'}
+                            size="small"
+                            onClick={() => history.push('/admin/userlist')}
+                            label="Back"
+                        />
                     </div>
                 </Row>
                 <Row>
                     <Card className="py-5">
                         <CardBody>
-
                             {/* <h2 className="mb-4">Personal Details</h2> */}
-                            
+
                             <CardText>
-                                <span className='mx-3'><b>Name:</b></span>
+                                <span className="mx-3">
+                                    <b>Name:</b>
+                                </span>
                                 <b>
                                     {props.location.data &&
-                                                props.location.data.full_name ? props.location.data &&
-                                                props.location.data.full_name : "-"}
+                                    props.location.data.full_name
+                                        ? props.location.data &&
+                                          props.location.data.full_name
+                                        : '-'}
                                 </b>
                             </CardText>
-                            <CardText>
+                            {/* <CardText>
                                 <span className='mx-3'><b>Mobile:</b></span>
                                 <b>
                                     {props.location.data &&
                                                 props.location.data.mobile ? props.location.data &&
                                                 props.location.data.mobile : "-"}
                                 </b>
-                            </CardText>
+                            </CardText> */}
                             <CardText>
-                                <span className='mx-3'><b>Email:</b></span>
+                                <span className="mx-3">
+                                    <b>Email:</b>
+                                </span>
                                 <b>
-                                    
                                     {props.location.data &&
-                                                props.location.data?.email ? props.location.data &&
-                                                props.location.data?.email : "-"}
+                                    props.location.data?.email
+                                        ? props.location.data &&
+                                          props.location.data?.email
+                                        : '-'}
                                 </b>
                             </CardText>
                             {/* <Table bordered className="w-25">
@@ -129,46 +140,59 @@ const CommonUserProfile = (props) => {
                         </CardBody>
                     </Card>
                 </Row>
-                <Row className='my-5'>
+                <Row className="my-5">
                     <Card className="py-5">
                         <CardBody>
+                            <h2 className="mb-4">Institution Details</h2>
 
-                            <h2 className="mb-4">Institution  Details</h2>
-                            
-                            
                             <CardText>
-                                <span className='mx-3'><b>Teacher Unique Code:</b></span>
+                                <span className="mx-3">
+                                    <b>Teacher Unique Code:</b>
+                                </span>
                                 <b>
                                     {props.location.data &&
-                                                props.location.data?.organization_code ? props.location.data &&
-                                                props.location.data?.organization_code : "-"}
+                                    props.location.data?.organization_code
+                                        ? props.location.data &&
+                                          props.location.data?.organization_code
+                                        : '-'}
                                 </b>
                             </CardText>
                             <CardText>
-                                <span className='mx-3'><b>School Name:</b></span>
+                                <span className="mx-3">
+                                    <b>School Name:</b>
+                                </span>
                                 <b>
                                     {props.location.data &&
-                                                props.location.data?.organization_name ? props.location.data &&
-                                                props.location.name?.organization_code : "-"}
+                                    props.location.data?.organization_name
+                                        ? props.location.data &&
+                                          props.location.name?.organization_code
+                                        : '-'}
                                 </b>
                             </CardText>
                             <CardText>
-                                <span className='mx-3'><b>City:</b></span>
+                                <span className="mx-3">
+                                    <b>City:</b>
+                                </span>
                                 <b>
                                     {props.location.data &&
-                                                props.location.data?.city ? props.location.data &&
-                                                props.location.name?.city : "-"}
+                                    props.location.data?.city
+                                        ? props.location.data &&
+                                          props.location.name?.city
+                                        : '-'}
                                 </b>
                             </CardText>
                             <CardText>
-                                <span className='mx-3'><b>District:</b></span>
+                                <span className="mx-3">
+                                    <b>District:</b>
+                                </span>
                                 <b>
                                     {props.location.data &&
-                                                props.location.data?.district ? props.location.data &&
-                                                props.location.name?.district : "-"}
+                                    props.location.data?.district
+                                        ? props.location.data &&
+                                          props.location.name?.district
+                                        : '-'}
                                 </b>
                             </CardText>
-                            
                         </CardBody>
                     </Card>
                 </Row>

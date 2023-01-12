@@ -22,8 +22,10 @@ const studentBody = {
     Grade: '',
     Gender: ''
 };
-const grades = [6, 7, 8, 9, 10, 11, 12,"Others"];
-const allowedAge = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+const grades = [6, 7, 8, 9, 10, 11, 12, 'Others'];
+const allowedAge = [
+    9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+];
 
 const CreateMultipleMembers = ({ id }) => {
     const tempStudentData = {
@@ -245,7 +247,10 @@ const CreateMultipleMembers = ({ id }) => {
                                         <option value="">Select Grade</option>
                                         {grades.map((item) => (
                                             <option key={item} value={item}>
-                                                {item !== "Others" ? 'Grade' :''} {item}
+                                                {item !== 'Others'
+                                                    ? 'Grade'
+                                                    : ''}{' '}
+                                                {item}
                                             </option>
                                         ))}
                                     </select>
@@ -409,8 +414,8 @@ const CreateTeamMember = (props) => {
                 .trim(),
             age: Yup.string()
                 // .integer()
-                // .min(10, 'Min age is 10')
-                // .max(18, 'Max age is 18')
+                // .min(9, 'Min age is 9')
+                // .max(24, 'Max age is 24')
                 .required('Age is required'),
             gender: Yup.string().required('Please select valid gender'),
             grade: Yup.string()
