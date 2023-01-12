@@ -247,19 +247,22 @@ const TicketsPage = (props) => {
         setNewList(false);
         props.getSchoolRegistationBulkUploadActions('i');
     };
-    console.log(props.schoolsRegistrationList,"-----test");
-    const [array,setarray]=useState([]);
+    console.log(props.schoolsRegistrationList, '-----test');
+    const [array, setarray] = useState([]);
     useEffect(() => {
-        if(props.schoolsRegistrationList && props.schoolsRegistrationList.length>0){
+        if (
+            props.schoolsRegistrationList &&
+            props.schoolsRegistrationList.length > 0
+        ) {
             let dataarray = [];
-            props.schoolsRegistrationList.forEach((item,index) => {
-                dataarray.push(Object.assign(item, {index: index+1}));
-            }); 
-            setarray([...dataarray]); 
+            props.schoolsRegistrationList.forEach((item, index) => {
+                dataarray.push(Object.assign(item, { index: index + 1 }));
+            });
+            setarray([...dataarray]);
         }
     }, [props.schoolsRegistrationList]);
 
-    console.log(array,"---newarray----");
+    console.log(array, '---newarray----');
     const SchoolsData = {
         data: array,
         columns: [
@@ -272,7 +275,7 @@ const TicketsPage = (props) => {
             {
                 name: 'UDISE Code ',
                 selector: 'organization_code',
-                cellExport:(row) => row.organization_code,
+                cellExport: (row) => row.organization_code,
                 sortable: true,
 
                 width: '15%'
@@ -280,24 +283,24 @@ const TicketsPage = (props) => {
             {
                 name: 'Institution Name',
                 selector: 'organization_name',
-                cellExport:(row) => row.organization_name,
+                cellExport: (row) => row.organization_name,
                 width: '19%'
             },
             {
                 name: 'Principal Name',
                 selector: 'principal_name',
-                cellExport:(row) => row.principal_name,
+                cellExport: (row) => row.principal_name,
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                cellExport:(row) => row.principal_mobile,
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     cellExport:(row) => row.principal_mobile,
+            //     width: '12%'
+            // },
             {
                 name: 'Status',
-                cellExport:(row) => row.status,
+                cellExport: (row) => row.status,
                 cell: (row) => [
                     <Badge
                         key={row.organization_id}
@@ -315,7 +318,7 @@ const TicketsPage = (props) => {
                 selector: 'action',
                 width: '23%',
                 center: true,
-                cellExport:(row) => {},
+                cellExport: (row) => {},
                 cell: (record) => [
                     <>
                         <Link
@@ -384,11 +387,11 @@ const TicketsPage = (props) => {
                 selector: 'principal_name',
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     width: '12%'
+            // },
             {
                 name: 'Status',
                 cell: (row) => [
@@ -461,11 +464,11 @@ const TicketsPage = (props) => {
                 selector: 'principal_name',
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     width: '12%'
+            // },
 
             // {
             //     name: 'State',
@@ -634,7 +637,11 @@ const TicketsPage = (props) => {
                         </div>
                     ) : (
                         <div className="my-2">
-                            <DataTableExtensions {...SchoolsData} export={true} exportHeaders>
+                            <DataTableExtensions
+                                {...SchoolsData}
+                                export={true}
+                                exportHeaders
+                            >
                                 <DataTable
                                     data={rows}
                                     // noHeader

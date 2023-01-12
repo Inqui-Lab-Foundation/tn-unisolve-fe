@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'reactstrap';
 import { Tabs } from 'antd';
@@ -5,7 +6,7 @@ import Layout from '../../Admin/Layout';
 import { Link } from 'react-router-dom';
 import {
     // BsPlusLg,
-    BsUpload,
+    BsUpload
     // BsGraphUp
 } from 'react-icons/bs';
 import { Button } from '../../stories/Button';
@@ -40,13 +41,11 @@ import Register from '../../Evaluator/Register';
 
 const { TabPane } = Tabs;
 
-const SelectDists = ({ getDistrictsListAction, dists,tab,setDist }) => {
-
+const SelectDists = ({ getDistrictsListAction, dists, tab, setDist }) => {
     useEffect(() => {
-        if(tab && (tab ==1 || tab ==2))
-            getDistrictsListAction();
+        if (tab && (tab == 1 || tab == 2)) getDistrictsListAction();
     }, [tab]);
-    const handleDists = (e)=>{
+    const handleDists = (e) => {
         setDist(e.target.value);
     };
     return (
@@ -81,7 +80,6 @@ const TicketsPage = (props) => {
     const [mentorDist, setmentorDist] = useState('');
     const [registerModalShow, setRegisterModalShow] = useState(false);
 
-
     useEffect(() => {
         if (tab === 3) {
             props.getEvaluatorListAction();
@@ -91,15 +89,15 @@ const TicketsPage = (props) => {
     }, [tab]);
 
     useEffect(() => {
-        if (Number(tab) === 1 && studentDist !=='') {
+        if (Number(tab) === 1 && studentDist !== '') {
             props.getStudentListAction(studentDist);
-        } 
-    }, [tab,studentDist]);
+        }
+    }, [tab, studentDist]);
     useEffect(() => {
-        if (Number(tab) === 2 && mentorDist !=='') {
-            props.getAdminMentorsListAction('ALL',mentorDist);
-        } 
-    }, [tab,mentorDist]);
+        if (Number(tab) === 2 && mentorDist !== '') {
+            props.getAdminMentorsListAction('ALL', mentorDist);
+        }
+    }, [tab, mentorDist]);
 
     const [rows, setRows] = React.useState([]);
     const [mentorRows, setMentorRows] = React.useState([]);
@@ -116,8 +114,6 @@ const TicketsPage = (props) => {
         }, 2000);
         return () => clearTimeout(timeout);
     }, []);
-
-
 
     const changeTab = (e) => {
         setmentorDist('');
@@ -136,7 +132,7 @@ const TicketsPage = (props) => {
             activeEvaluater(true);
         } else if (e === '2') {
             //props.getAdminMentorsListAction('ALL',mentorDist);
-            dispatch(getAdminMentorsListSuccess([],0));
+            dispatch(getAdminMentorsListSuccess([], 0));
             activeMenter(!menter);
             // activeAdmin(false);
             activeEvaluater(false);
@@ -201,7 +197,7 @@ const TicketsPage = (props) => {
     //             }
     //         });
     // };
-    const handleStatus = (status, id, type = undefined,all=undefined) => {
+    const handleStatus = (status, id, type = undefined, all = undefined) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -216,7 +212,13 @@ const TicketsPage = (props) => {
                     status.toLowerCase() === 'active'
                         ? 'activate'
                         : 'inactivate'
-                } ${type && type === 'student' ? 'Student':type && type === 'evaluator' ?'Evaluator' : 'Mentor'}.`,
+                } ${
+                    type && type === 'student'
+                        ? 'Student'
+                        : type && type === 'evaluator'
+                        ? 'Evaluator'
+                        : 'Mentor'
+                }.`,
                 text: 'Are you sure?',
                 imageUrl: `${logout}`,
                 showCloseButton: true,
@@ -232,22 +234,31 @@ const TicketsPage = (props) => {
                         setTimeout(() => {
                             props.getStudentListAction(studentDist);
                         }, 500);
-                    } else if(type && type === 'evaluator'){
-                        console.warn(status,id,type);
-                        dispatch(updateEvaluator({status},id));
+                    } else if (type && type === 'evaluator') {
+                        console.warn(status, id, type);
+                        dispatch(updateEvaluator({ status }, id));
                         setTimeout(() => {
                             props.getEvaluatorListAction();
                         }, 500);
                     } else {
-                        const obj={full_name:all.full_name,username:all.username,mobile:all.mobile,status};
+                        const obj = {
+                            full_name: all.full_name,
+                            username: all.username,
+                            mobile: all.mobile,
+                            status
+                        };
                         props.mentorStatusUpdate(obj, id);
                         setTimeout(() => {
-                            props.getAdminMentorsListAction("ALL",mentorDist);
+                            props.getAdminMentorsListAction('ALL', mentorDist);
                         }, 500);
                     }
                     swalWithBootstrapButtons.fire(
                         `${
-                            type && type === 'student' ? 'Student' :type && type === 'evaluator' ?'Evaluator': 'Mentor'
+                            type && type === 'student'
+                                ? 'Student'
+                                : type && type === 'evaluator'
+                                ? 'Evaluator'
+                                : 'Mentor'
                         } Status has been changed!`,
                         'Successfully updated.',
                         'success'
@@ -287,11 +298,11 @@ const TicketsPage = (props) => {
                 selector: 'username',
                 width: '20%'
             },
-            {
-                name: 'Phone',
-                selector: 'mobile',
-                width: '15%'
-            },
+            // {
+            //     name: 'Phone',
+            //     selector: 'mobile',
+            //     width: '15%'
+            // },
             {
                 name: 'Status',
                 cell: (row) => [
@@ -336,7 +347,12 @@ const TicketsPage = (props) => {
                                 record?.status === 'ACTIVE'
                                     ? 'INACTIVE'
                                     : 'ACTIVE';
-                            handleStatus(status, record?.mentor_id,undefined,record);
+                            handleStatus(
+                                status,
+                                record?.mentor_id,
+                                undefined,
+                                record
+                            );
                         }}
                     >
                         {record?.status === 'ACTIVE' ? (
@@ -464,11 +480,11 @@ const TicketsPage = (props) => {
                 selector: 'user.username',
                 width: '25%'
             },
-            {
-                name: 'Mobile',
-                selector: 'mobile',
-                width: '11%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'mobile',
+            //     width: '11%'
+            // },
             {
                 name: 'District',
                 selector: 'district',
@@ -519,7 +535,11 @@ const TicketsPage = (props) => {
                                 record?.status === 'ACTIVE'
                                     ? 'INACTIVE'
                                     : 'ACTIVE';
-                            handleStatus(status, record?.evaluator_id,'evaluator');
+                            handleStatus(
+                                status,
+                                record?.evaluator_id,
+                                'evaluator'
+                            );
                         }}
                     >
                         {record?.status === 'ACTIVE' ? (
@@ -541,19 +561,19 @@ const TicketsPage = (props) => {
         columns: [
             {
                 name: 'S.No.',
-                selector: 'id',
+                selector: 'id'
             },
             {
                 name: 'Admin Name',
-                selector: 'user.full_name',
+                selector: 'user.full_name'
             },
             {
                 name: 'Email',
-                selector: 'user.username',
+                selector: 'user.username'
             },
             {
                 name: 'Role',
-                selector: 'user.role',
+                selector: 'user.role'
             },
             {
                 name: 'Action',
@@ -591,7 +611,11 @@ const TicketsPage = (props) => {
                     {/* <h2 onClick={handleDelete}>User List</h2> */}
                     <div className="ticket-data">
                         <Tabs
-                            defaultActiveKey={localStorage.getItem('tab') ? localStorage.getItem('tab') :'1'}
+                            defaultActiveKey={
+                                localStorage.getItem('tab')
+                                    ? localStorage.getItem('tab')
+                                    : '1'
+                            }
                             onChange={(key) => changeTab(key)}
                         >
                             <Row className="mt-0">
@@ -609,15 +633,20 @@ const TicketsPage = (props) => {
                                                     getDistrictsListAction={
                                                         props.getDistrictsListAction
                                                     }
-                                                    setDist = { setstudentDist}
+                                                    setDist={setstudentDist}
                                                     dists={props.dists}
                                                     tab={tab}
                                                 />
-                                                {studentDist && <Card className='ms-3 p-3'>
-                                                    Total Students : {props.studentList.length}
-                                                </Card>}
+                                                {studentDist && (
+                                                    <Card className="ms-3 p-3">
+                                                        Total Students :{' '}
+                                                        {
+                                                            props.studentList
+                                                                .length
+                                                        }
+                                                    </Card>
+                                                )}
                                             </>
-
                                         )}
                                         {tab && tab == 2 && (
                                             <>
@@ -625,25 +654,37 @@ const TicketsPage = (props) => {
                                                     getDistrictsListAction={
                                                         props.getDistrictsListAction
                                                     }
-                                                    setDist = {setmentorDist}
+                                                    setDist={setmentorDist}
                                                     dists={props.dists}
                                                     tab={tab}
                                                 />
-                                                {mentorDist && <Card className='ms-3 p-3'>
-                                                    Total Teachers : {props.mentorsList.length}
-                                                </Card>}
+                                                {mentorDist && (
+                                                    <Card className="ms-3 p-3">
+                                                        Total Teachers :{' '}
+                                                        {
+                                                            props.mentorsList
+                                                                .length
+                                                        }
+                                                    </Card>
+                                                )}
                                             </>
                                         )}
-                                        {tab && (tab == 3 || tab==4 )&&<Button
-                                            label={tab == 3 ? "Add New Evaluator": "Add New Admin"}
-                                            btnClass="primary"
-                                            size="small"
-                                            shape="btn-square"
-                                            Icon={BsUpload}
-                                            onClick={() =>
-                                                setRegisterModalShow(true)
-                                            }
-                                        />}
+                                        {tab && (tab == 3 || tab == 4) && (
+                                            <Button
+                                                label={
+                                                    tab == 3
+                                                        ? 'Add New Evaluator'
+                                                        : 'Add New Admin'
+                                                }
+                                                btnClass="primary"
+                                                size="small"
+                                                shape="btn-square"
+                                                Icon={BsUpload}
+                                                onClick={() =>
+                                                    setRegisterModalShow(true)
+                                                }
+                                            />
+                                        )}
                                         {/* <div>
                                             <Button
                                                 label="Import"
@@ -703,9 +744,9 @@ const TicketsPage = (props) => {
                                 className="bg-white p-3 mt-2 sub-tab"
                                 tabId="1"
                             >
-                                {  studentDist ==="" ? 
+                                {studentDist === '' ? (
                                     <CommonPage text="Please select a district" />
-                                    :
+                                ) : (
                                     <div className="my-5">
                                         <DataTableExtensions
                                             {...StudentsData}
@@ -718,11 +759,13 @@ const TicketsPage = (props) => {
                                                 pagination
                                                 highlightOnHover
                                                 fixedHeader
-                                                subHeaderAlign={Alignment.Center}
+                                                subHeaderAlign={
+                                                    Alignment.Center
+                                                }
                                             />
                                         </DataTableExtensions>
                                     </div>
-                                }
+                                )}
                             </TabPane>
                             <TabPane
                                 tab="Teachers"
@@ -730,9 +773,9 @@ const TicketsPage = (props) => {
                                 className="bg-white p-3 mt-2 sub-tab"
                                 tabId="2"
                             >
-                                {  mentorDist ==="" ? 
+                                {mentorDist === '' ? (
                                     <CommonPage text="Please select a district" />
-                                    :
+                                ) : (
                                     <div className="my-5">
                                         <DataTableExtensions
                                             {...TableMentorsProps}
@@ -745,11 +788,13 @@ const TicketsPage = (props) => {
                                                 pagination
                                                 highlightOnHover
                                                 fixedHeader
-                                                subHeaderAlign={Alignment.Center}
+                                                subHeaderAlign={
+                                                    Alignment.Center
+                                                }
                                             />
                                         </DataTableExtensions>
                                     </div>
-                                }
+                                )}
                             </TabPane>
                             <TabPane
                                 tab="Evaluators"
@@ -812,7 +857,10 @@ const TicketsPage = (props) => {
                     show={registerModalShow}
                     setShow={setRegisterModalShow}
                     onHide={() => setRegisterModalShow(false)}
-                    roleToBeAdded = {tab && (tab == 3 ? 'EVALUATOR':tab == 4 ? "ADMIN":null)}
+                    roleToBeAdded={
+                        tab &&
+                        (tab == 3 ? 'EVALUATOR' : tab == 4 ? 'ADMIN' : null)
+                    }
                 />
             )}
         </Layout>
