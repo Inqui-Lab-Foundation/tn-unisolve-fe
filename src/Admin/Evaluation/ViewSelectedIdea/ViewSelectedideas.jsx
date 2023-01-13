@@ -48,8 +48,10 @@ const ViewSelectedIdea = () => {
             ? 'status=' + status
             : 'evaluation_status=' + evaluation_status;
     const filterParams =
-        (district && district !== 'All Districts' ? '&district=' + district : '') +
-        (sdg && sdg !== 'ALL' ? '&sdg=' + sdg : '') +
+        (district && district !== 'All Districts'
+            ? '&district=' + district
+            : '') +
+        (sdg && sdg !== 'ALL SGDs' ? '&sdg=' + sdg : '') +
         (reason && '&rejected_reason=' + reason);
 
     useEffect(() => {
@@ -128,7 +130,7 @@ const ViewSelectedIdea = () => {
                         : row.evaluated_at,
                 width: '15%'
             },
-            
+
             {
                 name: 'Status',
                 // selector: (row) => row.evaluation_status && row.evaluation_status=='SELECTEDROUND1'?'Accepted':row.evaluation_status=='REJECTEDROUND1'?'Rejected':'',
@@ -282,18 +284,22 @@ const ViewSelectedIdea = () => {
                                             ''
                                         )}
                                         <Col md={2}>
-                                                <div className="text-center">
-                                                    <Button
-                                                        btnClass={showbutton ? 'primary': 'default'}
-                                                        size="small"
-                                                        label="Search"
-                                                        disabled={!showbutton}
-                                                        onClick={() =>
-                                                            handleclickcall()
-                                                        }
-                                                    />
-                                                </div>
-                                            </Col>
+                                            <div className="text-center">
+                                                <Button
+                                                    btnClass={
+                                                        showbutton
+                                                            ? 'primary'
+                                                            : 'default'
+                                                    }
+                                                    size="small"
+                                                    label="Search"
+                                                    disabled={!showbutton}
+                                                    onClick={() =>
+                                                        handleclickcall()
+                                                    }
+                                                />
+                                            </div>
+                                        </Col>
                                         <Col md={title === 'Rejected' ? 1 : 4}>
                                             <div className="text-right">
                                                 <Button

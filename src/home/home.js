@@ -67,7 +67,7 @@ import Blogimg8 from '../assets/media/home/blog/b8.jpg';
 import Blogimg9 from '../assets/media/home/blog/b9.jpg';
 import Blogimg10 from '../assets/media/home/blog/b10.jpg';
 import Blogimg11 from '../assets/media/home/blog/b11.jpg';
-
+import Vimeo from '@u-wave/react-vimeo';
 import RegisterPopup from './registration/RegisterPopup';
 import BhutanMap from '../components/MapCard/BhutanMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
@@ -219,9 +219,7 @@ const Home = () => {
             key: 'IIF',
             // imageUrl: Congnizant
             imageUrl: IIF
-        },
-        
-        
+        }
     ];
 
     const testimonials = [
@@ -349,7 +347,7 @@ const Home = () => {
             id: 5,
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
-        },
+        }
         // {
         //     id: 6,
         //     title: `${t('home_tl.faq_qn_6')}`,
@@ -441,10 +439,9 @@ const Home = () => {
             id: 11,
             imgUrl: Blogimg11,
             desc: `${t('home_tl.idea_desc_11')}`
-        },
-
+        }
     ];
-    console.log("----379",sidebar);
+    console.log('----379', sidebar);
 
     return (
         <div className="home-main overflow-hidden">
@@ -509,7 +506,7 @@ const Home = () => {
                             {t('home_nav_links.faq')}
                         </AnchorLink>
                     </NavItem>
-                     {/* <NavItem className="mt-3 ms-3">
+                    {/* <NavItem className="mt-3 ms-3">
                         <LanguageSelectorComp module="general" />
                     </NavItem> */}
                 </Nav>
@@ -685,7 +682,7 @@ const Home = () => {
                 </div>
             </section>
             <section className="about-us" id="about">
-                <Container fluid className='px-5'>
+                <Container fluid className="px-5">
                     <Row>
                         <Col md={12} className="text-center">
                             <div className="heading">
@@ -703,7 +700,7 @@ const Home = () => {
                         </Col>
                     </Row>
                     <Row className="sidp_row p-3 px-md-5">
-                        <Col md={12} className="pe-md-4">
+                        <Col md={6} className="pe-md-4">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: t('home_tl.about_us_desc')
@@ -719,6 +716,18 @@ const Home = () => {
                                 />
                             </div>
                         </Col> */}
+                        <Col
+                            md={6}
+                            className="position-relative"
+                            style={{ minHeight: '35rem' }}
+                        >
+                            <div
+                                className="position-absolute"
+                                style={{ width: '100%', height: '100%' }}
+                            >
+                                <Vimeo video={788903751} />
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
                 <div className="bg-white mx-0 p-md-5 p-2">
@@ -879,7 +888,10 @@ const Home = () => {
                             Step-1
                         </div>
                         <div className="timeline__event__content ">
-                            <div className="timeline__event__title" style={{color:"#067de1"}}>
+                            <div
+                                className="timeline__event__title"
+                                style={{ color: '#067de1' }}
+                            >
                                 {t('home_tl.roadmpa_one')}
                             </div>
                             <div className="timeline__event__description">
@@ -979,7 +991,10 @@ const Home = () => {
                             Step-6
                         </div>
                         <div className="timeline__event__content">
-                            <div className="timeline__event__title" style={{color:"#067de1"}}>
+                            <div
+                                className="timeline__event__title"
+                                style={{ color: '#067de1' }}
+                            >
                                 {t('home_tl.roadmpa_six')}
                             </div>
                             <div className="timeline__event__description">
@@ -1002,7 +1017,7 @@ const Home = () => {
                 <BhutanMap />
             </section>
             <section className="blog">
-                <Container fluid className='px-5'>
+                <Container fluid className="px-5">
                     <Row className="text-center justify-content-md-center">
                         <div className="heading">
                             <h2 className="sub-heading">
@@ -1020,8 +1035,8 @@ const Home = () => {
                         </div>
 
                         <Col md={12} className="blog-slider slider-width">
-                            <div className=''>
-                                <Slider 
+                            <div className="">
+                                <Slider
                                     {...blog_settings}
                                     asNavFor={nav2}
                                     ref={(slider) => setSlider1(slider)}
@@ -1061,7 +1076,10 @@ const Home = () => {
                                         ref={(slider) => setSlider2(slider)}
                                     >
                                         {blogs.map((slide, i) => (
-                                            <div className="slick-slide" key={i}>
+                                            <div
+                                                className="slick-slide"
+                                                key={i}
+                                            >
                                                 <img
                                                     className="slick-slide-image"
                                                     src={slide.imgUrl}
@@ -1079,7 +1097,7 @@ const Home = () => {
             <section className="testimonials ">
                 <Container fluid>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading" style={{zIndex:1}}>
+                        <div className="heading" style={{ zIndex: 1 }}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
@@ -1099,11 +1117,12 @@ const Home = () => {
                                             </figure>
                                             <CardBody>
                                                 <blockquote className="blockquote text-center">
-                                                    <p className="mb-0"
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: testimonial.desc
-                                                    }}>
-                                                    </p>
+                                                    <p
+                                                        className="mb-0"
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: testimonial.desc
+                                                        }}
+                                                    ></p>
                                                     <footer className="blockquote-footer pt-5">
                                                         {' '}
                                                         <h6>
@@ -1251,9 +1270,10 @@ const Home = () => {
                                             <Row>
                                                 <Col className="text-center">
                                                     <span>
-                                                        Entered Teacher Unique Code &
-                                                        School details are not
-                                                        registered with us.
+                                                        Entered Teacher Unique
+                                                        Code & School details
+                                                        are not registered with
+                                                        us.
                                                     </span>
                                                     <span>
                                                         <br />
@@ -1339,7 +1359,7 @@ const Home = () => {
                                         src={LogoTn}
                                         alt="logo"
                                         className="img-fluid logoImg"
-                                        style={{width:"39.5%"}}
+                                        style={{ width: '39.5%' }}
                                     />
                                 </figure>
                             </Link>

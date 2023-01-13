@@ -477,7 +477,7 @@ const TeacherPlayVideo = (props) => {
         // toggle(continueObj[0].course_module_id);
     };
 
-    const handlenextend = () =>{
+    const handlenextend = () => {
         handleVimeoOnEnd();
         setInstructions(true);
         setHandbook(false);
@@ -725,14 +725,13 @@ const TeacherPlayVideo = (props) => {
                                                     will help you understand the
                                                     program objectives and
                                                     enable you to support your
-                                                    SIDP student teams better.
+                                                    SIC student teams better.
                                                 </p>
                                                 <p>
                                                     Step-1: Read and make short
                                                     notes of the handbook from
                                                     page 1-15 and create
-                                                    awareness with SIDP
-                                                    students.
+                                                    awareness with SIC students.
                                                 </p>
                                                 <p>
                                                     Step-2: Refer page 16-29 to
@@ -812,7 +811,9 @@ const TeacherPlayVideo = (props) => {
                                                         worksheetResponce.map(
                                                             (item, i) => (
                                                                 <Button
-                                                                style={{margin:"5px"}}
+                                                                    style={{
+                                                                        margin: '5px'
+                                                                    }}
                                                                     key={i}
                                                                     label={`Download ${item
                                                                         .split(
@@ -841,15 +842,17 @@ const TeacherPlayVideo = (props) => {
                                                                 />
                                                             )
                                                         )}
-                                                </div>   
+                                                </div>
                                             </div>
-                                            <Col className='text-right'>
-                                            <Button 
-                                            label={"Continue"}
-                                            onClick={()=> handlenextend()}
-                                            btnClass="primary mt-4 mb-2"
-                                            size="small"
-                                            />
+                                            <Col className="text-right">
+                                                <Button
+                                                    label={'Continue'}
+                                                    onClick={() =>
+                                                        handlenextend()
+                                                    }
+                                                    btnClass="primary mt-4 mb-2"
+                                                    size="small"
+                                                />
                                             </Col>
                                         </CardBody>
                                     </Card>
@@ -995,10 +998,10 @@ const TeacherPlayVideo = (props) => {
                                                     <p>
                                                         In addition to the
                                                         teacher handbook there
-                                                        are worksheets
-                                                        for your student teams
-                                                        which will aid in this
-                                                        SIDP learning journey:
+                                                        are worksheets for your
+                                                        student teams which will
+                                                        aid in this SIC learning
+                                                        journey:
                                                     </p>
                                                     {/* <p className="mb-0">
                                                         A. Worksheets
@@ -1018,10 +1021,9 @@ const TeacherPlayVideo = (props) => {
                                                         2. Worksheets are
                                                         required to be
                                                         completed/filled by the
-                                                        SIDP students (as a
-                                                        TEAM) when they are
-                                                        watching Lesson 1 to
-                                                        Lesson 6.
+                                                        SIC students (as a TEAM)
+                                                        when they are watching
+                                                        Lesson 1 to Lesson 6.
                                                     </p>
                                                     <p className="mb-0">
                                                         3. Download, Print/Xerox
@@ -1030,16 +1032,16 @@ const TeacherPlayVideo = (props) => {
                                                     </p>
                                                     <p className="mb-0">
                                                         4. Support/Mentor/Guide
-                                                        SIDP students to
-                                                        complete the worksheets
-                                                        if they need help.
+                                                        SIC students to complete
+                                                        the worksheets if they
+                                                        need help.
                                                     </p>
                                                     <p className="mb-0">
                                                         5. Collect the completed
                                                         worksheet and hand them
-                                                        over to the SIDP
-                                                        District Head by 30th
-                                                        December, 2022.
+                                                        over to the SIC District
+                                                        Head by 30th December,
+                                                        2022.
                                                     </p>
                                                 </CardBody>
                                                 <div className="text-left mb-5">
@@ -1050,7 +1052,9 @@ const TeacherPlayVideo = (props) => {
                                                             (item, i) =>
                                                                 i > 1 && (
                                                                     <Button
-                                                                    style={{margin:"5px"}}
+                                                                        style={{
+                                                                            margin: '5px'
+                                                                        }}
                                                                         key={i}
                                                                         label={`Download ${item
                                                                             .split(
@@ -1108,8 +1112,10 @@ const TeacherPlayVideo = (props) => {
                                                         worksheetResponce.map(
                                                             (item, i) =>
                                                                 i <= 1 && (
-                                                                    <Button 
-                                                                    style={{margin:"5px"}}
+                                                                    <Button
+                                                                        style={{
+                                                                            margin: '5px'
+                                                                        }}
                                                                         key={i}
                                                                         label={`Download ${item
                                                                             .split(

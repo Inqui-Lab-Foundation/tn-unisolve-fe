@@ -33,12 +33,9 @@ const TicketsPage = (props) => {
 
     const [reqSchoolsResponse, setReqSchoolsResponse] = useState([]);
     const [newSchoolsResponse, setNewSchoolsResponse] = useState([]);
-
     const [pending, setPending] = React.useState(true);
     const [rows, setRows] = React.useState([]);
     const [SRows, setSRows] = React.useState([]);
-    // const list = JSON.parse(localStorage.getItem('list'));
-
     React.useEffect(() => {
         const timeout = setTimeout(() => {
             setSRows(reqSchoolsData.data);
@@ -46,7 +43,6 @@ const TicketsPage = (props) => {
         }, 2000);
         return () => clearTimeout(timeout);
     }, []);
-
     React.useEffect(() => {
         const timeout = setTimeout(() => {
             setRows(SchoolsData.data);
@@ -120,7 +116,7 @@ const TicketsPage = (props) => {
         };
         axios(config)
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 200) {
                     setReqList(true);
                     listApi();
@@ -190,7 +186,7 @@ const TicketsPage = (props) => {
         await axios(config)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response.data);
+                    // console.log(response.data);
 
                     setReqSchoolsResponse(
                         response.data.data[0] &&
@@ -218,7 +214,7 @@ const TicketsPage = (props) => {
         await axios(config)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response.data);
+                    // console.log(response.data);
 
                     setNewSchoolsResponse(
                         response.data.data[0] &&
@@ -247,7 +243,7 @@ const TicketsPage = (props) => {
         setNewList(false);
         props.getSchoolRegistationBulkUploadActions('i');
     };
-    console.log(props.schoolsRegistrationList, '-----test');
+    // console.log(props.schoolsRegistrationList, '-----test');
     const [array, setarray] = useState([]);
     useEffect(() => {
         if (
@@ -262,7 +258,6 @@ const TicketsPage = (props) => {
         }
     }, [props.schoolsRegistrationList]);
 
-    console.log(array, '---newarray----');
     const SchoolsData = {
         data: array,
         columns: [
