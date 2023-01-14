@@ -55,6 +55,7 @@ import AdminChallenges from './Admin/Challenges/ViewSelectedChallenges';
 import AdminEvaluation from './Admin/Evaluation/index';
 import AdminEvaluationProcess from './Admin/EvalProcess/index';
 import Selectedlist from './Admin/Evaluation/ViewSelectedIdea/ViewSelectedideas';
+import Selectedfinallist from './Admin/Evaluation/FinalResults/ViewFinalSelectedideas';
 import AdminNewBadge from './Admin/Badges/NewBadge';
 import AdminCourses from './Admin/Courses';
 import AdminCourseView from './Admin/Courses/coursesView';
@@ -149,6 +150,7 @@ import EvalutorAdminLogins from './Evaluator/Admin/EvaluatorAdminLogin';
 import Eadmindashboard from './Evaluator/Admin/Dashboard/EAdminDashboard';
 import EadminChangePassword from './Evaluator/Admin/Pages/ChangePSWModal';
 import ListOfIdeas from './Evaluator/Admin/ViewTable/ViewSelectedIdea';
+import ListOfFinalIdeas from './Evaluator/Admin/FinalResulteadmin/ViewFinalSelectedideas';
 import TicketResView from './Admin/Tickets/TicketResView';
 import EditEvalProcess from './Admin/EvalProcess/EditEvalProcess';
 import SelDistricts from './Admin/EvalProcess/SelectingDistricts';
@@ -560,6 +562,11 @@ const Routers = () => {
                         path="/admin/evaluationStatus/viewlist"
                         component={Selectedlist}
                     />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/evaluationStatus/viewfinallist"
+                        component={Selectedfinallist}
+                    />
 
                     <ProtectedRoute
                         exact={true}
@@ -817,6 +824,11 @@ const Routers = () => {
                         exact={true}
                         path="/eadmin/listofideas"
                         component={ListOfIdeas}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/eadmin/listofFinalideas"
+                        component={ListOfFinalIdeas}
                     />
                     <Route component={PageNotFound} path="*" />
                 </Switch>

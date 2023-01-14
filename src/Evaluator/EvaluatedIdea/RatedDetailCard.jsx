@@ -124,7 +124,7 @@ const RatedDetailCard = (props) => {
           </div>
           <div className="row mb-1">
               <div className="col-4">
-                  <p className="my-0">Novelity:</p>
+                  <p className="my-0">Novelty:</p>
               </div>
               <div className="col-8 pt-3">
                   <div className="progress">

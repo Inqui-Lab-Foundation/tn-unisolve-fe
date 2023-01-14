@@ -1,35 +1,37 @@
 /* eslint-disable indent */
 import React, { useEffect } from 'react';
-import './ViewSelectedChallenges.scss';
-import Layout from '../../Admin/Layout';
+import './ViewFinalSelectedideas.scss';
+import Layout from '../Pages/Layout';
 import DataTable, { Alignment } from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
-import ViewDetail from './ViewDetail';
+//import moment from 'moment';
+import ViewDetail from './ViewFinalDetail';
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { KEY, URL } from '../../constants/defaultValues';
-import { Button } from '../../stories/Button';
-import Select from './pages/Select';
-import { Col, Container, Row } from 'reactstrap';
-import { cardData } from '../../Student/Pages/Ideas/SDGData.js';
+import { KEY, URL } from '../../../constants/defaultValues';
+import { Button } from '../../../stories/Button';
+import Select from '../../Helper/Select';
+import { Col, Container, Row} from 'reactstrap';
+import { cardData } from '../../../Student/Pages/Ideas/SDGData.js';
 import { useSelector } from 'react-redux';
-import { getDistrictData } from '../../redux/studentRegistration/actions';
+import { getDistrictData } from '../../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
-import { getNormalHeaders } from '../../helpers/Utils';
-import Spinner from 'react-bootstrap/Spinner';
-import { useLocation } from 'react-router-dom';
+import { getNormalHeaders } from '../../../helpers/Utils';
+import { Spinner } from 'react-bootstrap';
 
 const ViewSelectedIdea = () => {
+    const { search } = useLocation();
+    const history = useHistory();
     const dispatch = useDispatch();
+    const title = new URLSearchParams(search).get('title');
+    const level = new URLSearchParams(search).get('level');
     const [isDetail, setIsDetail] = React.useState(false);
     const [ideaDetails, setIdeaDetails] = React.useState({});
-    const [tableData, settableData] = React.useState([]);
+    const [tableData, settableData] = React.useState({});
     const [district, setdistrict] = React.useState('');
     const [sdg, setsdg] = React.useState('');
-    //---for handle next idea---
     const [currentRow, setCurrentRow]= React.useState(1);
     const [tablePage, setTablePage]=React.useState(1);
-    // eslint-disable-next-line no-unused-vars
-    const [btnDisabler, setBtnDisabler]=React.useState(false);
     const [showspin,setshowspin]=React.useState(false);
 
     const SDGDate = cardData.map((i) => {
@@ -39,16 +41,14 @@ const ViewSelectedIdea = () => {
     const fullDistrictsNames = useSelector(
         (state) => state?.studentRegistration?.dists
     );
-    const {search} = useLocation();
-    const status = new URLSearchParams(search).get('status');
-    const filterParams =
-        (district && district !== 'All Districts'
-            ? '&district=' + district
-            : '') + (sdg && sdg !== 'ALL SDGs' ? '&sdg=' + sdg : '');
+    
+    const filterParamsfinal = (district && district !== 'All Districts' ? '&district=' + district : '') +
+        (sdg && sdg !== 'ALL SDGs' ? '&sdg=' + sdg : '');
 
     useEffect(() => {
         dispatch(getDistrictData());
     }, []);
+
 
     const handleclickcall = () => {
         setshowspin(true);
@@ -56,22 +56,18 @@ const ViewSelectedIdea = () => {
     };
 
     async function handleideaList() {
-        settableData([]);
         const axiosConfig = getNormalHeaders(KEY.User_API_Key);
         await axios
-            .get(
-                `${URL.getidealist}status=${status ? status : "ALL"}${filterParams}`,
-                axiosConfig
-            )
+            .get(`${URL.getidealistfinal}?level=${level}${filterParamsfinal}`, axiosConfig)
             .then(function (response) {
                 if (response.status === 200) {
-                    
-                   const updatedWithKey = response.data && response.data.data[0] && response.data.data[0].dataValues.map((item, i) => {
-                       const upd = { ...item }; upd["key"] = i + 1;
-                        return upd;
-                    });
-                    settableData(updatedWithKey && updatedWithKey);
-                    setshowspin(false);
+                    console.log(response.data.data,"----response.data");
+                    const updatedWithKey = response.data && response.data.data.map((item, i) => {
+                        const upd = { ...item }; upd["key"] = i + 1;
+                         return upd;
+                     });
+                     settableData(updatedWithKey && updatedWithKey);
+                     setshowspin(false);
                 }
             })
             .catch(function (error) {
@@ -79,42 +75,74 @@ const ViewSelectedIdea = () => {
                 setshowspin(false);
             });
     }
-
-    const evaluatedIdeaforsub = {
+    const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
+    console.log(tableData,"----------tableData");
+    const evaluatedIdeafinal = {
         data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
             {
                 name: 'No',
                 selector: (row) => row.key,
                 sortable: true,
-                width: '10%'
+                width: '6%'
             },
             {
                 name: 'Team Name',
-                selector: (row) => row.team_name || '',
+                selector: (row) => row.evaluator_ratings[0]?.challenge_response?.team_name || '',
                 sortable: true,
-                width: '21%'
+                width: '11.5%'
             },
             {
                 name: 'SDG',
-                selector: (row) => row.sdg,
-                width: '21%'
+                selector: (row) => row.evaluator_ratings[0]?.challenge_response?.sdg,
+                width: '10%'
             },
             {
                 name: 'Submitted By',
-                selector: (row) => row.initiated_name,
-                width: '21%'
+                selector: (row) => row.evaluator_ratings[0]?.challenge_response?.initiated_name,
+                width: '11.5%'
             },
             {
-                name: 'Status',
-                cell: (row) => row.status,
-                width: '11%'
+                name: 'Overall',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].overall).toFixed(2) :' ' :' '];},
+                 width : '7%'
             },
+            {
+                name: 'Novelty',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_1).toFixed(2) :' ' :' '];},
+                 width : '8%'
+            },
+            {
+                name: 'Usefulness',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_2).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Feasability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_3).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Scalability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_4).toFixed(2) :' ' :' '];},
+                 width : '9%'
+            },
+            {
+                name: 'Sustainability',
+                cell :(row) => {
+                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_5).toFixed(2) :' ' :' '];},
+                 width : '11%'
+            },
+
             {
                 name: 'Actions',
                 cell: (params) => {
                     return [
-                        
                         <div className="d-flex" key={params}>
                             <div
                                 className="btn btn-primary btn-lg mr-5 mx-2"
@@ -133,10 +161,9 @@ const ViewSelectedIdea = () => {
                                 View
                             </div>
                         </div>
-                        
                     ];
                 },
-                width: '12%',
+                width: '8%',
                 left: true
             }
         ]
@@ -165,11 +192,11 @@ const ViewSelectedIdea = () => {
                     <div className="col-12 p-0">
                         {!isDetail && (
                             <div>
-                                <h2 className="ps-2 pb-3">Challenges</h2>
+                                <h2 className="ps-2 pb-3">{title} Challenges</h2>
 
                                 <Container fluid className="px-0">
                                     <Row className="align-items-center">
-                                        <Col md={3}>
+                                        <Col md={2}>
                                             <div className="my-3 d-md-block d-flex justify-content-center">
                                                 <Select
                                                     list={fullDistrictsNames}
@@ -181,7 +208,7 @@ const ViewSelectedIdea = () => {
                                                 />
                                             </div>
                                         </Col>
-                                        <Col md={3}>
+                                        <Col md={2}>
                                             <div className="my-3 d-md-block d-flex justify-content-center">
                                                 <Select
                                                     list={SDGDate}
@@ -191,7 +218,7 @@ const ViewSelectedIdea = () => {
                                                 />
                                             </div>
                                         </Col>
-                                            <Col md={2}>
+                                        <Col md={2}>
                                                 <div className="text-center">
                                                     <Button
                                                         btnClass={showbutton ? 'primary': 'default'}
@@ -204,6 +231,18 @@ const ViewSelectedIdea = () => {
                                                     />
                                                 </div>
                                             </Col>
+                                        <Col md={6}>
+                                            <div className="text-right">
+                                                <Button
+                                                    btnClass="primary"
+                                                    size="small"
+                                                    label="Back"
+                                                    onClick={() =>
+                                                        history.goBack()
+                                                    }
+                                                />
+                                            </div>
+                                        </Col>
                                     </Row>
                                 </Container>
                             </div>
@@ -219,7 +258,7 @@ const ViewSelectedIdea = () => {
                                 <DataTableExtensions
                                     print={false}
                                     export={false}
-                                    {...evaluatedIdeaforsub}
+                                    {...evaluatedIdeafinal}
                                 >
                                     <DataTable
                                         data={tableData || []}
@@ -242,9 +281,6 @@ const ViewSelectedIdea = () => {
                             <ViewDetail
                                 ideaDetails={ideaDetails}
                                 setIsDetail={setIsDetail}
-                                settableData={settableData}
-                                setdistrict={setdistrict}
-                                setsdg={setsdg}
                                 handleNext={handleNext}
                                 handlePrev={handlePrev}
                                 currentRow={currentRow}

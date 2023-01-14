@@ -157,7 +157,7 @@ const EvaluatedIdeaDetail = (props) => {
                             //         <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluator_ratings[0]?.created_at).format('DD-MM-YY h:mm:ss a')|| ''}
                             //     </p>
                             //     <p className='text-center'>
-                            //         <span className='text-bold'>Novelity Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_1}
+                            //         <span className='text-bold'>Novelty Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_1}
                             //     </p>
                             //     <p className='text-center'>
                             //         <span className='text-bold'>Usefulness Score: </span> {props?.ideaDetails?.evaluator_ratings[0]?.param_2}

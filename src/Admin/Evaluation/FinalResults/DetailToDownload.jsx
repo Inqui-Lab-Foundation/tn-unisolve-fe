@@ -6,7 +6,7 @@ import LinkComponent from '../Pages/LinkComponent';
 
 const detailToDownload = (props) => {
 
-    const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
+    // const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
   
     return (
         <div className="container bg-light">
@@ -46,7 +46,7 @@ const detailToDownload = (props) => {
                 <div className="col-md-5 col-12 h1-100">
                     {
                         props?.ideaDetails?.evaluation_status &&
-                        <div className="status p-5 bg-white shadow rounded border h-100 w-100">
+                        <div className="status p-5 bg-white shadow rounded border h-100">
                             <p className='fs-2 fw-bold text-primary'>STATUS</p>
                             <div className="row my-2">
                                 <div className="col-2 fw-bold fs-4">L1</div>
@@ -62,27 +62,27 @@ const detailToDownload = (props) => {
                                         <div className='col-12 mb-2'>
                                             <div className="row my-2">
                                                 <div className="col-2 fw-bold fs-4">L2</div>
-                                                <div className="col-10 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.overall)?.toFixed(1)}</div>
+                                                <div className="col-10 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.overall_avg}</div>
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-3 fw-bold fs-4">Novelty</div>
-                                                <div className="col-9 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.param_1)?.toFixed(1)}</div>
+                                                <div className="col-9 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.param_1_avg}</div>
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-3 fw-bold fs-4">Usefullness</div>
-                                                <div className="col-9 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.param_2)?.toFixed(1)}</div>
+                                                <div className="col-9 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.param_2_avg}</div>
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-3 fw-bold fs-4">Feasability</div>
-                                                <div className="col-9 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.param_3)?.toFixed(1)}</div>
+                                                <div className="col-9 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.param_3_avg}</div>
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-3 fw-bold fs-4">Scalability</div>
-                                                <div className="col-9 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.param_4)?.toFixed(1)}</div>
+                                                <div className="col-9 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.param_4_avg}</div>
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-3 fw-bold fs-4">Sustainability</div>
-                                                <div className="col-9 text-capitalize fs-4">: {average(props?.ideaDetails?.evaluator_ratings[0]?.param_5)?.toFixed(1)}</div>
+                                                <div className="col-9 text-capitalize fs-4">: {props?.ideaDetails?.evaluator_ratings[0]?.param_5_avg}</div>
                                             </div>
                                         </div>
                             
