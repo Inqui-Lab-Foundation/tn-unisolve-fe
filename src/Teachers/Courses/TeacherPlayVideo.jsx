@@ -579,7 +579,7 @@ const TeacherPlayVideo = (props) => {
                                                                         );
                                                                     } else if (
                                                                         course.title.toLowerCase() ===
-                                                                            'additional resources' ||
+                                                                            'instructions' ||
                                                                         course.title ===
                                                                             'வழிமுறைகள்'
                                                                     ) {

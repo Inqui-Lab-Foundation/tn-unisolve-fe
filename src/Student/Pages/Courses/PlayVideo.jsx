@@ -26,8 +26,8 @@ import {
 } from 'reactstrap';
 import { Button } from '../../../stories/Button';
 import { GrDocument } from 'react-icons/gr';
-import { AiFillPlayCircle } from 'react-icons/ai';
-import { getCurrentUser } from '../../../helpers/Utils';
+import { AiFillPlayCircle, AiOutlineCloseCircle } from 'react-icons/ai';
+import { getCurrentUser, openNotificationWithIcon } from '../../../helpers/Utils';
 import axios from 'axios';
 import ModuleAssesmentImg from '../../../assets/media/moduleAssesmentPopup.svg';
 import { connect, useSelector } from 'react-redux';
@@ -119,6 +119,85 @@ const PlayVideoCourses = (props) => {
     const [badge, setBadge] = useState('0');
     const [showPage, setshowPage] = useState(true);
     const [showCompleteMessage, setShowCompleteMessage] = useState(false);
+    const [userUploadedlist ,setuserUploadedlist] = useState([]);
+
+    // linkComponent
+    const LinkComponent = ({ original, item,url, removeFileHandler, i }) => {
+        let a_link;
+        let count;
+        if(url){
+            a_link = item.split( '/' ); 
+            count = a_link.length - 1;
+        }
+        return (
+            <>
+                {original ? <div className="badge mb-2 bg-info ms-3">
+                    <span className="p-2">{item.name}</span>
+                    {original && (
+                        <span className="pointer" onClick={() => removeFileHandler(i)}>
+                            <AiOutlineCloseCircle size={20} />
+                        </span>
+                    )}            
+                </div> :
+                    <a
+                        className="badge mb-2 bg-info p-3 ms-3"
+                        href={item}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {a_link[count]}
+                    </a>
+                }
+            </>
+        );
+    };
+
+    //fileupload---
+    const [files, setFiles] = useState([]);
+    const [uploadQId, setuploadQId] = useState(null);
+    const [immediateLink, setImmediateLink] = useState(null);
+    const handleUploadFiles = (addedFiles) => {
+        const upload = [...files];
+        addedFiles.some((item) => {
+            if (upload.findIndex((i) => i.name === item.name) === -1)
+                upload.push(item);
+        });
+        setFiles(upload);
+        setImmediateLink(null);
+    };
+    const removeFileHandler = (i) => {
+        const fileAdded = [...files];
+        fileAdded.splice(i, 1);
+        setFiles(fileAdded);
+    };
+
+    let maxFileSize = 20000000;
+    const fileHandler = (e) => {
+        let choosenFiles = Array.prototype.slice.call(e.target.files);
+        e.target.files = null;
+        let pattern = /^[a-zA-Z0-9_-\s]{0,}$/;
+        const checkPat = choosenFiles.filter((item) => {
+            let pat = item.name.split('.');
+            pat.pop();
+            return pat.join().search(pattern);
+        });
+        if (checkPat.length > 0) {
+            openNotificationWithIcon(
+                'error',
+                "Only alphanumeric and '_' are allowed "
+            );
+            return;
+        }
+        if (choosenFiles.filter((item) => item.size > maxFileSize).length > 0) {
+            openNotificationWithIcon(
+                'error',
+                t('student.less_20MB')
+            );
+            return;
+        }
+        handleUploadFiles(choosenFiles);
+        setuploadQId(id);
+    };
 
     //----if course is completed and navigated to this page, course success msg will display first
     const { dashboardStatus } = useSelector((state) => state?.studentRegistration);
@@ -247,6 +326,15 @@ const PlayVideoCourses = (props) => {
             .then(function (response) {
                 if (response.status === 200) {
                     SetWorksheetResponce(response.data.data[0]);
+                    if(response.data.data[0].response){
+                        const userUploadedfiles = response.data.data[0].response.split(/[,]/);
+                        setuserUploadedlist(userUploadedfiles);
+                        
+                    }
+                    else {
+                        setuserUploadedlist([]);
+                    }
+
                     const worksheet =
                         response.data.data[0].attachments.split(/[,]/);
                     setWorksheetByWorkSheetId(worksheet[0]);
@@ -566,13 +654,16 @@ const PlayVideoCourses = (props) => {
         setFileName();
         setUrl();
     };
-
+    console.log(worksheetId,"----------worksheetId");
     const handleSubmit = (e) => {
-        const files = seletedFilesName;
-        const data = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            data.append(`attachment_${i}`, files[i]);
-        }
+        
+        if(files){
+            console.log(files,"---files");
+        const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                let fieldName = 'file' + i ? i : '';
+                formData.append(fieldName, files[i]);
+            }
         var config = {
             method: 'post',
             url:
@@ -586,28 +677,30 @@ const PlayVideoCourses = (props) => {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${currentUser.data[0].token}`
             },
-            data: data
+            data: formData
         };
         axios(config)
             .then(function (response) {
                 if (response.status === 200) {
                     getWorkSheetApi(worksheetId);
-                    setImage();
-                    setFileName();
-                    setUrl();
-                    setSeletedFiles();
-                    dispatch(
-                        updateStudentBadges(
-                            { badge_slugs: [badge] },
-                            currentUser.data[0].user_id,
-                            language,t
-                        )
-                    );
+                    // setImage();
+                    // setFileName();
+                    // setUrl();
+                    // setSeletedFiles();
+                    // dispatch(
+                    //     updateStudentBadges(
+                    //         { badge_slugs: [badge] },
+                    //         currentUser.data[0].user_id,
+                    //         language,t
+                    //     )
+                    // );
+                    setFiles([]);
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
+        }
     };
     const handleNextCourse = () => {
         if (topicObj) {
@@ -1044,8 +1137,100 @@ const PlayVideoCourses = (props) => {
                                                                                         }}
                                                                                     ></div>
                                                                                 </text>
+                                                                                <div className="text-left">
+                                                                                <div className="wrapper my-3 m-3">
+                                                                                <button
+                                                                                            type="button"
+                                                                                            className="btn btn-outline-primary btn-lg"
+                                                                                        >upload file</button>
+                                                                                        <input
+                                                                                            type="file"
+                                                                                            name="file"
+                                                                                            multiple
+                                                                                            onChange={(
+                                                                                                e
+                                                                                            ) =>
+                                                                                                fileHandler(
+                                                                                                    e,
+                                                                                                    '34'
+                                                                                                )
+                                                                                            }
+                                                                                        />
+                                                                                        </div>
+                                                                                        <Button type="button"
+                                                                                        btnClass={files.length>0?'primary':'default'} 
+                                                                                        size="small"
+                                                                                        disabled={!files.length>0}
+                                                                                        label={'Submit'}
+                                                                                        onClick={() =>handleSubmit()}/>
+                                                                                        <div className="mx-4">
+                                                                                    {immediateLink &&
+                                                                                        immediateLink.length >
+                                                                                            0 &&
+                                                                                        immediateLink.map(
+                                                                                            (
+                                                                                                item , i
+                                                                                            ) => (
+                                                                                                <LinkComponent
+                                                                                                    item={
+                                                                                                        item
+                                                                                                    }
+                                                                                                    url={true}
+                                                                                                    key={
+                                                                                                        i
+                                                                                                    }
+                                                                                                />
+                                                                                            )
+                                                                                        )}
+                                                                                    {!immediateLink &&
+                                                                                        files.length >
+                                                                                            0 &&
+                                                                                        files.map(
+                                                                                            (
+                                                                                                item,
+                                                                                                i
+                                                                                            ) => (
+                                                                                                <LinkComponent
+                                                                                                    original={
+                                                                                                        true
+                                                                                                    }
+                                                                                                    item={
+                                                                                                        item
+                                                                                                    }
+                                                                                                    i={
+                                                                                                        i
+                                                                                                    }
+                                                                                                    key={
+                                                                                                        i
+                                                                                                    }
+                                                                                                    removeFileHandler={
+                                                                                                        removeFileHandler
+                                                                                                    }
+                                                                                                />
+                                                                                            )
+                                                                                        )}
+                                                                                         {!immediateLink &&
+                                                                                        files.length ===
+                                                                                            0 &&
+                                                                                            userUploadedlist.map(
+                                                                                            (
+                                                                                                item,
+                                                                                                i
+                                                                                            ) => <LinkComponent
+                                                                                                    item={
+                                                                                                        item
+                                                                                                    }
+                                                                                                    url={true}
+                                                                                                    key={
+                                                                                                        i
+                                                                                                    }
+                                                                                                />
+                                                                                        )}
+                                                                                </div>
+                                                                                </div>
+                                                                                
                                                                                 <div className="text-right">
-                                                                                    {worksheetResponce.response ===
+                                                                                    {/* {worksheetResponce.response ===
                                                                                     null ? (
                                                                                         <a
                                                                                             // href={
@@ -1061,9 +1246,7 @@ const PlayVideoCourses = (props) => {
                                                                                         >
                                                                                             <Button
                                                                                                 button="submit"
-                                                                                                label={t(
-                                                                                                    'student.download_worksheet'
-                                                                                                )}
+                                                                                                label='new'
                                                                                                 btnClass="primary mt-4 mb-2"
                                                                                                 size="small"
                                                                                                 style={{
@@ -1072,7 +1255,7 @@ const PlayVideoCourses = (props) => {
                                                                                                 }}
                                                                                             />
                                                                                         </a>
-                                                                                    ) : (
+                                                                                    ) : ( */}
                                                                                         <a
                                                                                             // href={
                                                                                             //     process
@@ -1083,7 +1266,7 @@ const PlayVideoCourses = (props) => {
                                                                                             href={worksheet}
                                                                                             target="_blank"
                                                                                             rel="noreferrer"
-                                                                                            className="primary"
+                                                                                            className="primary m-3"
                                                                                         >
                                                                                             <Button
                                                                                                 button="submit"
@@ -1094,8 +1277,8 @@ const PlayVideoCourses = (props) => {
                                                                                                 size="small"
                                                                                             />
                                                                                         </a>
-                                                                                    )}
-                                                                                    <Button
+                                                                                    {/* )} */}
+                                                                                    {/* <Button
                                                                                         label={t(
                                                                                             'student.continue'
                                                                                         )}
@@ -1124,7 +1307,7 @@ const PlayVideoCourses = (props) => {
                                                                                                 )
                                                                                             );
                                                                                         }}
-                                                                                    />
+                                                                                    /> */}
 
                                                                                     {worksheetResponce.response !=
                                                                                         null &&
@@ -1139,9 +1322,28 @@ const PlayVideoCourses = (props) => {
                                                                                             btnClass="primary w-auto"
                                                                                             size="small"
                                                                                             type="submit"
-                                                                                            onClick={
-                                                                                                handleNextCourse
-                                                                                            }
+                                                                                            style={{
+                                                                                                background:
+                                                                                                    '#00ced1',
+                                                                                                color: '#fff'
+                                                                                            }}
+                                                                                            onClick={() => {
+                                                                                                handleNextCourse();
+                                                                                                dispatch(
+                                                                                                    updateStudentBadges(
+                                                                                                        {
+                                                                                                            badge_slugs:
+                                                                                                                [
+                                                                                                                    badge
+                                                                                                                ]
+                                                                                                        },
+                                                                                                        currentUser
+                                                                                                            .data[0]
+                                                                                                            .user_id,
+                                                                                                        language,t
+                                                                                                    )
+                                                                                                );
+                                                                                            }}
                                                                                         />
                                                                                     ) : null}
                                                                                 </div>
