@@ -193,7 +193,7 @@ const Question = (props) => {
                                                         alt={answer}
                                                         className="img-fluid"
                                                         style={{
-                                                            width: '80px'
+                                                            height: '12rem'
                                                         }}
                                                     />
                                                 </label>
