@@ -359,7 +359,7 @@
     },
     "student" : {
         "profile": "My Profile",
-        "worksheet":"<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your Unisolve guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Handover the worksheet to your guide teacher once your team completes the worksheet without fail. This needs to be submitted to District Coordinator during regional level boot-camp.</p><p>Step-4: Continue to next lesson only after you complete the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
+        "worksheet":"<p>Dear Student,</p><p>Step-1: Download and print this worksheet or get a copy from your Unisolve guide teacher.</p><p>Step-2: Complete this worksheet along with your team members.</p><p>Step-3: Upload the worksheets onto the portal using the 'Upload File' button. You can upload multiple documents as images or documents. Only one team member from the team needs to upload the Worksheet. If needed, you can ask for your Guide teachers support in doing this.</p><p>Step-4: Continue to next lessons only after your team has completed and uploaded the worksheet.</p><p>Hope you and your team learn new things and enjoy completing this worksheet.</p>",
         "download_worksheet":"Download Worksheet",
         "continue":"Continue",
         "w_sheet":"Worksheet",
