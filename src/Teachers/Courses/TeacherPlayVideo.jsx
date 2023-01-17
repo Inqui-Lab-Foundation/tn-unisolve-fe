@@ -728,25 +728,13 @@ const TeacherPlayVideo = (props) => {
                                                     Unisolve student teams better.
                                                 </p>
                                                 <p>
-                                                    Step-1: Read and make short
-                                                    notes of the handbook from
-                                                    page 1-15 and create
-                                                    awareness with Unisolve
-                                                    students.
+                                                STEP 1 : Go through pages 1 - 28, to understand about the program before giving the Quiz.
                                                 </p>
                                                 <p>
-                                                    Step-2: Refer page 16-29 to
-                                                    ensure all your (each and
-                                                    every) students understand
-                                                    the concepts/knowledge
-                                                    delivered in lesson 1 to
-                                                    lesson 6 of the video
-                                                    course.{' '}
+                                                STEP 2 : Refer to pages 29 - 38 to roll out the program in your schools and familiarise all the studetns about the program and the course components.
                                                 </p>
                                                 <p>
-                                                    Please print/xerox (page
-                                                    11-23) and give one copy per
-                                                    team for reference.
+                                                STEP 3 : Register the students on the platform and guide then through the journey.
                                                 </p>
                                                 <p className="text-primary text-left">
                                                     <b>
@@ -775,7 +763,7 @@ const TeacherPlayVideo = (props) => {
                                                         worksheet (as a team)
                                                     </p>
                                                 </div>
-                                                <br />
+                                                {/* <br />
                                                 <p>
                                                     Initial Idea Submission{' '}
                                                     <b>DOES NOT</b> require a
@@ -802,7 +790,7 @@ const TeacherPlayVideo = (props) => {
                                                         or a document (If
                                                         applicable)
                                                     </p>
-                                                </div>
+                                                </div> */}
                                             </CardBody>
                                             <div className="text-left mb-2">
                                                 <div>
@@ -995,7 +983,7 @@ const TeacherPlayVideo = (props) => {
                                                     <p>
                                                         In addition to the
                                                         teacher handbook there
-                                                        are worksheets
+                                                        are worksheets and additional readings
                                                         for your student teams
                                                         which will aid in this
                                                         Unisolve learning journey:
@@ -1010,18 +998,12 @@ const TeacherPlayVideo = (props) => {
                                                     <p className="text-decoration-underline">
                                                         <b>A.Worksheets </b>
                                                     </p> */}
+                                                    <h3>WORKSHEETS</h3>
                                                     <p className="mb-0">
-                                                        1. This document has one
-                                                        worksheet per lesson.
+                                                        1.  This document had one set of Worksheet per Module.
                                                     </p>
                                                     <p className="mb-0">
-                                                        2. Worksheets are
-                                                        required to be
-                                                        completed/filled by the
-                                                        Unisolve students (as a
-                                                        TEAM) when they are
-                                                        watching Lesson 1 to
-                                                        Lesson 6.
+                                                        2. Respective worksheets are required to be completed/filled by the Unisolve Students (as a TEAM) after they watch each lesson from lesson 1 to lesson 6.
                                                     </p>
                                                     <p className="mb-0">
                                                         3. Download, Print/Xerox
@@ -1035,12 +1017,11 @@ const TeacherPlayVideo = (props) => {
                                                         if they need help.
                                                     </p>
                                                     <p className="mb-0">
-                                                        5. Collect the completed
-                                                        worksheet and hand them
-                                                        over to the Unisolve
-                                                        District Head by 30th
-                                                        December, 2022.
+                                                        5. Guide the teams to upload their worksheets on the portal after they complete it.
                                                     </p>
+                                                    <br></br>
+                                                    <h3>ADDITIONAL READINGS</h3>
+                                                    <p>Print and provide the related pages from the Additional Reading document to each student while they watch the respective video to support their learning.</p>
                                                 </CardBody>
                                                 <div className="text-left mb-5">
                                                     {worksheetResponce &&
