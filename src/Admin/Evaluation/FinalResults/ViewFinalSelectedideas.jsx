@@ -1,12 +1,12 @@
 /* eslint-disable indent */
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import './ViewFinalSelectedideas.scss';
 import Layout from '../../../Admin/Layout';
 import DataTable, { Alignment } from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 //import moment from 'moment';
 import ViewDetail from './ViewFinalDetail';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation ,Link } from 'react-router-dom';
 import axios from 'axios';
 import { KEY, URL } from '../../../constants/defaultValues';
 import { Button } from '../../../stories/Button';
@@ -16,7 +16,7 @@ import { cardData } from '../../../Student/Pages/Ideas/SDGData.js';
 import { useSelector } from 'react-redux';
 import { getDistrictData } from '../../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
-import { getNormalHeaders } from '../../../helpers/Utils';
+import { getCurrentUser, getNormalHeaders } from '../../../helpers/Utils';
 import { Spinner } from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import {FaDownload, FaHourglassHalf} from 'react-icons/fa';
@@ -27,6 +27,7 @@ const ViewSelectedIdea = () => {
     const { search } = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
+    const currentUser = getCurrentUser('current_user');
     const title = new URLSearchParams(search).get('title');
     const level = new URLSearchParams(search).get('level');
     const [isDetail, setIsDetail] = React.useState(false);
@@ -56,7 +57,34 @@ const ViewSelectedIdea = () => {
         dispatch(getDistrictData());
     }, []);
 
+    const handlePromotelFinalEvaluated = (item) => {
+        promoteapi(item.challenge_response_id);
+     };
 
+ async function promoteapi(id) {
+    const body = JSON.stringify({"final_result":"1"});
+     var config = {
+         method: 'put',
+         url: `${
+             process.env.REACT_APP_API_BASE_URL +
+             '/challenge_response/updateEntry/' + id
+         }`,
+         headers: {
+             'Content-Type': 'application/json',
+             Authorization: `Bearer ${currentUser?.data[0]?.token}`
+         },
+         data: body
+     };
+     await axios (config)
+     .then(function (response) {
+         if (response.status === 200) {
+             handleclickcall();
+         }
+     })
+     .catch(function (error) {
+         console.log(error);
+     });
+ }
     const handleclickcall = () => {
         setshowspin(true);
         handleideaList();
@@ -97,18 +125,18 @@ const ViewSelectedIdea = () => {
             {
                 name:'CID',
                 selector: (row) => row.challenge_response_id,
-                //width: '9%'
+                width: '6%'
             },
             {
                 name: 'Team Name',
                 selector: (row) => row?.team_name || '',
                 sortable: true,
-                width: '11.5%'
+                //width: '11.5%'
             },
             {
                 name: 'SDG',
                 selector: (row) => row?.sdg,
-                // width: '10%'
+                width: '10%'
             },
             // {
             //     name: 'Submitted By',
@@ -118,42 +146,42 @@ const ViewSelectedIdea = () => {
            
             {
                 name: 'Novelty',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].param_1_avg :' ' :' '];},
                 //  width : '8%'
                 sortable: true,
             },
             {
                 name: 'Usefulness',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].param_2_avg :' ' :' '];},
                 //  width : '9%'
                 sortable: true,
             },
             {
                 name: 'Feasability',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].param_3_avg :' ' :' '];},
                 //  width : '9%'
                 sortable: true,
             },
             {
                 name: 'Scalability',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].param_4_avg :' ' :' '];},
                 //  width : '9%'
                 sortable: true,
             },
             {
                 name: 'Sustainability',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].param_5_avg :' ' :' '];},
                 //  width : '11%'
                 sortable: true,
             },
             {
                 name: 'Overall',
-                cell :(row) => {
+                selector :(row) => {
                     return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? row.evaluator_ratings[0].overall_avg :' ' :' '];},
                 //  width : '7%'
                 sortable: true,
@@ -188,13 +216,28 @@ const ViewSelectedIdea = () => {
                                     <FaHourglassHalf size={22} className="text-info"/>
                                 }
                             </div>
+                            {params.final_result === '0' && (<Link
+                            //exact="true"
+                           // key={record}
+                            onClick={() => handlePromotelFinalEvaluated(params)}
+                            style={{ marginRight: '12px' }}
+                        >
+                            <div className="btn btn-info btn-lg mx-2">
+                                Promote
+                            </div>
+                        </Link>)
+                }
                         </div>
                     ];
                 },
-                width: '12%',
+                width: '18%',
                 left: true
             }
         ]
+    };
+    const [sortid,setsortid] = useState();
+    const handlesortid = (e) =>{
+        setsortid(e.id);
     };
 
     const showbutton = district && sdg;
@@ -320,7 +363,8 @@ const ViewSelectedIdea = () => {
                                 >
                                     <DataTable
                                         data={tableData || []}
-                                        defaultSortField="id"
+                                        //defaultSortField="id"
+                                        defaultSortFieldId={sortid}
                                         defaultSortAsc={false}
                                         pagination
                                         highlightOnHover
@@ -332,6 +376,7 @@ const ViewSelectedIdea = () => {
                                         paginationPerPage={10}
                                         onChangePage={(page)=>setTablePage(page)}
                                         paginationDefaultPage={tablePage}
+                                        onSort={(e)=>(handlesortid(e))}
                                     />
                                 </DataTableExtensions>
                             </div>

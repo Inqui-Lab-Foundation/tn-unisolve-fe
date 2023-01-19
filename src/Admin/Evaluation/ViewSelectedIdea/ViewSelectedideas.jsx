@@ -1,12 +1,12 @@
 /* eslint-disable indent */
-import React, { useEffect } from 'react';
+import React, { useEffect ,useState } from 'react';
 import './ViewSelectedideas.scss';
 import Layout from '../../../Admin/Layout';
 import DataTable, { Alignment } from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import moment from 'moment';
 import ViewDetail from './ViewDetail';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { KEY, URL } from '../../../constants/defaultValues';
 import { Button } from '../../../stories/Button';
@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import { getDistrictData } from '../../../redux/studentRegistration/actions';
 import { useDispatch } from 'react-redux';
 import { ReasonsOptions } from '../../../Evaluator/Admin/Pages/ReasonForRejectionData';
-import { getNormalHeaders } from '../../../helpers/Utils';
+import { getCurrentUser, getNormalHeaders } from '../../../helpers/Utils';
 import { getAdminEvalutorsList } from '../../store/adminEvalutors/actions';
 import { getAdminList } from '../../store/admin/actions';
 import { Spinner } from 'react-bootstrap';
@@ -30,6 +30,7 @@ const ViewSelectedIdea = () => {
     const { search } = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
+    const currentUser = getCurrentUser('current_user');
     const title = new URLSearchParams(search).get('title');
     const level = new URLSearchParams(search).get('level');
     const evaluation_status = new URLSearchParams(search).get(
@@ -87,6 +88,34 @@ const ViewSelectedIdea = () => {
     // useEffect(() => {
     //     handleideaList();
     // }, [reason, district, sdg]);
+    const handlePromotel2processed = (item) => {
+           promoteapi(item.challenge_response_id);
+        };
+
+    async function promoteapi(id) {
+       const body = JSON.stringify({"final_result":"0"});
+        var config = {
+            method: 'put',
+            url: `${
+                process.env.REACT_APP_API_BASE_URL +
+                '/challenge_response/updateEntry/' + id
+            }`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${currentUser?.data[0]?.token}`
+            },
+            data: body
+        };
+        await axios (config)
+        .then(function (response) {
+            if (response.status === 200) {
+                handleclickcall();
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
     const handleclickcall = () => {
         setshowspin(true);
@@ -113,7 +142,7 @@ const ViewSelectedIdea = () => {
                 setshowspin(false);
             });
     }
-    const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
+    //const average = arr => arr.reduce((p,c) => p+c,0)/arr.length;
     const evaluatedIdea = {
         data: tableData && tableData.length > 0 ? tableData : [],
         columns: [
@@ -322,6 +351,7 @@ const downloadPDF = async(params) => {
                 selector: (row) => row.evaluator_ratings[0]?.overall_avg ? row.evaluator_ratings[0]?.overall_avg : '-',
                  width : '10%',
                  sortable: true,
+                 id:'overall'
             },
 
             {
@@ -354,6 +384,17 @@ const downloadPDF = async(params) => {
                             <FaHourglassHalf size={22} className="text-info"/>
                         }
                     </div>
+                    {!params.final_result && (<Link
+                            //exact="true"
+                           // key={record}
+                            onClick={() => handlePromotel2processed(params)}
+                            style={{ marginRight: '12px' }}
+                        >
+                            <div className="btn btn-info btn-lg mx-2">
+                                Promote
+                            </div>
+                        </Link>)
+                }
                     </>
                     ];
                 },
@@ -425,99 +466,102 @@ const downloadPDF = async(params) => {
             }
         ]
     };
-    const evaluatedIdeafinal = {
-        data: tableData && tableData.length > 0 ? tableData : [],
-        columns: [
-            {
-                name: 'No',
-                selector: (row) => row.key,
-                sortable: true,
-                width: '6%'
-            },
-            {
-                name: 'Team Name',
-                selector: (row) => row.team_name || '',
-                sortable: true,
-                width: '11.5%'
-            },
-            {
-                name: 'SDG',
-                selector: (row) => row.sdg,
-                width: '10%'
-            },
-            {
-                name: 'Submitted By',
-                selector: (row) => row.initiated_name,
-                width: '11.5%'
-            },
-            {
-                name: 'overall',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].overall).toFixed(2) :' ' :' '];},
-                 width : '7%'
-            },
-            {
-                name: 'Novelty',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_1).toFixed(2) :' ' :' '];},
-                 width : '8%'
-            },
-            {
-                name: 'Usefulness',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_2).toFixed(2) :' ' :' '];},
-                 width : '9%'
-            },
-            {
-                name: 'Feasability',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_3).toFixed(2) :' ' :' '];},
-                 width : '9%'
-            },
-            {
-                name: 'Scalability',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_4).toFixed(2) :' ' :' '];},
-                 width : '9%'
-            },
-            {
-                name: 'Sustainability',
-                cell :(row) => {
-                    return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_5).toFixed(2) :' ' :' '];},
-                 width : '11%'
-            },
+    // const evaluatedIdeafinal = {
+    //     data: tableData && tableData.length > 0 ? tableData : [],
+    //     columns: [
+    //         {
+    //             name: 'No',
+    //             selector: (row) => row.key,
+    //             sortable: true,
+    //             width: '6%'
+    //         },
+    //         {
+    //             name: 'Team Name',
+    //             selector: (row) => row.team_name || '',
+    //             sortable: true,
+    //             width: '11.5%'
+    //         },
+    //         {
+    //             name: 'SDG',
+    //             selector: (row) => row.sdg,
+    //             width: '10%'
+    //         },
+    //         {
+    //             name: 'Submitted By',
+    //             selector: (row) => row.initiated_name,
+    //             width: '11.5%'
+    //         },
+    //         {
+    //             name: 'overall',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].overall).toFixed(2) :' ' :' '];},
+    //              width : '7%'
+    //         },
+    //         {
+    //             name: 'Novelty',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_1).toFixed(2) :' ' :' '];},
+    //              width : '8%'
+    //         },
+    //         {
+    //             name: 'Usefulness',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_2).toFixed(2) :' ' :' '];},
+    //              width : '9%'
+    //         },
+    //         {
+    //             name: 'Feasability',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_3).toFixed(2) :' ' :' '];},
+    //              width : '9%'
+    //         },
+    //         {
+    //             name: 'Scalability',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_4).toFixed(2) :' ' :' '];},
+    //              width : '9%'
+    //         },
+    //         {
+    //             name: 'Sustainability',
+    //             cell :(row) => {
+    //                 return[row.evaluator_ratings ? row.evaluator_ratings.length > 0 ? average(row.evaluator_ratings[0].param_5).toFixed(2) :' ' :' '];},
+    //              width : '11%'
+    //         },
 
-            {
-                name: 'Actions',
-                cell: (params) => {
-                    return [
-                        <div className="d-flex" key={params}>
-                            <div
-                                className="btn btn-primary btn-lg mr-5 mx-2"
-                                onClick={() => {
-                                    setIdeaDetails(params);
-                                    setIsDetail(true);
-                                    let index=0;
-                                    tableData?.forEach((item, i)=>{
-                                        if(item?.challenge_response_id==params?.challenge_response_id){
-                                            index=i;
-                                        }
-                                    });
-                                    setCurrentRow(index+1);
-                                }}
-                            >
-                                View
-                            </div>
-                        </div>
-                    ];
-                },
-                width: '8%',
-                left: true
-            }
-        ]
+    //         {
+    //             name: 'Actions',
+    //             cell: (params) => {
+    //                 return [
+    //                     <div className="d-flex" key={params}>
+    //                         <div
+    //                             className="btn btn-primary btn-lg mr-5 mx-2"
+    //                             onClick={() => {
+    //                                 setIdeaDetails(params);
+    //                                 setIsDetail(true);
+    //                                 let index=0;
+    //                                 tableData?.forEach((item, i)=>{
+    //                                     if(item?.challenge_response_id==params?.challenge_response_id){
+    //                                         index=i;
+    //                                     }
+    //                                 });
+    //                                 setCurrentRow(index+1);
+    //                             }}
+    //                         >
+    //                             View
+    //                         </div>
+    //                     </div>
+    //                 ];
+    //             },
+    //             width: '8%',
+    //             left: true
+    //         }
+    //     ]
+    // };
+    const [sortid,setsortid] = useState();
+    const handlesortid = (e) =>{
+        setsortid(e.id);
     };
-
-    const sel = (level==='L1' && title!=='L1 - Yet to Processed') ? evaluatedIdea : (level==='L1' && title==='L1 - Yet to Processed') ? l1yettoprocessed : (level === 'L2' && title!=='L2 - Yet to Processed') ? evaluatedIdeaL2 : (level === 'L2' && title==='L2 - Yet to Processed') ? L2yettoprocessed : evaluatedIdeafinal;
+    const sel = (level==='L1' && title!=='L1 - Yet to Processed') ? evaluatedIdea : (level==='L1' && title==='L1 - Yet to Processed') ? l1yettoprocessed : (level === 'L2' && title!=='L2 - Yet to Processed') ? evaluatedIdeaL2 : (level === 'L2' && title==='L2 - Yet to Processed') ? L2yettoprocessed : ' ';
     const showbutton = district && sdg;
 
     const handleNext=()=>{
@@ -642,7 +686,8 @@ const downloadPDF = async(params) => {
                                 >
                                     <DataTable
                                         data={tableData || []}
-                                        defaultSortField="id"
+                                        defaultSortFieldId={sortid}
+                                        //defaultSortField='ID'
                                         defaultSortAsc={false}
                                         pagination
                                         highlightOnHover
@@ -654,6 +699,7 @@ const downloadPDF = async(params) => {
                                         paginationPerPage={10}
                                         onChangePage={(page)=>setTablePage(page)}
                                         paginationDefaultPage={tablePage}
+                                        onSort={(e)=>(handlesortid(e))}
                                     />
                                 </DataTableExtensions>
                             </div>

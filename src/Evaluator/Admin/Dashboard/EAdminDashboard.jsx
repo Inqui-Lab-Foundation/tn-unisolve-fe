@@ -95,10 +95,10 @@ const eadmindashboard = () => {
                                 <Link to="/eadmin/listofideas?title=L1 - Yet to Processed&level=L1">
                                     <Card className="p-4 text-center card-effect mb-3">
                                         <b className="text-warning">
-                                        L1 - YET TO PROCESSED CHALLENGES
+                                            L1 - YET TO PROCESSED CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                        {dateCount.l1_yet_to_process}
+                                            {dateCount.l1_yet_to_process}
                                         </h3>
                                     </Card>
                                 </Link>
@@ -131,14 +131,28 @@ const eadmindashboard = () => {
                             </Col>
                         </Row>
                         <Row className="mb-5">
-                            <Col>
-                                <Link to="/eadmin/listofFinalideas?title=Final&level=L2">
+                            <Col md={6}>
+                                <Link to="/eadmin/listofFinalideas?title=0&level=L2">
                                     <Card className="p-4 text-center card-effect mb-3">
-                                        <b className="text-success">
-                                            FINAL CHALLENGES
+                                        <b className="text-warning">
+                                            FINAL EVALUATION CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                        {dateCount.final_challenges}
+                                            {
+                                                dateCount.final_evaluation_challenge
+                                            }
+                                        </h3>
+                                    </Card>
+                                </Link>
+                            </Col>
+                            <Col md={6}>
+                                <Link to="/eadmin/listofFinalideas?title=1&level=L2">
+                                    <Card className="p-4 text-center card-effect mb-3">
+                                        <b className="text-success">
+                                            FINAL WINNERS CHALLENGES
+                                        </b>
+                                        <h3 className="display-5 bold m-2">
+                                            {dateCount.final_evaluation_final}
                                         </h3>
                                     </Card>
                                 </Link>

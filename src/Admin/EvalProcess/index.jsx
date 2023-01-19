@@ -58,13 +58,6 @@ const evalprocess = () => {
         localStorage.setItem('eavlId', JSON.stringify(item));
     };
 
-    // const handlePro = (item) => {
-    //     history.push({
-    //         pathname: '/admin/evaluationProcess-promoteNextLevel'
-    //     });
-    //     localStorage.setItem('eavlId', JSON.stringify(item));
-    // };
-
     const handleActiveStatusUpdate = (item, itemA) => {
         const body = {
             status: itemA,
@@ -207,16 +200,6 @@ const evalprocess = () => {
                                 </div>
                             </Link>
                         )}
-                        {/* <Link
-                            exact="true"
-                            key={record}
-                            onClick={() => handlePro(record)}
-                            style={{ marginRight: '12px' }}
-                        >
-                            <div className="btn btn-info btn-lg mx-2">
-                                PROMOTE
-                            </div>
-                        </Link> */}
                     </>
                 ]
             }

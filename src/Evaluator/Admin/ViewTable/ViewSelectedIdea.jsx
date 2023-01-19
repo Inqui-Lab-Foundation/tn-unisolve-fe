@@ -575,6 +575,10 @@ const downloadPDF = async(params) => {
             }
         ]
     };
+    const [sortid,setsortid] = React.useState();
+    const handlesortid = (e) =>{
+        setsortid(e.id);
+    };
     const sel = level0 ? evaluatedIdeaforL0 : (level==='L1' && title!=='L1 - Yet to Processed') ? evaluatedIdeaL1 : (level==='L1' && title==='L1 - Yet to Processed') ? l1yettoprocessed : (level === 'L2' && title!=='L2 - Yet to Processed') ? evaluatedIdeaL2 : (level === 'L2' && title==='L2 - Yet to Processed') ? L2yettoprocessed : evaluatedIdeafinal;
     const showbutton = district && sdg;
 
@@ -700,7 +704,7 @@ const downloadPDF = async(params) => {
                                 >
                                     <DataTable
                                         data={tableData || []}
-                                        defaultSortField="id"
+                                        defaultSortFieldId={sortid}
                                         defaultSortAsc={false}
                                         pagination
                                         highlightOnHover
@@ -712,6 +716,7 @@ const downloadPDF = async(params) => {
                                         paginationPerPage={10}
                                         onChangePage={(page)=>setTablePage(page)}
                                         paginationDefaultPage={tablePage}
+                                        onSort={(e)=>(handlesortid(e))}
                                     />
                                 </DataTableExtensions>
                             </div>

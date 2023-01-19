@@ -17,13 +17,13 @@ const ViewDetail = (props) => {
     const [teamResponse, setTeamResponse] = React.useState([]);
     
     React.useEffect(()=>{
-        if (props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.response) {
+        if (props?.ideaDetails?.response) {
             setTeamResponse(
-                Object.entries(props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.response).map((e) => e[1])
+                Object.entries(props?.ideaDetails?.response).map((e) => e[1])
             );
         }
     },[props]);
-console.warn(props);
+console.warn('detail', props);
 
 
 const [pdfLoader, setPdfLoader]=React.useState(false);
@@ -57,7 +57,7 @@ const downloadPDF = async() => {
                                     <h2 className="mb-md-4 mb-3">
                                         SDG:{' '}
                                         <span className="text-capitalize fs-3">
-                                            {props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.sdg.toLowerCase() ||
+                                            {props?.ideaDetails?.sdg.toLowerCase() ||
                                                 ''}
                                         </span>
                                     </h2>
@@ -164,17 +164,18 @@ const downloadPDF = async() => {
                         <div className="col-lg-4 order-lg-1 order-0 p-0 h-100 mt-3 status_info_col">
                             <div className="level-status-card card border p-md-5 p-3 mb-3 me-lg-0 me-md-3">
                                    
-                                {props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluation_status ? <p className={`${props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluation_status=='SELECTEDROUND1'?'text-success':'text-danger'} fs-3 fw-bold text-center`}>
-                                    <span className='fs-3 text-info'>L1: </span>{props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
+                                {props?.ideaDetails?.evaluation_status ? 
+                                <p className={`${props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'text-success':'text-danger'} fs-3 fw-bold text-center`}>
+                                    <span className='fs-3 text-info'>L1: </span>{props?.ideaDetails?.evaluation_status=='SELECTEDROUND1'?'Accepted':'Rejected'}
                                 </p> : ''}
                                 
                     
-                                {props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluated_name ? <p className='text-center'>
-                                    <span className='text-bold'>Evaluated By: </span> {props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluated_name|| ''}
+                                {props?.ideaDetails?.evaluated_name ? <p className='text-center'>
+                                    <span className='text-bold'>Evaluated By: </span> {props?.ideaDetails?.evaluated_name|| ''}
                                 </p> : '' }
 
-                                {props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluated_at ? <p className='text-center'>
-                                    <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluator_ratings[0]?.challenge_response?.evaluated_at).format('DD-MM-YY h:mm:ss a')|| ''}
+                                {props?.ideaDetails?.evaluated_at ? <p className='text-center'>
+                                    <span className='text-bold'>Evaluated At: </span> {moment(props?.ideaDetails?.evaluated_at).format('DD-MM-YY h:mm:ss a')|| ''}
                                 </p>: '' }
                                 
                             </div>

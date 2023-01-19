@@ -9,6 +9,7 @@ import ideaSubmissionCertificate from '../../../assets/media/img/certificates/TN
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+    getStudentChallengeSubmittedResponse,
     getStudentDashboardStatus,
     studentPostSurveyCertificate,
     updateStudentBadges,
@@ -59,11 +60,9 @@ const Certificate = ({
             );
     };
     const certDateCheck = () => {
-        const check = type
+        const check = type !=='participate'
             ? certDate?.course_completed_date &&
-              moment(certDate?.course_completed_date).format('DD-MM-YYYY')
-            : certDate?.post_survey_completed_date &&
-              moment(certDate?.post_survey_completed_date).format('DD-MM-YYYY');
+            moment(certDate?.course_completed_date).format('DD-MM-YYYY'):'';
         return check ? ' on ' + check : '';
     };
     return (
@@ -89,7 +88,7 @@ const Certificate = ({
                             className="text-capitalize"
                             style={{
                                 position: 'absolute',
-                                top: `${type ? '9rem' : '8.4rem'}`,
+                                top: `${type ? '8.1rem' : '7.4rem'}`,
                                 left: `${type ? '10.3rem' : '10rem'}`,
                                 // top: `${type ? '9rem' : '12.8rem'}`,
                                 // left: `${type ? '10.3rem' : '6.5rem'}`,
@@ -98,13 +97,13 @@ const Certificate = ({
                                 
                             }}
                         >
-                            {currentUser?.data[0]?.full_name + certDateCheck()}
+                            {currentUser?.data[0]?.full_name}
                         </span>
                         <span
                             className="text-capitalize"
                             style={{
                                 position: 'absolute',
-                                top: `${type ? '10.5rem' : '9.8rem'}`,
+                                top: `${type ? '9.5rem' : '8.8rem'}`,
                                 left: `${type ? '5rem' : '5rem'}`,
                                 fontSize: '0.8rem',
                                 fontFamily:"Times New Roman"
@@ -165,6 +164,12 @@ const MyCertificate = () => {
     const dashboardStatus = useSelector(
         (state) => state?.studentRegistration?.dashboardStatus
     );
+    const ideaSubmissionStatus = useSelector(
+        (state) => state?.studentRegistration.ideaSubmissionStatus
+    );
+    const ideaSubmissionsSubmittedAt = useSelector(
+        (state) => state?.studentRegistration?.challengesSubmittedResponse[0]
+    );
     let { all_topics_count, topics_completed_count } = dashboardStatus
         ? dashboardStatus
         : { all_topics_count: null, topics_completed_count: null };
@@ -178,16 +183,29 @@ const MyCertificate = () => {
                     language
                 )
             );
+        if (!ideaSubmissionStatus)
+            dispatch(
+                getStudentChallengeSubmittedResponse(
+                    currentUser?.data[0]?.team_id,
+                    language
+                )
+            );
+        if (!ideaSubmissionsSubmittedAt)
+            dispatch(
+                getStudentChallengeSubmittedResponse(
+                    currentUser?.data[0]?.team_id,
+                    language
+                )
+            );
         if (!postSurveyStatusGl)
             dispatch(studentPostSurveyCertificate(language));
     }, [language]);
-    const enablePostSurvey =
-        postSurveyStatusGl && postSurveyStatusGl === 'COMPLETED';
+    const enablePostSurvey = ideaSubmissionStatus === 'SUBMITTED';
     return (
         <Layout>
             <Container className="presuervey mb-50 mt-5 ">
                 <Fragment>
-                    {showDummypage ? (
+                    {!showDummypage ? (
                         // all_topics_count === topics_completed_count || enablePostSurvey
                         <Row>
                             <Col className="d-lg-flex justify-content-center">
@@ -195,7 +213,8 @@ const MyCertificate = () => {
                                     type={'participate'}
                                     currentUser={currentUser}
                                     postSurveyStatus={enablePostSurvey}
-                                    certDate={dashboardStatus}
+                                    //certDate={ideaSubmissionsSubmittedAt}
+                                    ideaDate={ideaSubmissionsSubmittedAt}
                                     language={language}
                                 />
                                 <Certificate

@@ -41,6 +41,7 @@ export const URL = {
     uploadFile:
         process.env.REACT_APP_API_BASE_URL +
         '/challenge_response/fileUpload?team_id=',
+    updatepromote: process.env.REACT_APP_API_BASE_URL + '/challenge_response/updateEntry/',
 
     //Put//
     changePassword: process.env.REACT_APP_API_BASE_URL + '/auth/changePassword',
@@ -136,6 +137,7 @@ export const URL = {
     getFinalEvaluation: process.env.REACT_APP_API_BASE_URL + '/challenge_response/finalEvaluation',
     gettotalcount:
         process.env.REACT_APP_API_BASE_URL + '/dashboard/evaluatorStats'
+    
 };
 const API = 'O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870';
 

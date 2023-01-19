@@ -14,6 +14,7 @@ const eadmindashboard = () => {
 
     useEffect(() => {
         handlecountvalue();
+        
     }, []);
 
     async function handlecountvalue() {
@@ -33,6 +34,7 @@ const eadmindashboard = () => {
                 console.log(error);
             });
     }
+    console.log(dateCount);
     return (
         <Layout>
             <div className="container dashboard-wrapper mt-5 mb-5">
@@ -73,7 +75,9 @@ const eadmindashboard = () => {
                                             ACCEPTED CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                            {dateCount?.selected_round_one_count}
+                                            {
+                                                dateCount?.selected_round_one_count
+                                            }
                                         </h3>
                                     </Card>
                                 </Link>
@@ -85,7 +89,9 @@ const eadmindashboard = () => {
                                             REJECTED CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                            {dateCount?.rejected_round_one_count}
+                                            {
+                                                dateCount?.rejected_round_one_count
+                                            }
                                         </h3>
                                     </Card>
                                 </Link>
@@ -94,10 +100,10 @@ const eadmindashboard = () => {
                                 <Link to="/admin/evaluationStatus/viewlist?title=L1 - Yet to Processed&level=L1">
                                     <Card className="p-4 text-center card-effect mb-3">
                                         <b className="text-warning">
-                                        L1 - YET TO PROCESSED CHALLENGES
+                                            L1 - YET TO PROCESSED CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                        {dateCount?.l1_yet_to_process}
+                                            {dateCount?.l1_yet_to_process}
                                         </h3>
                                     </Card>
                                 </Link>
@@ -137,7 +143,9 @@ const eadmindashboard = () => {
                                             FINAL EVALUATION CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                        {dateCount?.final_evaluation_challenge}
+                                            {
+                                                dateCount?.final_evaluation_challenge
+                                            }
                                         </h3>
                                     </Card>
                                 </Link>
@@ -149,7 +157,7 @@ const eadmindashboard = () => {
                                             FINAL WINNERS CHALLENGES
                                         </b>
                                         <h3 className="display-5 bold m-2">
-                                        {dateCount?.final_evaluation_final}
+                                            {dateCount?.final_evaluation_final}
                                         </h3>
                                     </Card>
                                 </Link>
