@@ -15,11 +15,11 @@ export const languageOptions = [
     //     name: 'Hindi',
     //     country_code: 'in'
     // },
-    {
-        code: 'tn',
-        name: 'தமிழ்',
-        country_code: 'in'
-    },
+    // {
+    //     code: 'tn',
+    //     name: 'தமிழ்',
+    //     country_code: 'in'
+    // },
     
 ];
 

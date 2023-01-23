@@ -276,7 +276,7 @@ const Home = () => {
         {
             id: 4,
             title: 'How to register your institution for this program?',
-            desc: 'Open the website and click register. Register your school/Institution thereby entering the UDISE code/Unique ID and then filling in all required details. Once the registration process is completed, you can log in to your account either by entering a password or with OTP.'
+            desc: "Open the website and click register. Register your school/Institution thereby entering the Unique Code/Unique ID and then filling in all required details. Once the registration process is completed, you can log in to your account either by entering a password or with OTP."
         },
         {
             id: 5,
@@ -380,23 +380,13 @@ const Home = () => {
                     <Row>
                         <Col md={6}>
                             <h2>
-                                School Innovation Development Project (SIDP)
+                            UNISOLVE
                             </h2>
                             <p>
-                                To create a positive and dynamic innovation
-                                ecosystem within educational institutions,
-                                Government of Tamil Nadu, EDII-TN launches SIDP
-                                with support of School Education Department.
+                            To create a positive and dynamic innovation ecosystem within educational institutions, Government of Tamil Nadu, EDII-TN launches Unisolve with support of School Education Department.
                             </p>
                             <p>
-                                The objective of SIDP is to inspire students to
-                                solve problems by using a simple design thinking
-                                process as a method to innovate, collaborate and
-                                obtain leadership skills. The program also
-                                focuses on building the capacity of the teaching
-                                community to play a vital role in building an
-                                entrepreneurial, innovative ecosystem in schools
-                                and be mentors to the evolving minds.
+                            The objective of Unisolve is to inspire students to solve problems by using a simple design thinking process as a method to innovate, collaborate and obtain leadership skills. The program also focuses on building the capacity of the teaching community to play a vital role in building an entrepreneurial, innovative ecosystem in schools and be mentors to the evolving minds.
                             </p>
                         </Col>
                         <Col md={6}>

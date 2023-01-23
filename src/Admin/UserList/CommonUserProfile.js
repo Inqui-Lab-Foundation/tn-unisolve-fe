@@ -165,9 +165,7 @@ const CommonUserProfile = (props) => {
                             <h2 className="mb-4">Institution Details</h2>
 
                             <CardText>
-                                <span className="mx-3">
-                                    <b>UDISE Code:</b>
-                                </span>
+                                <span className='mx-3'><b>Unique Code:</b></span>
                                 <b>
                                     {props.location.data &&
                                     props.location.data?.organization_code

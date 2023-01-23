@@ -136,14 +136,14 @@ const EditSchool = (props) => {
                                             className="mb-2"
                                             htmlFor="organization_code"
                                         >
-                                            UDISE Code
+                                            Unique Code
                                             <span required>*</span>
                                         </Label>
                                         <InputBox
                                             {...inputDICE}
                                             id="organization_code"
                                             name="organization_code"
-                                            placeholder="Please enter UDISE code"
+                                            placeholder="Please enter Unique Code"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             value={

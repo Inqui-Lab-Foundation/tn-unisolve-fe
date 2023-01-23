@@ -137,14 +137,14 @@ const AddNewSchool = (props) => {
                                             htmlFor="organization_code"
                                             // style={{ fontSize: 15 }}
                                         >
-                                            UDISE Code
+                                            Unique Code
                                             <span required>*</span>
                                         </Label>
                                         <InputBox
                                             {...inputDICE}
                                             id="organization_code"
                                             name="organization_code"
-                                            placeholder="Please enter UDISE code"
+                                            placeholder="Please enter Unique Code"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             value={
