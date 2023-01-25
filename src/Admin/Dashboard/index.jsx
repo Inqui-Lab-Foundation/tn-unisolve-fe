@@ -201,7 +201,8 @@ const Dashboard = () => {
                 if (result.isConfirmed) {
                     dispatch(
                         teacherResetPassword({
-                            organization_code: data.toString(),
+                            organization_code: data.organization_code,
+                            mentor_id: data.mentor_id,
                             otp: false
                         })
                     );
@@ -464,8 +465,11 @@ const Dashboard = () => {
                                         </button>
                                         <button
                                             onClick={() =>
-                                                handleresetpassword(
-                                                    orgData.organization_code
+                                                handleresetpassword( {
+                                                    mentor_id:orgData.mentor.mentor_id,
+                                                    organization_code:orgData.organization_code
+                                                }
+                                                    
                                                 )
                                             }
                                             className="btn btn-info rounded-pill px-4 btn-lg text-white"
