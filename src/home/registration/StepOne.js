@@ -49,23 +49,16 @@ function StepOne({
                 )
                 .then((checkOrgRes) => {
                     if (checkOrgRes?.status == 200) {
-                        if (checkOrgRes?.data?.data[0].mentor == null) {
-                            if (
-                                Object.keys(checkOrgRes?.data?.data[0]).length
-                            ) {
-                                setOrgData(checkOrgRes?.data?.data[0]);
-                                setHideOne(false);
-                                setHideTwo(true);
-                            } else {
-                                formik.setErrors({
-                                    organization_code:
-                                        'Oops..! Teacher Unique Code seems incorrect'
-                                });
-                            }
+                        if (
+                            Object.keys(checkOrgRes?.data?.data[0]).length
+                        ) {
+                            setOrgData(checkOrgRes?.data?.data[0]);
+                            setHideOne(false);
+                            setHideTwo(true);
                         } else {
                             formik.setErrors({
-                                organization_code:
-                                    'Another Teacher is already registered in given School'
+                            organization_code:
+                                'Oops..! Teacher Unique Code seems incorrect'
                             });
                         }
                     } else {
