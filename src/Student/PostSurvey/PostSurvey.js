@@ -45,8 +45,7 @@ const PostSurvey = () => {
         (state) => state?.studentRegistration.dashboardStatus?.all_topics_count
     );
     const topicCompletedCount = useSelector(
-        (state) =>
-            state?.studentRegistration.dashboardStatus?.topics_completed_count
+        (state) => state?.studentRegistration.dashboardStatus?.topics_completed_count
     );
     // const  postSurveyStatusGl  = useSelector((state) => state?.studentRegistration?.postSurveyStatusGl);
     const history = useHistory();
