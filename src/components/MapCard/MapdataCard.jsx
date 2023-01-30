@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { Card, CardBody, Col, Row } from 'reactstrap';
 // import SingleMapdataCard from './SingleMapdataCard';
 import institutions from '../../assets/media/img/institutions.png';
@@ -100,12 +101,25 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.boys
-                                            ? values?.boys
-                                            : '0'}
+                                        {Number(values.boys) +
+                                            Number(values.girls)}
                                     </h4>
                                     <small className="blue">
-                                        UPSHIFTers <br/>(Boys)
+                                        UPSHIFTers <br />
+                                    </small>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <div className="mb-5 d-flex align-items-center ">
+                                <img src={team} alt="teams" className="mx-4" />
+                                <div>
+                                    <h4>{values?.boys ? values?.boys : '0'}</h4>
+                                    <small className="blue">
+                                        UPSHIFTers <br />
+                                        (Boys)
                                     </small>
                                 </div>
                             </div>
@@ -115,12 +129,11 @@ const MapdataCard = ({ values, all, districtName }) => {
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
                                     <h4>
-                                        {values?.girls
-                                            ? values?.girls
-                                            : '0'}
+                                        {values?.girls ? values?.girls : '0'}
                                     </h4>
                                     <small className="blue">
-                                        UPSHIFTers <br/>(Girls)
+                                        UPSHIFTers <br />
+                                        (Girls)
                                     </small>
                                 </div>
                             </div>
@@ -202,16 +215,25 @@ const MapdataCard = ({ values, all, districtName }) => {
                             </div>
                         </Col>
                     </Row>
+
                     <Row>
                         <Col>
                             <div className="mb-5 d-flex align-items-center ">
                                 <img src={team} alt="teams" className="mx-4" />
                                 <div>
-                                    <h4>
-                                        {all?.boys ? all?.boys : '0'}
-                                    </h4>
+                                    <h4>{all && '0'}</h4>
+                                    <small className="blue">UPSHIFTers</small>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div className="mb-5 d-flex align-items-center ">
+                                <img src={team} alt="teams" className="mx-4" />
+                                <div>
+                                    <h4>{all?.boys ? all?.boys : '0'}</h4>
                                     <small className="blue">
-                                    UPSHIFTers <br/>(Boys)
+                                        UPSHIFTers <br />
+                                        (Boys)
                                     </small>
                                 </div>
                             </div>
@@ -220,11 +242,10 @@ const MapdataCard = ({ values, all, districtName }) => {
                             <div className="mb-5 d-flex align-items-center ">
                                 <img src={girls} alt="teams" className="mx-4" />
                                 <div>
-                                    <h4>
-                                        {all?.girls ? all?.girls : '0'}
-                                    </h4>
+                                    <h4>{all?.girls ? all?.girls : '0'}</h4>
                                     <small className="blue">
-                                    UPSHIFTers <br/>(Girls)
+                                        UPSHIFTers <br />
+                                        (Girls)
                                     </small>
                                 </div>
                             </div>

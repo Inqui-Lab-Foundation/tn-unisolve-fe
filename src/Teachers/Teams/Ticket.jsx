@@ -30,7 +30,9 @@ import DoubleBounce from '../../components/Loaders/DoubleBounce';
 const TicketsPage = (props) => {
     const history = useHistory();
     const { t } = useTranslation();
-    const dashboardStates  = useSelector((state) => state.teacherDashBoard.dashboardStates);
+    const dashboardStates = useSelector(
+        (state) => state.teacherDashBoard.dashboardStates
+    );
 
     localStorage.setItem('teamId', JSON.stringify(''));
     const [count, setCount] = useState(0);
@@ -115,12 +117,9 @@ const TicketsPage = (props) => {
                             exact="true"
                             onClick={() => handleCreate(params)}
                         >
-                            {process.env.REACT_APP_TEAM_LENGTH >
-                                params.student_count && (
-                                <div className="btn btn-success btn-lg mr-5 mx-2">
-                                    {t('teacher_teams.create')}
-                                </div>
-                            )}
+                            <div className="btn btn-success btn-lg mr-5 mx-2">
+                                {t('teacher_teams.create')}
+                            </div>
                         </Link>,
                         <Link
                             key={params}
@@ -135,11 +134,13 @@ const TicketsPage = (props) => {
                         </Link>,
                         // <Link
                         //     key={params}
-                        //     exact='true'
+                        //     exact="true"
                         //     onClick={() => handleEditTeam(params)}
                         //     // style={{marginRight:"20px"}}
                         // >
-                        //     <div className="btn btn-warning btn-lg mr-5 mx-2">{t('teacher_teams.edit')}</div>
+                        //     <div className="btn btn-warning btn-lg mr-5 mx-2">
+                        //         {t('teacher_teams.edit')}
+                        //     </div>
                         // </Link>,
                         <Link
                             key={params}
@@ -321,10 +322,12 @@ const TicketsPage = (props) => {
                                 You can delete the team by using Delete Option
                             </li>
                             <li>
-                                Special characters are not allowed in team name & Student name
+                                Special characters are not allowed in team name
+                                & Student name
                             </li>
                             <li>
-                                25 to 30 students to be enrolled in Project per School
+                                25 to 30 students to be enrolled in Project per
+                                School
                             </li>
                         </List>
                     </Card>

@@ -120,7 +120,6 @@ const TicketsPage = (props) => {
         };
         axios(config)
             .then(function (response) {
-                console.log(response);
                 if (response.status === 200) {
                     setReqList(true);
                     listApi();
@@ -190,8 +189,6 @@ const TicketsPage = (props) => {
         await axios(config)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response.data);
-
                     setReqSchoolsResponse(
                         response.data.data[0] &&
                             response.data.data[0].dataValues
@@ -218,8 +215,6 @@ const TicketsPage = (props) => {
         await axios(config)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response.data);
-
                     setNewSchoolsResponse(
                         response.data.data[0] &&
                             response.data.data[0].dataValues
@@ -247,19 +242,20 @@ const TicketsPage = (props) => {
         setNewList(false);
         props.getSchoolRegistationBulkUploadActions('i');
     };
-    console.log(props.schoolsRegistrationList,"-----test");
-    const [array,setarray]=useState([]);
+    const [array, setarray] = useState([]);
     useEffect(() => {
-        if(props.schoolsRegistrationList && props.schoolsRegistrationList.length>0){
+        if (
+            props.schoolsRegistrationList &&
+            props.schoolsRegistrationList.length > 0
+        ) {
             let dataarray = [];
-            props.schoolsRegistrationList.forEach((item,index) => {
-                dataarray.push(Object.assign(item, {index: index+1}));
-            }); 
-            setarray([...dataarray]); 
+            props.schoolsRegistrationList.forEach((item, index) => {
+                dataarray.push(Object.assign(item, { index: index + 1 }));
+            });
+            setarray([...dataarray]);
         }
     }, [props.schoolsRegistrationList]);
 
-    console.log(array,"---newarray----");
     const SchoolsData = {
         data: array,
         columns: [
@@ -272,7 +268,7 @@ const TicketsPage = (props) => {
             {
                 name: 'UDISE Code ',
                 selector: 'organization_code',
-                cellExport:(row) => row.organization_code,
+                cellExport: (row) => row.organization_code,
                 sortable: true,
 
                 width: '15%'
@@ -280,24 +276,24 @@ const TicketsPage = (props) => {
             {
                 name: 'Institution Name',
                 selector: 'organization_name',
-                cellExport:(row) => row.organization_name,
+                cellExport: (row) => row.organization_name,
                 width: '19%'
             },
             {
                 name: 'Principal Name',
                 selector: 'principal_name',
-                cellExport:(row) => row.principal_name,
+                cellExport: (row) => row.principal_name,
                 width: '15%'
             },
             {
                 name: 'Mobile',
                 selector: 'principal_mobile',
-                cellExport:(row) => row.principal_mobile,
+                cellExport: (row) => row.principal_mobile,
                 width: '12%'
             },
             {
                 name: 'Status',
-                cellExport:(row) => row.status,
+                cellExport: (row) => row.status,
                 cell: (row) => [
                     <Badge
                         key={row.organization_id}
@@ -315,7 +311,7 @@ const TicketsPage = (props) => {
                 selector: 'action',
                 width: '23%',
                 center: true,
-                cellExport:(row) => {},
+                cellExport: (row) => {},
                 cell: (record) => [
                     <>
                         <Link
@@ -634,7 +630,11 @@ const TicketsPage = (props) => {
                         </div>
                     ) : (
                         <div className="my-2">
-                            <DataTableExtensions {...SchoolsData} export={true} exportHeaders>
+                            <DataTableExtensions
+                                {...SchoolsData}
+                                export={true}
+                                exportHeaders
+                            >
                                 <DataTable
                                     data={rows}
                                     // noHeader
