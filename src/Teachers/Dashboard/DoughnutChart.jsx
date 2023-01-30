@@ -89,6 +89,7 @@ export default function DoughnutChart({ user }) {
     const percentageBWNumbers = (a, b) => {
         return (((a - b) / a) * 100).toFixed(2);
     };
+
     useEffect (( )=> {
         if(user){
             setmentorid(user[0].mentor_id);
