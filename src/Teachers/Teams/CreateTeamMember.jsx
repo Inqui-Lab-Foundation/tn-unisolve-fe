@@ -413,8 +413,8 @@ const CreateTeamMember = (props) => {
                 .trim(),
             age: Yup.string()
                 // .integer()
-                // .min(10, 'Min age is 10')
-                // .max(18, 'Max age is 18')
+                // .min(9, 'Min age is 9')
+                // .max(24, 'Max age is 24')
                 .required('Age is required'),
             gender: Yup.string().required('Please select valid gender'),
             grade: Yup.string()
