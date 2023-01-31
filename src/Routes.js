@@ -155,6 +155,7 @@ import TicketResView from './Admin/Tickets/TicketResView';
 import EditEvalProcess from './Admin/EvalProcess/EditEvalProcess';
 import SelDistricts from './Admin/EvalProcess/SelectingDistricts';
 import CreateEvalProcess from './Admin/EvalProcess/CreateEvalProcess';
+import ReportsView from './Admin/Reports/Helpers/ReportsView';
 
 const Routers = () => {
     // const history = useHistory();
@@ -592,6 +593,11 @@ const Routers = () => {
                         exact={true}
                         path="/admin/selected-report"
                         component={IndividualReport}
+                    />
+                    <ProtectedRoute
+                        exact={true}
+                        path="/admin/reports-view"
+                        component={ReportsView}
                     />
 
                     <ProtectedRoute

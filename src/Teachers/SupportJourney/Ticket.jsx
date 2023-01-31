@@ -29,11 +29,9 @@ import { getCurrentUser } from '../../helpers/Utils';
 
 const TicketsPage = (props) => {
     const [rows, setRows] = React.useState([]);
-    // console.log(rows);
     const dispatch = useDispatch();
     const currentUser = getCurrentUser('current_user');
     const { supportTickets } = useSelector((state) => state.mentors);
-    // console.log(supportTickets);
     const language = useSelector((state) => state?.mentors.mentorLanguage);
 
     const history = useHistory();

@@ -112,7 +112,6 @@ const ManageFaq = (props) => {
                     // setFaqStateList(faqRowData);
 
                     // setDataTableListData(faqRowDataTable);
-                    // console.log('line---120', faqRowDataTable);
 
                     setfaqCategoryListItems(faqRowDataTableCat);
                 }
@@ -368,17 +367,13 @@ const ManageFaq = (props) => {
     // };
 
     // const changeTab = (e) => {
-    //     // console.log(typeof e);
     //     if (e === '1') {
-    //         // console.log("3");
     //         activeFaqCategory(!getFaqCategory);
     //         activeFaq(false);
     //     } else if (e === '2') {
-    //         // console.log("2");
     //         activeFaq(!getFaq);
     //         activeFaqCategory(false);
     //     } else {
-    //         // console.log("1");
     //         activeFaqCategory(false);
     //         activeFaq(false);
     //         // activeStudent()

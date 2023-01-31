@@ -81,7 +81,6 @@ const AddNewMentor = (props) => {
                 email: email1
                 // mobile: 9010923117,
             });
-            // console.log(body);
             // props.mentorCreateAction(body, history);
         }
     });

@@ -31,7 +31,6 @@ const ForgotPassword = () => {
         }),
 
         onSubmit: async (values) => {
-            // console.log(JSON.stringify(values));
             // const axiosConfig = getNormalHeaders(KEY.User_API_Key);
             // await axios
             //     .put(

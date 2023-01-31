@@ -20,7 +20,6 @@ const TicketDataTable = (props) => {
     //         setActionDropdown(false);
     //     }
     // };
-    // console.log(actionDropdown, 'actionDropdown', actionIndex);
 
     // const typeProps = {
     //     name: 'type: All',
@@ -49,7 +48,6 @@ const TicketDataTable = (props) => {
             { name: 'Course - 2', path: '/playCourse' }
         ]
     };
-    // console.log(props.typeProps1, 'line12')
     return (
         <div>
             <div className="tableActionTemplate">

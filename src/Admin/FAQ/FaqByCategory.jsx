@@ -39,7 +39,6 @@ const FaqByCategory = () => {
     //     };
     //     axios(config)
     //         .then(function (response) {
-    //             console.log("line no:99", response);
 
     //             if (response.status === 200) {
     //                 setData(() =>

@@ -35,7 +35,6 @@ const MRQQuestionsCopy = ({
     // }, [answer]);
 
     // const handleClick = (e) => {
-    //     console.log('cc',e);
     // const { name, checked } = e.target;
     // if (name == eachQuestion?.challenge_question_id) {
     //     setIsCheck({

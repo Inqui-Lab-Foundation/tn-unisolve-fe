@@ -6,7 +6,6 @@ import { BreadcrumbTwo } from '../../stories/BreadcrumbTwo/BreadcrumbTwo';
 import { Button } from '../../stories/Button';
 
 const CommonUserProfile = (props) => {
-    console.log('props.location', props.location);
     const history = useHistory();
 
     const headingDetails = {

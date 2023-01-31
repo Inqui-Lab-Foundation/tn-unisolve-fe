@@ -5,14 +5,10 @@ import { RichText } from '../../stories/RichText/RichText';
 import { InputBox } from '../../stories/InputBox/InputBox';
 import deleteIcon from '../../assets/media/img/red-trash.svg';
 
-const deleteFaq = (faqID) => {
-    // console.log(faqID);
-};
+const deleteFaq = (faqID) => {};
 
 export const FaqCollapseComp = (props) => {
     const [faqData, setFaqData] = useState([]);
-
-    // console.log('faqData: ', faqData);
 
     return (
         <>

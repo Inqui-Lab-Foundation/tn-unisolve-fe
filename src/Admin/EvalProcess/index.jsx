@@ -18,6 +18,7 @@ const evalprocess = () => {
         handleEvalList();
     }, []);
     async function handleEvalList() {
+        // handleEvalList = list of evaluationProcess //
         var config = {
             method: 'get',
             url:
@@ -30,7 +31,6 @@ const evalprocess = () => {
         };
         await axios(config)
             .then(function (response) {
-                // console.log(response);
                 if (response.status === 200) {
                     setEvalList(
                         response.data &&
@@ -52,6 +52,7 @@ const evalprocess = () => {
     };
 
     const handleDic = (item) => {
+        // item = district//
         history.push({
             pathname: '/admin/selectingDistricts-evaluationProcess'
         });
@@ -59,6 +60,8 @@ const evalprocess = () => {
     };
 
     const handleActiveStatusUpdate = (item, itemA) => {
+        //  handleActiveStatusUpdate we can update the status//
+
         const body = {
             status: itemA,
             level_name: item.level_name,
@@ -78,7 +81,6 @@ const evalprocess = () => {
         };
         axios(config)
             .then(function (response) {
-                // console.log(response);
                 if (response.status === 200) {
                     handleEvalList();
 

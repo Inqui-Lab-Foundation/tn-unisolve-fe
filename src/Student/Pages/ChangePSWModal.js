@@ -41,7 +41,6 @@ const ChangePSWModal = (props) => {
         }),
 
         onSubmit: async (values) => {
-            console.log('=====valiues', values);
             if (values.newPassword.length < 8) {
                 SetError('New Password must be 8-character minimum');
             } else if (values.oldPassword === values.newPassword) {

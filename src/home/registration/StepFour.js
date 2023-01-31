@@ -65,7 +65,6 @@ function StepFour({ userData, setHideFour, setHideFive }) {
             };
             const axiosConfig = getNormalHeaders(KEY.User_API_Key);
             // const {confirmpassword,...others} = values;
-            // console.log(confirmpassword);
             await axios
                 .put(
                     `${URL.updatePassword}`,

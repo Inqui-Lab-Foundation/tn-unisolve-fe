@@ -107,7 +107,6 @@ const LoginNew = (props) => {
     //     //   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
     //   });
     // };
-    // console.log("===========error", props.currentUser);
     const handleShow = (e, type) => {
         if (type === 'password') {
             handlePassword('text');

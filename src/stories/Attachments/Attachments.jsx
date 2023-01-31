@@ -15,10 +15,7 @@ export const Attachments = () => {
         if (fileType === 'docx' || fileType === 'pdf' || fileType === 'xlsx') {
             SetFile(file);
         }
-        // console.log("============", fileType);
     };
-
-    // console.log("=============photo", File);
 
     return (
         <div className="file-drop-area">

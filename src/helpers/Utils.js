@@ -12,7 +12,6 @@ export const getCurrentUser = () => {
             localStorage.getItem('current_user') != null
                 ? JSON.parse(localStorage.getItem('current_user'))
                 : null;
-        // console.log(user, 'getCurrentUser---------------------------------------');
     } catch (error) {
         console.log(
             '>>>>: src/helpers/Utils.js  : getCurrentUser -> error',
@@ -41,7 +40,6 @@ export const setCurrentUser = (user) => {
 export const getNormalHeaders = (apiKey) => {
     // it receive api_key argument if not it will assign null to it.
     const loginUser = getCurrentUser();
-    // console.log("=========", loginUser.data[0].token);
     let axiosConfig = {};
     if (loginUser) {
         // eslint-disable-next-line no-return-await

@@ -23,7 +23,6 @@ const EditTranslation = (props) => {
     }, []);
 
     const handleEditorChangeOfToValue = (state) => {
-        // console.log(state.target.value);
         setEditorStateOfToValue(state.target.value);
         formik.setFieldValue('value', state.target.value);
     };

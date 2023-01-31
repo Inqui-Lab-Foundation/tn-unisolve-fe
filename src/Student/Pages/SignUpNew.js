@@ -71,7 +71,6 @@ const SignUpNew = () => {
         };
         axios(config)
             .then(function (response) {
-                // console.log("========", response);
                 if (response.status === 200) {
                     setSignUpDetails(response.data);
                 }
@@ -104,7 +103,6 @@ const SignUpNew = () => {
         // btnClass: "default",
     };
 
-    // console.log("jhaniiiiiii", formik.values.email, formik.values.email.isValid);
     return (
         <React.Fragment>
             <div className="container-fluid SignUp">

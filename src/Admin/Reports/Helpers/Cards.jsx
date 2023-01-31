@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'reactstrap';
+import { Card, Col, Button } from 'reactstrap';
 import { CSVLink } from 'react-csv';
 import axios from 'axios';
 import {
@@ -13,12 +13,11 @@ import './table.css';
 import './button.css';
 import { useHistory } from 'react-router-dom';
 
-const Cards = ({ heading, list, reports, props }) => {
+const Cards = ({ heading, list, reports, props, distList }) => {
     const currentUser = getCurrentUser('current_user');
     const history = useHistory();
     const [reportsData, setReportsData] = useState([]);
     const [msg, setMsg] = useState('');
-
     const report = [
         {
             Name: 'Teacher-one',
@@ -31,7 +30,9 @@ const Cards = ({ heading, list, reports, props }) => {
             Contact: '9801775505'
         }
     ];
+
     const handleDownload = (item) => {
+        // All download reports list //
         setMsg(item);
         var url = '';
         if (item == 'Registered Teachers List') {
@@ -85,6 +86,34 @@ const Cards = ({ heading, list, reports, props }) => {
             });
     };
 
+    const handleView = (item) => {
+        //All challenges districtWise count //
+        var url = '';
+        if (item == 'Submitted Challenges') {
+            url = 'SUBMITTED';
+        } else if (item == 'Draft Challenges') {
+            url = 'DRAFT';
+        } else if (item == 'Accepted Challenges') {
+            url = 'SELECTEDROUND1';
+        } else if (item == 'Rejected Challenges') {
+            url = 'REJECTEDROUND1';
+        } else if (item == 'L1 - Yet to Processed Challenges') {
+            url = 'L1YETPROCESSED';
+        } else if (item == 'L2 - Processed Challenges') {
+            url = 'L2PROCESSED';
+        } else if (item == 'L2 - Yet to  Processed Challenges') {
+            url = 'L2YETPROCESSED';
+        } else if (item == 'Final Evaluation Challenges') {
+            url = 'FINALCHALLENGES';
+        } else if (item == 'Final Winner Challenges') {
+            url = 'FINALACCEPTED';
+        }
+        history.push({
+            pathname: '/admin/reports-view'
+            // item: item
+        });
+        localStorage.setItem('district', JSON.stringify(url));
+    };
     return (
         <Card className="p-4 mb-8">
             {/* <h3 className="text-muted">{heading}</h3> */}
@@ -154,6 +183,35 @@ const Cards = ({ heading, list, reports, props }) => {
                                                 Filter
                                             </button>
                                         </Link>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </table>
+                </div>
+            </Card>
+            <Card>
+                <div className="App">
+                    <table>
+                        <tr className="th-background-color">
+                            <th className="column-size">DistrictWise Count</th>
+                            <th>Actions</th>
+                        </tr>
+                        {distList.map((val, key) => {
+                            // const slug = val.replaceAll(' ', '-');
+                            return (
+                                <tr key={key} className="table_data_row">
+                                    <td>{val}</td>
+
+                                    <td>
+                                        <button
+                                            className="btn btn-primary  px-4 btn-lg text-white "
+                                            onClick={() => {
+                                                handleView(val);
+                                            }}
+                                        >
+                                            View
+                                        </button>
                                     </td>
                                 </tr>
                             );

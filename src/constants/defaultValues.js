@@ -41,7 +41,8 @@ export const URL = {
     uploadFile:
         process.env.REACT_APP_API_BASE_URL +
         '/challenge_response/fileUpload?team_id=',
-    updatepromote: process.env.REACT_APP_API_BASE_URL + '/challenge_response/updateEntry/',
+    updatepromote:
+        process.env.REACT_APP_API_BASE_URL + '/challenge_response/updateEntry/',
 
     //Put//
     changePassword: process.env.REACT_APP_API_BASE_URL + '/auth/changePassword',
@@ -90,6 +91,7 @@ export const URL = {
     mentorChangePwd: `${process.env.REACT_APP_API_BASE_URL}/mentors/changePassword`,
     getTeamsList: `${process.env.REACT_APP_API_BASE_URL}/teams`,
     getTeamMembersList: `${process.env.REACT_APP_API_BASE_URL}/teams/`,
+    getReportsView: `${process.env.REACT_APP_API_BASE_URL}/reports/challengesDistrictCount`,
     getPreSurveyList: `${process.env.REACT_APP_API_BASE_URL}/quizSurveys`,
     getStudentPreSurveyList: `${process.env.REACT_APP_API_BASE_URL}/quizSurveys/2`,
     getPostSurveyList: `${process.env.REACT_APP_API_BASE_URL}/quizSurveys`,
@@ -133,11 +135,14 @@ export const URL = {
     getTeamMemberStatusEndpoint:
         process.env.REACT_APP_API_BASE_URL + '/dashboard/teamStats/',
     getidealist: process.env.REACT_APP_API_BASE_URL + '/challenge_response?',
-    getidealistfinal: process.env.REACT_APP_API_BASE_URL + '/challenge_response/evaluationResult',
-    getFinalEvaluation: process.env.REACT_APP_API_BASE_URL + '/challenge_response/finalEvaluation',
+    getidealistfinal:
+        process.env.REACT_APP_API_BASE_URL +
+        '/challenge_response/evaluationResult',
+    getFinalEvaluation:
+        process.env.REACT_APP_API_BASE_URL +
+        '/challenge_response/finalEvaluation',
     gettotalcount:
         process.env.REACT_APP_API_BASE_URL + '/dashboard/evaluatorStats'
-    
 };
 const API = 'O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870';
 

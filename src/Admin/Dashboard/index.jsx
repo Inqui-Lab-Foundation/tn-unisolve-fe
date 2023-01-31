@@ -43,8 +43,8 @@ const Dashboard = () => {
     const [mentorTeam, setMentorTeam] = useState([]);
     const [count, setCount] = useState(0);
     const [error, setError] = useState('');
-    console.log(mentorId);
     const handleOnChange = (e) => {
+        // We can give Dise Code//
         localStorage.removeItem('organization_code');
         setCount(0);
         setDiesCode(e.target.value);
@@ -57,6 +57,8 @@ const Dashboard = () => {
         apiCall(list);
     }, []);
     async function apiCall(list) {
+        // Dice code list API //
+        // list= Dise code  //
         const body = JSON.stringify({
             organization_code: list
         });
@@ -129,6 +131,8 @@ const Dashboard = () => {
     };
 
     async function getMentorIdApi(id) {
+        // Mentor Id  Api//
+        // id = Mentor Id //
         let axiosConfig = getNormalHeaders(KEY.User_API_Key);
         axiosConfig['params'] = {
             mentor_id: id,
@@ -158,6 +162,8 @@ const Dashboard = () => {
     }
 
     const handleEdit = () => {
+        // We can edit  the Registration details//
+        // Where data=orgData//
         history.push({
             pathname: '/admin/edit-user-profile',
             data: {
@@ -172,6 +178,7 @@ const Dashboard = () => {
     };
 
     const handleresetpassword = (data) => {
+        // We can resset the password//
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -313,6 +320,7 @@ const Dashboard = () => {
     };
 
     const handleAlert = (id) => {
+        // id = mentor  user id //
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',

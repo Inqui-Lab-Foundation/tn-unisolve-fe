@@ -32,14 +32,12 @@ const SampleCourseList = (props) => {
         };
         axios(config)
             .then(function (response) {
-                // console.log('-------', JSON.stringify(response.data));
                 SetList(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
     }, []);
-    console.log('========', list.product);
     return (
         <div>
             <table>

@@ -51,8 +51,6 @@ const SelectDists = ({ getDistrictsListAction, dists, tab, setDist }) => {
     useEffect(async () => {
         const dist = localStorage.getItem('dist');
         await setNewDist(dist);
-        // console.log(dist, 'dsts');
-        // console.log(dsts, 'dsts');
     }, [localStorage.getItem('dist')]);
     useEffect(() => {
         if (tab && (tab == 1 || tab == 2)) getDistrictsListAction();
@@ -103,8 +101,6 @@ const TicketsPage = (props) => {
 
     useEffect(() => {
         if (Number(tab) === 1 && studentDist !== '') {
-            console.log('1');
-            console.log(studentDist);
             props.getStudentListAction(studentDist);
         }
     }, [tab, studentDist]);
@@ -172,7 +168,6 @@ const TicketsPage = (props) => {
                 let dist = localStorage.getItem('dist');
                 setmentorDist(dist);
                 setNewDists(dist);
-                console.log(newDist);
                 props.getAdminMentorsListAction('ALL', mentorDist);
             } else {
                 let dist = localStorage.getItem('dist');
@@ -264,6 +259,7 @@ const TicketsPage = (props) => {
     };
 
     const handleStatus = (status, id, type = undefined, all = undefined) => {
+        // handleStatus we can Update the status  in student ,teacher, evaluator ,admins //
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -309,7 +305,6 @@ const TicketsPage = (props) => {
                             props.getEvaluatorListAction();
                         }, 500);
                     } else if (type && type === 'admin') {
-                        console.log(all);
                         const obj = {
                             full_name: all.full_name,
                             username: all.username,
@@ -751,7 +746,6 @@ const TicketsPage = (props) => {
             }
         ]
     };
-    // console.log(adminData);
 
     // const handleEvaluatorStatus=(status,id)=>{
     //     console.warn(status,id);
@@ -763,7 +757,7 @@ const TicketsPage = (props) => {
                 <Row className="mt-0 pt-3">
                     <h2>User List</h2>
                     {/* <h2 onClick={handleDelete}>User List</h2> */}
-                        <div className="ticket-data">
+                    <div className="ticket-data">
                         <Tabs
                             defaultActiveKey={
                                 localStorage.getItem('tab')
@@ -1000,7 +994,7 @@ const TicketsPage = (props) => {
                                 </div>
                             </TabPane>
                         </Tabs>
-                        </div>
+                    </div>
                 </Row>
             </Container>
             <ImportPopup

@@ -64,6 +64,7 @@ const TicketsPage = (props) => {
         localStorage.setItem('listId', JSON.stringify(item));
     };
     const handleActiveStatusUpdate = (item, itemA) => {
+        //  handleActiveStatusUpdate we  can update the status in active institutions //
         const body = {
             status: itemA,
             organization_code: item.organization_code,
@@ -98,6 +99,7 @@ const TicketsPage = (props) => {
             });
     };
     const handleStatusUpdate = (item, itemS) => {
+        //  handleStatusUpdate we can update the status in inActive institution //
         const body = {
             status: itemS,
             organization_code: item.organization_code,
@@ -133,6 +135,7 @@ const TicketsPage = (props) => {
     };
 
     const handleNewUpdate = (item, itemS) => {
+        // handleNewUpdate we can update the status in new institutions //
         const body = {
             status: itemS,
             organization_code: item.organization_code,
@@ -167,10 +170,12 @@ const TicketsPage = (props) => {
             });
     };
     const handleNewSchoolsList = () => {
+        //  handleNewSchoolsList we can add the new institution //
         setReqList(false);
         newListApi();
     };
     async function listApi() {
+        // listApi we can get the inActive institutions //
         var config = {
             method: 'get',
             url:
@@ -196,6 +201,7 @@ const TicketsPage = (props) => {
             });
     }
     async function newListApi() {
+        // newListApi we can get the new institutions //
         var config = {
             method: 'get',
             url:
@@ -221,6 +227,7 @@ const TicketsPage = (props) => {
             });
     }
     const handleReqSchoolsList = (e) => {
+        // handleReqSchoolsList we can get the inActive institutions //
         listApi();
     };
 

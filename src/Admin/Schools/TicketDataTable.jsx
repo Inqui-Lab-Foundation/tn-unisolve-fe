@@ -104,10 +104,6 @@ const TicketDataTable = (props) => {
         ]
     };
 
-    // console.log(
-    //   "props.schoolsRegistrationList.data[0].dataValues",
-    //   props.schoolsRegistrationList.data
-    // );
     return (
         <div>
             <div className="tableActionTemplate">
