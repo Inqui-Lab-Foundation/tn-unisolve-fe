@@ -307,9 +307,9 @@ const TicketsPage = (props) => {
                             <li>
                                 Each team needs to have a minimum of 2 members.
                             </li>
-                            <li>
+                            {/* <li>
                                 Only 5 students in total can be added per team.
-                            </li>
+                            </li> */}
                             <li>
                                 Delete team members will be active only once you
                                 add 3 members to the team.

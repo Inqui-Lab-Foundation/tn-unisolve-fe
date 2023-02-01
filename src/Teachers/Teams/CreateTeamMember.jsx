@@ -326,16 +326,15 @@ const CreateMultipleMembers = ({ id }) => {
                             disabled={true}
                         />
                     )}
-                    {studentData.length < 5 && (
-                        <div className="mx-5">
-                            <Button
-                                label={'Add More'}
-                                onClick={addItem}
-                                btnClass={'primary me-3 float-end'}
-                                size="small"
-                            />
-                        </div>
-                    )}
+
+                    <div className="mx-5">
+                        <Button
+                            label={'Add More'}
+                            onClick={addItem}
+                            btnClass={'primary me-3 float-end'}
+                            size="small"
+                        />
+                    </div>
                 </Col>
             </Row>
         </div>
@@ -370,7 +369,8 @@ const CreateTeamMember = (props) => {
         handleCreateMemberAPI(id);
     }, [id]);
 
-    async function handleCreateMemberAPI(teamId) {
+    async function 
+    handleCreateMemberAPI(teamId) {
         var config = {
             method: 'get',
             url:
