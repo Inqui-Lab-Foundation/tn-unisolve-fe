@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 const EditTeamMember = (props) => {
     const { t } = useTranslation();
-    const allowedAge = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+    const allowedAge = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     const history = useHistory();
     const currentUser = getCurrentUser('current_user');
     const teamMemberData =
@@ -241,8 +241,11 @@ const EditTeamMember = (props) => {
                                                     <option value="12">
                                                         Grade 12
                                                     </option>
-                                                    <option value="Others">
-                                                        Others
+                                                    <option value="Youth center">
+                                                        Youth center
+                                                    </option>
+                                                    <option value="In College">
+                                                        In College
                                                     </option>
                                                 </select>
                                             </div>
