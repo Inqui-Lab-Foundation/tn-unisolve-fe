@@ -17,12 +17,11 @@ export const languageOptions = [
     // },
     {
         code: 'tn',
-        name: 'தமிழ்',
+        name: 'తెలుగు',
         country_code: 'in'
-    },
-    
+    }
 ];
 
-export const getLanguage = (lang)=>{
+export const getLanguage = (lang) => {
     return `locale=${lang?.code}`;
 };

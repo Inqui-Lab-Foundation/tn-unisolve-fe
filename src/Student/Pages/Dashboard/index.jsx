@@ -17,7 +17,6 @@ import TopSectionCard from './sections/TopSectionCard.jsx';
 import DashboardOverviewCard from './DashboardOverviewCard.jsx';
 import { Table } from 'antd';
 import { Progress } from 'reactstrap';
-import Vimeo from '@u-wave/react-vimeo';
 import { useDispatch } from 'react-redux';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import {
@@ -360,64 +359,6 @@ const Dashboard = () => {
                                 columns={columns}
                             />
                         </div>
-                    </Col>
-                    <Col md={12} className="flex-1">
-                        <p style={{ fontSize: '1.5rem' }}>
-                            Introduction to SIDP by Mr. C. Shunmugaraj, EDII-TN
-                        </p>
-                        <div className="bg-white learning-statistics rounded p-3">
-                            <div className="flex-2 px-3 d-flex justify-content-center align-items-center">
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    {<Vimeo video={770500069} volume={true} />}
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div className="bg-white learning-statistics rounded p-3">
-                            <div className="flex-2 px-3">
-                                <div
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    {
-                                        <Vimeo
-                                            video={770500069}
-                                            volume={true}
-                                            autoplay
-                                            showTitle
-                                        />
-                                    }
-                                </div>
-                            </div>
-                            <div className="flex-1 seperator-left px-3">
-                                <ol className="list-unstyled">
-                                    {dashboardTutorials &&
-                                        dashboardTutorials.length > 0 &&
-                                        dashboardTutorials.map((item, i) => (
-                                            <li
-                                                key={i}
-                                                onClick={() => {
-                                                    setVideoId(
-                                                        item.video_stream_id
-                                                    );
-                                                }}
-                                                style={{backgroundColor:`${videoId === item.video_stream_id && "lightgray"}`,padding:"2rem"}}
-                                                className="mb-4 pointer"
-                                            >
-                                                {item.title}
-                                            </li>
-                                        ))}
-                                </ol>
-                            </div>
-                        </div> */}
                     </Col>
                 </Row>
             </Container>
