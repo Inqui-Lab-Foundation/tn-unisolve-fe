@@ -55,7 +55,11 @@ const EditTeamMember = (props) => {
                     'Please enter only alphanumeric characters'
                 )
                 .trim(),
-            age: Yup.string().required('Age is required'),
+            age: Yup.number()
+                .integer()
+                .min(10, 'Min age is 10')
+                .max(18, 'Max age is 18')
+                .required('required'),
             gender: Yup.string().required('Please select valid gender'),
             grade: Yup.string()
                 .matches('', 'Please enter valid class')
