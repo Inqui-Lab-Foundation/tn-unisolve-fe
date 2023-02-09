@@ -18,8 +18,8 @@ import {
 //import CommonPage from '../../../components/CommonPage';
 //import moment from 'moment';
 import Congo from '../../../assets/media/survey-success.jpg';
-import './style.css';
-import './Yeseva_One-normal';
+// import './style.css';
+// import './Yeseva_One-normal';
 const Certificate = ({ type, currentUser, postSurveyStatus, language }) => {
     const { t } = useTranslation();
     const pdfRef = useRef(null);
@@ -35,7 +35,6 @@ const Certificate = ({ type, currentUser, postSurveyStatus, language }) => {
         const certName = `${currentUser?.data[0]?.full_name}_${
             type ? 'idea_certificate' : 'course_certificate'
         }`;
-        doc.setFont('Yeseva_One', 'bold');
         doc.html(content, {
             callback: function (doc) {
                 doc.save(certName);
@@ -94,7 +93,7 @@ const Certificate = ({ type, currentUser, postSurveyStatus, language }) => {
                                 color: '#000000'
                             }}
                         >
-                            Whereas
+                            {currentUser?.data[0]?.full_name}
                         </span>
                         <span
                             className="text-capitalize"
