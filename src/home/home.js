@@ -41,32 +41,30 @@ import map_icon_pitch from '../assets/media/home/icon_solution_pichting.png';
 import map_icon_incu from '../assets/media/home/icon_incubation.png';
 
 // ta brans
-import SSA_Tamilnadu from '../assets/media/tn-brands/1_SSA_Tamilnadu.jpg';
-import SIDP_tamilnadu from '../assets/media/tn-brands/2_SIDP_tamilnadu.jpg';
-import EDII_tamilnadu from '../assets/media/tn-brands/3_EDII_tamilnadu.jpg';
-import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_Tamilnadu.png';
-import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_Tamilnadu.jpg';
-import IIF_Tamilnadu from '../assets/media/tn-brands/7_IIF_Tamilnadu.png';
-import SS_Tamilnadu from '../assets/media/tn-brands/8_SS_Tamilnadu.jpg';
-import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/9_Unicef OOI_Tamilnadu.jpg';
-import LogoTn from '../assets/media/tn-brands/UPSHIFT_SIDP_TN_logo.png';
+import SSA_Tamilnadu from '../assets/media/tn-brands/1_govt_karnataka.png';
+import SIDP_tamilnadu from '../assets/media/tn-brands/2_SSA_karnataka.png';
+import EDII_tamilnadu from '../assets/media/tn-brands/3_nif_karnataka.png';
+import UpShift_Tamilnadu from '../assets/media/tn-brands/4_UpShift_karnataka.png';
+import Yuwaah_Tamilnadu from '../assets/media/tn-brands/5_Yuwaah_karnataka.png';
+import IIF_Tamilnadu from '../assets/media/tn-brands/6_IIF_karnataka.png';
+import SS_Tamilnadu from '../assets/media/tn-brands/7_SS_karnataka.png';
+import Unicef_OOI_Tamilnadu from '../assets/media/tn-brands/8_Unicef_karnataka.png';
+import LogoTn from '../assets/media/tn-brands/UPSHIFT_SIDP_KA_logo.png';
 
 import Blog1 from '../assets/media/home/blog/walker_elders.jpg';
 import Blog2 from '../assets/media/home/blog/agriculture_bag.jpeg';
 import Blog3 from '../assets/media/home/blog/sweeping_machine.png';
 import RegisterPopup from './registration/RegisterPopup';
-import TamilNaduMap from '../components/MapCard/TamilNaduMap';
+import KarnatakaMap from '../components/MapCard/KarnatakaMap';
 import { getDistrictData, getDistrictLiveData } from '../redux/home/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import FancyVideo from 'react-videojs-fancybox';
-import taVideo from '../assets/media/tn-brands/ta-video.mp4';
-import tnVideoCover from '../assets/media/tn-brands/videoCover.png';
 import SchoolRegisterPopup from './SchoolRegisterPopup';
 import axios from 'axios';
 import ScrollToTop from 'react-scroll-to-top';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { getSchedulesForTeacherAndStudents } from '../redux/schedules/actions';
 import { compareDates } from '../helpers/Utils';
+import Vimeo from '@u-wave/react-vimeo';
 import i18next from 'i18next';
 // new push
 const Home = () => {
@@ -207,13 +205,13 @@ const Home = () => {
             imageUrl: IIF_Tamilnadu
         },
         {
-            id: 6,
+            id: 7,
             key: 'SS',
             // imageUrl: Congnizant
             imageUrl: SS_Tamilnadu
         },
         {
-            id: 6,
+            id: 8,
             key: 'Unicef',
             // imageUrl: Congnizant
             imageUrl: Unicef_OOI_Tamilnadu
@@ -317,12 +315,8 @@ const Home = () => {
             id: 5,
             title: `${t('home_tl.faq_qn_5')}`,
             desc: `${t('home_tl.faq_ans_5')}`
-        },
-        {
-            id: 6,
-            title: `${t('home_tl.faq_qn_6')}`,
-            desc: `${t('home_tl.faq_ans_6')}`
         }
+        
     ];
 
     const blogs = [
@@ -569,7 +563,7 @@ const Home = () => {
                 <Container>
                     <Row>
                         <Col md={12} className="text-center">
-                            <div className="heading">
+                            <div className="heading" >
                                 <h5>{t('home_tl.about_us')}</h5>
                                 <h2 className="sub-heading text-center">
                                     <div
@@ -591,13 +585,12 @@ const Home = () => {
                                 }}
                             ></div>
                         </Col>
-                        <Col md={6} className="my-auto ">
-                            <div className="position-relative sidp_video_box">
-                                <FancyVideo
-                                    source={taVideo}
-                                    poster={tnVideoCover}
-                                    id={'sintel'}
-                                />
+
+                        <Col md={6} className="position-relative">
+                            <div className="position-absolute" style={{width:"100%",height:"100%"}}>
+                            <Vimeo 
+                                video={772457997}
+                            />  
                             </div>
                         </Col>
                     </Row>
@@ -630,17 +623,20 @@ const Home = () => {
                             ></div>
                         </Col>
                     </Row>
-                </div>
-                <Container className="py-md-4 py-2">
+                    </div>
+                    <Container className="py-md-4 py-2">
                     <Row className="student py-md-4 py-2">
                         <Col
                             md={12}
                             lg={6}
                             className="my-auto mx-auto student-heading px-5 "
                         >
-                            <h2 className="mb-5 sub-heading">
-                                UPSHIFT {t('home_tl.power_by')}{' '}
-                                <span className="green">UNISOLVE</span>{' '}
+                            <h2 className="mb-5 sub-heading"
+                            dangerouslySetInnerHTML={{
+                                __html: t('home_tl.power_by')
+                            }}>
+                                {/* UPSHIFT {' '}
+                                <span className="green">UNISOLVE</span>{' '} */}
                             </h2>
                             <div
                                 dangerouslySetInnerHTML={{
@@ -648,6 +644,20 @@ const Home = () => {
                                 }}
                             ></div>
                             {/* <Link
+                                className="landing-page-actions"
+                                exact="true"
+                                to="/login"
+                            >
+                                <h2 className="mb-5 sub-heading">
+                                    UPSHIFT {t('home_tl.power_by')}{' '}
+                                    <span className="green">UNISOLVE</span>{' '}
+                                </h2>
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('home_tl.upshift_power_desc')
+                                    }}
+                                ></div>
+                                {/* <Link
                                     className="landing-page-actions"
                                     exact="true"
                                     to="/login"
@@ -880,7 +890,7 @@ const Home = () => {
                         {t('home_tl.engagement')}
                     </h2>
                 </div>
-                <TamilNaduMap />
+                <KarnatakaMap />
             </section>
             <section className="blog">
                 <Container>
@@ -956,7 +966,7 @@ const Home = () => {
             <section className="testimonials ">
                 <Container>
                     <Row className="text-center justify-content-md-center">
-                        <div className="heading">
+                        <div className="heading" style={{zIndex:1}}>
                             <h2 className="sub-heading">
                                 {t('home.testimonials')}
                             </h2>
