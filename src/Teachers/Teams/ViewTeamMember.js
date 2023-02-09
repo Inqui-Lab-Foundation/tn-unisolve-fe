@@ -15,7 +15,7 @@ import {
     getAdminTeamMembersList, studentResetPassword
 } from '../../redux/actions';
 import axios from 'axios';
-import { openNotificationWithIcon, getCurrentUser } from '../../helpers/Utils';
+import { getCurrentUser } from '../../helpers/Utils';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
 import logout from '../../assets/media/logout.svg';
@@ -54,7 +54,7 @@ const ViewTeamMember = () => {
             }
         ]
     };
-    const [count, setCount] = useState(0);
+    //const [count, setCount] = useState(0);
     // eslint-disable-next-line no-unused-vars
     const [teamsMembersList, setTeamsMemers] = useState([]);
     // eslint-disable-next-line no-unused-vars
@@ -63,7 +63,7 @@ const ViewTeamMember = () => {
 
     useEffect(() => {
         handleteamMembersAPI(teamId);
-    }, [teamId, count]);
+    }, [teamId]);
 
     async function handleteamMembersAPI(teamId) {
         var config = {
@@ -177,13 +177,13 @@ const ViewTeamMember = () => {
                                 style={{ marginRight: '10px' }}
                             />
                         </a>,
-                        <a onClick={() => handleDeleteTeamMember(params)}>
-                            {teamsMembersList && teamsMembersList.length > 2 && <i
-                                key={params.team_id}
-                                className="fa fa-trash"
-                                style={{ marginRight: '10px' }}
-                            />}
-                        </a>,
+                        // <a onClick={() => handleDeleteTeamMember(params)}>
+                        //     {teamsMembersList && teamsMembersList.length > 2 && <i
+                        //         key={params.team_id}
+                        //         className="fa fa-trash"
+                        //         style={{ marginRight: '10px' }}
+                        //     />}
+                        // </a>,
                         <a onClick={() => handleResetPassword(params)}>
                             <i key={params.team_id} className="fa fa-key" />
                         </a>
@@ -209,66 +209,66 @@ const ViewTeamMember = () => {
         });
     };
 
-    const handleDeleteTeamMember = (item) => {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        });
+    // const handleDeleteTeamMember = (item) => {
+    //     const swalWithBootstrapButtons = Swal.mixin({
+    //         customClass: {
+    //             confirmButton: 'btn btn-success',
+    //             cancelButton: 'btn btn-danger'
+    //         },
+    //         buttonsStyling: false
+    //     });
 
-        swalWithBootstrapButtons
-            .fire({
-                title: t('teacher_teams.delete_member_warning'),
-                text: t('teacher_teams.sure'),
-                imageUrl: `${logout}`,
-                showCloseButton: true,
-                confirmButtonText: t('teacher_teams.delete'),
-                showCancelButton: true,
-                cancelButtonText: t('general_req.btn_cancel'),
-                reverseButtons: false
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    var config = {
-                        method: 'delete',
-                        url:
-                            process.env.REACT_APP_API_BASE_URL +
-                            '/students/' +
-                            item.student_id,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${currentUser.data[0].token}`
-                        }
-                    };
-                    axios(config)
-                        .then(function (response) {
-                            if (response.status === 200) {
-                                setCount(count + 1);
-                                openNotificationWithIcon(
-                                    'success',
-                                    t('teacher_teams.delete_success')
-                                );
-                            } else {
-                                openNotificationWithIcon(
-                                    'error',
-                                    'Opps! Something Wrong'
-                                );
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        t('teacher_teams.delete_cancelled'),
-                        t('teacher_teams.delete_member_cancel'),
-                        'error'
-                    );
-                }
-            });
-    };
+    //     swalWithBootstrapButtons
+    //         .fire({
+    //             title: t('teacher_teams.delete_member_warning'),
+    //             text: t('teacher_teams.sure'),
+    //             imageUrl: `${logout}`,
+    //             showCloseButton: true,
+    //             confirmButtonText: t('teacher_teams.delete'),
+    //             showCancelButton: true,
+    //             cancelButtonText: t('general_req.btn_cancel'),
+    //             reverseButtons: false
+    //         })
+    //         .then((result) => {
+    //             if (result.isConfirmed) {
+    //                 var config = {
+    //                     method: 'delete',
+    //                     url:
+    //                         process.env.REACT_APP_API_BASE_URL +
+    //                         '/students/' +
+    //                         item.student_id,
+    //                     headers: {
+    //                         'Content-Type': 'application/json',
+    //                         Authorization: `Bearer ${currentUser.data[0].token}`
+    //                     }
+    //                 };
+    //                 axios(config)
+    //                     .then(function (response) {
+    //                         if (response.status === 200) {
+    //                             setCount(count + 1);
+    //                             openNotificationWithIcon(
+    //                                 'success',
+    //                                 t('teacher_teams.delete_success')
+    //                             );
+    //                         } else {
+    //                             openNotificationWithIcon(
+    //                                 'error',
+    //                                 'Opps! Something Wrong'
+    //                             );
+    //                         }
+    //                     })
+    //                     .catch(function (error) {
+    //                         console.log(error);
+    //                     });
+    //             } else if (result.dismiss === Swal.DismissReason.cancel) {
+    //                 swalWithBootstrapButtons.fire(
+    //                     t('teacher_teams.delete_cancelled'),
+    //                     t('teacher_teams.delete_member_cancel'),
+    //                     'error'
+    //                 );
+    //             }
+    //         });
+    // };
 
     return (
         <Layout>
