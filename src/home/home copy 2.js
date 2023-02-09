@@ -976,7 +976,6 @@ Unisolve */}
                                         />
                                     </Col>
                                 </Row>
-
                                 {orgData && show ? (
                                     <Card className="mt-3 text-left p-4">
                                         <CardBody>

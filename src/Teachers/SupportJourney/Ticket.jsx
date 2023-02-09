@@ -129,7 +129,6 @@ const TicketsPage = (props) => {
             }
         ]
     };
-    // console.log(SchoolsData);
     // const handleSelect = (id) => {
     //     history.push({
     //         pathname: `/teacher/support-journey/ans-ticket`,

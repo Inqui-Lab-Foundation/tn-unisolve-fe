@@ -221,7 +221,6 @@ const ViewTeamMember = () => {
             item: item
         });
     };
-
     const handleDeleteTeamMember = (item) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {

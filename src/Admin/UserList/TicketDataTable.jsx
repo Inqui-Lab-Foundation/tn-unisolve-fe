@@ -18,7 +18,6 @@ import { TableComponent } from '../../stories/TableComponent/TableComponent';
 // import iconExport from "../../media/iconExport.png";
 
 const TicketDataTable = (props) => {
-    // props, ":::::::::::123");
     const [tableShow] = useState(true);
     // const [actionDropdown, setActionDropdown] = useState(false);
     // const [ setActionIndex] = useState("");

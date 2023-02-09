@@ -69,10 +69,8 @@ const CommonUserProfile = (props) => {
                                         : '-'}
                                 </b>
                             </CardText>
-                            <CardText>
-                                <span className="mx-3">
-                                    <b>Mobile:</b>
-                                </span>
+                            {/* <CardText>
+                                <span className='mx-3'><b>Mobile:</b></span>
                                 <b>
                                     {props.location.data &&
                                     props.location.data.mobile
@@ -80,7 +78,7 @@ const CommonUserProfile = (props) => {
                                           props.location.data.mobile
                                         : '-'}
                                 </b>
-                            </CardText>
+                            </CardText> */}
                             <CardText>
                                 <span className="mx-3">
                                     <b>Email:</b>
@@ -165,7 +163,7 @@ const CommonUserProfile = (props) => {
 
                             <CardText>
                                 <span className="mx-3">
-                                    <b>UDISE Code:</b>
+                                    <b>Teacher Unique Code:</b>
                                 </span>
                                 <b>
                                     {props.location.data &&

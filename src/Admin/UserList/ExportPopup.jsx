@@ -69,7 +69,6 @@ function ExportPopup(props) {
                 }
             })
             .catch(function (error) {
-                console.log(error);
                 if (error.response.data.status === 400) {
                     alert('hi');
                     setResponse('File already exist');

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -44,7 +45,7 @@ const Ideas = (props) => {
             // password: Yup.string().required("Required"),
         }),
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
         }
     });
     const inputIdeaTitle = {

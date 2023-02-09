@@ -631,7 +631,7 @@ const IdeasPageNew = () => {
                                                         )}
                                                     </b>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <p
                                                         className="text-muted ms-5"
                                                         style={{
@@ -642,7 +642,7 @@ const IdeasPageNew = () => {
                                                             'student_course.sdg_desc'
                                                         )}
                                                     </p>
-                                                </div>
+                                                </div> */}
                                                 <div className=" answers row flex-column p-4">
                                                     <select
                                                         disabled={isDisabled}

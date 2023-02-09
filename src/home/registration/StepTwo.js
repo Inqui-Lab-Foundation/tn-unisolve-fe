@@ -21,14 +21,14 @@ function StepTwo({
     setHideFive
 }) {
     const { t } = useTranslation();
-    const phoneRegExp =
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+    // const phoneRegExp =
+    //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-    const inputPhone = {
-        type: 'text',
-        placeholder: `${t('teacehr_red.faculty_ph')}`,
-        className: 'defaultInput'
-    };
+    // const inputPhone = {
+    //     type: 'text',
+    //     placeholder: `${t('teacehr_red.faculty_ph')}`,
+    //     className: 'defaultInput'
+    // };
 
     const inputEmail = {
         type: 'email',
@@ -49,7 +49,7 @@ function StepTwo({
     const formik = useFormik({
         initialValues: {
             full_name: '',
-            mobile: '',
+            // mobile: '',
             username: '',
             organization_code: orgData?.organization_code,
             role: 'MENTOR',
@@ -64,12 +64,12 @@ function StepTwo({
                 .min(2, 'Enter Name')
                 .matches(/^[aA-zZ\s]+$/, 'Special Characters are Not allowed')
                 .required('Required'),
-            mobile: Yup.string()
-                .required('required')
-                .trim()
-                .matches(phoneRegExp, 'Phone number is not valid')
-                .min(10, 'Please enter valid number')
-                .max(10, 'Please enter valid number'),
+            // mobile: Yup.string()
+            //     .required('required')
+            //     .trim()
+            //     .matches(phoneRegExp, 'Phone number is not valid')
+            //     .min(8, 'Please enter valid number')
+            //     .max(8, 'Please enter valid number'),
             username: Yup.string()
                 .trim()
                 .email('Invalid username format')
@@ -128,8 +128,8 @@ function StepTwo({
                         <UncontrolledAlert color="primary ">
                             {t('teacehr_red.school')}:{' '}
                             {orgData?.organization_name} <br />
-                            {t('teacehr_red.city')}:{' '}
-                            {orgData?.city ? orgData?.city : ' N/A'} <br />
+                            {t('teacehr_red.org_type')}:{' '}
+                            {orgData?.organization_type ? orgData?.organization_type : ' N/A'} <br />
                             {t('teacehr_red.district')}:{' '}
                             {orgData?.district ? orgData?.district : ' N/A'}
                         </UncontrolledAlert>
@@ -145,7 +145,7 @@ function StepTwo({
                     onSubmit={formik.handleSubmit}
                     isSubmitting
                 >
-                    <FormGroup className="form-group mb-5" md={12}>
+                    <FormGroup className="form-group mt-5" md={12}>
                         <Label className="mb-2" htmlFor="name">
                             {t('teacehr_red.faculty_name')}
                         </Label>
@@ -166,11 +166,11 @@ function StepTwo({
                             </small>
                         ) : null}
                     </FormGroup>
-                    <FormGroup className="form-group" md={12}>
+                    {/* <FormGroup className="form-group" md={12}>
                         <Label className="mb-2" htmlFor="mobile">
                             {t('teacehr_red.faculty_ph')}
                         </Label>
-                        {/* <InputWithMobileNoComp {...inputPhone} id='mobile' name='mobile' /> */}
+                        
                         <InputBox
                             {...inputPhone}
                             id="mobile"
@@ -185,7 +185,7 @@ function StepTwo({
                                 {formik.errors.mobile}
                             </small>
                         ) : null}
-                    </FormGroup>
+                    </FormGroup> */}
 
                     <FormGroup className="form-group mt-5" md={12}>
                         <Label className="mb-2" htmlFor="username">

@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 const EditTeamMember = (props) => {
     const { t } = useTranslation();
-    const allowedAge = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+    const allowedAge = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     const history = useHistory();
     const currentUser = getCurrentUser('current_user');
     const teamMemberData =
@@ -37,7 +37,7 @@ const EditTeamMember = (props) => {
             }
         ]
     };
-
+    // console.log(teamMemberData);
     const formik = useFormik({
         initialValues: {
             fullName: teamMemberData && teamMemberData.full_name,
@@ -204,7 +204,7 @@ const EditTeamMember = (props) => {
                                                 className="name-req"
                                                 htmlFor="grade"
                                             >
-                                                Class
+                                                Grade
                                             </Label>
                                             <div className="dropdown CalendarDropdownComp ">
                                                 <select
@@ -218,26 +218,38 @@ const EditTeamMember = (props) => {
                                                     <option value="">
                                                         Select Class..
                                                     </option>
+                                                    <option value="4">
+                                                        Grade 4
+                                                    </option>
+                                                    <option value="5">
+                                                        Grade 5
+                                                    </option>
                                                     <option value="6">
-                                                        Class 6
+                                                        Grade 6
                                                     </option>
                                                     <option value="7">
-                                                        Class 7
+                                                        Grade 7
                                                     </option>
                                                     <option value="8">
-                                                        Class 8
+                                                        Grade 8
                                                     </option>
                                                     <option value="9">
-                                                        Class 9
+                                                        Grade 9
                                                     </option>
                                                     <option value="10">
-                                                        Class 10
+                                                        Grade 10
                                                     </option>
                                                     <option value="11">
-                                                        Class 11
+                                                        Grade 11
                                                     </option>
                                                     <option value="12">
-                                                        Class 12
+                                                        Grade 12
+                                                    </option>
+                                                    <option value="Youth center">
+                                                        Youth center
+                                                    </option>
+                                                    <option value="In College">
+                                                        In College
                                                     </option>
                                                 </select>
                                             </div>

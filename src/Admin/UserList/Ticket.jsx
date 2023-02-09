@@ -380,11 +380,11 @@ const TicketsPage = (props) => {
                 selector: 'username',
                 width: '22%'
             },
-            {
-                name: 'Phone',
-                selector: 'mobile',
-                width: '10%'
-            },
+            // {
+            //     name: 'Phone',
+            //     selector: 'mobile',
+            //     width: '15%'
+            // },
             {
                 name: 'Status',
                 cell: (row) => [
@@ -560,11 +560,11 @@ const TicketsPage = (props) => {
                 selector: 'user.username',
                 width: '25%'
             },
-            {
-                name: 'Mobile',
-                selector: 'mobile',
-                width: '11%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'mobile',
+            //     width: '11%'
+            // },
             {
                 name: 'District',
                 selector: 'district',

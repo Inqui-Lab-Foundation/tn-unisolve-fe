@@ -168,7 +168,6 @@ const ManageFaq = (props) => {
     //                 name: 'Actions',
     //                 cell: row => {
     //                     let getfaqFilterDrop = faqFilterDrop(row.faqID);
-    //                     console.log("line 138",row);
     //                     return (
     //                         // <div {...getfaqFilterDrop}>...</div>
     //                         <CommonDropDownComp
@@ -326,10 +325,10 @@ const ManageFaq = (props) => {
                                 '',
                                 'success'
                             );
-                            console.log(
-                                '🚀 ~ file: ManageFaq.jsx ~ line 211 ~ .then ~ faqCategoryList',
-                                faqCategoryList
-                            );
+                            // console.log(
+                            //     '🚀 ~ file: ManageFaq.jsx ~ line 211 ~ .then ~ faqCategoryList',
+                            //     faqCategoryList
+                            // );
                             setfaqCategoryList(
                                 faqCategoryList.filter(
                                     (eachfaqCat) =>

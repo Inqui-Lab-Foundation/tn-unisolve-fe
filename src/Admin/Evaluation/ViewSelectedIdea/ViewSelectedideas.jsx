@@ -183,7 +183,7 @@ const ViewSelectedIdea = () => {
                         : row.evaluated_at,
                 width: '15%'
             },
-            
+
             {
                 name: 'Status',
                 // selector: (row) => row.evaluation_status && row.evaluation_status=='SELECTEDROUND1'?'Accepted':row.evaluation_status=='REJECTEDROUND1'?'Rejected':'',

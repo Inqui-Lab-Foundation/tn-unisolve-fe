@@ -35,8 +35,6 @@ const TicketsPage = (props) => {
     const [pending, setPending] = React.useState(true);
     const [rows, setRows] = React.useState([]);
     const [SRows, setSRows] = React.useState([]);
-    // const list = JSON.parse(localStorage.getItem('list'));
-
     React.useEffect(() => {
         const timeout = setTimeout(() => {
             setSRows(reqSchoolsData.data);
@@ -44,7 +42,6 @@ const TicketsPage = (props) => {
         }, 2000);
         return () => clearTimeout(timeout);
     }, []);
-
     React.useEffect(() => {
         const timeout = setTimeout(() => {
             setRows(SchoolsData.data);
@@ -284,12 +281,12 @@ const TicketsPage = (props) => {
                 cellExport: (row) => row.principal_name,
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                cellExport: (row) => row.principal_mobile,
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     cellExport:(row) => row.principal_mobile,
+            //     width: '12%'
+            // },
             {
                 name: 'Status',
                 cellExport: (row) => row.status,
@@ -361,7 +358,7 @@ const TicketsPage = (props) => {
                 // center: true,
             },
             {
-                name: 'UDISE Code',
+                name: 'Teacher Unique Code',
                 selector: (row) => row.organization_code,
                 sortable: true,
                 width: '15%'
@@ -378,11 +375,11 @@ const TicketsPage = (props) => {
                 selector: 'principal_name',
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     width: '12%'
+            // },
             {
                 name: 'Status',
                 cell: (row) => [
@@ -440,7 +437,7 @@ const TicketsPage = (props) => {
                 width: '6%'
             },
             {
-                name: 'UDISE Code',
+                name: 'Teacher Unique Code',
                 selector: 'organization_code',
                 sortable: true,
                 width: '15%'
@@ -455,11 +452,11 @@ const TicketsPage = (props) => {
                 selector: 'principal_name',
                 width: '15%'
             },
-            {
-                name: 'Mobile',
-                selector: 'principal_mobile',
-                width: '12%'
-            },
+            // {
+            //     name: 'Mobile',
+            //     selector: 'principal_mobile',
+            //     width: '12%'
+            // },
 
             // {
             //     name: 'State',

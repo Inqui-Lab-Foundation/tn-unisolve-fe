@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
@@ -63,7 +64,7 @@ const AddNewMentor = (props) => {
             // password: Yup.string().required("Required"),
         }),
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
         }
     });
     const progressBar = {

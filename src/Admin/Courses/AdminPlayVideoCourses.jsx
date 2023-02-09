@@ -226,17 +226,6 @@ const AdminPlayVideoCourses = (props) => {
         // const eventSeconds1 = Math.floor(event.seconds);
         // const calculatedSeconds1 = Math.floor(calculatePercentage1);
 
-        // console.log(
-        //   lastTrimmedLength,
-        //   "lastTrimmedLength==",
-        //   calculatePercentage1,
-        //   "calculatePercentage12",
-        //   eventSeconds1,
-        //   "eventSeconds13",
-        //   calculatedSeconds1,
-        //   "calculatedSeconds14"
-        // );
-
         if (
             event.percent === calculatePercentage &&
             eventSeconds === calculatedSeconds
@@ -294,14 +283,9 @@ const AdminPlayVideoCourses = (props) => {
     };
 
     // const video = assmentList[videoIndex];
-    // console.log(
-    //   "==============responceresponceresponceresponce",
-    //   worksheetResponce
-    // );
-
+    //
     // const handlePlayer = (time) => {
     //   if (time.getCurrentTime(3000)) {
-    //     alert("jhani");
     //   }
     // };
 
@@ -350,7 +334,6 @@ const AdminPlayVideoCourses = (props) => {
     };
 
     const handleClose = (item) => {
-        // alert("item" + item);
         setItem('WORKSHEET');
         setModalShow(item);
         setHideQuiz(false);
@@ -435,10 +418,6 @@ const AdminPlayVideoCourses = (props) => {
     // const OnLoaded = (e) => {
     // };
     // const video_stream_id = '666422934';
-    // console.log(
-    //   "===worksheetId",
-    //   responce && responce.data[0] && responce.data[0].video_stream_id
-    // );
     // const video_id = Number(id);
 
     // const id =

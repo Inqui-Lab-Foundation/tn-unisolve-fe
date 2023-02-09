@@ -77,11 +77,7 @@ const Header = (props) => {
             dispatch(getTeacherPresurveyStatus());
         }
     }, [dispatch]);
-    // console.log(
-    //   props.notificationsList,
-    //   "=============",
-    //   props.NotificationCount
-    // );
+
     return (
         <header>
             <div

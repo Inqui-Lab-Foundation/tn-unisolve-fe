@@ -78,8 +78,7 @@ const ChangePSWModal = (props) => {
                     old_password: old1,
                     new_password: new1
                 });
-                // console.log(
-                //   "===========old",
+
                 //   CryptoJS.AES.encrypt(
                 //     values.oldPassword,
                 //     "my-secret-key@123"

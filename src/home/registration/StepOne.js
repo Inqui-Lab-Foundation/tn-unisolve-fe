@@ -47,29 +47,22 @@ function StepOne({
                 .post(`${URL.checkOrg}`, organization, axiosConfig)
                 .then((checkOrgRes) => {
                     if (checkOrgRes?.status == 200) {
-                        if (checkOrgRes?.data?.data[0].mentor == null) {
-                            if (
-                                Object.keys(checkOrgRes?.data?.data[0]).length
-                            ) {
-                                setOrgData(checkOrgRes?.data?.data[0]);
-                                setHideOne(false);
-                                setHideTwo(true);
-                            } else {
-                                formik.setErrors({
-                                    organization_code:
-                                        'Oops..! UDISE Code seems incorrect'
-                                });
-                            }
+                        if (
+                            Object.keys(checkOrgRes?.data?.data[0]).length
+                        ) {
+                            setOrgData(checkOrgRes?.data?.data[0]);
+                            setHideOne(false);
+                            setHideTwo(true);
                         } else {
                             formik.setErrors({
-                                organization_code:
-                                    'Another Teacher is already registered in given School'
+                            organization_code:
+                                'Oops..! Teacher Unique Code seems incorrect'
                             });
                         }
                     } else {
                         formik.setErrors({
                             organization_code:
-                                'Oops..! UDISE Code seems incorrect 2'
+                                'Oops..! Teacher Unique Code seems incorrect 2'
                         });
                     }
                 })
@@ -116,14 +109,14 @@ function StepOne({
                         </small>
                     ) : data ? (
                         <p>
-                            Entered UDISE Code is Invalid.
+                            Entered Teacher Unique Code is Invalid.
                             {/* <a onClick={(e) => handleOnClick(e)}>
                                 <u>Click here</u>
                             </a>
                             {''} to request to Add School Information. */}
                         </p>
                     ) : null}
-                    {/* <span>Please enter your school UDISE code to continue</span> */}
+                    {/* <span>Please enter your school Teacher Unique Code to continue</span> */}
                 </FormGroup>
                 <div className="mt-5">
                     <Button

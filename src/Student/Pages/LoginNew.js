@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import './SignUp.scss';
 import React, { useLayoutEffect, useState } from 'react';
-import { Row, Col, Form, FormGroup, Label, Input, List } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { InputBox } from '../../stories/InputBox/InputBox.jsx';
 import { Button } from '../../stories/Button.jsx';
@@ -410,7 +410,7 @@ const LoginNew = (props) => {
                                     </p>
                                 </Row> */}
                             </Col>
-                            <Col>
+                            {/* <Col>
                                 <List type="unstyled">
                                     <li>
                                         <a
@@ -440,7 +440,7 @@ const LoginNew = (props) => {
                                         </a>
                                     </li>
                                 </List>
-                            </Col>
+                            </Col> */}
                         </Row>
                     </Col>
                 </Row>

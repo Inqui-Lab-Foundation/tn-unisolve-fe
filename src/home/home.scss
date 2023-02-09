@@ -35,7 +35,7 @@
       }
     }
     .logoImg{
-      max-width: 70%;
+      max-width: 100%;
     }
   }
  
@@ -696,8 +696,11 @@
     //   }
     // }
   }
-
-
+.testimonials-slider{
+  .slick-track{
+    transform: none !important;
+  }
+}
 
   .blog {
     padding: 10rem 0;
@@ -710,7 +713,10 @@
       position: relative;
       padding: 25rem 2rem 0rem 2rem;
       background-size: cover;
-
+      @media (min-width: 1600px) {
+        height: 80rem;
+        position: relative;
+      }
 
       @media (max-width: 991px) {
         padding: 6rem 2rem 0rem 2rem;
@@ -721,6 +727,12 @@
         p {
           color: var(--color-white-1);
         }
+      }
+    }
+    .card-body{
+      @media (min-width: 1600px) {
+        position: absolute;
+        bottom: 0;
       }
     }
 
@@ -869,7 +881,21 @@
     }
     img {
       text-align: center;
-      width: 10rem;
+      width: 10rem !important; 
+    }
+    @media (min-width: 991px) {
+      img {
+        text-align: center;
+        width: 13rem !important;
+        height: 13rem;
+      }
+    }
+    @media (min-width: 1700px) {
+      img {
+        text-align: center;
+        width: 25rem !important;
+        height: 25rem;
+      }
     }
     .container {
       &::before {
@@ -1372,7 +1398,7 @@ section.road-map{
       }
   
       &__title {
-        font-size: 1.2rem;
+        font-size: 2.3rem;
         line-height: 1.4;
         text-transform: uppercase;
   
@@ -1479,7 +1505,7 @@ section.road-map{
           }
         }
         .timeline__event__title {
-          color: $color4;
+          color: $color5;
         }
         .timeline__event__title {
         }
@@ -1598,5 +1624,11 @@ section.road-map{
   .student-heading {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+  }
+}
+
+@media (min-width: 991px) {
+  .slider-width{
+    max-width: 85%;
   }
 }
