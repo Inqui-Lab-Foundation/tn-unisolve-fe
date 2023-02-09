@@ -16,17 +16,11 @@ import {
     updateStudentCertificate
 } from '../../../redux/studentRegistration/actions';
 //import CommonPage from '../../../components/CommonPage';
-import moment from 'moment';
+//import moment from 'moment';
 import Congo from '../../../assets/media/survey-success.jpg';
 import './style.css';
 import './Yeseva_One-normal';
-const Certificate = ({
-    type,
-    currentUser,
-    postSurveyStatus,
-    certDate,
-    language
-}) => {
+const Certificate = ({ type, currentUser, postSurveyStatus, language }) => {
     const { t } = useTranslation();
     const pdfRef = useRef(null);
     const partRef = useRef(null);
@@ -34,7 +28,7 @@ const Certificate = ({
     const handleCertificateDownload = () => {
         const content = type ? partRef.current : pdfRef.current;
         const badge = 'the_finisher';
-        const size = type ? [298, 220] : [298, 220];
+        const size = type ? [298, 211] : [298, 211];
         // const size = type ? [210, 297] : [298, 200];
         const orientation = type ? 'l' : 'l';
         const doc = new jsPDF(orientation, 'px', size);
@@ -61,14 +55,12 @@ const Certificate = ({
                 updateStudentCertificate(currentUser?.data[0]?.student_id)
             );
     };
-    const certDateCheck = () => {
-        const check =
-            type !== 'participate'
-                ? certDate?.course_completed_date &&
-                  moment(certDate?.course_completed_date).format('DD-MM-YYYY')
-                : '';
-        return check ? ' on ' + check : '';
-    };
+    // const certDateCheck = () => {
+    //     const check = type !=='participate'
+    //         ? certDate?.course_completed_date &&
+    //         moment(certDate?.course_completed_date).format('DD-MM-YYYY'):'';
+    //     return check ? ' on ' + check : '';
+    // };
     return (
         <Card
             className="course-sec-basic p-5 m-4 w-100"
@@ -92,13 +84,14 @@ const Certificate = ({
                             className="text-capitalize name-block"
                             style={{
                                 position: 'absolute',
-                                top: `${type ? '9.1rem' : '8.5rem'}`,
-                                left: `${type ? '8.3rem' : '10rem'}`,
+                                top: `${type ? '8rem' : '7.4rem'}`,
+                                left: `${type ? '9rem' : '9rem'}`,
                                 // top: `${type ? '9rem' : '12.8rem'}`,
                                 // left: `${type ? '10.3rem' : '6.5rem'}`,
-                                fontSize: '0.75rem'
-                                // 'font-family': 'url',
-                                // fontFamily: 'Yeseva One'
+                                fontSize: '0.75rem',
+                                fontFamily: 'courier',
+                                fontWeight: 'bold',
+                                color: '#000000'
                             }}
                         >
                             Whereas
@@ -107,15 +100,15 @@ const Certificate = ({
                             className="text-capitalize"
                             style={{
                                 position: 'absolute',
-                                top: `${type ? '10.5rem' : '9.8rem'}`,
+                                top: `${type ? '9.4rem' : '8.8rem'}`,
                                 left: `${type ? '5rem' : '5rem'}`,
                                 fontSize: '0.75rem',
-                                'font-family': 'body'
-                                // fontFamily: 'Yeseva One'
+                                fontFamily: 'courier',
+                                fontWeight: 'bold',
+                                color: '#000000'
                             }}
                         >
-                            {currentUser?.data[0]?.organization_name +
-                                certDateCheck()}
+                            {currentUser?.data[0]?.organization_name}
                         </span>
                         <img
                             src={
@@ -124,13 +117,12 @@ const Certificate = ({
                                     : courseCompletionCertificate
                             }
                             alt="certificate"
-                            className="img-fluid mx-auto"
                             style={{
                                 width: '297px',
-                                height: '210px',
+                                height: '210px'
                                 // width: `${type ? '297px' : '200px'}`,
                                 // height: `${type ? '209px' : '297px'}`,
-                                border: '1px solid #cccccc'
+                                // border: '1px solid #cccccc'
                             }}
                         />
                     </div>
@@ -211,7 +203,7 @@ const MyCertificate = () => {
         <Layout>
             <Container className="presuervey mb-50 mt-5 ">
                 <Fragment>
-                    {showDummypage ? (
+                    {!showDummypage ? (
                         // all_topics_count === topics_completed_count || enablePostSurvey
                         <Row>
                             <Col className="d-lg-flex justify-content-center">

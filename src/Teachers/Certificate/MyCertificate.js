@@ -56,7 +56,7 @@ const MyCertificate = () => {
             <Container className="presuervey mb-50 mt-5 ">
                 <Fragment>
                     <Card className="course-sec-basic p-5">
-                        {!tempVar ? (
+                        {tempVar ? (
                             <CardBody>
                                 <CardTitle
                                     className=" text-left pt-4 pb-4"
@@ -76,10 +76,12 @@ const MyCertificate = () => {
                                         className="text-capitalize"
                                         style={{
                                             position: 'absolute',
-                                            top: '8rem',
+                                            top: '7.2rem',
                                             left: '10rem',
-                                            fontSize: '1rem',
-                                            fontFamily: 'Yeseva One'
+                                            fontSize: '0.75rem',
+                                            fontWeight:'bold',
+                                            fontFamily:"courier",
+                                            color:'#000000'
                                         }}
                                     >
                                         {currentUser?.data[0]?.full_name}
@@ -88,10 +90,12 @@ const MyCertificate = () => {
                                         className="text-capitalize"
                                         style={{
                                             position: 'absolute',
-                                            top: '9.6rem',
+                                            top: '8.6rem',
                                             left: '5rem',
                                             fontSize: '0.75rem',
-                                            fontFamily: 'Yeseva One'
+                                            fontWeight:'bold',
+                                            fontFamily:"courier",
+                                            color:'#000000'
                                         }}
                                     >
                                         {
@@ -105,7 +109,7 @@ const MyCertificate = () => {
                                         style={{
                                             width: '297px',
                                             height: '209px',
-                                            border: '1px solid #ccc'
+                                            //border: '1px solid #ccc'
                                         }}
                                     />
                                 </div>
