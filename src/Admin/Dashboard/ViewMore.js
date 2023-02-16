@@ -16,7 +16,7 @@ const ViewMore = () => {
     };
     var teamId = [];
     teamId.push({ mentor_id: orgDaTa.mentor.mentor_id });
-    
+
     const handleBack = () => {
         history.push({
             pathname: '/admin/dashboard'

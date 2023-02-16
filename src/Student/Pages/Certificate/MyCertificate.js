@@ -18,13 +18,9 @@ import {
 //import CommonPage from '../../../components/CommonPage';
 //import moment from 'moment';
 import Congo from '../../../assets/media/survey-success.jpg';
-
-const Certificate = ({
-    type,
-    currentUser,
-    postSurveyStatus,
-    language
-}) => {
+// import './style.css';
+// import './Yeseva_One-normal';
+const Certificate = ({ type, currentUser, postSurveyStatus, language }) => {
     const { t } = useTranslation();
     const pdfRef = useRef(null);
     const partRef = useRef(null);
@@ -84,7 +80,7 @@ const Certificate = ({
                         style={{ width: 'fit-content' }}
                     >
                         <span
-                            className="text-capitalize"
+                            className="text-capitalize name-block"
                             style={{
                                 position: 'absolute',
                                 top: `${type ? '8rem' : '7.4rem'}`,
@@ -92,10 +88,9 @@ const Certificate = ({
                                 // top: `${type ? '9rem' : '12.8rem'}`,
                                 // left: `${type ? '10.3rem' : '6.5rem'}`,
                                 fontSize: '0.75rem',
-                                fontFamily:"courier",
-                                fontWeight:'bold',
-                                color:'#000000'
-                                
+                                fontFamily: 'courier',
+                                fontWeight: 'bold',
+                                color: '#000000'
                             }}
                         >
                             {currentUser?.data[0]?.full_name}
@@ -107,9 +102,9 @@ const Certificate = ({
                                 top: `${type ? '9.4rem' : '8.8rem'}`,
                                 left: `${type ? '5rem' : '5rem'}`,
                                 fontSize: '0.75rem',
-                                fontFamily:"courier",
-                                fontWeight:'bold',
-                                color:'#000000'
+                                fontFamily: 'courier',
+                                fontWeight: 'bold',
+                                color: '#000000'
                             }}
                         >
                             {currentUser?.data[0]?.organization_name}
@@ -122,8 +117,8 @@ const Certificate = ({
                             }
                             alt="certificate"
                             style={{
-                                width:'297px',
-                                height:'210px',
+                                width: '297px',
+                                height: '210px'
                                 // width: `${type ? '297px' : '200px'}`,
                                 // height: `${type ? '209px' : '297px'}`,
                                 // border: '1px solid #cccccc'
@@ -154,7 +149,7 @@ const Certificate = ({
 };
 
 const MyCertificate = () => {
-    const showDummypage = false;
+    const showDummypage = true;
     const { t } = useTranslation();
     // const teamMember = useSelector((state) => state?.studentRegistration.teamMember);
     const language = useSelector(
